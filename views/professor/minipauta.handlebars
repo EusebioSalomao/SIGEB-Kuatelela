@@ -1,0 +1,820 @@
+{{#if msg}}
+<div class="alert alert-success text-center minipauta-alert" role="status">{{msg}}</div>
+{{/if}}
+{{#if exist}}
+<div class="alert alert-danger text-center minipauta-alert" role="alert">{{exist}}</div>
+{{/if}}
+
+<main class="container-fluid container-xl mini-prof">
+
+    <div class="row lead-one align-items-stretch g-3" id="text-sm">
+        <div class="col-12 col-lg-5 bg-secondary text-light py-3 px-4 minipauta-heading">
+            <h1 class="h3 mb-0">Professor: {{minipauta.idProfessor.nome}} </h1>
+        </div>
+        <div class="col-12 col-lg-7 text-center p-3 mark minipauta-heading">
+            <h2 class="h3 mb-0"><span class="text-secondary">Minipauta:</span> / {{minipauta.idClasse.designacao}}</h2>
+
+        </div>
+    </div>
+    <hr>
+    <div class="bg-secondary minipauta-guide">
+        <div class="row align-items-center g-3 p-3">
+
+            <div class="col-12" id="lead-mini">
+                {{#if lancarNota}}
+                <a href="/professor/minipautas/{{minipauta.idProfessor._id}}"
+                    class="btn btn-sm bg-laranja text-light">Ver todas minipautas</a>
+                {{else}}
+                <a href="/pedagogico/minipautas" class="btn btn-sm bg-laranja text-light">Ver todas minipautas</a>
+                {{/if}}
+                <span class="text-light text-sm minipauta-guide-text">Veja e gira as notas dos teus alunos por meio desta
+                    planilha — realize, no mínimo, duas avaliações por trimestre e guarde sempre uma via.</span>
+
+            </div>
+
+        </div>
+    </div>
+    <hr>
+    <div class="row mark h3 fw-bold g-3 mb-4">
+        <div class="col-12 col-md-6">
+            <span class="text-secondary">Turma: </span> <span> {{minipauta.idTurma.codigo}} </span>
+        </div>
+        <div class="col-12 col-md-6 text-md-end">
+            <span class="text-secondary">Disciplina: </span> <span> {{minipauta.nomeDisciplina}} </span>
+        </div>
+
+    </div>
+
+    {{!-- TABELA DA MINIPAUTA --}}
+    <div class="container-fluid p-0">
+        <div class="row g-3 p-2 minipauta-actions">
+            {{#if lancarNota}}
+            <div class="text-danger text-center mark mb-3 text-sm" id="aviso1">Ilustre Docente. Pode voltar a lançar as notas que não
+                aparecem.
+                Se for apenas alguns alunos ou avaliação em atraso, clica no botão "Editar nota". Caso sejam notas de
+                todos
+                alunos numa determinada avaliação ou prova, clica em "Lançar outra vez". <span class="fw-bold"> Não
+                    esqueça
+                    de actualizar a pagina depois de lançar a nota, por favor!</span></div>
+            <div class="row align-items-center g-2">
+                <div class="col-12 col-xl-9">
+                    {{#if minipauta.idProfessor.lancamentoDeNotas}}
+                    <button onclick="lancarNota()" class="btn btn-sm btn-warning">Lançar nota</button>
+                    <button onclick="lancarNota()" class="btn btn-sm btn-primary opacity-50">Lançar outra vez</button>
+                    <span class="text-primary text-center">Depois do lançamento actualize a pagina por favor!</span>
+                    {{else}}
+                    <span class="text-primary text-center" id="lead-notaatraso">O Lançamento de nota não está disponível no momento. Contacta a
+                        Direção!</span>
+                    {{/if}}
+                </div>
+                <div class="col-12 col-xl-3 text-xl-end">
+                {{!-- Se for autorizado a lançar --}}
+                    {{#if minipauta.idProfessor.lancamentoDeNotas}}
+                    {{!-- Funçãoque permite aos professores lançar notas das provas em atraso, ou editar uma nota --}}
+                    <button id="btn-editar-nota" onclick="editarNota()" class="btn btn-sm btn-warning">Editar nota / Av. Atraso</button>
+                    {{!-- Se não for autorizado a lançar --}}
+                    {{else}}{{/if}}
+
+                </div>
+            </div>
+            {{!-- PARA REPETIR LANÇAR --}}
+            <form action="/professor/lancarNotaRep" method="post">
+
+                {{#if msgFalhaLancada}}<div class="text-center">
+
+                    <input type="hidden" name="idProfessor" value="{{minipauta.idProfessor._id}}">
+                    <input type="hidden" name="idMinipauta" value="{{minipauta._id}}">
+                    <input type="hidden" name="idClasse" value="{{minipauta.idClasse._id}}">
+                    <input type="hidden" name="idTurma" value="{{minipauta.idTurma._id}}">
+                    <input type="hidden" name="idCurso" value="{{curso._id}}">
+                    <input type="hidden" name="idAno" value="{{ano._id}}">
+                    <button type="submit" class="p-1 btn btn-sm btn-danger"> {{msgFalhaLancada}} </button>
+                </div>{{else}}{{/if}}
+            </form>
+            {{else}}
+            <div class="row">
+                <div class="col-12 col-md-3"><button onclick="editarNota()" class="btn btn-sm btn-warning">Editar nota / Av.
+                        Atraso</button></div>
+                        
+                <div class="col-12 col-md-6">
+                    {{#if msgFalhaLancada}}<div class="text-center"> <button class="p-1 btn btn-sm btn-danger"> Algumas
+                            notas não foram salvas. O professor deve repetir o lançamento! {{msgFalhaLancada}} </button>
+                    </div>{{else}}{{/if}}
+                </div>
+                <div class="col-12 col-md-3 text-md-end">
+                    <button onclick="lancarNota()" class="btn btn-sm btn-danger opacity-50">At. nota Admin</button>
+                </div>
+            </div>
+            {{/if}}
+
+
+        </div>
+        <div class="table-responsive minipauta-table-wrap">
+        <table class="table table-bordered text-center table-sm align-middle minipauta-table">
+                <thead class="table-dark">
+                    <tr class="fw-bold">
+                        <th class="text-center pb-4" rowspan="2" scope="col">Nº</th>
+                        <th class="text-center pb-4" rowspan="2" scope="col">Nome completo</th>
+                        <th class="text-center bg-light text-secondary" colspan="3" scope="colgroup">1º Trimestre</th>
+                        <th class="text-center bg-info" colspan="3" scope="colgroup">2º Trimestre</th>
+                        <th class="text-center bg-secondary" colspan="3" scope="colgroup">3º Trimestre</th>
+                        <th class="text-center bg-dark" colspan="3" scope="colgroup">CF</th>
+                    </tr>
+                    <tr>
+
+                        {{!-- <td class="bg-light text-secondary">1ª Av</td>
+                        <td class="bg-light text-secondary">2ª Av</td>
+                        <td class="bg-light text-secondary">3ª Av</td> --}}
+                        <th class="bg-light text-secondary" scope="col">MAC1</th>
+                        {{!-- <td class="bg-light text-secondary">PP</td> --}}
+                        <th class="bg-light text-secondary" scope="col">PT1</th>
+                        <th class="bg-light text-secondary" scope="col">MT1</th>
+
+                        {{!-- 2º Trimwstre --}}
+                        {{!-- <td class="bg-info">1ª Av</td>
+                        <td class="bg-info">2ª Av</td>
+                        <td class="bg-info">3ª Av</td> --}}
+                        <th class="bg-info" scope="col">MAC2</th>
+                        {{!-- <td class="bg-info">PP</td> --}}
+                        <th class="bg-info" scope="col">PT2</th>
+                        <th class="bg-info" scope="col">MT2</th>
+
+                        {{!-- 3º Trimwstre --}}
+                        {{!-- <td class="bg-secondary">1ª Av</td>
+                        <td class="bg-secondary">2ª Av</td>
+                        <td class="bg-secondary">3ª Av</td> --}}
+                        <th class="bg-secondary" scope="col">MAC3</th>
+                       {{!--  <td class="bg-secondary">PP</td> --}}
+                        <th class="bg-secondary" scope="col">PT3</th>
+                        <th class="bg-secondary" scope="col">MT3</th>
+
+
+                        <th scope="col">MT</th>
+                        <th scope="col">E</th>
+                        <th scope="col">CF</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                {{#each notasDisciplina}}
+
+                    <tr>
+                        <td class="text-center bg-secondary"><span class="mx-0"> {{numeroOrd}} </span></td>
+
+                        <td class="text-start"><span class="text-sm"> {{aluno.nome}} </span> </td>
+                        {{!-- 1º Trimwstre --}}
+                        {{!-- {{#if notas.negativaAv1T1}} <td class="text-center text-danger"> {{notas.av1T1}} </td>
+                        {{else}} <td class="text-center"> {{notas.av1T1}} </td> {{/if}}
+                        {{#if notas.negativaAv2T1}} <td class="text-center text-danger"> {{notas.av2T1}} </td> {{else}}
+                        <td class="text-center"> {{notas.av2T1}} </td> {{/if}}
+                        {{#if notas.negativaAv3T1}} <td class="text-center text-danger"> {{notas.av3T1}} </td> {{else}}
+                        <td class="text-center"> {{notas.av3T1}} </td> {{/if}} --}}
+                        {{#if notas.negativaMac1}} <td class="nota-editavel text-center text-danger" data-campo="mac1"
+                            data-id-nota-disciplina="{{_id}}" data-id-nota-trimestral="{{notas._id}}" tabindex="0"
+                            role="button" title="Clique para editar a nota"> {{notas.mac1}}</td> {{else}} <td
+                            class="nota-editavel text-center" data-campo="mac1" data-id-nota-disciplina="{{_id}}"
+                            data-id-nota-trimestral="{{notas._id}}" tabindex="0" role="button"
+                            title="Clique para editar a nota"> {{notas.mac1}} </td> {{/if}}
+                        {{!-- {{#if notas.negativaPP1}} <td class="text-center text-danger"> {{notas.pp1}}</td> {{else}} <td
+                            class="text-center"> {{notas.pp1}} </td> {{/if}} --}}
+                        {{#if notas.negativaPT1}} <td class="nota-editavel text-center text-danger" data-campo="pt1"
+                            data-id-nota-disciplina="{{_id}}" data-id-nota-trimestral="{{notas._id}}" tabindex="0"
+                            role="button" title="Clique para editar a nota"> {{notas.pt1}}</td> {{else}} <td
+                            class="nota-editavel text-center" data-campo="pt1" data-id-nota-disciplina="{{_id}}"
+                            data-id-nota-trimestral="{{notas._id}}" tabindex="0" role="button"
+                            title="Clique para editar a nota"> {{notas.pt1}} </td> {{/if}}
+                        {{#if notas.negativaMT1}} <td class="media-calculada text-danger mybg-light fw-bold text-center"
+                            data-campo="mt1"> {{notas.mt1}}
+                        </td>
+                        {{else}} <td class="media-calculada text-center mybg-light text-primary fw-bold"
+                            data-campo="mt1"> {{notas.mt1}} </td> {{/if}}
+
+                        {{!-- 2º Trimwstre --}}
+                        {{!-- {{#if notas.negativaAv1T2}} <td class="text-center text-danger"> {{notas.av1T2}} </td>
+                        {{else}} <td class="text-center"> {{notas.av1T2}} </td> {{/if}}
+                        {{#if notas.negativaAv2T2}} <td class="text-center text-danger"> {{notas.av2T2}} </td> {{else}}
+                        <td class="text-center"> {{notas.av2T2}} </td> {{/if}}
+                        {{#if notas.negativaAv3T2}} <td class="text-center text-danger"> {{notas.av3T2}} </td> {{else}}
+                        <td class="text-center"> {{notas.av3T2}} </td> {{/if}} --}}
+                        {{#if notas.negativaMac2}} <td class="nota-editavel text-center text-danger" data-campo="mac2"
+                            data-id-nota-disciplina="{{_id}}" data-id-nota-trimestral="{{notas._id}}" tabindex="0"
+                            role="button" title="Clique para editar a nota"> {{notas.mac2}}</td> {{else}} <td
+                            class="nota-editavel text-center" data-campo="mac2" data-id-nota-disciplina="{{_id}}"
+                            data-id-nota-trimestral="{{notas._id}}" tabindex="0" role="button"
+                            title="Clique para editar a nota"> {{notas.mac2}} </td> {{/if}}
+                        {{!-- {{#if notas.negativaPP2}} <td class="text-center text-danger"> {{notas.pp2}}</td> {{else}} <td
+                            class="text-center"> {{notas.pp2}} </td> {{/if}} --}}
+                        {{#if notas.negativaPT2}} <td class="nota-editavel text-center text-danger" data-campo="pt2"
+                            data-id-nota-disciplina="{{_id}}" data-id-nota-trimestral="{{notas._id}}" tabindex="0"
+                            role="button" title="Clique para editar a nota"> {{notas.pt2}}</td> {{else}} <td
+                            class="nota-editavel text-center" data-campo="pt2" data-id-nota-disciplina="{{_id}}"
+                            data-id-nota-trimestral="{{notas._id}}" tabindex="0" role="button"
+                            title="Clique para editar a nota"> {{notas.pt2}} </td> {{/if}}
+                        {{#if notas.negativaMT2}} <td class="media-calculada text-danger mybg-info2 fw-bold text-center"
+                            data-campo="mt2"> {{notas.mt2}}
+                        </td>
+                        {{else}} <td class="media-calculada text-center text-primary mybg-info2 fw-bold"
+                            data-campo="mt2"> {{notas.mt2}} </td> {{/if}}
+
+                        {{!-- 3º Trimwstre --}}
+                        {{!-- {{#if notas.negativaAv1T3}} <td class="text-center text-danger"> {{notas.av1T3}} </td>
+                        {{else}} <td class="text-center"> {{notas.av1T3}} </td> {{/if}}
+                        {{#if notas.negativaAv2T3}} <td class="text-center text-danger"> {{notas.av2T3}} </td> {{else}}
+                        <td class="text-center"> {{notas.av2T3}} </td> {{/if}}
+                        {{#if notas.negativaAv3T3}} <td class="text-center text-danger"> {{notas.av3T3}} </td> {{else}}
+                        <td class="text-center"> {{notas.av3T3}} </td> {{/if}} --}}
+                        {{#if notas.negativaMac3}} <td class="nota-editavel text-center text-danger" data-campo="mac3"
+                            data-id-nota-disciplina="{{_id}}" data-id-nota-trimestral="{{notas._id}}" tabindex="0"
+                            role="button" title="Clique para editar a nota"> {{notas.mac3}}</td> {{else}} <td
+                            class="nota-editavel text-center" data-campo="mac3" data-id-nota-disciplina="{{_id}}"
+                            data-id-nota-trimestral="{{notas._id}}" tabindex="0" role="button"
+                            title="Clique para editar a nota"> {{notas.mac3}} </td> {{/if}}
+                        {{!-- {{#if notas.negativaPP3}} <td class="text-center text-danger"> {{notas.pp3}}</td> {{else}} <td
+                            class="text-center"> {{notas.pp3}} </td> {{/if}} --}}
+                        {{#if notas.negativaPT3}} <td class="nota-editavel text-center text-danger" data-campo="pt3"
+                            data-id-nota-disciplina="{{_id}}" data-id-nota-trimestral="{{notas._id}}" tabindex="0"
+                            role="button" title="Clique para editar a nota"> {{notas.pt3}}</td> {{else}} <td
+                            class="nota-editavel text-center" data-campo="pt3" data-id-nota-disciplina="{{_id}}"
+                            data-id-nota-trimestral="{{notas._id}}" tabindex="0" role="button"
+                            title="Clique para editar a nota"> {{notas.pt3}} </td> {{/if}}
+                        {{#if notas.negativaMT3}} <td class="media-calculada text-danger mybg-secondary  fw-bold text-center"
+                            data-campo="mt3">
+                            {{notas.mt3}}
+                        </td> {{else}} <td class="media-calculada text-center mybg-secondary text-primary fw-bold"
+                            data-campo="mt3"> {{notas.mt3}} </td>
+                        {{/if}}
+
+
+
+                        {{#if notas.negativaMt}} <td class="media-calculada text-danger mybg-light  fw-bold text-center"
+                            data-campo="medDosTrimestes">
+                            {{notas.medDosTrimestes}}</td> {{else}} <td
+                            class="media-calculada text-center mybg-light text-primary fw-bold"
+                            data-campo="medDosTrimestes">
+                            {{notas.medDosTrimestes}} </td> {{/if}}
+                        {{#if notas.negativaExame}} <td class="nota-editavel text-danger mybg-light  fw-bold text-center"
+                            data-campo="examePF" data-id-nota-disciplina="{{_id}}"
+                            data-id-nota-trimestral="{{notas._id}}" tabindex="0" role="button"
+                            title="Clique para editar a nota">
+                            {{notas.examePF}}</td> {{else}} <td class="text-center mybg-light text-primary fw-bold">
+                             <span class="nota-editavel" data-campo="examePF" data-id-nota-disciplina="{{_id}}"
+                                data-id-nota-trimestral="{{notas._id}}" tabindex="0" role="button"
+                                title="Clique para editar a nota">{{notas.examePF}}</span> </td> {{/if}}
+                        {{#if notas.negativaCf}} <td class="media-calculada text-danger mybg-dark  fw-bold text-center"
+                            data-campo="cf"> {{notas.cf}}
+                        </td>
+                        {{else}} <td class="media-calculada text-center mybg-dark fw-bold" data-campo="cf">
+                            {{notas.cf}} </td> {{/if}}
+
+
+                    </tr>
+                {{else}}
+                {{!-- NENHUMA NOTA LANÇADA --}}
+                <tr>
+                    <td colspan="14" class="h5 text-center p-4">Nenhuma nota foi lançada!</td>
+                </tr>
+                {{#each alunosTurma}}
+
+                    <tr>
+                        <td><span class="mx-0"> {{numeroOrd}} </span></td>
+
+                        <td><span class="text-sm"> {{nome}} </span> </td>
+                        <td class="text-center"> </td>
+                        <td class="text-center"> </td>
+                        <td class="text-center"> </td>
+                        <td class="mark fw-bold text-success text-center"> </td>
+                        <td> </td>
+                        <td> </td>
+                        <td class="bg-light fw-bold text-center text-primary"> </td>
+
+                        {{!-- 2º Trimwstre --}}
+                        <td class="text-center"> </td>
+                        <td class="text-center"> </td>
+                        <td class="text-center"> </td>
+                        <td class="text-center fw-bold text-success"> </td>
+                        <td> </td>
+                        <td> </td>
+                        <td class="bg-info text-light text-center fw-bold"> </td>
+
+                        {{!-- 3º Trimwstre --}}
+                        <td class="text-center"> </td>
+                        <td class="text-center"> </td>
+                        <td class="text-center"> </td>
+                        <td class="text-center fw-bold text-success"> </td>
+                        <td> </td>
+                        <td> </td>
+                        <td class="bg-secondary text-light text-center fw-bold"> </td>
+
+
+                        <td class="text-center text-primary fw-bold"> </td>
+                        <td> </td>
+                        <td class="text-center fw-bold"> </td>
+
+
+                    </tr>
+                {{else}}
+                {{/each}}
+                {{/each}}
+            </tbody>
+        </table>
+        </div>
+    </div>
+    <hr>
+    <div class="container-fluid px-0">
+        <div class="row">
+            <div class="col-12 text-center">
+                <a href="/professor/minipautaPDF/{{minipauta._id}}" class="btn btn-secondary">Gerar Minipauta PDF</a>
+                <a href="/pedagogico/actualizarMediasTDAlunos/{{minipauta._id}}" class="btn btn-light">Actualizar Médias</a>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+        <!-- Modal lançãr notas-->
+
+        <form action="/professor/lancarNota" method="post">
+            <div class="modal" tabindex="-1" data-bs-backdrop="static" id="lancarNota">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">Lançamento de Nota - <span> {{minipauta.idClasse.designacao}}
+                                    {{minipauta.idTurma.codigo}} </span></h3>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body input-box2">
+
+                            <label for="trimestre">Trimestre:</label>
+                            <select name="trimestre" class="text-danger fw-bold text-center" required>
+                                <option value="selecionar">Seleciona o Trimestre</option>
+                                <option value="primeiro">Primeiro Trimestre</option>
+                                <option value="segundo">Segundo Trimestre</option>
+                                <option value="terceiro">Terceiro Trimestre</option>
+                                {{!--
+                                <option value="outro">Exame, PE, Prova Oral</option>
+                                --}}
+                            </select>
+                            <label for="notaDe">Nota de:</label>
+                            <select name="notaDe" required class="text-primary fw-bold text-center">
+                                <option value="selecionar">Seleciona o tipo de avaliação</option>
+                                {{!-- <option value="avaliacao1">Primeira avaliação contínua</option>
+                                <option value="avaliacao2">Segunda avaliação contínua</option>
+                                <option value="avaliacao3">Terceira avaliação contínua</option> --}}
+                                <option value="mac1">Média das avalições contínua T1</option>
+                                <option value="mac2">Média das avalições contínua T2</option>
+                                <option value="mac3">Média das avalições contínua T3</option>
+                                {{!-- <option value="provaDoProfessor">Prova do Professor</option> --}}
+                                <option value="provaDoTrimestre">Prova trimestral</option>
+                                <option value="provaOral">Prova oral</option>
+                                <option value="exame">Exame final</option>
+                            </select>
+                            <hr>
+
+                            {{!-- Relação dos alunos --}}
+                            <div class="table-responsive">
+                            <table class="table table-bordered table-sm align-middle mb-0">
+
+                                {{#each alunosTurma}}
+
+                                <tr>
+                                    <td class="text-center"> {{numeroOrd}} </td>
+                                    <td class="px-2 lead"> {{nome}} </td>
+                                    <td class="text-center"> <input type="number" name="notas" id=""
+                                            class="text-center tdn" min="0" max="20" required> </td>
+                                </tr>
+
+
+                                {{else}}
+                                <tr><td colspan="3" class="text-center text-muted">Nenhum aluno nesta turma</td></tr>
+                                {{/each}}
+                            </table>
+                            </div>
+
+                            <input type="hidden" name="idProfessor" value="{{minipauta.idProfessor._id}}">
+                            <input type="hidden" name="idMinipauta" value="{{minipauta._id}}">
+                            <input type="hidden" name="idClasse" value="{{minipauta.idClasse._id}}">
+                            <input type="hidden" name="idTurma" value="{{minipauta.idTurma._id}}">
+                            <input type="hidden" name="idCurso" value="{{curso._id}}">
+                            <input type="hidden" name="idAno" value="{{ano._id}}">
+
+                            <div class="text-sm text-danger text-center mt-2">
+                                Antes de confirmar e salvar certifica-se que selecionou o trimestre, o tipo de
+                                avaliação e que lançou todas as notas em conformidade!
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-1">Confirmar e salvar</button>
+
+                        </div>
+                        <div class="modal-footer text-center">
+                            {{!-- <button type="button" class="btn btn-secondary"
+                                data-bs-dismiss="modal">Feichar</button>
+                            --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        {{!-- Lançar notas falhads --}}
+        <form action="/professor/lancarNotaRep" method="post">
+            <div class="modal" tabindex="-1" data-bs-backdrop="static" id="lancarNotaRep">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title mytext-primary text-center">Repetição de lançamento das notas que
+                                falharam - <span> {{minipauta.idClasse.designacao}} {{minipauta.idTurma.codigo}}
+                                </span></h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body input-box2">
+
+                            <label for="trimestre">Trimestre:</label>
+                            <select name="trimestre" class="text-danger fw-bold text-center" required>
+                                <option value="{{falhaNota.trimestre}}"> {{falhaNota.descTrimestre}} </option>
+                            </select>
+                            <label for="notaDe">Nota de:</label>
+                            <select name="notaDe" required class="text-primary fw-bold text-center">
+                                <option value="{{falhaNota.notaDe}}"> {{falhaNota.notaDe}} ( {{falhaNota.avF}} )
+                                </option>
+                            </select>
+                            <hr>
+
+                            {{!-- Relação dos alunos --}}
+                            <div class="table-responsive">
+                            <table class="table table-bordered table-sm align-middle mb-0">
+
+                                {{#each alunosTurmaFalha}}
+
+                                <tr>
+                                    <td class="text-center"> {{numeroOrd}} </td>
+                                    <td class="px-2 lead"> {{aluno.nome}} </td>
+                                    <td class="text-center"> <input type="number" name="notas" id=""
+                                            class="text-center tdn" required> </td>
+                                </tr>
+
+
+                                {{else}}
+                                <tr><td colspan="3" class="text-center text-muted">Nenhum aluno nesta turma</td></tr>
+                                {{/each}}
+                            </table>
+                            </div>
+
+                            <input type="hidden" name="idProfessor" value="{{minipauta.idProfessor._id}}">
+                            <input type="hidden" name="idMinipauta" value="{{minipauta._id}}">
+                            <input type="hidden" name="idClasse" value="{{minipauta.idClasse._id}}">
+                            <input type="hidden" name="idTurma" value="{{minipauta.idTurma._id}}">
+                            <input type="hidden" name="idCurso" value="{{curso._id}}">
+                            <input type="hidden" name="idAno" value="{{ano._id}}">
+                            <input type="hidden" name="alunos" value="{{alunosTurmaFalha}}">
+
+                            <div class="text-sm text-danger text-center mt-2">
+                                Antes de confirmar e salvar certifica-se que selecionou o trimestre, o tipo de
+                                avaliação e que lançou todas as notas em conformidade!
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-1">Confirmar e salvar</button>
+
+                        </div>
+                        <div class="modal-footer text-center">
+                            {{!-- <button type="button" class="btn btn-secondary"
+                                data-bs-dismiss="modal">Feichar</button>
+                            --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!-- Modal editar notas-->
+
+        <form action="/admin/editarNotaMinipauta" method="post">
+            <div class="modal" tabindex="-1" data-bs-backdrop="static" id="editarNota">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title myText-primary text-center fw-bold">EDITAR NOTA / AV-ATRASO
+                                </h3>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body input-box">
+                                <label for="aluno">Selecione o aluno:</label>
+                                <select name="aluno" required>
+                                    <option value="selecionar">Selecionar</option>
+                                    {{#each alunosTurma}}
+                                    <option value="{{_id}}"> {{nome}} </option>
+                                    {{else}}
+                                    <option value="0">Nenhum aluno nesta turma</option>
+                                    {{/each}}
+                                </select>
+                                <label for="trimestre">Trimestre:</label>
+                                <select name="trimestre" class="text-center" required>
+                                    <option class="text-center" value="selecionar">Seleciona</option>
+                                    <option value="primeiro">Primeiro Trimestre</option>
+                                    <option value="segundo">Segundo Trimestre</option>
+                                    <option value="terceiro">Terceiro Trimestre</option>
+                                    <option value="outro">Exame, PE, Prova Oral</option>
+                                </select>
+                                <label for="notaDe">Nota de:</label>
+                                <select name="notaDe" class="text-center" required>
+                                    <option value="selecionar">Selecionar</option>
+                                    {{!-- <option value="avaliacao1">Primeira avaliação contínua</option>
+                                    <option value="avaliacao2">Segunda avaliação contínua</option>
+                                    <option value="avaliacao3">Terceira avaliação contínua</option> --}}
+                                    <option value="mac1">Média das avaliações contínua T1</option>
+                                    <option value="mac2">Média das avaliações contínua T2</option>
+                                    <option value="mac3">Média das avaliações contínua T3</option>
+                                    {{!-- <option value="provaDoProfessor">Prova do Professor</option> --}}
+                                    <option value="provaDoTrimestre">Prova trimestral</option>
+                                    {{!-- <option value="provaOral">Prova oral</option>
+                                    <option value="exame">Exame final</option> --}}
+                                </select>
+                                <input type="number" name="nota" placeholder="Insere a nota aqui!" class="text-center"
+                                    min="0" max="20" required>
+                                <input type="hidden" name="idProfessor" value="{{minipauta.idProfessor._id}}">
+                                <input type="hidden" name="idMinipauta" value="{{minipauta._id}}">
+                                <input type="hidden" name="idClasse" value="{{minipauta.idClasse._id}}">
+                                <input type="hidden" name="idTurma" value="{{minipauta.idTurma._id}}">
+                                <input type="hidden" name="idCurso" value="{{curso._id}}">
+                                <input type="hidden" name="idAno" value="{{ano._id}}">
+
+                                <button type="submit" class="btn btn-primary">Adicionar</button>
+                            </div>
+                            <div class="modal-footer text-center">
+                                {{!-- <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Feichar</button>
+                                --}}
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </form>
+
+
+        <script>
+            function lancarNota() {
+
+                let el = document.getElementById('lancarNota');
+                let minha_modal = new bootstrap.Modal(el);
+                minha_modal.show();
+            }
+
+            function lancarNotaRep() {
+
+                let el = document.getElementById('lancarNotaRep');
+                let minha_modal = new bootstrap.Modal(el);
+                minha_modal.show();
+            }
+            function editarNota() {
+
+                let el = document.getElementById('editarNota');
+                let minha_modal = new bootstrap.Modal(el);
+                minha_modal.show();
+            }
+
+            function addTurma() {
+                let el = document.getElementById('addTurma');
+                let minha_modal = new bootstrap.Modal(el);
+                minha_modal.show();
+            }
+
+
+             function addDisciplina() {
+                 let el = document.getElementById('addDisciplina');
+                 let minha_modal = new bootstrap.Modal(el);
+                 minha_modal.show();
+             }
+
+             (() => {
+                 const camposEditaveis = new Set([
+                     'mac1', 'mac2', 'mac3',
+                     'pt1', 'pt2', 'pt3',
+                     'examePF'
+                 ]);
+                 const estadoLancamentoDeNotas = '{{minipauta.idProfessor.lancamentoDeNotas}}'
+                     .trim()
+                     .toLowerCase();
+                 const valoresEAdmin = [
+                     '{{eAdmin}}',
+                     '{{isAdmin}}',
+                     '{{user.eAdmin}}',
+                     '{{usuario.eAdmin}}',
+                     '{{utilizador.eAdmin}}'
+                 ].map((valor) => valor.trim().toLowerCase());
+                 const valoresPrivilegio = [
+                     '{{privilegio}}',
+                     '{{user.privilegio}}',
+                     '{{usuario.privilegio}}',
+                     '{{utilizador.privilegio}}'
+                 ].map((valor) => valor.trim())
+                     .filter((valor) => valor !== '')
+                     .map((valor) => Number(valor));
+                 const eAdmin = valoresEAdmin.some((valor) => (
+                     ['true', '1', 'sim', 'yes'].includes(valor)
+                 ));
+                 const privilegioDoUtilizador = valoresPrivilegio.find((valor) => (
+                     Number.isFinite(valor)
+                 )) || 0;
+                 const lancamentoDeNotasBloqueado = [
+                     'false', '0', 'nao', 'não', 'no'
+                 ].includes(estadoLancamentoDeNotas);
+                 const podeEditarNotas = (
+                     (eAdmin && privilegioDoUtilizador > 1) ||
+                     !lancamentoDeNotasBloqueado
+                 );
+                 const mensagemBloqueioEdicao =
+                     'A edição desta minipauta está bloqueada porque o lançamento de notas não está disponível.';
+
+                 const formatarNota = (valor) => {
+                     if (valor === null || valor === undefined || valor === '') return '';
+                     const numero = Number(valor);
+                     return Number.isFinite(numero) ? String(numero) : '';
+                 };
+
+                 const encontrarCelulasDaNota = (idNotaTrimestral) => {
+                     return Array.from(document.querySelectorAll(
+                         '.minipauta-table [data-id-nota-trimestral]'
+                     )).filter((elemento) => (
+                         elemento.dataset.idNotaTrimestral === idNotaTrimestral
+                     ));
+                 };
+
+                 const actualizarMediasNaTabela = (nota, idNotaTrimestral) => {
+                     const celulasDaNota = encontrarCelulasDaNota(idNotaTrimestral);
+
+                     celulasDaNota.forEach((elemento) => {
+                         const campo = elemento.dataset.campo;
+                         if (Object.prototype.hasOwnProperty.call(nota, campo)) {
+                             elemento.textContent = ` ${formatarNota(nota[campo])} `;
+                         }
+                     });
+
+                     const linhaDaNota = celulasDaNota[0]?.closest('tr');
+                     linhaDaNota?.querySelectorAll(
+                         '.media-calculada[data-campo]'
+                     ).forEach((elemento) => {
+                         const campo = elemento.dataset.campo;
+                         if (Object.prototype.hasOwnProperty.call(nota, campo)) {
+                             elemento.textContent = ` ${formatarNota(nota[campo])} `;
+                         }
+                     });
+                 };
+
+                 const restaurarCelula = (elemento, valorOriginal) => {
+                     elemento.replaceChildren(document.createTextNode(` ${valorOriginal} `));
+                     delete elemento.dataset.editando;
+                     elemento.removeAttribute('aria-busy');
+                 };
+
+                 const guardarNota = async (elemento, input, valorOriginal) => {
+                     if (elemento.dataset.guardando === 'true') return;
+                     if (input.dataset.cancelado === 'true') {
+                         restaurarCelula(elemento, valorOriginal);
+                         return;
+                     }
+
+                     const valor = input.value.trim().replace(',', '.');
+                     const numero = Number(valor);
+
+                     if (
+                         valor === '' ||
+                         !Number.isFinite(numero) ||
+                         numero < 0 ||
+                         numero > 20
+                     ) {
+                         restaurarCelula(elemento, valorOriginal);
+                         return;
+                     }
+
+                     if (numero === Number(valorOriginal)) {
+                         restaurarCelula(elemento, valorOriginal);
+                         return;
+                     }
+
+                     elemento.dataset.guardando = 'true';
+                     elemento.setAttribute('aria-busy', 'true');
+
+                     try {
+                         const resposta = await fetch('/professor/actualizarNotaMinipauta', {
+                             method: 'POST',
+                             headers: {
+                                 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+                                 'Accept': 'application/json'
+                             },
+                             body: new URLSearchParams({
+                                 idNotaDisciplina: elemento.dataset.idNotaDisciplina,
+                                 idNotaTrimestral: elemento.dataset.idNotaTrimestral,
+                                 campo: elemento.dataset.campo,
+                                 valor: String(numero)
+                             })
+                         });
+                         const resultado = await resposta.json();
+
+                         if (!resposta.ok || !resultado.ok) {
+                             throw new Error(resultado.mensagem || 'Não foi possível guardar a nota.');
+                         }
+
+                         actualizarMediasNaTabela(
+                             resultado.nota,
+                             elemento.dataset.idNotaTrimestral
+                         );
+                         elemento.classList.add('border-success');
+                         window.setTimeout(() => elemento.classList.remove('border-success'), 1200);
+                     } catch (erro) {
+                         console.error(erro);
+                         restaurarCelula(elemento, valorOriginal);
+                         window.alert(erro.message || 'Não foi possível guardar a nota.');
+                     } finally {
+                         delete elemento.dataset.guardando;
+                         delete elemento.dataset.editando;
+                         elemento.removeAttribute('aria-busy');
+                     }
+                 };
+
+                 const iniciarEdicao = (elemento) => {
+                     if (!podeEditarNotas) {
+                         mostrarMensagemBloqueioEdicao();
+                         return;
+                     }
+
+                     if (
+                         !elemento ||
+                         !camposEditaveis.has(elemento.dataset.campo) ||
+                         elemento.dataset.editando === 'true' ||
+                         elemento.dataset.guardando === 'true'
+                     ) return;
+
+                     const valorOriginal = elemento.textContent.trim();
+                     const input = document.createElement('input');
+                     input.type = 'number';
+                     input.min = '0';
+                     input.max = '20';
+                     input.step = '0.01';
+                     input.inputMode = 'decimal';
+                     input.className = 'form-control form-control-sm text-center';
+                     input.value = valorOriginal.replace(',', '.');
+                     input.setAttribute('aria-label', `Editar ${elemento.dataset.campo}`);
+
+                     elemento.dataset.editando = 'true';
+                     elemento.replaceChildren(input);
+                     input.focus();
+                     input.select();
+
+                     input.addEventListener('keydown', (evento) => {
+                         if (evento.key === 'Enter') {
+                             evento.preventDefault();
+                             input.blur();
+                         } else if (evento.key === 'Escape') {
+                             evento.preventDefault();
+                             input.dataset.cancelado = 'true';
+                             restaurarCelula(elemento, valorOriginal);
+                         }
+                     });
+                     input.addEventListener('blur', () => {
+                         guardarNota(elemento, input, valorOriginal);
+                     }, { once: true });
+                 };
+
+                 const tabela = document.querySelector('.minipauta-table');
+                 if (!tabela) return;
+
+                 const mostrarMensagemBloqueioEdicao = () => {
+                     let aviso = document.getElementById('mensagemBloqueioEdicao');
+                     if (!aviso) {
+                         aviso = document.createElement('div');
+                         aviso.id = 'mensagemBloqueioEdicao';
+                         aviso.className = 'alert alert-warning text-center fw-bold mb-3';
+                         aviso.setAttribute('role', 'alert');
+                         aviso.style.position = 'sticky';
+                         aviso.style.top = '0';
+                         aviso.style.zIndex = '10';
+                         document.querySelector('.minipauta-actions')?.prepend(aviso);
+                     }
+                     aviso.textContent = mensagemBloqueioEdicao;
+                 };
+
+                 if (!podeEditarNotas) {
+                     document.querySelectorAll('.nota-editavel').forEach((elemento) => {
+                         elemento.setAttribute('aria-disabled', 'true');
+                         elemento.setAttribute('title', mensagemBloqueioEdicao);
+                     });
+                     mostrarMensagemBloqueioEdicao();
+                 }
+
+                 tabela.addEventListener('click', (evento) => {
+                     iniciarEdicao(evento.target.closest('.nota-editavel'));
+                 });
+
+                 tabela.addEventListener('keydown', (evento) => {
+                     if (evento.key === 'Enter' || evento.key === ' ') {
+                         const elemento = evento.target.closest('.nota-editavel');
+                         if (elemento && !elemento.dataset.editando) {
+                             evento.preventDefault();
+                             iniciarEdicao(elemento);
+                         }
+                     }
+                 });
+             })();
+
+
+
+        </script>

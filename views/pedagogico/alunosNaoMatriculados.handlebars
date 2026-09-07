@@ -1,0 +1,172 @@
+{{#if msg}}
+<div class="alert alert-success text-center">{{msg}}</div>
+{{else}}
+{{/if}}
+{{#if exist}}
+<div class="alert alert-danger text-center">{{exist}}</div>
+{{else}}
+{{/if}}
+<div class="row">
+    <div class="col-6">
+
+        <h1><span class="text-secondary">  <a href="/pedagogico" class=" btn"><</a> Ano Lectivo:</span> {{anoLectivo.codigo}} </h1>
+    </div>
+    <div class="col-6 text-end">
+        
+            
+        <div class="row">
+            <div class="col-2 text-end btn"></div>
+            <div class="col-4 btn btn-sm opacity-50 btn-dark"><a href="/pedagogico/alunosConcluido" class="btn btn-sm btn-secondary">Alunos Concluido</a></div>
+            <div class="col-5 btn btn-sm opacity-50 btn-dark ms-1"><a href="/pedagogico/alunos" class="btn btn-sm btn-secondary"> Alunos Matriculados </a></div>
+        </div>           
+               
+           
+        
+
+    </div>
+</div>
+<hr>
+<div class="bg-secondary p-2">
+    <div class="row">
+        <div class="col-8 p-3">
+
+
+
+
+
+
+            <span class="text-light text-center m-3 h4"> RELAÇÃO NOMINAL DE TODOS ALUNOS QUE NÃO EFECTUARAM A MATRICULA NESTE ANO LECTIVO</span>
+
+        </div>
+        <div class="col-3 input-box p-0 my-0 me-1">
+            <input type="text" name="pesqNomeAluno" placeholder="Pesquisar pelo nome">
+
+        </div>
+    </div>
+</div>
+<hr>
+<div class="conteiner">
+
+    <ol>
+        {{#each alunos}}
+        <li>
+
+            <div class="card p-0 mt-2">
+
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-1">
+                            <div class="card mx-0 px-0">
+                                <div class="card-body mx-0">
+                                    <img src="/uploads/{{foto}}" class="fotoAluno" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 h4">{{nome}} {{#if idTurma}} <span class="mark" >...</span> {{else}}{{/if}} </div>
+                        <div class="col-1"> {{idade}} anos</div>
+                        <div class="col-1">{{classe}}</div>
+                        <div class="col-1"><a href="/alunos/ficha/{{_id}}"
+                                class="bg-info text-light p-2 btn btn-sm">i</a></div>
+                        <div class="col-1"> 
+                            <a href="/admin/anularMatriculaGeral/{{_id}}" method="get"> <button
+                                            class="btn btn-warning btn-sm">Anular M</button> </a>
+                             </div>
+                        <div class="col-1"> <button class="btn btn-sm btn-danger" onclick="apagarAluno()"> Apagar </button></div>
+                    </div>
+                    
+                </div>
+            </div>
+
+        </li>
+        {{else}}
+        {{/each}}
+
+    </ol>
+</div>
+<hr>
+{{!-- <a href="/admin/actualizarNomesAlunos">Actualizar nomes</a> --}}
+
+
+
+
+
+<!-- Modal Matricular-->
+
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="matricular">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Nova Matricula: - {{classe10}}</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="container">
+                {{#each candMatricular}}
+                <form action="/turmas/novaMatricula" method="post">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-3 h2"> FOTO </div>
+                                <div class="col-3"> {{nome}} </div>
+                                <div class="col-3"> {{idade}} anos </div>
+                                <div class="col-3">
+                                    <input type="hidden" name="idCandidato" value="{{_id}}">
+                                    <input type="hidden" name="idTurma" value="{{idTurma}}">
+                                    <button type="submit" class="btn btn-dark btn-sm">Matricular</button>
+                                    <a href="#" class="btn btn-info btn-sm text-light">+ informações</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                {{else}}
+                <h3 class="text-danger">Não ha mais candidato admitido neste curso</h3>
+                {{/each}}
+            </div>
+
+            <div class="modal-footer text-center">
+                <div class="lead text-info">Apenas candidatos admitidos constam nessa lista</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="apagarAluno">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Apagar aluno do sistema</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            ESTA ACÇÃO IRÁ APAGAR O ALUNO R TODA INFORMAÇÃO VINCULADA A ELE ESTARÃO CON«MPROMETIDAS.
+            <p> DESEJA CONTOINUAR? </p>
+
+            <div class="modal-footer text-center">
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="assets/bootstrap.bundle.min.js" class="img-fluid"></script>
+<script>
+    function matricular() {
+        let el = document.getElementById('matricular');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+    function apagarAluno() {
+        let el = document.getElementById('apagarAluno');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+
+
+
+</script>

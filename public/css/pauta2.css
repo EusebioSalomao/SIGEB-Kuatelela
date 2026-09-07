@@ -1,0 +1,277 @@
+/* ==========================================================================
+   pauta2.css
+   Estilos da página de Pautas (Handlebars + Bootstrap 5).
+   Mantém a paleta semântica já usada no HTML (secondary, info, danger,
+   warning, primary) apenas refinando tons, espaçamentos e comportamento
+   responsivo. Não sobrescreve variáveis globais do Bootstrap para não
+   afetar outras páginas do sistema.
+   ========================================================================== */
+
+:root {
+  /* Paleta de apoio (mesma família de cores já usada: cinza-azulado,
+     azul-info, vermelho, amarelo) só que com tons mais suaves/profissionais */
+  --pauta-secondary: #445164;
+  --pauta-secondary-dark: #333d4b;
+  --pauta-info-bg: #eaf2fb;
+  --pauta-info-border: #cfe1f5;
+  --pauta-info-text: #1f5a8a;
+  --pauta-border: #dde3ea;
+  --pauta-bg-soft: #f7f9fb;
+  --pauta-warning-bg: #fff6e0;
+  --pauta-warning-border: #f4d989;
+  --pauta-radius: 0.6rem;
+  --pauta-radius-sm: 0.4rem;
+  --pauta-gap: 1rem;
+}
+
+/* --------------------------------------------------------------------
+   Base / espaçamento geral
+   -------------------------------------------------------------------- */
+/* O <main> do layout principal não tem .container/.container-fluid, ou
+   seja, este bloco já ocupa 100% da largura da página por si só. O
+   padding aqui serve apenas para não colar o conteúdo na borda do ecrã,
+   e é propositalmente pequeno para maximizar o espaço da pauta. */
+.pauta-header,
+.pauta-card {
+  background: #fff;
+  border: 1px solid var(--pauta-border);
+  border-radius: var(--pauta-radius);
+  padding: 1rem 1.25rem;
+  margin: 0 0.5rem var(--pauta-gap) 0.5rem;
+  box-shadow: 0 1px 3px rgba(20, 30, 45, 0.06);
+}
+
+.pauta-header {
+  margin-bottom: 1.5rem;
+}
+
+.pauta-header h2 {
+  font-size: 1.15rem;
+  line-height: 1.4;
+}
+
+/* Barra "Voltar / Nome do trimestre" no topo de cada cartão */
+.pauta-card > .pe-3.lead {
+  background: var(--pauta-bg-soft);
+  border: 1px solid var(--pauta-border);
+  border-radius: var(--pauta-radius-sm);
+  padding: 0.6rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.back-link {
+  color: var(--pauta-secondary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.back-link:hover {
+  color: var(--pauta-secondary-dark);
+  text-decoration: underline;
+}
+
+/* --------------------------------------------------------------------
+   Classes utilitárias usadas no template (equivalentes/atalhos que o
+   Bootstrap 5 não fornece nativamente)
+   -------------------------------------------------------------------- */
+.text-sm { font-size: 0.875rem; }
+.text-italic { font-style: italic; }
+.text-justify { text-align: justify; }
+
+/* ".mark" é usada como um selo/etiqueta de destaque leve (não é a tag
+   HTML <mark>) — aplicada em títulos e cabeçalhos de modais */
+.mark {
+  background: var(--pauta-bg-soft);
+  border-radius: var(--pauta-radius-sm);
+}
+
+h2.mark {
+  background: var(--pauta-info-bg);
+  border: 1px solid var(--pauta-info-border);
+}
+
+/* --------------------------------------------------------------------
+   Cabeçalho / logótipo da escola
+   -------------------------------------------------------------------- */
+.logo img,
+.logo-img {
+  max-width: 90px;
+  height: auto;
+}
+
+.myText-primary2 {
+  color: var(--pauta-info-text);
+}
+
+/* --------------------------------------------------------------------
+   Tabelas de pauta
+   -------------------------------------------------------------------- */
+/* O layout principal (main.handlebars) não envolve o conteúdo num
+   .container do Bootstrap — o <main> ocupa 100% da largura da página.
+   Por isso o .pauta-card já herda a largura máxima disponível; não é
+   preciso (nem seguro) fazer a tabela "sangrar" com margens negativas:
+   como o body tem overflow-x: hidden, uma sangria sem um container pai
+   para absorvê-la cortaria as bordas da tabela em vez de alargá-la. */
+.table-responsive {
+  border-radius: var(--pauta-radius-sm);
+  margin-bottom: 1rem;
+  width: 100%;
+  /* Nunca cortar linhas na vertical: a tabela deve crescer o quanto for
+     preciso para mostrar todos os alunos, sem scroll interno de altura.
+     (defensivo, caso algum outro ficheiro CSS do site imponha max-height) */
+  max-height: none !important;
+  overflow-y: visible !important;
+}
+
+.tabText-size-8 {
+  width: 100%;
+  font-size: 0.8rem;
+  margin-bottom: 0;
+}
+
+.tabText-size-8 th,
+.tabText-size-8 td {
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+/* Nome do aluno pode ser mais longo: permite quebra e dá largura mínima */
+.lg-cab-nome {
+  min-width: 160px;
+  white-space: normal !important;
+  text-align: left;
+}
+
+/* Colunas de média/resultado em destaque (mantém o azul "info" já usado) */
+.mybg-info {
+  background-color: var(--pauta-info-bg) !important;
+  color: var(--pauta-info-text);
+}
+
+thead.mybg-info,
+.tabText-size-8 thead.mybg-info th,
+.tabText-size-8 thead.mybg-info td {
+  background-color: var(--pauta-secondary) !important;
+  color: #fff;
+  border-color: var(--pauta-secondary);
+}
+
+.tabText-size-8 thead .mybg-info {
+  background-color: rgba(255, 255, 255, 0.18) !important;
+  color: #fff;
+}
+
+/* Primeiras colunas fixas ao rolar a tabela horizontalmente no mobile */
+@media (max-width: 767.98px) {
+  .tabText-size-8 td:nth-child(1),
+  .tabText-size-8 th:nth-child(1) {
+    position: sticky;
+    left: 0;
+    background: #fff;
+    z-index: 2;
+  }
+  .tabText-size-8 td:nth-child(2),
+  .tabText-size-8 th:nth-child(2) {
+    position: sticky;
+    left: 40px;
+    background: #fff;
+    z-index: 2;
+    box-shadow: 2px 0 3px rgba(0, 0, 0, 0.06);
+  }
+  .tabText-size-8 thead tr th:nth-child(1),
+  .tabText-size-8 thead tr th:nth-child(2),
+  .tabText-size-8 thead td:nth-child(1),
+  .tabText-size-8 thead td:nth-child(2) {
+    background: var(--pauta-secondary) !important;
+    z-index: 3;
+  }
+}
+
+/* --------------------------------------------------------------------
+   Estados / avisos
+   -------------------------------------------------------------------- */
+.vermelhoVerde.alert-status-warning {
+  background-color: var(--pauta-warning-bg);
+  border: 1px solid var(--pauta-warning-border);
+  border-radius: var(--pauta-radius-sm);
+  color: #6b4d06;
+}
+
+.alert-danger.lead {
+  border-radius: var(--pauta-radius-sm);
+}
+
+/* --------------------------------------------------------------------
+   Botões de ação (gerar / eliminar / PDF)
+   -------------------------------------------------------------------- */
+.btn {
+  margin: 0.2rem 0.25rem;
+  border-radius: var(--pauta-radius-sm);
+}
+
+.pauta-card form[action="/pedagogico/eliminarPauta"] {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+/* --------------------------------------------------------------------
+   Modais (geração de pauta, conselho de notas, etc.)
+   -------------------------------------------------------------------- */
+.modal-content {
+  border-radius: var(--pauta-radius);
+  border: none;
+  box-shadow: 0 10px 30px rgba(20, 30, 45, 0.18);
+}
+
+.modal-header {
+  border-bottom: 1px solid var(--pauta-border);
+}
+
+.modal-footer {
+  border-top: 1px solid var(--pauta-border);
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.input-box,
+.input-box-filtro {
+  padding: 0.25rem 0;
+}
+
+.input-box .card,
+.input-box-filtro .card {
+  border: none;
+  padding: 0.5rem 0;
+}
+
+.form-control {
+  margin-top: 0.25rem;
+}
+
+/* --------------------------------------------------------------------
+   Responsividade geral
+   -------------------------------------------------------------------- */
+@media (max-width: 575.98px) {
+  .pauta-header,
+  .pauta-card {
+    padding: 0.75rem 0.85rem;
+    margin-left: 0.35rem;
+    margin-right: 0.35rem;
+  }
+
+  .pauta-header h2 {
+    font-size: 1rem;
+    padding: 0.75rem !important;
+  }
+
+  .tabText-size-8 {
+    font-size: 0.72rem;
+  }
+
+  .btn-sm {
+    font-size: 0.78rem;
+  }
+}

@@ -1,0 +1,40 @@
+<section class="carga-horaria">
+
+    <div class="text-center">
+        <h1 class="carga-horaria-title">C A R G A  H O R Á R I A - ANO</h1>
+    </div>
+
+    <hr class="carga-horaria-divider">
+
+    <div class="table-responsive carga-horaria-table-wrapper">
+        <table class="table table-bordered table-striped table-hover align-middle mb-0">
+            <thead>
+                <tr class="fw-bold bg-light text-center">
+                    <th>Nome</th>
+                    <th>Disciplina</th>
+                    <th>Classe/Turma</th>
+                    <th>NºT</th>
+                    <th>T. Lect.</th>
+                    <th>Função</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each professores}}
+                <tr>
+                    <td>{{nome}}</td>
+                    <td>{{disciplina}}</td>
+                    <td>{{#each turmasAtrib}}{{turma}}{{#unless @last}}, {{/unless}}{{/each}}</td>
+                    <td class="text-center">{{disciplina}}</td>
+                    <td class="text-center">{{numTurmas}}</td>
+                    <td>{{funcao}}</td>
+                    <td class="text-center">
+                        <a href="/professor/minipautasCadPAdmin/{{_id}}" class="btn btn-sm mybtn-dark text-info">Minipautas</a>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+</section>

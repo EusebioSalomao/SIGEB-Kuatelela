@@ -1,0 +1,39 @@
+<div class="container mt-5 p-4">
+    <div class="container">
+        <div class="col-8 offset-2 card">
+            <div class="card-body">
+                <div class="h2 mt-3 text-danger">Deseja remover o professor da turma {{turma.codigo}} ?</div>
+                <hr>
+                <div class="p-3">
+                    <div class="row">
+                        <div class="col-6 text-end">
+
+                    <span class="fw-bold lead" >Nome do professor: </span><br>
+                    <span class="fw-bold lead" >Disciplina: </span> <br>
+                    <span class="fw-bold lead" >Especialidade: </span> 
+                        </div>
+                        <div class="col-6 text-start">
+                     <span class="lead" > {{professor.nome}} </span><br>
+                    <span class="lead" > {{nomeDisciplina}} </span><br>
+                    <span class="lead" > {{professor.especialidade}} </span><br>
+
+                        </div>
+                    </div>
+
+                </div>
+                <hr>
+                <form action="/turmas/remProfessorSave" method="post" class="text-center">
+                    <input type="hidden" name="idProfessor" value="{{professor._id}}" id="">
+                            <input type="hidden" name="nomeDisciplina" value="{{nomeDisciplina}}" id="">
+                            <input type="hidden" name="idTurma" value="{{turma._id}}" id="">
+                            <input type="hidden" name="idClasse" value="{{turma.idClasse}}" id="">
+                            <input type="hidden" name="idCurso" value="{{turma.idCurso}}" id="">
+                            <input type="hidden" name="idAno" value="{{turma.idAno}}" id="">
+
+                            <button type="submit" class="btn mybtn2-danger"> Remover Professr </button
+                            >
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

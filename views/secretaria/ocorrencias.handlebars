@@ -1,0 +1,91 @@
+<div class="container py-4">
+
+    <h1 class="h3 text-center mb-4">SECRETARIA GERAL</h1>
+
+    <div class="bg-warning rounded p-3 mb-4">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+            <div class="d-flex align-items-center gap-2">
+                <a href="/secretaria" class="btn btn-sm btn-dark fw-bold" aria-label="Voltar">&lt;</a>
+                <span class="h5 mb-0 fw-bold">Ocorrências diária</span>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+                <button type="button" class="btn btn-primary" onclick="registrarEntrada()">Registrar entrada</button>
+                <button type="button" class="btn btn-primary" onclick="registrarSaida()">Registrar saídas</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-12 col-lg-6">
+            <div class="h5 bg-secondary text-light rounded-top p-2 mb-0">Recepções e Solicitações</div>
+            <div class="border border-top-0 rounded-bottom p-2">
+                {{#each ocorrencias}}
+                <div class="card mb-2 shadow-sm">
+                    <div class="card-body py-2">
+                        <div class="d-flex flex-wrap justify-content-between align-items-start gap-3">
+                            <div>
+                                <div class="fw-bold">{{descricao}}</div>
+                                <div class="small text-muted">{{nomeDoSolicitante}}</div>
+                                <a href="/secretaria/detalheOcorrencia/{{_id}}" class="small">Ver detalhes</a>
+                            </div>
+                            <div class="text-end">
+                                <div class="fw-bold small">Estado</div>
+                                <div>{{estado}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{else}}
+                <div class="text-center text-muted py-4">Nenhuma ocorrência registrada</div>
+                {{/each}}
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-6">
+            <div class="h5 bg-secondary text-light rounded-top p-2 mb-0">Registros de saída</div>
+            <div class="border border-top-0 rounded-bottom p-2" style="min-height: 4rem;"></div>
+        </div>
+    </div>
+
+</div>
+
+{{!-- MODAIS --}}
+<!-- Modal nova ocorrencia -->
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="idRegistrarEntrada">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form action="/secretaria/novaOcorrencia" method="post">
+                <div class="modal-header">
+                    <h3 class="modal-title h5 mb-0">Registro de nova ocorrência</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="tipo" class="form-label">Tipo de entrada</label>
+                        <select id="tipo" name="tipo" class="form-select" required>
+                            <option value="" selected disabled>Selecionar</option>
+                            <option value="emicaoDeCertif">Emição de Certificado</option>
+                            <option value="emicaoDeDec">Emição de Declaração</option>
+                            <option value="justficativo">Justificação de Faltas</option>
+                            <option value="decServiço">Declaração de serviço</option>
+                            <option value="recepcaoDoc">Recepção de Documentos</option>
+                            <option value="outros">Outros</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Continuar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="assets/bootstrap.bundle.min.js"></script>
+<script>
+    function registrarEntrada() {
+        const modalEl = document.getElementById('idRegistrarEntrada');
+        new bootstrap.Modal(modalEl).show();
+    }
+</script>

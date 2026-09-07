@@ -1,0 +1,38 @@
+<link rel="stylesheet" href="/css/cursos.css">
+
+<div class="cursos-header">
+    <h1 class="cursos-title">Cursos cadastrados</h1>
+    <a href="/pedagogico" class="btn btn-secondary btn-sm back-link">&laquo; Voltar</a>
+</div>
+
+<div class="cursos-list">
+    {{#each cursos}}
+    <div class="curso-card">
+        <div class="card curso-card-inner">
+            <div class="row g-0">
+                <div class="col-12 col-md-8">
+                    <div class="card-body curso-info">
+                        <h3 class="curso-descricao">{{descricao}}</h3>
+                        <div class="h5 mb-0">Sigla: <span class="lead curso-sigla">{{sigla}}</span></div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 curso-stats">
+                    <div class="row g-0 h-100 align-items-center text-center">
+                        <div class="col-4 curso-stat">
+                            <span class="stats-label">Vagas</span>
+                        </div>
+                        <div class="col-4 curso-stat">
+                            <span class="h2 mb-0 stats-number">{{vagas}}</span>
+                        </div>
+                        <div class="col-4 curso-stat">
+                            <span class="stats-turmas">{{turmas}} Turmas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{else}}
+    <div class="alert alert-info text-center mb-0">Nenhum curso cadastrado.</div>
+    {{/each}}
+</div>

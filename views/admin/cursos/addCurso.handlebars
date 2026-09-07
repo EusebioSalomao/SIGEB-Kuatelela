@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row ">
+        <div class="col-6 offset-3">
+ <h1>Cadastrar novo curso:</h1>
+ <hr class="text-primary">
+            <div class="card mybox">
+                <div class="card-body input-box p-5">
+
+
+<form action="/cursos/add" method="post">
+    <label for="descricao">Descrição:</label>
+    <input type="text" name="descricao" placeholder="Escreva o nome do curso" id="" required><br>
+    <label for="sigla">Sigla:</label>
+    <input type="text" name="sigla" placeholder="Sem espaçamento" id="" required><br>
+
+    <input type="hidden" name="idAno" value="{{anoLectivo._id}}">
+    <div class="text-center">
+
+    <button class="btn btn-primary my-btn mt-2">Cadastrar</button>
+    </div>
+</form>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

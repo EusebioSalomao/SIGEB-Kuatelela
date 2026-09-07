@@ -1,0 +1,101 @@
+<div class="container text-center">
+
+</div>
+<div id="">
+    <div class="container-candidato">
+        <div class="col-12 inscreva-se">
+            <img src="/img/turma22.jpg" class="fotoInscreva" alt="Foto">
+            <figcaption>
+                <section class="p-5" >
+
+                    <span class="h2 mb-3">Faça já a sua inscrição!</span>
+                    <p class="mt-5 h5">Cursos disponíveis:</p>
+                    {{#each cursos}}
+                    <span class="text-sm ms-4"> - {{descricao}} </span><br>
+                    {{else}}
+                    {{/each}}
+                    <P class="mt-5 lead text-italic">Você pode concluir a formação média e estar capacitado para ingressar no ensino
+                        superior em menos de 4 anos</P>
+                </section>
+                <div class="h4 mt-0 text-center">LICEU FELIZBERTO D. NGUNGA/CATABOLA</div>
+            </figcaption>
+        </div>
+        <div class="col-2 form-candidato mt-0">
+            <form action="/candidatos/save" method="post">
+                <div class="form-headear">
+                    <div class="title">
+                        <h1>Inscreva - te</h1>
+                    </div>
+                </div>
+    <div class="row">
+        <div class="col-12">
+            {{#each erros}}
+            <div class="alert alert-danger">{{texto}}</div>
+            {{else}}
+            {{/each}}
+        </div>
+    </div>
+                <div class="input-group">
+                    <div class="input-box">
+                        <label for="nome">Nome:</label>
+                        <input type="text" name="nome" value="{{candidato.nome}}" placeholder="Digite o seu nome completo"
+                            required>
+                    </div>
+                    <div class="input-box">
+                        <label for="numBI">Nº BI:</label>
+                        <input type="text" name="numBI" value="{{candidato.numBI}}" placeholder="Bilhete de identidade" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="dataNascimento">Data de nascimento:</label>
+                        <input type="date" name="dataNascimento" value="{{candidato.dataNascimento}}" placeholder="Digite o seu nome completo" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="genero">Genero</label>
+
+                        <select name="genero">
+                            <option value="selecionar"> {{candidato.genero}} </option>
+                            <option value="feminino">Feminino</option>
+                            <option value="masculino">Masculino</option>
+                        </select>
+                    </div>
+                    <div class="input-box">
+                        <label for="contacto">Contacto:</label>
+                        <input type="text" name="contacto" value="{{candidato.contacto}}" placeholder="Telemovel">
+                    </div>
+                    <div class="input-box">
+                        <label for="curso">curso</label>
+                        <select name="curso" id="">
+                                <option value="{{candidato.curso}}">{{candidato.curso}}</option>
+                            {{#each cursos}}
+                                <option value="{{descricao}}">{{descricao}}</option>
+                            {{else}}
+                                <option value="selecionar">Nenhum curso cadastrado</option>
+                            {{/each}}
+                        </select>
+
+                    </div>
+
+                    {{!-- <div class="gener-inputs">
+                        <div class="gener-tltle">
+                            <h6>Genero</h6>
+                        </div>
+                        <div class="gener-group">
+                            <div class="gener-input">
+                                <input type="radio" name="genero" id="feminino">
+                                <label for="feminino">Feminino</label>
+                            </div>
+                            <div class="gener-input">
+                                <input type="radio" name="genero" id="masculino">
+                                <label for="masculino">Masculino</label>
+                            </div>
+                        </div>
+                    </div> --}}
+                    <div class="button-candidato">
+                        <button type="submit">Continuar</button>
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>

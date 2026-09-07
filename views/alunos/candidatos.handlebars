@@ -1,0 +1,316 @@
+<section>
+
+    <div class="row align-items-center g-2">
+        <div class="col-12 col-md-6">
+            <h1 class="h3 mb-0">Lista de Candidatos</h1>
+        </div>
+        {{#if curso}}
+        <div class="col-12 col-md-6 text-md-end lead fst-italic">{{curso.descricao}}</div>
+        {{else}}
+        <div class="col-12 col-md-6 text-md-end lead fst-italic">
+            <a href="/candidatos/solicitacoes" class="btn btn-outline-secondary btn-sm">
+                Solicitações: (<span class="text-danger fw-bold">{{solcitCandidatura.length}}</span>)
+            </a>
+        </div>
+        {{/if}}
+    </div>
+
+    <hr>
+
+    {{!-- <div class="header-listGeralCand">
+        <hr>
+    </div> --}}
+
+    <div class="row align-items-center g-2">
+        <div class="col-12 col-lg-8">
+
+            {{!-- <div class="input-box-filtro">
+
+                <label for="pesqNome">Pesquisa: </label>
+                <input type="text" name="pesqNome" placeholder="Digite o nome ou nº BI" class="mr-4">
+
+                <label for="filtro" class="ml-4">Filtro por curso: </label>
+                <select name="filtroCurso" class="mr-4">
+                    <option value="selecionar">Selecionar</option>
+                    <option value="fb">Fíisicas Biológicas</option>
+                    <option value="ecj">Economica Juridicas</option>
+                    <option value="selecionar">Selecionar</option>
+                </select>
+
+                <label for="idade" class="ml-4">Filtro por idade: </label>
+                <select name="idade" class="mr-4">
+                    <option value="15">15</option>
+                    <option value="15">16</option>
+                    <option value="15">17</option>
+                    <option value="15">18</option>
+                    <option value="15">19</option>
+                </select>
+
+            </div> --}}
+            <div class="d-flex flex-wrap gap-2">
+                <a href="/candidatos/verListaPorCurso/{{idCursoCH}}" class="btn btn-sm btn-secondary">Ver CH</a>
+                <a href="/candidatos/verListaPorCurso/{{idCursoCFB}}" class="btn btn-sm btn-secondary">Ver CFB</a>
+                <a href="/candidatos/verListaPorCurso/{{idCursoCEJ}}" class="btn btn-sm btn-secondary">Ver CEJ</a>
+            </div>
+        </div>
+        <div class="col-12 col-lg-4 text-lg-end mt-2 mt-lg-0">
+            <div class="d-flex flex-wrap gap-2 justify-content-lg-end">
+                {{#if definicoes.autorizarAdmissaoCandidato}}
+                    {{#if vagasDisponivel}}
+                    <button onclick="admissaoCandidaturas()" class="btn btn-sm mybtn-primary">Admissão de Candidatos</button>
+                    {{else}}
+                    <span class="mark text-center">Sem Vagas!</span>
+                    {{/if}}{{!-- vagasDisponivel --}}
+                {{/if}}
+                <button class="btn btn-sm btn-primary" onclick="adicionarCandidato()">Adicionar candidato</button>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="list-scroll">
+        <ul class="list-group shadow-sm">
+            <li class="list-group-item bg-dark text-light">
+                <div class="row gx-2">
+                    <div class="col-1 small text-uppercase fw-bold">N/O</div>
+                    <div class="col-3 small text-uppercase fw-bold">Nome completo</div>
+                    <div class="col-1 small text-uppercase fw-bold">Idade</div>
+                    <div class="col-3 small text-uppercase fw-bold">Curso</div>
+                    <div class="col-1 small text-uppercase fw-bold text-center">Média</div>
+                    <div class="col-1 small text-uppercase fw-bold">Situação</div>
+                    <div class="col-2 small text-uppercase fw-bold text-end">Ações</div>
+                </div>
+            </li>
+
+            {{#each candidatosInscrito}}
+            <li class="list-group-item list-group-item-action">
+                <form action="/candidatos/admitir" method="post">
+                    <div class="row gx-2 align-items-center">
+                        <div class="col-1">{{numOrdem}}.</div>
+                        <div class="col-3">{{nome}}</div>
+                        <div class="col-1">{{idade}} anos</div>
+                        <div class="col-3">{{curso}}</div>
+                        {{#if negativa}}
+                        <div class="col-1 fw-bold text-center text-danger">{{media}}</div>
+                        {{else}}
+                        <div class="col-1 fw-bold text-center myText-primary">{{media}}</div>
+                        {{/if}}
+                        {{#if admitido}}
+                        <div class="col-1 text-success">{{estado}}</div>
+                        {{else}}
+                            {{#if naoAdmitido}}
+                            <div class="col-1 text-danger">{{estado}}</div>
+                            {{else}}
+                                {{#if admitido}}
+                                <div class="col-1 text-primary">{{estado}}</div>
+                                {{else}}
+                                <div class="col-1">{{estado}}</div>
+                                {{/if}}
+                            {{/if}}
+                        {{/if}}
+                        <input type="hidden" name="id" value="{{_id}}">
+                        <div class="col-2 text-end">
+                            <div class="d-flex flex-wrap gap-1 justify-content-end">
+                                <a href="/candidatos/detalhes/{{_id}}" class="btn btn-sm btn-secondary">Detalhes</a>
+                                {{#if admitirAdm}}
+                                <button type="submit" class="btn btn-sm btn-success">Admitir</button>
+                                {{/if}}
+                                {{!-- <a href="/alunos/matricular/{{_id}}" class="btn btn-sm btn-warning">Matricular</a> --}}
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </li>
+            {{else}}
+            <li class="list-group-item text-center text-muted py-4">Nenhum candidato registrado</li>
+            {{/each}}
+        </ul>
+    </div>
+
+    {{#if curso}}
+    <hr>
+    <div class="row align-items-center g-2">
+        <div class="col-12 col-md-6">
+            <a href="/homeCoordenacao/{{idCoord}}" class="btn btn-secondary btn-sm mt-2">&laquo; Voltar</a>
+        </div>
+        <div class="col-12 col-md-6 text-md-end">
+            {{#if definicoes.autorizarAdmissaoCandidato}}
+                {{#if vagasDisponivel}}
+                <button onclick="admissaoCandidaturas()" class="btn btn-sm mybtn-primary">Admissão de Candidatos</button>
+                {{else}}
+                <span class="mark text-center px-2">Sem Vagas!</span>
+                {{/if}}{{!-- vagasDisponivel --}}
+            {{/if}}
+        </div>
+    </div>
+    {{else}}
+    <div class="text-center d-flex flex-wrap justify-content-center gap-2 mt-2">
+        {{!--  <a href="/candidatos/actualizarNomes">Actualizar Nomes</a> --}}
+        <a href="/candidatos/add" class="btn btn-secondary btn-sm">Adicionar candidato</a>
+        <a href="#" class="btn btn-secondary btn-sm">Imprimir lista</a>
+    </div>
+    {{/if}}
+</section>
+{{!-- {{#if candConsulta}} --}}
+
+<!-- Modal2 -->
+
+<div class="modal" tabindex="-1" id="minha2" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content p-4 p-sm-5">
+            <div class="modal-header">
+                <h5 class="modal-title text-success">Resultado</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="p-3">
+                <h4>{{candConsulta.nome}}</h4>
+                <div class="mt-1 lead"><span class="h5 fw-semibold">BI:</span> {{candConsulta.numBI}}</div>
+                <div class="mt-1 lead"><span class="h5 fw-semibold">Idade:</span> {{candConsulta.idade}}</div>
+                <div class="mt-1 lead"><span class="h5 fw-semibold">Curso:</span> {{candConsulta.curso}}</div>
+                <div class="mt-3 p-2 text-center bg-info text-light h4 rounded">{{candConsulta.estado}}</div>
+            </div>
+
+            <div class="modal-footer">
+                <a href="/candidatos"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- {{else}}
+
+{{/if}} --}}
+
+
+<!-- Modal Adicionar Candidato -->
+
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="adicionarCandidato">
+    <div class="modal-dialog modal-dialog-centered">
+        <form action="/homeCoordenacao/adicionarCandidato" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title h3">Adicionar candidato</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="quantidade" class="d-block text-center lead mb-2">Informe a quantidade</label>
+                    <div class="text-center">
+                        <input type="number" id="quantidade" name="quantidade" value="1" min="1" max="50" class="text-center form-control mx-auto" style="max-width: 120px;">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <input type="hidden" name="idCurso" value="{{curso._id}}">
+                    <input type="hidden" name="idCoord" value="{{idCoord}}">
+                    <button type="submit" class="btn btn-primary">Continuar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal Admissão de Candidatos -->
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="admissaoCandidaturas">
+    <div class="modal-dialog modal-dialog-centered">
+        <form action="/homeCoordenacao/admissaoCandidaturas" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title h3">Admissão de Candidatos</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center lead mb-2">
+                        <label for="criterioAdmissao">Critério de Admissão <span class="text-danger">*</span>:</label>
+                    </div>
+                    <select id="criterioAdmissao" name="criterioAdmissao" class="form-select text-center fw-bold myText-primary mb-3">
+                        <option value="">---</option>
+                        <option value="mediaFinal">Média final</option>
+                        <option value="porIdade">Por idade</option>
+                    </select>
+
+                    <div class="row text-center g-2">
+                        <div class="col-6">
+                            <label for="idadeMinima" class="text-center d-block">Idade mínima:</label>
+                            <input type="number" id="idadeMinima" name="idadeMinima" min="14" max="70"
+                                title="Preencher se o Critério for por idade..." class="form-control text-center text-primary">
+                        </div>
+                        <div class="col-6">
+                            <label for="idadeMaxima" class="text-center d-block">Idade máxima:</label>
+                            <input type="number" id="idadeMaxima" name="idadeMaxima" min="14" max="70"
+                                title="Preencher se o Critério for por idade..." class="form-control text-center text-primary">
+                        </div>
+                    </div>
+
+                    <hr class="text-primary">
+
+                    <div class="mb-3">
+                        <label for="qtAdmitirRegular" class="d-block">Quantos Regular a Admitir <span class="text-danger">*</span>:</label>
+                        <input type="number" id="qtAdmitirRegular" name="qtAdmitirRegular" min="0" max="{{vagasRegular}}" class="form-control text-center lead" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="qtAdmitirAdultos" class="d-block">Quantos Adultos a Admitir <span class="text-danger">*</span>:</label>
+                        <input type="number" id="qtAdmitirAdultos" name="qtAdmitirAdultos" min="0" max="{{vagasAdultos}}" class="form-control text-center lead" required>
+                    </div>
+
+                    <div class="text-center small mb-0">
+                        <label class="d-block">Vagas disponíveis</label>
+                        <span>Regular:</span> <span class="text-info fw-bold">{{vagasRegular}}</span>; &shy;
+                        <span>Adultos:</span> <span class="text-info fw-bold">{{vagasAdultos}}</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <input type="hidden" name="idCurso" value="{{curso._id}}">
+                    <input type="hidden" name="idCoord" value="{{idCoord}}">
+                    <button type="submit" class="btn btn-primary">Continuar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    .list-scroll {
+        overflow-x: auto;
+    }
+
+    .list-scroll .list-group {
+        min-width: 760px;
+    }
+
+    .list-group-item-action:hover {
+        background-color: rgba(0, 0, 0, .03);
+    }
+</style>
+
+{{!-- Scrypts --}}
+<script src="assets/bootstrap.bundle.min.js"></script>
+<script>
+    /*
+        function exibir() {
+            console.log('Mostrae todos: ')
+            let el = document.getElementById('minha2');
+            let minha_modal = new bootstrap.Modal(el);
+            minha_modal.show();
+        }
+        function mudEstado() {
+            let el = document.getElementById('estado');
+            let meu_estado = new bootstrap.Modal(el);
+            meu_estado = 
+            }
+    */
+    function adicionarCandidato() {
+        let el = document.getElementById('adicionarCandidato');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+    function admissaoCandidaturas() {
+        let el = document.getElementById('admissaoCandidaturas');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+</script>

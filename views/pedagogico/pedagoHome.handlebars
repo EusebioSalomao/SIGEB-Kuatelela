@@ -1,0 +1,72 @@
+<main class="pedago-page container-fluid py-4 py-lg-5">
+        <div class="container pedago-shell">
+                <header class="pedago-header text-center mb-4 mb-lg-5">
+                        <p class="pedago-eyebrow mb-1">Gestão académica</p>
+                        <h1 class="title-pedagogico mb-0">Área Pedagógica</h1>
+                </header>
+
+                <section id="area-pedagogica" aria-labelledby="pedago-menu-heading">
+                        <h2 id="pedago-menu-heading" class="visually-hidden">Opções da área pedagógica</h2>
+
+                        <div class="row g-3">
+                                <div class="col-12 col-sm-6 col-lg-3">
+                                        <a class="pedago-menu-item" href="/pedagogico/minipautas">Minipautas</a>
+                                </div>
+                                <div class="col-12 col-sm-6 col-lg-3">
+                                        <a class="pedago-menu-item" href="/pedagogico/pautas">Pautas</a>
+                                </div>
+                                <div class="col-12 col-sm-6 col-lg-3">
+                                        <a class="pedago-menu-item" href="/pedagogico/alunos">Alunos</a>
+                                </div>
+                                <div class="col-12 col-sm-6 col-lg-3">
+                                        <a class="pedago-menu-item" href="/pedagogico/turmas">Turmas</a>
+                                </div>
+                                <div class="col-12 col-sm-6 col-lg-3">
+                                        <a class="pedago-menu-item" href="/pedagogico/classes">Classes</a>
+                                </div>
+                                <div class="col-12 col-sm-6 col-lg-3">
+                                        <a class="pedago-menu-item" href="/pedagogico/cursos">Cursos</a>
+                                </div>
+                                <div class="col-12 col-sm-6 col-lg-3">
+                                        <a class="pedago-menu-item" href="#">Professores</a>
+                                </div>
+                        </div>
+
+                        {{!-- <div class="col-4 menu-item2 text-center p-4 h2 bg-secondary mx-1">
+                                <a href="#" class="text-light">Carga horária</a>
+                        </div> --}}
+                        <div class="pedago-divider my-4 my-lg-5"></div>
+
+                        <div class="row g-3">
+                                <div class="col-12 col-sm-6 col-lg-3">
+                                        <a class="pedago-menu-item" href="/candidatos">Candidatos</a>
+                                </div>
+                                <div class="col-12 col-sm-6 col-lg-3">
+                                        <a class="pedago-menu-item" href="/pedagogico/cargaHoraria">Carga Horária</a>
+                                </div>
+                                <div class="col-12 col-sm-6 col-lg-3">
+                                        <a class="pedago-menu-item pedago-menu-item-orders"
+                                                href="/pedagogico/pedidos">
+                                                <span>Pedidos</span>
+                                                <span class="pedago-badge">{{pedDeclaracao.length}}</span>
+                                        </a>
+                                </div>
+                                <div class="col-12 col-sm-6 col-lg-3">
+                                        <a class="pedago-menu-item pedago-menu-item-accent"
+                                                href="/pedagogico/outrOp">Mais Opções</a>
+                                </div>
+                        </div>
+                        {{!-- <div class="col-4 menu-item2 text-center p-4 h2 bg-secondary mx-1 ms-4">
+                                <a href="#" class="text-light">Horário</a>
+                        </div> --}}
+                </section>
+
+                {{#if user._openAnosLectivo}}
+                <section class="pedago-management mt-4 mt-lg-5 text-center" aria-label="Gestão de matrículas">
+                        <a class="btn pedago-management-button" href="/pedagogico/matricular">
+                                Gerir ano Lectivo/Matrícula
+                        </a>
+                </section>
+                {{/if}}
+        </div>
+</main>

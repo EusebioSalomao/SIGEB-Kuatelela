@@ -1,0 +1,64 @@
+<style>
+  .anos-lectivo-page .mycard {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .anos-lectivo-page .ano-card {
+    transition: box-shadow .15s ease, transform .15s ease;
+    min-width: 12rem;
+  }
+
+  .anos-lectivo-page .ano-card:hover {
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+    transform: translateY(-2px);
+  }
+</style>
+
+<div class="anos-lectivo-page">
+
+  <div class="container-fluid px-0">
+    <div class="row align-items-center g-2 mb-3">
+      <div class="col-12 col-md-6">
+        <h1 class="h3 mb-0">Lista dos Anos Lectivo</h1>
+      </div>
+      <div class="col-12 col-md-6 text-md-end mt-2 mt-md-0">
+        <a class="btn btn-info" href="/anosLectivo/add">Criar novo ano</a>
+      </div>
+    </div>
+  </div>
+  <hr class="mt-0">
+
+  <div class="mynav mt-1">
+    <ul class="mycard bg-light rounded-3 p-3 d-flex flex-wrap gap-3">
+      {{#each anosLectivo}}
+      <li class="ano-card text-center border bg-white rounded-3 shadow-sm p-3 d-flex flex-column">
+        <div class="lead text-secondary mb-1">Ano Lectivo</div>
+        <div class="h2 mb-3">{{codigo}}</div>
+
+        <div class="mt-auto">
+          {{#if encerrado}}
+          <a href="/anosLectivo/config/{{_id}}" class="btn btn-secondary btn-sm w-100 mb-2">Entrar</a>
+          {{else}}
+          <a href="/anosLectivo/config/{{_id}}" class="btn btn-warning btn-sm w-100 mb-2">Configurar</a>
+          {{/if}}
+
+          {{!-- <span>Click em configurar para verificar mais informações</span> --}}
+          {{#if estado}}
+          <p class="p-0 m-0 small text-secondary">{{estado}}</p>
+          <a href="#" class="text-info">.</a>
+          {{else}}
+          <a href="/anosLectivo/activar/{{_id}}" class="btn btn-outline-info btn-sm w-100">Activar</a>
+          <a href="#" class="text-info">.</a>
+          {{/if}}
+        </div>
+      </li>
+      {{else}}
+      <li class="text-center w-100 py-4 text-secondary">
+        <div class="h5 mb-0">Nenhum ano cadastrado</div>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+
+</div>

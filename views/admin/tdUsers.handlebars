@@ -1,0 +1,49 @@
+<div class="container py-4">
+
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2 mb-4">
+        <h1 class="h3 mb-0">Lista de usuários</h1>
+        <a href="/admin/relUserSistema" class="btn bg-info text-light fw-bold">
+            Relatório de acesso ao sistema
+        </a>
+    </div>
+
+    <div class="d-flex flex-wrap gap-2 mb-4">
+        {{#if user._addUser}}
+        <a href="/user/add" class="btn btn-primary">Adicionar usuário</a>
+        {{/if}}
+        <a href="/user/funcionarios" class="btn btn-primary">Funcionários</a>
+        <a href="/user/alunos" class="btn btn-primary">Alunos</a>
+    </div>
+
+    <div class="vstack gap-2 mb-4">
+        {{#each usuarios}}
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+                    <div class="h5 mb-0">{{username}}</div>
+                    <span class="text-muted">{{categoria}}</span>
+
+                    {{#if _deleteUsers}}
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="/user/deletUser/{{_id}}" class="btn btn-danger btn-sm">Deletar</a>
+                        <a href="/user/editUser/{{_id}}" class="btn btn-primary btn-sm">Editar</a>
+                        <form action="/user/restaurar" method="post" class="d-inline">
+                            <input type="hidden" name="idUser" value="{{_id}}">
+                            <button type="submit" class="btn btn-warning btn-sm">Restaurar</button>
+                        </form>
+                    </div>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <div class="h5 text-center text-muted py-4">Nenhum usuário registrado</div>
+        {{/each}}
+    </div>
+
+    <div class="d-flex flex-wrap gap-2 pt-3 border-top">
+        <a href="/admin/listaUserPDF" class="btn btn-secondary">Gerar lista de Usuários Funcionários PDF</a>
+        <a href="/admin/credenciasPDF" class="btn btn-secondary">Gerar Credenciais Funcionários</a>
+    </div>
+
+</div>

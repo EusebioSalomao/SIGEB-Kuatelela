@@ -1,0 +1,231 @@
+<div class="container py-4">
+
+    {{#if msg}}
+    <div class="alert alert-success text-center" role="alert">{{msg}}</div>
+    {{/if}}
+    {{#if exist}}
+    <div class="alert alert-danger text-center" role="alert">{{exist}}</div>
+    {{/if}}
+
+    <h1 class="h3 mb-4"><span class="text-secondary">Turmas:</span> {{curso.descricao}} / {{ano.codigo}}</h1>
+
+    <div class="bg-secondary text-light rounded p-3 mb-4">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+            <div class="d-flex flex-column flex-sm-row align-items-sm-center gap-2">
+                <button type="button" class="btn btn-sm btn-success text-nowrap" onclick="addTurma()">+ Turma</button>
+                <span>
+                    Lista de todas as turmas da {{classe.designacao}} do curso de {{curso.descricao}}
+                    do ano lectivo {{ano.codigo}}
+                </span>
+            </div>
+            <button type="button" class="btn btn-sm btn-warning text-nowrap" onclick="addDisciplina()">Adicionar disciplina</button>
+        </div>
+    </div>
+
+    <!-- Turmas -->
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 mb-4">
+        {{#each turmas}}
+        <div class="col">
+            <div class="card h-100 text-center shadow-sm">
+                <div class="card-body">
+                    <div class="text-muted small text-uppercase">Turma</div>
+                    <div class="h2 mb-3">{{codigo}}</div>
+                    <a href="/turmas/turma/{{_id}}" class="btn btn-sm bg-dark text-light mb-2">Entrar</a>
+                    <div class="small text-muted">Clique para ver mais informações</div>
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <div class="col-12">
+            <div class="h5 text-center text-muted py-3">Nenhuma turma criada</div>
+        </div>
+        {{/each}}
+    </div>
+
+    <hr>
+
+    <!-- Disciplinas -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="h4 mb-0">Disciplinas</h3>
+        <form action="/anosLectivo/gerirCurso/" method="post" class="mb-0">
+            <input type="hidden" name="idAno" value="{{curso.idAno}}">
+            <input type="hidden" name="idCurso" value="{{curso._id}}">
+            <button type="submit" class="btn btn-sm btn-secondary">Ver todas Classes</button>
+        </form>
+    </div>
+
+    <ul class="list-group mb-4">
+        {{#each disciplinas}}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span>{{nomeDisciplina}}</span>
+            <span class="d-flex gap-1">
+                <a href="/disciplinas/editar/{{_id}}" class="btn btn-sm" aria-label="Editar disciplina">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-pencil text-primary" viewBox="0 0 16 16">
+                        <path
+                            d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+                    </svg>
+                </a>
+                <a href="" class="btn btn-sm" aria-label="Remover disciplina">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-trash text-danger" viewBox="0 0 16 16">
+                        <path
+                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
+                        <path
+                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z" />
+                    </svg>
+                </a>
+            </span>
+        </li>
+        {{else}}
+        <li class="list-group-item text-center text-muted">Nenhuma disciplina registrada</li>
+        {{/each}}
+    </ul>
+
+</div>
+
+<!-- Modal addClasse -->
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="addClasse">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form action="/classes/add" method="post">
+                <div class="modal-header">
+                    <h3 class="modal-title h5 mb-0">Adicionar nova classe</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="designacaoClasse" class="form-label">Designação</label>
+                        <select id="designacaoClasse" name="designacao" class="form-select" required>
+                            <option value="" selected disabled>Selecionar</option>
+                            <option value="10ª Classe">10ª Classe</option>
+                            <option value="11ª Classe">11ª Classe</option>
+                            <option value="12ª Classe">12ª Classe</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="numVagasClasse" class="form-label">Nº Vagas</label>
+                        <input type="number" id="numVagasClasse" name="numVagas" class="form-control" min="1" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="turnosClasse" class="form-label">Turnos</label>
+                        <select id="turnosClasse" name="turnos" class="form-select" required>
+                            <option value="" selected disabled>Selecionar</option>
+                            <option value="matinal">Matinal</option>
+                            <option value="vespertino">Vespertino</option>
+                            <option value="noturno">Noturno</option>
+                            <option value="matVespertino">Matinal e Vespertino</option>
+                            <option value="todos">Todos</option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="idCurso" value="{{curso._id}}">
+                    <input type="hidden" name="idAno" value="{{ano._id}}">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Adicionar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal addTurma -->
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="addTurma">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form action="/turmas/add" method="post">
+                <div class="modal-header">
+                    <h3 class="modal-title h5 mb-0">Adicionar nova turma</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="classeTurma" class="form-label">Classe</label>
+                        <select id="classeTurma" name="classe" class="form-select" required>
+                            <option value="" selected disabled>Selecionar</option>
+                            {{#if classe10}}
+                            <option value="10ª Classe">10ª Classe</option>
+                            {{/if}}
+                            {{#if classe11}}
+                            <option value="11ª Classe">11ª Classe</option>
+                            {{/if}}
+                            {{#if classe12}}
+                            <option value="12ª Classe">12ª Classe</option>
+                            {{/if}}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="codigo" class="form-label">Código</label>
+                        <input type="text" id="codigo" name="codigo" class="form-control"
+                            placeholder="Digite o código da turma" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="periodo" class="form-label">Período</label>
+                        <select id="periodo" name="periodo" class="form-select" required>
+                            <option value="" selected disabled>Selecionar</option>
+                            <option value="matinal">Matinal</option>
+                            <option value="vespertino">Vespertino</option>
+                            <option value="noturno">Noturno</option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="idCurso" value="{{curso._id}}">
+                    <input type="hidden" name="idAno" value="{{ano._id}}">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Adicionar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal addDisciplina -->
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="addDisciplina">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form action="/disciplinas/add" method="post">
+                <div class="modal-header">
+                    <h3 class="modal-title h5 mb-0">Adicionar nova disciplina</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="nomeDisciplina" class="form-label">Nome da disciplina</label>
+                        <input type="text" id="nomeDisciplina" name="nomeDisciplina" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tempoSemanal" class="form-label">Tempo lectivo por semana</label>
+                        <input type="number" id="tempoSemanal" name="tempoSemanal" class="form-control" min="1" required>
+                    </div>
+                    <input type="hidden" name="idClasse" value="{{classe._id}}">
+                    <input type="hidden" name="idCurso" value="{{curso._id}}">
+                    <input type="hidden" name="idAno" value="{{ano._id}}">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Adicionar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="assets/bootstrap.bundle.min.js"></script>
+<script>
+    function addClasse() {
+        const modalEl = document.getElementById('addClasse');
+        new bootstrap.Modal(modalEl).show();
+    }
+
+    function addTurma() {
+        const modalEl = document.getElementById('addTurma');
+        new bootstrap.Modal(modalEl).show();
+    }
+
+    function addDisciplina() {
+        const modalEl = document.getElementById('addDisciplina');
+        new bootstrap.Modal(modalEl).show();
+    }
+</script>

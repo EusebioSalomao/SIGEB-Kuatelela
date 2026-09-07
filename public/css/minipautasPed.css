@@ -1,0 +1,196 @@
+/* ==========================================================================
+   minipautasPed.css
+   Paleta discreta e profissional (sobrescreve as variáveis do Bootstrap 5)
+   ========================================================================== */
+
+:root {
+  --bs-primary: #3E5C76;
+  --bs-primary-rgb: 62, 92, 118;
+  --bs-primary-text-emphasis: #2C4054;
+  --bs-primary-bg-subtle: #E7ECF1;
+  --bs-primary-border-subtle: #C4D0DA;
+
+  --bs-secondary: #6C757D;
+  --bs-secondary-rgb: 108, 117, 125;
+
+  --bs-danger: #A6444C;
+  --bs-danger-rgb: 166, 68, 76;
+
+  --bs-warning: #B8863F;
+  --bs-warning-rgb: 184, 134, 63;
+  --bs-warning-text-emphasis: #6E4F22;
+  --bs-warning-bg-subtle: #F3E7D5;
+
+  --bs-info: #4C7A85;
+  --bs-info-rgb: 76, 122, 133;
+
+  --bs-body-bg: #F5F6F8;
+  --bs-body-color: #2D3436;
+
+  --mp-border: #E1E4E8;
+  --mp-radius: .5rem;
+}
+
+body {
+  background-color: var(--bs-body-bg);
+}
+
+/* Botões: hover/active mais escuros, mesma família de cor */
+.btn-primary {
+  --bs-btn-bg: var(--bs-primary);
+  --bs-btn-border-color: var(--bs-primary);
+  --bs-btn-hover-bg: #33495F;
+  --bs-btn-hover-border-color: #2C4054;
+  --bs-btn-active-bg: #2C4054;
+  --bs-btn-active-border-color: #2C4054;
+}
+
+.btn-danger {
+  --bs-btn-bg: var(--bs-danger);
+  --bs-btn-border-color: var(--bs-danger);
+  --bs-btn-hover-bg: #8E3A41;
+  --bs-btn-hover-border-color: #7E3339;
+}
+
+.btn-warning {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: var(--bs-warning);
+  --bs-btn-border-color: var(--bs-warning);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #9C7236;
+  --bs-btn-hover-border-color: #8A652F;
+  --bs-btn-active-color: #fff;
+}
+
+/* Cabeçalho da página */
+.mp-header {
+  background-color: var(--bs-primary);
+  color: #fff;
+  border-radius: var(--mp-radius);
+  padding: 1rem 1.25rem;
+}
+
+.mp-header h1 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.mp-header .mp-subtitle {
+  font-size: 1.4rem;
+  font-weight: 600;
+  opacity: .9;
+}
+
+/* Barra de ferramentas (voltar + pesquisa) */
+.mp-toolbar {
+  background-color: #fff;
+  border: 1px solid var(--mp-border);
+  border-radius: var(--mp-radius);
+  padding: .85rem 1.25rem;
+  row-gap: .75rem;
+}
+
+.mp-toolbar .mp-desc {
+  color: #5A6169;
+  font-size: .95rem;
+}
+
+/* Cartão de cada minipauta */
+.mp-card {
+  border: 1px solid var(--mp-border);
+  border-radius: var(--mp-radius);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .04);
+  overflow: hidden;
+}
+
+.mp-card .mp-card-side {
+  background-color: var(--bs-primary-bg-subtle);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mp-card .mp-card-side h3 {
+  font-size: 1.1rem;
+  color: var(--bs-primary-text-emphasis);
+}
+
+.mp-card .mp-card-main {
+  padding: 1.25rem;
+}
+
+.mp-card .mp-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Badges de notas lançadas */
+.mp-notas-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 1.25rem;
+  row-gap: .35rem;
+}
+
+.mp-notas-group {
+  margin-bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: .3rem;
+  row-gap: .2rem;
+}
+
+.mp-notas-group .mp-notas-label {
+  font-size: .8rem;
+  font-weight: 600;
+  color: #5A6169;
+  margin-right: .35rem;
+}
+
+.mp-badge {
+  display: inline-block;
+  background-color: var(--bs-primary-bg-subtle);
+  color: var(--bs-primary-text-emphasis);
+  border: 1px solid var(--bs-primary-border-subtle);
+  border-radius: 999px;
+  padding: .15rem .6rem;
+  font-size: .78rem;
+  margin: .1rem .25rem .1rem 0;
+}
+
+.mp-obs {
+  background-color: var(--bs-warning-bg-subtle);
+  border: 1px solid #E5D3B3;
+  border-radius: var(--mp-radius);
+  padding: .6rem .85rem;
+  font-size: .88rem;
+  color: #4A3A1E;
+}
+
+.mp-empty {
+  color: #6C757D;
+  padding: 2.5rem 1rem;
+}
+
+@media (max-width: 767.98px) {
+  .mp-header,
+  .mp-toolbar {
+    text-align: center;
+  }
+
+  .mp-toolbar form {
+    width: 100%;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .mp-notas-container {
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: .3rem;
+  }
+}

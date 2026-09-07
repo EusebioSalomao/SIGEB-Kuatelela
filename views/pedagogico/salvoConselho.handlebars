@@ -1,0 +1,41 @@
+<h1>Sucesso!</h1>
+
+<form action="/pedagogico/iniciarConselho" method="post">
+    <span class="text-sm text-italic text-center text-success ">Alteração efectuada com sucesso, Clica em continuar</span>
+    <hr>
+    <div class="modal-body input-box-filtro">
+        <div class="px-4">
+            <div class="text-center"><span class="fw-bold mb-">Presidente:</span> <span class="fw-bold text-primary">
+                    {{membrosConselho.nomePresidente}} </span></div>
+            <hr>
+            <div class="mt-2"> <span class="text-italic mt-2 me-2"> 1º Membro/Vogal: </span> <sapan class="fw-bold"> {{membrosConselho.membro1}} </sapan>
+            </div>
+            <hr>
+            <div class="mt-2"> <span class="text-italic me-2"> 2º Membro/Vogal: </span> <span class="fw-bold"> {{membrosConselho.membro2}} </span> </div>
+            <hr>
+            <div class="mt-2"> <span class="text-italic me-2"> 3º Membro/Vogal: </span> <span class="fw-bold"> {{membrosConselho.membro3}} </span></div>
+
+
+        </div>
+
+        <input type="hidden" name="nomePresidente" value="feito" id="">
+        <input type="hidden" name="membro1" value="feito" id="">
+        <input type="hidden" name="membro2" value="feito" id="">
+        <input type="hidden" name="membro3" value="feito" id="">
+
+        <input type="hidden" name="idTurma" value="{{idTurma}}" id="">
+        <input type="hidden" name="idPauta" value="" id="">
+        <input type="hidden" name="idPresidente" value="{{membrosConselho.idPresidente}}" id="">
+
+    </div>
+
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-10">
+
+        <button type="submit" class="btn btn-primary form-controll">Continuar</button>
+            </div>
+        </div>
+    </div>
+</form>

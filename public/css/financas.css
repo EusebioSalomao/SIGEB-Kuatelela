@@ -1,0 +1,82 @@
+/*
+ * Estilos da Área de Finanças
+ * Paleta própria, discreta, mantendo a mesma família de cores
+ * (cinza / dourado / verde-azulado) mas em tons mais suaves.
+ */
+
+:root {
+    --finance-secondary: #57606b;   /* cinza-azulado suave */
+    --finance-warning:   #b8905a;   /* dourado/mostarda discreto */
+    --finance-info:      #4a7c7c;   /* verde-azulado discreto */
+}
+
+.finance-hub__title {
+    letter-spacing: .03em;
+}
+
+/* Cartões clicáveis do menu de finanças */
+.finance-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 150px;
+    height: 100%;
+    padding: 1.5rem;
+    border-radius: .75rem;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
+    transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.finance-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .12);
+}
+
+/* Destaque de foco no cartão inteiro (o link ocupa toda a área via stretched-link) */
+.finance-card:focus-within {
+    outline: 3px solid rgba(0, 0, 0, .35);
+    outline-offset: 2px;
+}
+
+.finance-card__title {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+}
+
+/* Variações de cor — paleta discreta, texto claro em todas */
+.finance-card--secondary {
+    background-color: var(--finance-secondary);
+}
+.finance-card--secondary .finance-card__title {
+    color: #fff;
+}
+
+.finance-card--warning {
+    background-color: var(--finance-warning);
+}
+.finance-card--warning .finance-card__title {
+    color: #fff;
+}
+
+.finance-card--info {
+    background-color: var(--finance-info);
+}
+.finance-card--info .finance-card__title {
+    color: #fff;
+}
+
+/* Responsivo: em telas pequenas os cartões ficam um pouco mais compactos */
+@media (max-width: 575.98px) {
+    .finance-card {
+        min-height: 120px;
+        padding: 1.25rem;
+    }
+    .finance-card__title {
+        font-size: 1rem;
+    }
+}

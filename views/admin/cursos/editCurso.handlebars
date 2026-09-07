@@ -1,0 +1,28 @@
+<div class="conteiner">
+    <div class="row">
+        <div class="col-8 offset-2 p-5">
+                    <h1><span class="text-secondary">Editar:</span> {{curso.descricao}} <span class="text-secondary" >/ {{ano.codigo}}</span> </h1>
+                    <hr class="text-success">
+            <div class=" p-5">
+                <div class="card-body card mybox text-center p-5 input-box">
+
+
+                    <div class="form_control">
+
+                        <form action="/cursos/editar" method="post">
+                            <label for="descricao">Descrição:</label>
+                            <input type="text" name="descricao" value="{{curso.descricao}}" id="" required><br>
+                            <label for="sigla">Sigla:</label>
+                            <input type="text" name="sigla" value="{{curso.sigla}}" id="" required><br>
+
+                            <input type="hidden" name="idAno" value="{{curso.idAno}}">
+                            <input type="hidden" name="id" value="{{curso._id}}" id="">
+                            <a href="/anosLectivo/config/{{curso.idAno}}" class="btn btn-secondary mt-2">Voltar</a>
+                            <button type="submit" class="btn btn-success mt-2">Guardar alterações</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

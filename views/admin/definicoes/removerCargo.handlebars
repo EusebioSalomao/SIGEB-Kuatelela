@@ -1,0 +1,60 @@
+<h1 class="text-danger text-center mb-3">DEFINIÇÕES DO SISTEMA</h1>
+<hr>
+
+<h2 class="h4 text-info text-center mb-1">Remover cargo</h2>
+<div class="text-danger fw-semibold text-center mb-3">Confirma os dados</div>
+
+<div class="lead mt-2 mb-4">
+    Exonerar o(a) senhor(a) <span class="fw-bold">{{funcionarioPro.nome}}</span> do cargo de
+    <span class="text-info fw-semibold">{{funcionarioPro.cargo}}</span>;
+</div>
+
+<form action="/definicoes/salvarRemCargo" method="post">
+    <div class="col-12 col-md-8 col-lg-6 mx-auto card p-3 shadow-sm">
+        <div class="card-body bg-light p-3">
+
+            {{#if chefSecc}}
+            <input type="text" name="especifico" placeholder="Informa o nome da Secção" class="form-control text-center" required>
+            {{/if}}
+
+            {{#if coordCurso}}
+            <div class="h5 text-center fw-bold myText-primary">Coordenador do {{curso.descricao}}</div>
+            {{/if}}
+
+            {{#if coordDisciplina}}
+            <input type="text" name="especifico" placeholder="Informa a Disciplina" class="form-control text-center" required>
+            {{/if}}
+
+            {{#if coordTurma}}
+            <select name="especifico" class="form-select">
+                <option value="">Seleciona a Turma</option>
+                {{#each turmas}}
+                <option value="{{_id}}">{{idClasse.designacao}} - {{codigo}}</option>
+                {{/each}}
+            </select>
+            {{/if}}
+
+            {{#if coordTurno}}
+            <select name="especifico" class="form-select">
+                <option value="">Seleciona o Turno</option>
+                <option value="matinal">Período Matinal</option>
+                <option value="vespertino">Período Vespertino</option>
+                <option value="noturno">Período Noturno</option>
+            </select>
+            {{/if}}
+
+            {{#if juriPresidente}}
+            <div class="h5 text-center fw-bold myText-primary">Júri Presidente da {{turma.idClasse.designacao}} {{turma.codigo}}</div>
+            {{/if}}
+
+            <div class="mt-3 text-center">
+                <hr>
+                <input type="hidden" name="idFuncionario" value="{{funcionarioPro._id}}">
+                <a href="/definicoes" class="btn btn-secondary">Cancelar</a>
+                <button type="submit" class="btn btn-danger ms-1">Remover</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="small text-center mt-3 fst-italic">Ao clicar em salvar e confirmar, estarás a remover o cargo de {{cargo}} ao funcionário</div>

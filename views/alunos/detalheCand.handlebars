@@ -1,0 +1,68 @@
+<div class="conteiner">
+    <div class="form-headear2">
+        <div class="title">
+            <h1>Detalhes - <span>{{candidato.nome}}</span></h1>
+        </div>
+    </div>
+
+        <div class="row">
+            <div class="col-6 mt-3">
+
+                <div class="input-box">
+                    <label for="nome">Nome:</label>
+                    <input type="text" name="nome" value="{{candidato.nome}}" disabled>
+                </div>
+                <div class="input-box">
+                    <label for="numBI">Nº BI:</label>
+                    <input type="text" name="numBI" value="{{candidato.numBI}}" disabled>
+                </div>
+                <div class="input-box">
+                    <label for="dataNascimento">Data de nascimento:</label>
+                    <input type="date" name="dataNascimento" value="{{candidato.dataNascimento}}" disabled>
+                </div>
+            </div>
+            <div class="col-6 mt-3">
+
+                <div class="input-box">
+                    <label for="genero">Genero</label>
+
+                    <select name="genero" disabled>
+                        <option value="selecionar"> {{candidato.genero}} </option>
+                        <option value="feminino">Feminino</option>
+                        <option value="masculino">Masculino</option>
+                    </select>
+                </div>
+                <div class="input-box">
+                    <label for="contacto">Contacto:</label>
+                    <input type="text" name="contacto" value="{{candidato.contacto}}" disabled>
+                </div>
+                <div class="input-box">
+                    <label for="curso">curso</label>
+                    <select name="curso" id="" disabled>
+                        <option value="selecionar"> {{candidato.curso}} </option>
+                        <option value="cHumanas">Ciencias Humanas</option>
+                    </select>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+             <div class="col-2 mx-0 px-0">
+            <div class="card mx-0 px-0">
+                <div class="card-body mx-0">
+                    <img src="/uploads/{{candidato.foto}}" class="fotoAluno" alt="">
+                </div>
+            </div>
+        </div>
+            <div class="col-10">
+
+        <div class="text-center px-4 mx-4"> 
+            <a href="/candidatos" class="btn my-btn mt-3" >Voltar</a> 
+            <a href="/candidatos/deletar/{{candidato._id}}" class="btn btn-sm btn-danger">Deletar</a>
+        <a href="/candidatos/edidar/{{candidato._id}}" class="btn my-btn mt-3">Editar Dados</a>
+        </div>
+            </div>
+        </div>
+
+</div>
+

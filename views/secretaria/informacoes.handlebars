@@ -1,0 +1,90 @@
+<div class="container py-4">
+
+    <div class="row align-items-center mb-4 gy-2">
+        <div class="col-12 col-md-8">
+            <h2 class="fw-bold mb-0">Gerir Informações</h2>
+        </div>
+        <div class="col-12 col-md-4 text-md-end">
+            <a href="/noticias/nova" class="btn btn-secondary">Criar nova</a>
+        </div>
+    </div>
+    <hr class="mt-0 mb-4">
+
+    {{#each informacoes}}
+    <div class="card border-0 shadow-sm mb-3 info-card">
+        <div class="card-body">
+            <div class="row g-3 align-items-center">
+                <div class="col-12 col-md-3">
+                    <img src="/uploads/{{capa}}" class="img-fluid rounded capa-informacao" alt="{{title}}">
+                </div>
+                <div class="col-12 col-md-7">
+                    <h5 class="fw-bold mb-2">{{title}}</h5>
+                    <p class="text-muted text-justify mb-0">{{text}}</p>
+                </div>
+                <div class="col-12 col-md-2">
+                    <div class="d-grid gap-2 mt-3 mt-md-0">
+                        <a href="/noticias/wEdtNew/{{_id}}" class="btn btn-sm mybtn-secondary">Editar</a>
+                        <button type="button" onclick="apagarNoticia('{{_id}}')" class="btn btn-sm mybtn-danger">Apagar</button>
+                        <a href="/secretaria/detalheInfo/{{_id}}" class="btn btn-sm mybtn-info">Detalhes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{else}}
+    <div class="text-center text-muted py-5">
+        <p class="mb-0">Nenhuma informação disponível.</p>
+    </div>
+    {{/each}}
+
+</div>
+
+{{!-- M O D A L: Apagar Informação --}}
+<div class="modal fade" tabindex="-1" data-bs-backdrop="static" id="apagarNoticia">
+    <div class="modal-dialog modal-dialog-centered">
+        <form action="/noticias/apagar" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mb-0">Apagar informação</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-danger mb-0">Certifica-se de que desejas apagar esta informação. Esta ação não pode ser desfeita.</p>
+                    <input type="hidden" name="id" id="apagarNoticiaId" value="">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-danger">Apagar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    .info-card {
+        transition: box-shadow .2s ease, transform .2s ease;
+        border-radius: .5rem;
+    }
+    .info-card:hover {
+        box-shadow: 0 .5rem 1.25rem rgba(0, 0, 0, .1) !important;
+    }
+    .capa-informacao {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+    }
+    .text-justify {
+        text-align: justify;
+    }
+</style>
+
+<script src="assets/bootstrap.bundle.min.js"></script>
+<script>
+    function apagarNoticia(id) {
+        document.getElementById('apagarNoticiaId').value = id;
+        let el = document.getElementById('apagarNoticia');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+</script>

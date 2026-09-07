@@ -1,0 +1,388 @@
+:root {
+  --navy: #102a43;
+  --navy-dark: #0b1f33;
+  --teal: #167d8d;
+  --gold: #d5a84b;
+  --ink: #243b53;
+  --muted: #627d98;
+  --surface: #ffffff;
+  --soft: #f4f7fa;
+  --line: #d9e2ec;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--ink);
+  background: var(--surface);
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.65;
+}
+
+.page-content {
+  overflow: hidden;
+}
+
+#mainSlider {
+  background: var(--navy-dark);
+}
+
+#mainSlider .carousel-item {
+  position: relative;
+  min-height: 31rem;
+}
+
+#mainSlider .carousel-item::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(11, 31, 51, .86), rgba(11, 31, 51, .25) 72%);
+  content: "";
+}
+
+#mainSlider .carousel-item img {
+  width: 100%;
+  height: 31rem;
+  object-fit: cover;
+  opacity: .92;
+}
+
+#mainSlider .carousel-caption {
+  z-index: 1;
+  right: auto;
+  bottom: 50%;
+  left: 10%;
+  max-width: 39rem;
+  padding: 1rem 0;
+  text-align: left;
+  transform: translateY(50%);
+}
+
+#mainSlider h2 {
+  margin-bottom: 1rem;
+  color: #fff;
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+#mainSlider p {
+  max-width: 36rem;
+  margin-bottom: 1.5rem;
+  color: #f0f4f8;
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+}
+
+.carousel-indicators [data-bs-target] {
+  width: 2rem;
+  height: .2rem;
+  background-color: var(--gold);
+}
+
+.main-btn {
+  display: inline-block;
+  border: 1px solid var(--teal);
+  border-radius: .35rem;
+  padding: .7rem 1.25rem;
+  color: #fff;
+  background: var(--teal);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color .2s ease, border-color .2s ease, transform .2s ease;
+}
+
+.main-btn:hover,
+.main-btn:focus {
+  border-color: var(--navy);
+  color: #fff;
+  background: var(--navy);
+  transform: translateY(-2px);
+}
+
+#about-area,
+#team-area,
+#portfolio-area {
+  padding: 5rem 0;
+}
+
+#about-area,
+#portfolio-area {
+  background: var(--soft);
+}
+
+.main-title {
+  position: relative;
+  margin: 0 0 2.75rem;
+  color: var(--navy);
+  font-size: clamp(1.7rem, 3vw, 2.25rem);
+  font-weight: 700;
+  text-align: center;
+}
+
+.main-title::after {
+  display: block;
+  width: 3.5rem;
+  height: .2rem;
+  margin: .75rem auto 0;
+  background: var(--gold);
+  content: "";
+}
+
+.about-image {
+  width: 100%;
+  max-height: 27rem;
+  border-radius: .5rem;
+  object-fit: cover;
+  box-shadow: 0 .75rem 2rem rgba(16, 42, 67, .12);
+}
+
+.about-title {
+  margin-bottom: 1.25rem;
+  color: var(--navy);
+  font-size: clamp(1.35rem, 2.5vw, 1.8rem);
+}
+
+#about-list {
+  padding-left: 0;
+  list-style: none;
+}
+
+#about-list li {
+  margin-bottom: .65rem;
+}
+
+#about-list i,
+.service-box svg,
+.service-box .fas {
+  margin-right: .55rem;
+  color: var(--teal);
+}
+
+#services-area {
+  padding: 5rem 0;
+}
+
+.service-box {
+  height: 100%;
+  padding: 1.75rem;
+  border: 1px solid var(--line);
+  border-radius: .5rem;
+  background: var(--surface);
+  box-shadow: 0 .35rem 1rem rgba(16, 42, 67, .05);
+  text-align: center;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.service-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 .8rem 1.5rem rgba(16, 42, 67, .1);
+}
+
+.service-box svg,
+.service-box .fas {
+  display: inline-block;
+  margin: 0 0 1rem;
+  font-size: 2.5rem;
+}
+
+.service-box h4 {
+  color: var(--navy);
+  font-size: 1.15rem;
+}
+
+.service-box p {
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+#data-area {
+  padding: 4rem 0;
+  color: #fff;
+  background: var(--navy);
+}
+
+.circle-box {
+  text-align: center;
+}
+
+.circle-box > div {
+  position: relative;
+  width: 5rem;
+  height: 5rem;
+  margin: 0 auto 1rem;
+  border: .3rem solid var(--gold);
+  border-radius: 50%;
+}
+
+.circle-box p {
+  margin: 0;
+  font-weight: 600;
+}
+
+#team-area .card {
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: .5rem;
+  box-shadow: 0 .35rem 1rem rgba(16, 42, 67, .07);
+}
+
+#team-area .card-img-top {
+  height: 15rem;
+  object-fit: cover;
+}
+
+#team-area .card-body {
+  text-align: center;
+}
+
+#team-area .card-title {
+  margin-bottom: .25rem;
+  color: var(--navy);
+}
+
+#team-area .card-text {
+  margin: 0;
+  color: var(--muted);
+}
+
+#apply-area {
+  color: #fff;
+  background: var(--navy-dark);
+}
+
+.apply-box {
+  min-height: 27rem;
+}
+
+#company-img {
+  background: linear-gradient(rgba(16, 42, 67, .1), rgba(16, 42, 67, .1)), url("/img/campus-escolar-angolano.jpg") center / cover;
+}
+
+#pattern-img {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem clamp(1.5rem, 6vw, 6rem);
+}
+
+#pattern-img h4 {
+  color: #fff;
+  font-size: 1.8rem;
+}
+
+#pattern-img p {
+  color: #d9e2ec;
+}
+
+#apply-btn {
+  align-self: flex-start;
+  margin-top: .5rem;
+  background: transparent;
+}
+
+#apply-btn:hover {
+  background: var(--teal);
+}
+
+#filter-btn-box {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.filter-btn {
+  margin: .25rem;
+  padding: .55rem 1rem;
+  color: var(--navy);
+  background: transparent;
+  border-color: var(--navy);
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  color: #fff;
+  background: var(--navy);
+}
+
+.project-box {
+  margin-bottom: 1.5rem;
+}
+
+.project-box img {
+  width: 100%;
+  height: 15rem;
+  border-radius: .4rem;
+  object-fit: cover;
+  transition: transform .25s ease, filter .25s ease;
+}
+
+.project-box:hover img {
+  filter: brightness(.9);
+  transform: scale(1.02);
+}
+
+#news-area {
+  padding: 4rem 0;
+  color: #fff;
+  background: var(--teal);
+  text-align: center;
+}
+
+#news-area .main-title {
+  color: #fff;
+}
+
+#news-area form {
+  display: flex;
+  gap: .75rem;
+  max-width: 37rem;
+  margin: 1.5rem auto 0;
+}
+
+#email-input {
+  min-height: 3rem;
+  border: 0;
+}
+
+#news-btn {
+  min-width: 7rem;
+  border: 1px solid var(--gold);
+  border-radius: .35rem;
+  color: var(--navy-dark);
+  background: var(--gold);
+  font-weight: 700;
+}
+
+@media (max-width: 767.98px) {
+  #mainSlider .carousel-item,
+  #mainSlider .carousel-item img {
+    min-height: 27rem;
+    height: 27rem;
+  }
+
+  #mainSlider .carousel-caption {
+    right: 8%;
+    left: 8%;
+  }
+
+  #about-area,
+  #team-area,
+  #portfolio-area,
+  #services-area {
+    padding: 3.5rem 0;
+  }
+
+  #pattern-img {
+    min-height: 24rem;
+    padding: 3rem 1.5rem;
+  }
+
+  #news-area form {
+    flex-direction: column;
+  }
+
+  #news-btn {
+    min-height: 3rem;
+  }
+}

@@ -1,0 +1,152 @@
+:root {
+    --prof-navy: #102a43;
+    --prof-teal: #496f6b;
+    --prof-teal-dark: #365a57;
+    --prof-gold: #9a8b6a;
+    --prof-cream: #eef1f3;
+    --prof-ink: #334e68;
+    --prof-muted: #718096;
+}
+
+.professor-page {
+    min-height: 100%;
+    padding: clamp(1.5rem, 4vw, 3.5rem) 0;
+    background: var(--prof-cream);
+    color: var(--prof-ink);
+}
+
+.professor-header {
+    margin-bottom: 1.5rem;
+    border-left: 4px solid var(--prof-gold);
+    padding-left: 1rem;
+}
+
+.professor-eyebrow,
+.section-label {
+    color: var(--prof-teal);
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+.professor-header h1 {
+    margin: .2rem 0 0;
+    color: var(--prof-navy);
+    font-size: clamp(1.75rem, 3vw, 2.35rem);
+    font-weight: 700;
+}
+
+.profile-card {
+    overflow: hidden;
+    border: 1px solid #d9e2ec;
+    border-radius: .85rem;
+    background: #fff;
+    box-shadow: 0 .5rem 1.5rem rgba(16, 42, 67, .08);
+}
+
+.profile-card > .row { padding: clamp(1rem, 3vw, 2rem); }
+
+.profile-photo-panel {
+    display: flex;
+    height: 100%;
+    min-height: 250px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    border-radius: .65rem;
+    background: var(--prof-navy);
+    padding: 1.5rem;
+}
+
+.profile-details-toggle { display: none; }
+
+.fotoAluno {
+    width: min(100%, 190px);
+    aspect-ratio: 1;
+    border: 4px solid rgba(255, 255, 255, .9);
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 .75rem 1.5rem rgba(0, 0, 0, .18);
+}
+
+.profile-details,
+.professor-menu { height: 100%; padding: .25rem; }
+
+#personal-details-collapse { display: block; }
+#personal-details-accordion .accordion-item { border: 0; background: transparent; }
+#personal-details-accordion .accordion-body { padding: 0; }
+
+.profile-details h2,
+.professor-menu h2 {
+    margin: .35rem 0 1.25rem;
+    color: var(--prof-navy);
+    font-size: clamp(1.35rem, 2.3vw, 1.8rem);
+    font-weight: 700;
+}
+
+.profile-data { margin: 0; }
+.profile-data > div {
+    display: grid;
+    grid-template-columns: minmax(7rem, 35%) 1fr;
+    gap: .75rem;
+    border-bottom: 1px solid #edf2f7;
+    padding: .58rem 0;
+}
+.profile-data dt { color: var(--prof-muted); font-weight: 700; }
+.profile-data dd { margin: 0; overflow-wrap: anywhere; }
+.update-form { margin-top: 1.25rem; }
+
+.professor-menu {
+    border-left: 1px solid #d9e2ec;
+    padding-left: clamp(1rem, 2vw, 1.5rem);
+}
+.menu-links { display: grid; gap: .6rem; }
+.menu-item,
+.action-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 3rem;
+    border-radius: .45rem;
+    padding: .7rem 1rem;
+    color: #fff;
+    background: var(--prof-teal);
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color .2s ease, transform .2s ease;
+}
+.menu-item:hover,
+.menu-item:focus-visible { color: #fff; background: var(--prof-teal-dark); transform: translateX(3px); }
+.menu-item:last-child { background: var(--prof-navy); }
+
+.profile-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1.25rem;
+}
+.action-item { min-height: 3.5rem; background: var(--prof-navy); }
+.action-item:first-child { background: var(--prof-gold); color: var(--prof-navy); }
+.action-item:hover,
+.action-item:focus-visible { color: #fff; background: var(--prof-teal-dark); }
+
+@media (max-width: 991.98px) {
+    .professor-menu { border-top: 1px solid #d9e2ec; border-left: 0; padding: 1.25rem .25rem 0; }
+}
+@media (max-width: 575.98px) {
+    .profile-details-toggle {
+        display: inline-block;
+        color: #d9e2ec;
+        font-size: .8rem;
+        text-decoration: underline;
+        text-underline-offset: .2rem;
+    }
+    .profile-details-toggle:hover,
+    .profile-details-toggle:focus-visible { color: #fff; }
+    .personal-details { display: block; }
+    #personal-details-collapse { display: none; }
+    #personal-details-collapse.show { display: block; }
+    .profile-actions { grid-template-columns: 1fr; }
+}

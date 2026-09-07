@@ -1,0 +1,103 @@
+<div id="">
+    <div class="mybox p-3 mt-3">
+       
+        <div class="">
+            <form action="/candidatos/save" method="post" enctype="multipart/form-data">
+                <div class="form-headear2">
+                    <div class="title">
+                        <h1>Verifique seus Dados</h1>
+                    </div>
+                    {{#each erro}}
+                    <div class="alert alert-danger text-center">{{texto}}</div>
+                    {{else}}
+                    {{/each}}
+                </div>
+                <div class="input-group">
+                    <div class="input-box">
+                        <label for="nome">Nome:</label>
+                        <input type="text" name="nome" value="{{candidato.nome}}">
+                    </div>
+                    <div class="input-box">
+                        <label for="numBI">Nº BI:</label>
+                        <input type="text" name="numBI" value="{{candidato.numBI}}">
+                    </div>
+
+                    <div class="input-box">
+                        <label for="dataNascimento">Data de nascimento:</label>
+                        <input type="date" name="dataNascimento" value="{{candidato.dataNascimento}}">
+                    </div>
+
+                    <div class="input-box">
+                        <label for="genero">Genero</label>
+
+                        <select name="genero">
+                            <option value="{{candidato.genero}}">{{candidato.genero}}</option>
+                            <option value="feminino">Feminino</option>
+                            <option value="masculino">Masculino</option>
+                        </select>
+                    </div>
+                    <div class="input-box">
+                        <label for="contacto">Contacto:</label>
+                        <input type="text" name="contacto" value="{{candidato.contacto}}">
+                    </div>
+                    <div class="input-box">
+                        <label for="curso">curso</label>
+                        <select name="curso" id="">
+                            <option value="{{candidato.curso}}">{{candidato.curso}} </option>
+                            {{#each cursos}}
+                            <option value="{{descricao}}">{{descricao}}</option>
+                            {{else}}
+                            <option value="">Nenhum curso</option>
+                            {{/each}}
+                        </select>
+
+                    </div>
+
+                    {{!-- <div class="gener-inputs">
+                        <div class="gener-tltle">
+                            <h6>Genero</h6>
+                        </div>
+                        <div class="gener-group">
+                            <div class="gener-input">
+                                <input type="radio" name="genero" id="feminino">
+                                <label for="feminino">Feminino</label>
+                            </div>
+                            <div class="gener-input">
+                                <input type="radio" name="genero" id="masculino">
+                                <label for="masculino">Masculino</label>
+                            </div>
+                        </div>
+                    </div> --}}
+                    {{!-- <a href="#">Click aqui para carregar arquivos</a> --}}
+                    <div class="col-2">
+                                <div class="card" >
+                                        <div class="card-body">
+                                            <img src="/img/logcand.jpg" class="fotoAluno" alt="Foto">
+                                        </div>
+                                    </div>
+
+                            </div>
+                    <div class="lead text-danger">Carrege seus documentos para validar sua candidatura (foto, BI e
+                        certificado)</div>
+                        <div class="div">
+
+                        <label for="fotoAluno">Foto</label>
+                        <input type="file"  name="fotoAluno" class="form-control"  required><br>
+                        </div>
+                        <div class="div">
+
+                        <label for="fotoAluno">BI:</label>
+                        <input type="file"  name="biOuCedulaAluno" class="form-control" id="">
+                        </div>
+                        <div class="div">
+
+                        <label for="fotoAluno">Certificado:</label>
+                        <input type="file" name="certificadoAluno" class="form-control">
+                        </div>
+                    <div class="">
+                        <button type="submit" class="btn btn-success">Confirmar</button>
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>

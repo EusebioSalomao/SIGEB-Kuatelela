@@ -1,0 +1,725 @@
+<h1 class="text-danger text-center mb-3">DEFINIÇÕES DO SISTEMA</h1>
+<hr>
+<div class="text-center lead mb-3">Autorizações de Professores</div>
+
+<div class="container-fluid px-0">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-3 mb-4">
+        <div class="col">
+            <a href="#" onclick="autorizarMatricula()" class="menu-item3 card text-decoration-none text-dark h-100">
+                <div class="card-body d-flex align-items-center justify-content-center text-center p-3">
+                    <span class="h5 mb-0">Matrículas e Reconfirmações</span>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+            <a href="/pedagogico/#" class="menu-item3 card text-decoration-none text-dark h-100">
+                <div class="card-body d-flex align-items-center justify-content-center text-center p-3">
+                    <span class="h5 mb-0"></span>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+            <a href="#" onclick="autorizarAdmissaoCandidato()" class="menu-item3 card text-decoration-none text-dark h-100">
+                <div class="card-body d-flex align-items-center justify-content-center text-center p-3">
+                    <span class="h5 mb-0">Admissão de Candidatos</span>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+            <a href="#" onclick="lancamentoDeNotas()" class="menu-item3 card text-decoration-none text-dark h-100">
+                <div class="card-body d-flex align-items-center justify-content-center text-center p-3">
+                    <span class="h5 mb-0">Lançamento de notas</span>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+            <a href="/pedagogico/#" class="menu-item3 card text-decoration-none text-dark h-100">
+                <div class="card-body d-flex align-items-center justify-content-center text-center p-3">
+                    <span class="h5 mb-0"></span>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+            <a href="#" onclick="" class="menu-item3 card text-decoration-none text-dark h-100">
+                <div class="card-body d-flex align-items-center justify-content-center text-center p-3">
+                    <span class="h5 mb-0"></span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="text-center lead mb-3">Autorizações de Usuários/Admin</div>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-3">
+        <div class="col">
+            <a href="#" onclick="openDefinitionSystem()" class="menu-item3 card text-decoration-none text-dark h-100">
+                <div class="card-body d-flex align-items-center justify-content-center text-center p-3">
+                    <span class="h5 mb-0">Acesso as Definições</span>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+            <a href="#" onclick="" class="menu-item3 card text-decoration-none text-dark h-100">
+                <div class="card-body d-flex align-items-center justify-content-center text-center p-3">
+                    <span class="h5 mb-0"></span>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+            <a href="#" onclick="_openAnosLectivo()" class="menu-item3 card text-decoration-none text-dark h-100">
+                <div class="card-body d-flex align-items-center justify-content-center text-center p-3">
+                    <span class="h5 mb-0">Acesso a outros anos Lectivos</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="col">
+            <a href="#" onclick="_deleteUsers()" class="menu-item3 card text-decoration-none text-dark h-100">
+                <div class="card-body d-flex align-items-center justify-content-center text-center p-3">
+                    <span class="h5 mb-0">Editar Usuarios</span>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+            <a href="#" onclick="_atribuirCarga()" class="menu-item3 card text-decoration-none text-dark h-100">
+                <div class="card-body d-flex align-items-center justify-content-center text-center p-3">
+                    <span class="h5 mb-0">Atribuir Carga</span>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+            <a href="#" onclick="_anularMatricula()" class="menu-item3 card text-decoration-none text-dark h-100">
+                <div class="card-body d-flex align-items-center justify-content-center text-center p-3">
+                    <span class="h5 mb-0">Anulação de Matrícula</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="col">
+            <a href="#" onclick="_editarPauta()" class="menu-item3 card text-decoration-none text-dark h-100">
+                <div class="card-body d-flex align-items-center justify-content-center text-center p-3">
+                    <span class="h5 mb-0">Editar Pautas</span>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+            <a href="#" onclick="" class="menu-item3 card text-decoration-none text-dark h-100">
+                <div class="card-body d-flex align-items-center justify-content-center text-center p-3">
+                    <span class="h5 mb-0"></span>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+            <a href="#" onclick="_addAluno()" class="menu-item3 card text-decoration-none text-dark h-100">
+                <div class="card-body d-flex align-items-center justify-content-center text-center p-3">
+                    <span class="h5 mb-0">Adicionar Aluno</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="col">
+            <a href="#" onclick="_matricuarAluno()" class="menu-item3 card text-decoration-none text-dark h-100">
+                <div class="card-body d-flex align-items-center justify-content-center text-center p-3">
+                    <span class="h5 mb-0">Matricular Aluno</span>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+            <a href="#" onclick="" class="menu-item3 card text-decoration-none text-dark h-100">
+                <div class="card-body d-flex align-items-center justify-content-center text-center p-3">
+                    <span class="h5 mb-0"></span>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+            <a href="#" onclick="_professoresTurma()" class="menu-item3 card text-decoration-none text-dark h-100">
+                <div class="card-body d-flex align-items-center justify-content-center text-center p-3">
+                    <span class="h5 mb-0">Acessar os Prof. Turma</span>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<hr>
+
+
+<!-- Modal autorizarMatricula -->
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="autorizarMatricula">
+    <div class="modal-dialog modal-dialog-centered">
+        <form action="/definicoes/autorizar" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title bg-primary p-2 text-center fw-bold text-light w-100">Autorizar Matriculas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {{#if definicoes.abrirReconfirmacao}}
+                    <p class="text-danger">Esta função desactivará o botão de realizar a matrícula e a reconfirmação. Só os
+                        funcionários permitidos terão acesso a esta funcionalidade.</p>
+                    <p>Se deseja activar, clica em "Desactivar Autorização"</p>
+                    {{else}}
+                    <p>Esta função activará o botão de realizar a matrícula e a reconfirmação. Só os funcionários permitidos terão
+                        acesso a esta funcionalidade.</p>
+                    <p>Se deseja activar, clica em "Autorizar"</p>
+                    {{/if}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <input type="hidden" name="autorizacao" value="Matrículas">
+                    {{#if definicoes.abrirReconfirmacao}}
+                    <button type="submit" class="btn btn-danger">Desactivar Autorização</button>
+                    {{else}}
+                    <button type="submit" class="btn btn-primary">Autorizar</button>
+                    {{/if}}
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal autorizarAdmissaoCandidato -->
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="autorizarAdmissaoCandidato">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <form action="/definicoes/autorizar" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title bg-primary p-2 text-center fw-bold text-light w-100">Autorizar Admissão de Candidatos</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {{#if definicoes.autorizarAdmissaoCandidato}}
+                    <p class="text-danger">Esta função desactivará o botão que permite os Coordenadores admitirem os candidatos
+                        inscritos. Só os funcionários permitidos terão acesso a esta funcionalidade.</p>
+                    <p>Se deseja continuar, clica em "Desactivar Autorização"</p>
+                    {{#each cursos}}
+                    <input type="hidden" name="vagaRegular" min="0" value="0" class="lg-input-10">
+                    <input type="hidden" name="vagaAdulto" min="0" value="0" class="lg-input-10">
+                    {{/each}}
+
+                    {{else}}
+                    <p>Esta função activará o botão que permite aos Coordenadores de curso admitir candidatos inscritos. Só os
+                        funcionários permitidos terão acesso a esta funcionalidade.</p>
+                    <p>Se deseja activar, define as vagas por cada curso e clica em "Autorizar"</p>
+
+                    <div class="table-responsive">
+                        <table class="table align-middle">
+                            <thead>
+                                <tr class="fw-bold text-primary fst-italic">
+                                    <th>Cursos</th>
+                                    <th>Nº Vagas Regular</th>
+                                    <th>Nº Vagas Adultos</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each cursos}}
+                                <tr>
+                                    <td>{{descricao}}</td>
+                                    <td class="text-center"><input type="number" name="vagaRegular" min="0" value="0" class="form-control lg-input-10"></td>
+                                    <td class="text-center"><input type="number" name="vagaAdulto" min="0" value="0" class="form-control lg-input-10"></td>
+                                </tr>
+                                {{else}}
+                                <tr>
+                                    <td colspan="3" class="text-center">Nenhum Curso cadastrado</td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                    {{/if}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <input type="hidden" name="autorizacao" value="Admissão de Candidato">
+                    {{#if definicoes.autorizarAdmissaoCandidato}}
+                    <button type="submit" class="btn btn-danger">Desactivar Autorização</button>
+                    {{else}}
+                    <button type="submit" class="btn btn-primary">Autorizar</button>
+                    {{/if}}
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal lancamentoDeNotas -->
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="lancamentoDeNotas">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <form action="/definicoes/lancamentoDeNotas" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title bg-primary p-2 text-center fw-bold text-light w-100">Autorização de Lançamento de Notas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <label for="indicador" class="form-label">Indica a acção a proceder</label>
+                    <select name="indicador" class="form-select text-center mb-3" required>
+                        <option value="">Selecionar</option>
+                        <option value="bloquear">Bloquear Lançamento</option>
+                        <option value="autorizar">Autorizar Lançamento</option>
+                    </select>
+
+                    <select name="funcionario" class="form-select" aria-label="Seleciona o funcionário" required>
+                        <option value="">Seleciona o Funcionário</option>
+                        <option value="todos">--- Todos Professores ---</option>
+                        {{#each funcionarios}}
+                        <option value="{{_id}}">{{nome}}</option>
+                        {{else}}
+                        <option value="">Nenhum funcionário cadastrado</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <input type="hidden" name="autorizacao" value="Admissão de Candidato">
+                    {{#if definicoes.autorizarAdmissaoCandidato}}
+                    <button type="submit" class="btn btn-danger">Desactivar Autorização</button>
+                    {{else}}
+                    <button type="submit" class="btn btn-primary">Continuar</button>
+                    {{/if}}
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal _openDefinitionSystem -->
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="openDefinitionSystem">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <form action="/definicoes/autorizarAdmin" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title bg-primary p-2 text-center fw-bold text-light w-100">Acessar a Definições</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <select name="idUser" class="form-select mb-3" aria-label="Seleciona o funcionário" required>
+                        <option value="">Seleciona o Usuário</option>
+                        <option value="todos">--- Todos Usuários ---</option>
+                        {{#each usersAdmin}}
+                        <option value="{{_id}}">{{username}}</option>
+                        {{else}}
+                        <option value="">Não há Admin cadastrado</option>
+                        {{/each}}
+                    </select>
+
+                    <label for="indicador" class="fw-bold text-danger form-label">Seleciona a acção a Proceder</label>
+                    <select name="autorizacao" class="form-select text-center" required>
+                        <option value="">Selecionar</option>
+                        <option value="autorizar">Autorizar acesso</option>
+                        <option value="bloquear">Bloquear acesso</option>
+                    </select>
+
+                    <input type="hidden" name="eventoAutorizar" value="Acesso Definições">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Continuar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal _openAnosLectivo -->
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="_openAnosLectivo">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <form action="/definicoes/autorizarAdmin" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title bg-primary p-2 text-center fw-bold text-light w-100">Acessar outros Anos Lectivos</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <select name="idUser" class="form-select mb-3" aria-label="Seleciona o funcionário" required>
+                        <option value="">Seleciona o Usuário</option>
+                        <option value="todos">--- Todos Usuários ---</option>
+                        {{#each usersAdmin}}
+                        <option value="{{_id}}">{{username}}</option>
+                        {{else}}
+                        <option value="">Não há Admin cadastrado</option>
+                        {{/each}}
+                    </select>
+
+                    <label for="indicador" class="fw-bold text-danger form-label">Seleciona a acção a Proceder</label>
+                    <select name="autorizacao" class="form-select text-center" required>
+                        <option value="">Selecionar</option>
+                        <option value="autorizar">Autorizar acesso</option>
+                        <option value="bloquear">Bloquear acesso</option>
+                    </select>
+
+                    <input type="hidden" name="eventoAutorizar" value="Acesso a outros anos">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Continuar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!-- Modal _deleteUsers -->
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="_deleteUsers">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <form action="/definicoes/autorizarAdmin" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title bg-primary p-2 text-center fw-bold text-light w-100">Editar Users</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <select name="idUser" class="form-select mb-3" aria-label="Seleciona o funcionário" required>
+                        <option value="">Seleciona o Usuário</option>
+                        <option value="todos">--- Todos Usuários ---</option>
+                        {{#each usersAdmin}}
+                        <option value="{{_id}}">{{username}}</option>
+                        {{else}}
+                        <option value="">Não há Admin cadastrado</option>
+                        {{/each}}
+                    </select>
+
+                    <label for="indicador" class="fw-bold text-danger form-label">Seleciona a acção a Proceder</label>
+                    <select name="autorizacao" class="form-select text-center" required>
+                        <option value="">Selecionar</option>
+                        <option value="autorizar">Autorizar acesso</option>
+                        <option value="bloquear">Bloquear acesso</option>
+                    </select>
+
+                    <input type="hidden" name="eventoAutorizar" value="Deletar Usuario">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Continuar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal _editarPauta -->
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="_editarPauta">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <form action="/definicoes/autorizarAdmin" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title bg-primary p-2 text-center fw-bold text-light w-100">Editar Pautas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <select name="idUser" class="form-select mb-3" aria-label="Seleciona o funcionário" required>
+                        <option value="">Seleciona o Usuário</option>
+                        <option value="todos">--- Todos Usuários ---</option>
+                        {{#each usersAdmin}}
+                        <option value="{{_id}}">{{username}}</option>
+                        {{else}}
+                        <option value="">Não há Admin cadastrado</option>
+                        {{/each}}
+                    </select>
+
+                    <label for="indicador" class="fw-bold text-danger form-label">Seleciona a acção a Proceder</label>
+                    <select name="autorizacao" class="form-select text-center" required>
+                        <option value="">Selecionar</option>
+                        <option value="autorizar">Autorizar acesso</option>
+                        <option value="bloquear">Bloquear acesso</option>
+                    </select>
+
+                    <input type="hidden" name="eventoAutorizar" value="Editar Pautas">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Continuar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal _addAluno -->
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="_addAluno">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <form action="/definicoes/autorizarAdmin" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title bg-primary p-2 text-center fw-bold text-light w-100">Adicionar Aluno</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <select name="idUser" class="form-select mb-3" aria-label="Seleciona o funcionário" required>
+                        <option value="">Seleciona o Usuário</option>
+                        <option value="todos">--- Todos Usuários ---</option>
+                        {{#each usersAdmin}}
+                        <option value="{{_id}}">{{username}}</option>
+                        {{else}}
+                        <option value="">Não há Admin cadastrado</option>
+                        {{/each}}
+                    </select>
+
+                    <label for="indicador" class="fw-bold text-danger form-label">Seleciona a acção a Proceder</label>
+                    <select name="autorizacao" class="form-select text-center" required>
+                        <option value="">Selecionar</option>
+                        <option value="autorizar">Autorizar acesso</option>
+                        <option value="bloquear">Bloquear acesso</option>
+                    </select>
+
+                    <input type="hidden" name="eventoAutorizar" value="Adicionar Aluno">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Continuar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal _matricuarAluno -->
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="_matricuarAluno">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <form action="/definicoes/autorizarAdmin" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title bg-primary p-2 text-center fw-bold text-light w-100">Matricular Aluno</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <select name="idUser" class="form-select mb-3" aria-label="Seleciona o funcionário" required>
+                        <option value="">Seleciona o Usuário</option>
+                        <option value="todos">--- Todos Usuários ---</option>
+                        {{#each usersAdmin}}
+                        <option value="{{_id}}">{{username}}</option>
+                        {{else}}
+                        <option value="">Não há Admin cadastrado</option>
+                        {{/each}}
+                    </select>
+
+                    <label for="indicador" class="fw-bold text-danger form-label">Seleciona a acção a Proceder</label>
+                    <select name="autorizacao" class="form-select text-center" required>
+                        <option value="">Selecionar</option>
+                        <option value="autorizar">Autorizar acesso</option>
+                        <option value="bloquear">Bloquear acesso</option>
+                    </select>
+
+                    <input type="hidden" name="eventoAutorizar" value="Matricular Aluno">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Continuar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal _professoresTurma -->
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="_professoresTurma">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <form action="/definicoes/autorizarAdmin" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title bg-primary p-2 text-center fw-bold text-light w-100">Acessar Prof. Turma</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <select name="idUser" class="form-select mb-3" aria-label="Seleciona o funcionário" required>
+                        <option value="">Seleciona o Usuário</option>
+                        <option value="todos">--- Todos Usuários ---</option>
+                        {{#each usersAdmin}}
+                        <option value="{{_id}}">{{username}}</option>
+                        {{else}}
+                        <option value="">Não há Admin cadastrado</option>
+                        {{/each}}
+                    </select>
+
+                    <label for="indicador" class="fw-bold text-danger form-label">Seleciona a acção a Proceder</label>
+                    <select name="autorizacao" class="form-select text-center" required>
+                        <option value="">Selecionar</option>
+                        <option value="autorizar">Autorizar acesso</option>
+                        <option value="bloquear">Bloquear acesso</option>
+                    </select>
+
+                    <input type="hidden" name="eventoAutorizar" value="Acessar Prof. Turma">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Continuar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal _anularMatricula -->
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="_anularMatricula">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <form action="/definicoes/autorizarAdmin" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title bg-primary p-2 text-center fw-bold text-light w-100">Anulação de Matricula</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <select name="idUser" class="form-select mb-3" aria-label="Seleciona o funcionário" required>
+                        <option value="">Seleciona o Usuário</option>
+                        <option value="todos">--- Todos Usuários ---</option>
+                        {{#each usersAdmin}}
+                        <option value="{{_id}}">{{username}}</option>
+                        {{else}}
+                        <option value="">Não há Admin cadastrado</option>
+                        {{/each}}
+                    </select>
+
+                    <label for="indicador" class="fw-bold text-danger form-label">Seleciona a acção a Proceder</label>
+                    <select name="autorizacao" class="form-select text-center" required>
+                        <option value="">Selecionar</option>
+                        <option value="autorizar">Autorizar acesso</option>
+                        <option value="bloquear">Bloquear acesso</option>
+                    </select>
+
+                    <input type="hidden" name="eventoAutorizar" value="Anulação de Matrícula">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Continuar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal _atribuirCarga -->
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="_atribuirCarga">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <form action="/definicoes/autorizarAdmin" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title bg-primary p-2 text-center fw-bold text-light w-100">Atribuir Carga</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <select name="idUser" class="form-select mb-3" aria-label="Seleciona o funcionário" required>
+                        <option value="">Seleciona o Usuário</option>
+                        <option value="todos">--- Todos Usuários ---</option>
+                        {{#each usersAdmin}}
+                        <option value="{{_id}}">{{username}}</option>
+                        {{else}}
+                        <option value="">Não há Admin cadastrado</option>
+                        {{/each}}
+                    </select>
+
+                    <label for="indicador" class="fw-bold text-danger form-label">Seleciona a acção a Proceder</label>
+                    <select name="autorizacao" class="form-select text-center" required>
+                        <option value="">Selecionar</option>
+                        <option value="autorizar">Autorizar acesso</option>
+                        <option value="bloquear">Bloquear acesso</option>
+                    </select>
+
+                    <input type="hidden" name="eventoAutorizar" value="Atribuição de Carga">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Continuar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    .menu-item3 {
+        border: 1px solid rgba(0, 0, 0, .1);
+        border-radius: .5rem;
+        transition: transform .15s ease, box-shadow .15s ease, background-color .15s ease;
+    }
+
+    .menu-item3:hover,
+    .menu-item3:focus-visible {
+        transform: translateY(-3px);
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .12);
+        background-color: rgba(0, 0, 0, .03);
+    }
+
+    .menu-item3 .h5 {
+        font-weight: 600;
+        letter-spacing: .01em;
+    }
+</style>
+
+<script src="assets/bootstrap.bundle.min.js"></script>
+<script>
+    function atribuirCargo() {
+        let el = document.getElementById('atribuirCargo');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+    function autorizarMatricula() {
+        let el = document.getElementById('autorizarMatricula');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+    function autorizarAdmissaoCandidato() {
+        let el = document.getElementById('autorizarAdmissaoCandidato');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+    function removerCargo() {
+        let el = document.getElementById('removerCargo');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+    function lancamentoDeNotas() {
+        let el = document.getElementById('lancamentoDeNotas');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+    function openDefinitionSystem() {
+        let el = document.getElementById('openDefinitionSystem');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+    function _openAnosLectivo() {
+        let el = document.getElementById('_openAnosLectivo');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+    function _deleteUsers() {
+        let el = document.getElementById('_deleteUsers');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+    function _editarPauta() {
+        let el = document.getElementById('_editarPauta');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+    function _addAluno() {
+        let el = document.getElementById('_addAluno');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+    function _matricuarAluno() {
+        let el = document.getElementById('_matricuarAluno');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+    function _professoresTurma() {
+        let el = document.getElementById('_professoresTurma');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+    function _anularMatricula() {
+        let el = document.getElementById('_anularMatricula');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+    function _atribuirCarga() {
+        let el = document.getElementById('_atribuirCarga');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+</script>

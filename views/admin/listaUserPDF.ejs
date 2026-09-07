@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>PDF-Teste</title>
+    <style>
+        body {
+            margin: 2rem;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .logo {
+            size: 3px !important;
+            margin-bottom: 0rem;
+        }
+        .logor {
+            size: 10%;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .m-1 {
+            margin: 1rem;
+            padding: 0rem;
+        }
+
+        .fw-bold {
+            font-weight: bold;
+        }
+
+        .mt-0 {
+            margin-top: 0rem;
+        }
+        .mt-2 {
+            margin-top: 1rem;
+        }
+        .mt-3 {
+            margin-top: 2rem;
+        }
+        .mb-0 {
+            margin-bottom: 0rem;
+        }
+        
+    
+
+        .row {
+            display: inline-block
+        }
+
+        .table-bordered {
+            border-collapse: collapse;
+            /* CSS2 */
+        }
+
+        .table-bordered td {
+            border: 1px solid black;
+        }
+
+        .table-bordered th {
+            border: 1px solid black;
+            background: #878383;
+            font-weight: bold;
+        }
+
+        ol {
+            list-style: start;
+        }
+
+        .lateral {
+            position: absolute;
+            right: 5rem;
+            top: 20.6rem;
+        }
+
+        .table-secondary {
+            background-color: #cdcccc;
+        }
+
+        .m-r {
+            margin-right: 14rem;
+        }
+
+        .m-r2 {
+            margin-right: 16rem;
+        }
+
+        .mt-5 {
+            margin-right: 20rem;
+
+        }
+
+        .visto {
+            position: absolute;
+            top: 5rem;
+        }
+
+        p {
+            margin: 0.3px;
+            padding: 0px;
+        }
+
+        .text-size-8 {
+            font-size: 10pt;
+        }
+        .text-size-10 {
+            font-size: 12pt;
+        }
+
+        .text-size-12 {
+            font-size: 15pt;
+        }
+
+        .text-danger {
+            color: red;
+        }
+
+        .text-start {
+            text-align: start;
+        }
+        .text-italic {
+            font-style: italic;
+        }
+        
+
+        .text-sub {
+            text-decoration: underline;
+        }
+
+        table {
+            margin-left: 6rem;
+        }
+
+        .lg-2 {
+            width: 5rem;
+        }
+
+        .lg-4 {
+            width: 10rem;
+        }
+
+        .lg-6 {
+            width: 15rem;
+        }
+
+        .lg-8 {
+            width: 30rem;
+        }
+        .cab-nO {
+
+            width: 1rem;
+        }
+        .cab-nome {
+            width: 16rem;
+        }
+        .cab-t1 {
+            width: 12.3rem;
+        }
+        .cab-t2 {
+            width: 12.2rem;
+        }
+        .cab-t3 {
+            width: 12.1rem;
+        }
+        .cab-t {
+            width: 4.8rem;
+        }
+        .cab-e {
+            width: 1.5rem;
+        }
+        .bg-blue {
+            background-color: rgba(183, 211, 247, 0.893);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="containeir text-size-10">
+
+        <div class="logo text-center"><img src="http://localhost:8081/img/logor.png" class="logor" alt="Logo"></div>
+        <div class="text-center">
+            <p>República de Angola</p>
+            <p>Ministério da Educação</p>
+            <p class="fw-bold">LICEU REI NDUNDUMA-CUITO</p>
+            <p class="fw-bold text-sub mt-3">USUÁRIO DO SISTEMA PARA FUNCIONÁRIOS</p>
+        </div>
+        
+        <div class="container-body text-size-12 mt-3">
+            
+            <% for(let i=0; i < funcionarios.length; i++) { %>
+                <%= funcionarios[i].nome %> <br>
+                <span class="fw-bold">Usuario: </span><%= funcionarios[i].usuario %> &shy; &shy; &shy; &shy;&shy; &shy; &shy; &shy; <span class="fw-bold text-size-8">Senha:</span> <span class="text-size-8 text-italic "></span> </span><%= funcionarios[i].senha %> &shy; &shy; &shy; &shy;&shy; &shy; &shy; &shy; <span class="fw-bold text-size-8">Att:</span> <span class="text-size-8 text-italic text-danger">Altere a sua senha por segurança!</span> <br>
+                <hr>
+
+                <% } %>
+
+        </div>
+        <div><span class="fw-bold" >OBS:</span> A senha primária de cada funcionário é o seu número de agente.
+        Recomenda-se que a senha e o usuário não devem ser partilhadas com outra pessoa que não seja o dono.</div>
+            
+        <div class="">
+
+            <div class="data mt-3 text-center">
+                Extraido do sistema aos <%= dia %> de <%= mes %> de <%= ano %>.
+            </div>
+
+            <div class="fw-bold mt-3 text-center">
+
+                <span>O Administrador do Sistema</span> <br>
+            </div>
+            <div class="text-center">
+
+                <span>_________________________</span><br>
+                <span>MSc. Frederico Sanji Figueiredo</span><br>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

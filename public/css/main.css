@@ -1,0 +1,134 @@
+:root {
+  --app-header-space: 4.5rem;
+}
+
+html {
+  min-width: 320px;
+}
+
+body.app-body {
+  min-width: 320px;
+  margin: 0;
+  overflow-x: hidden;
+  color: #243b53;
+  background: #fff;
+}
+
+.app-shell {
+  min-height: calc(100vh - var(--app-header-space));
+  padding-top: var(--app-header-space);
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 2000;
+  top: -5rem;
+  left: 1rem;
+  padding: .7rem 1rem;
+  border-radius: 0 0 .35rem .35rem;
+  color: #fff;
+  background: #102a43;
+  font-weight: 600;
+  text-decoration: none;
+  transition: top .2s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+  color: #fff;
+}
+
+#main-content:focus {
+  outline: none;
+}
+
+@media (max-width: 991.98px) {
+  :root {
+    --app-header-space: 4rem;
+  }
+}
+
+/* Estilos para as mensagens de flash */
+.flash-stack {
+    position: fixed;
+    z-index: 1080;
+    top: 1rem;
+    right: 1rem;
+    display: grid;
+    width: min( calc(100% - 2rem), 390px);
+    gap: .75rem;
+    pointer-events: none;
+}
+
+.flash-message {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    border: 1px solid transparent;
+    border-left-width: 4px;
+    border-radius: .55rem;
+    background: #fff;
+    padding: .9rem 1rem;
+    box-shadow: 0 .5rem 1.5rem rgba(16, 42, 67, .15);
+    color: #334e68;
+    font-size: .9rem;
+    line-height: 1.45;
+    pointer-events: auto;
+    animation: flash-in .25s ease-out;
+}
+
+.flash-success {
+    border-color: #9eb8ad;
+    border-left-color: #496f6b;
+}
+
+.flash-error {
+    border-color: #d5b5b5;
+    border-left-color: #8f5252;
+}
+
+.flash-warning {
+    border-color: #d5c9aa;
+    border-left-color: #9a8b6a;
+}
+
+.flash-info {
+    border-color: #aebdca;
+    border-left-color: #49657b;
+}
+
+.flash-close {
+    border: 0;
+    background: transparent;
+    padding: 0;
+    color: #718096;
+    font-size: 1.25rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.flash-close:hover {
+    color: #102a43;
+}
+
+@keyframes flash-in {
+    from {
+        opacity: 0;
+        transform: translateY(-.5rem);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 575.98px) {
+    .flash-stack {
+        top: .75rem;
+        right: .75rem;
+        left: .75rem;
+        width: auto;
+    }
+}

@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="text-center"><span class="text-sm fw-bold">Criando avaliação para: </span> <span class="lead"> {{nomeDestinatario}} </span> </div>
+    <hr>
+
+    {{#if tipoLogica}}
+    <div class="row">
+        <textarea name="introducao" placeholder="Escreve uma introdução. Exenplo: Respode qual das afirmações é verdadeira e qual é falça. (Opcional)" class="form-control"></textarea>
+        <div class="col-sm-12 col-md-7 col-lg-7">
+            {{#each arrayDePerguntas}}
+            <div class="row">
+                <div class="col-1 pt-3">{{numPergunta}}.</div>
+                <div class="col-11">
+                     <input type="text" name="{{numPergunta}}" placeholder="Escreve a {{numPergunta}}ª afirmação" class="form-control mt-2" required>
+                </div>
+            </div>
+            {{else}}{{/each}}
+        </div>
+        {{!-- Respostas / Gabarito --}}
+        <div class="col-sm-12 col-md-3 col-lg-3">
+            {{#each arrayDePerguntas}}
+                <select name="resposta" class="form-control mt-2" required>
+                    <option value="">resposta da {{numPergunta}}ª afirmação</option>
+                    <option value="V">Verdadeira</option>
+                    <option value="F">Falsa</option>
+                </select>
+            {{else}}{{/each}}
+        </div>
+        <div class="col-sm-12 col-md-2 col-lg-2">
+            {{#each arrayDePerguntas}}
+                <input type="number" name="pontuacao" min="0" max="20" placeholder="Pontuação" class="form-control text-center mt-2" required>
+            {{else}}{{/each}}
+        </div>
+    </div>
+    {{else}}
+<div class="lead text-center">Perguntas de respostas longas ou curtas</div>
+    {{/if}}
+
+</div>

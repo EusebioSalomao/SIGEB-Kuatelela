@@ -1,0 +1,134 @@
+<main class="admin-page container-fluid py-4 py-lg-5">
+    <div class="admin-shell container">
+        <header class="admin-header mb-4">
+            <p class="eyebrow mb-1">Painel de gestão</p>
+            <h1 id="title-admin" class="mb-0">Administrador</h1>
+        </header>
+
+        <div class="row g-4 align-items-stretch">
+            <section class="col-12 col-lg-8" aria-labelledby="perfil-heading">
+                <div class="card admin-card h-100">
+                    <div class="card-body p-3 p-md-4">
+                        <div class="row g-4 align-items-center">
+                            <div class="col-12 col-sm-4 col-md-3">
+                                <div class="profile-photo text-center" id="foto-perfil">
+                                    <img src="/uploads/{{user.foto}}" class="fotoAluno img-fluid" alt="Foto de {{user.username}}">
+                                    <form action="/admin/editFoto" method="post" id="editarFoto" class="mt-3">
+                                        <button type="submit" class="btn btn-outline-light btn-sm w-100">Editar foto</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-sm-8 col-md-9" id="dados-p">
+                                <div class="profile-summary">
+                                    <p class="eyebrow mb-1">Perfil do utilizador</p>
+                                    <h2 id="perfil-heading" class="profile-name mb-0">{{user.username}}</h2>
+                                </div>
+                                <div class="accordion mobile-accordion mt-3" id="perfilAccordion">
+                                    <div class="accordion-item">
+                                        <h3 class="accordion-header" id="perfilDadosHeading">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#perfilDados"
+                                                aria-expanded="false" aria-controls="perfilDados">
+                                                Dados do perfil
+                                            </button>
+                                        </h3>
+                                        <div id="perfilDados" class="accordion-collapse collapse admin-mobile-collapse"
+                                            aria-labelledby="perfilDadosHeading">
+                                            <div class="accordion-body px-0 pb-0">
+                                                <dl class="profile-details row gy-2 mb-0">
+                                                    <div class="col-12 col-md-6">
+                                                        <dt>Função</dt>
+                                                        <dd>{{user.categoria}}</dd>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <dt>Contacto</dt>
+                                                        <dd>{{user.telefone}}</dd>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <dt>Cargo</dt>
+                                                        <dd>—</dd>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <dt>Agente</dt>
+                                                        <dd>—</dd>
+                                                    </div>
+                                                </dl>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="section-divider my-4">
+
+                        <div class="accordion mobile-accordion" id="funcoesAccordion">
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="funcoesHeading">
+                                    <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#funcoesConteudo"
+                                        aria-expanded="false" aria-controls="funcoesConteudo">
+                                        Funções e responsabilidades
+                                    </button>
+                                </h3>
+                                <div id="funcoesConteudo" class="accordion-collapse collapse admin-mobile-collapse"
+                                    aria-labelledby="funcoesHeading">
+                                    <div class="accordion-body px-0 pb-0">
+                                        <div class="row g-3" id="funcao-admin">
+                                            <div class="col-12 col-md-6">
+                                                <article class="info-panel h-100">
+                                                    <h3 class="h5">Funções do Administrador</h3>
+                                                    <ul class="mb-0">
+                                                        <li>Gerir usuários do sistema</li>
+                                                        <li>Gerir departamentos</li>
+                                                        <li>Gerir permissões de acesso</li>
+                                                        <li>Monitorar atividades do sistema</li>
+                                                        <li>Configurar parâmetros do sistema</li>
+                                                    </ul>
+                                                </article>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <article class="info-panel h-100">
+                                                    <h3 class="h5">Responsabilidades</h3>
+                                                    <ul class="mb-0">
+                                                        <li>Garantir a segurança dos dados</li>
+                                                        <li>Manter a integridade do sistema</li>
+                                                        <li>Fornecer suporte técnico</li>
+                                                        <li>Atualizar o sistema regularmente</li>
+                                                        <li>Gerenciar backups e recuperação de dados</li>
+                                                    </ul>
+                                                </article>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <aside class="col-12 col-lg-4" aria-labelledby="menu-heading">
+                <div class="card admin-card menu-card h-100">
+                    <div class="card-body p-3 p-md-4">
+                        <h2 id="menu-heading" class="h4 mb-3">Menu</h2>
+                        <nav class="menu-links" aria-label="Menu principal">
+                            <a class="menu-item menu-item-primary" href="/secretaria">Secretaria</a>
+                            <a class="menu-item menu-item-accent" href="/financas">Finanças</a>
+                            <a class="menu-item menu-item-secondary" href="/rh">R. Humanos</a>
+                            <a class="menu-item menu-item-secondary" href="/pedagogico">Á. Pedagógica</a>
+                        </nav>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <section class="quick-actions mt-4" aria-label="Acessos rápidos">
+            <a class="quick-action quick-action-accent" href="#">Notícias</a>
+            <a class="quick-action quick-action-secondary" href="#">Imagens</a>
+            <a class="quick-action quick-action-secondary" href="/pedagogico/solicitacoes">Solicitações</a>
+            <a class="quick-action quick-action-dark" href="/user/allUsers">Usuários do sistema</a>
+        </section>
+    </div>
+</main>

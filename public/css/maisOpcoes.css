@@ -1,0 +1,108 @@
+/* ==========================================================================
+   maisOpcoes.css
+   Estilos da secção "Área Pedagógica - Mais Opções"
+   Paleta original mantida (Bootstrap secondary / text-light)
+   ========================================================================== */
+
+.mais-opcoes {
+    padding-block: 1.5rem;
+}
+
+.mais-opcoes__title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: .5px;
+    color: #212529;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+.mais-opcoes__divider {
+    border: 0;
+    border-top: 2px solid #dee2e6;
+    opacity: 1;
+    margin: 1.5rem 0;
+}
+
+/* Cartões de opção -------------------------------------------------------- */
+
+.mais-opcoes__col {
+    flex: 0 0 calc(33.333% - .667rem);
+    max-width: calc(33.333% - .667rem);
+    min-width: 0;
+}
+
+.menu-item2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80px;
+    width: 100%;
+    padding: .75rem;
+    border-radius: .5rem;
+    background-color: #6c757d;      /* cor original (bg-secondary) mantida */
+    color: #f8f9fa !important;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .08);
+    transition: background-color .2s ease-in-out,
+                transform .2s ease-in-out,
+                box-shadow .2s ease-in-out;
+}
+
+.menu-item2:hover,
+.menu-item2:focus-visible {
+    background-color: #5c636a;      /* tom hover padrão do Bootstrap para secondary */
+    color: #f8f9fa;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, .15);
+    text-decoration: none;
+}
+
+.menu-item2:focus-visible {
+    outline: 3px solid #adb5bd;
+    outline-offset: 2px;
+}
+
+/* Responsividade ------------------------------------------------------------ */
+
+@media (max-width: 575.98px) {
+    .mais-opcoes__title {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    .mais-opcoes__col {
+        flex: 0 0 calc(33.333% - .34rem);
+        max-width: calc(33.333% - .34rem);
+    }
+
+    .menu-item2 {
+        min-height: 60px;
+        padding: .5rem;
+        font-size: .8rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .mais-opcoes__title {
+        font-size: 1rem;
+    }
+
+    .mais-opcoes__col {
+        flex: 0 0 calc(33.333% - .34rem);
+        max-width: calc(33.333% - .34rem);
+    }
+
+    .menu-item2 {
+        min-height: 50px;
+        padding: .35rem;
+        font-size: .65rem;
+        line-height: 1.1;
+    }
+}

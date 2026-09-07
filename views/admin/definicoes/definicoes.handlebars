@@ -1,0 +1,393 @@
+<h1 class="text-danger text-center mb-3">DEFINIÇÕES DO SISTEMA</h1>
+<hr>
+
+<div class="container-fluid px-0">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-3 mb-3">
+        <div class="col">
+            <a href="/admin/backup" class="menu-item2 card text-decoration-none text-light bg-secondary h-100">
+                <div class="card-body d-flex align-items-center justify-content-center text-center p-4">
+                    <span class="h5 mb-0">Backup</span>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+            <a href="/pedagogico/#" class="menu-item2 card text-decoration-none text-light h-100">
+                <div class="card-body d-flex align-items-center justify-content-center text-center p-4">
+                    <span class="h5 mb-0"></span>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+            <a href="#" onclick="atribuirCargo()" class="menu-item2 card text-decoration-none text-light bg-secondary h-100">
+                <div class="card-body d-flex align-items-center justify-content-center text-center p-4">
+                    <span class="h5 mb-0">Atribuir Cargo</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-3">
+        <div class="col">
+            <a href="/definicoes/autorizacoes" class="menu-item2 card text-decoration-none text-light bg-secondary h-100">
+                <div class="card-body d-flex align-items-center justify-content-center text-center p-4">
+                    <span class="h5 mb-0">Autorizações</span>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+            <a href="/pedagogico/#" class="menu-item2 card text-decoration-none text-light bg-warning h-100">
+                <div class="card-body d-flex align-items-center justify-content-center text-center p-4">
+                    <span class="h5 mb-0"></span>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+            <a href="#" onclick="removerCargo()" class="menu-item2 card text-decoration-none text-light bg-secondary h-100">
+                <div class="card-body d-flex align-items-center justify-content-center text-center p-4">
+                    <span class="h5 mb-0">Remover Cargo</span>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<div class="d-flex flex-wrap gap-2">
+    <button onclick="nivelPrivilegio()" class="btn btn-light border">Promover Nível de privilegio</button>
+    {{#if dev}}
+    <button onclick="pagamento()" class="btn btn-light border">Pagamento</button>
+    <a href="/admin/contactosAlunos" class="btn btn-light border">Contactos dos Alunos</a>
+    <button onclick="restringirAccess()" class="btn btn-light border">Restrição de acesso</button>
+    <button onclick="redefinicaoDeSenha()" class="btn btn-light border">Redefinição de senha</button>
+    <button onclick="bloquearSystem()" class="btn btn-danger">Bloquear System</button>
+    {{/if}}
+</div>
+
+<!-- Modal Atribuir Cargo -->
+
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="atribuirCargo">
+    <div class="modal-dialog modal-dialog-centered">
+        <form action="/definicoes/atribuirCargo" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title bg-primary p-2 text-center fw-bold text-light w-100">Atribuir Função / Cargo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="atribuirCargoFuncionario" class="form-label">Funcionário</label>
+                    <select name="funcionario" id="atribuirCargoFuncionario" class="form-select mb-3">
+                        <option value="">Seleciona o funcionario</option>
+                        {{#each funcionarios}}
+                        <option value="{{_id}}">{{nome}}</option>
+                        {{else}}
+                        <option value="" disabled>Nenhum funcionário registrado</option>
+                        {{/each}}
+                    </select>
+
+                    <label for="atribuirCargoCargo" class="form-label">Cargo</label>
+                    <select name="cargo" id="atribuirCargoCargo" class="form-select">
+                        <option value="">Seleciona o cargo</option>
+                        <option value="Chefe de Secção">Chefe de Secção</option>
+                        <option value="Coordenador de Curso">Coordenador de Curso</option>
+                        <option value="Coordenador de Disciplina">Coordenador de Disciplina</option>
+                        <option value="Coordenador de Turma">Coordenador de Turma</option>
+                        <option value="Coordenador de Turno">Coordenador de Turno</option>
+                        <option value="Júri Presidente">Júri Presidente</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" onclick="mostrar2()">Continuar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal Remover Cargo -->
+
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="removerCargo">
+    <div class="modal-dialog modal-dialog-centered">
+        <form action="/definicoes/removerCargo" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title bg-danger p-2 text-center fw-bold text-light w-100">Remover Função / Cargo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="removerCargoFuncionario" class="form-label">Funcionário</label>
+                    <select name="funcionario" id="removerCargoFuncionario" class="form-select">
+                        <option value="">Seleciona o funcionario</option>
+                        {{#each funcionariosComCargo}}
+                        <option value="{{_id}}">{{nome}}</option>
+                        {{else}}
+                        <option value="" disabled>Nenhum funcionário registrado</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" onclick="mostrar2()">Continuar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal nivelPrivilegio -->
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="nivelPrivilegio">
+    <div class="modal-dialog modal-dialog-centered">
+        <form action="/definicoes/nivelPrivilegio" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title bg-primary p-2 text-center fw-bold text-light w-100">Nível de privilégio do Sistema</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="nivelPrivilegioUsuario" class="form-label">Usuário</label>
+                    <select name="idUsuario" id="nivelPrivilegioUsuario" class="form-select mb-3">
+                        <option value="">Seleciona o Usuário</option>
+                        {{#each users}}
+                        <option value="{{_id}}">{{username}}</option>
+                        {{else}}
+                        <option value="" disabled>Nenhum usuário registrado</option>
+                        {{/each}}
+                    </select>
+
+                    <label for="nivelPrivilegioNivel" class="form-label">Nível</label>
+                    <select name="nivel" id="nivelPrivilegioNivel" class="form-select">
+                        <option value="">Seleciona</option>
+                        <option value="1">Nível 1</option>
+                        <option value="2">Nível 2</option>
+                        <option value="3">Nível 3</option>
+                        <option value="4">Nível 4</option>
+                        <option value="5">Nível 5</option>
+                        <option value="0">Nenhum</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" onclick="mostrar2()">Continuar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal pagamento -->
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="pagamento">
+    <div class="modal-dialog modal-dialog-centered">
+        <form action="/definicoes/pagamento" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title bg-primary p-2 text-center fw-bold text-light w-100">P A G A M E N T O S</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="lead mb-3">Seleciona o mês e o ano limite</div>
+                    <div class="row g-2 justify-content-center">
+                        <div class="col-12 col-sm-6">
+                            <select name="mes" class="form-select">
+                                <option value="">Mês limite</option>
+                                <option value="1">Janeiro</option>
+                                <option value="2">Fevereiro</option>
+                                <option value="3">Março</option>
+                                <option value="4">Abril</option>
+                                <option value="5">Maio</option>
+                                <option value="6">Junho</option>
+                                <option value="7">Julho</option>
+                                <option value="8">Agosto</option>
+                                <option value="9">Setembro</option>
+                                <option value="10">Outubro</option>
+                                <option value="11">Novembro</option>
+                                <option value="12">Dezembro</option>
+                            </select>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <select name="anoLimite" class="form-select">
+                                <option value="">Ano limite</option>
+                                <option value="2025">2025</option>
+                                <option value="2026">2026</option>
+                                <option value="2027">2027</option>
+                                <option value="2028">2028</option>
+                                <option value="2029">2029</option>
+                                <option value="2030">2030</option>
+                                <option value="2031">2031</option>
+                                <option value="2032">2032</option>
+                                <option value="2033">2033</option>
+                                <option value="2034">2034</option>
+                                <option value="2035">2035</option>
+                                <option value="2036">2036</option>
+                                <option value="2037">2037</option>
+                                <option value="2038">2038</option>
+                                <option value="2039">2039</option>
+                                <option value="2040">2040</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" onclick="mostrar2()">Continuar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal bloquearSystem -->
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="bloquearSystem">
+    <div class="modal-dialog modal-dialog-centered">
+        <form action="/definicoes/bloquearSystem" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title bg-danger p-2 text-center fw-bold text-light w-100">Bloquear System</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="lead text-danger text-center mb-0">
+                        Está função bloqueará todas funções do sistema. Deseja continuar?
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-danger" onclick="mostrar2()">Continuar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal Restringir Accesso -->
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="restringirAccess">
+    <div class="modal-dialog modal-dialog-centered">
+        <form action="/definicoes/restringirAccess" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title bg-warning p-2 text-center fw-bold text-light w-100">Acesso ao Sistema</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="restringirAccessUsuario" class="form-label">Usuário</label>
+                    <select name="idUsuario" id="restringirAccessUsuario" class="form-select mb-3">
+                        <option value="">Seleciona o Usuário</option>
+                        <option value="alunos">Alunos</option>
+                        <option value="funcionarios">Funcionários</option>
+                        {{#each users}}
+                        <option value="{{_id}}">{{username}}</option>
+                        {{else}}
+                        <option value="" disabled>Nenhum usuário registrado</option>
+                        {{/each}}
+                    </select>
+
+                    <label for="restringirAccessTipo" class="form-label">Acesso</label>
+                    <select name="access" id="restringirAccessTipo" class="form-select" required>
+                        <option value="">Seleciona</option>
+                        <option value="Liberar">Liberar</option>
+                        <option value="Negar">Restringir</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" onclick="mostrar2()">Continuar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal Redefinição de senha -->
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="redefinicaoDeSenha">
+    <div class="modal-dialog modal-dialog-centered">
+        <form action="/definicoes/redefinicaoDeSenha" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title bg-warning p-2 text-center fw-bold text-light w-100">Redefinição de Senha</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="redefinicaoDeSenhaUsuario" class="form-label">Usuário</label>
+                    <select name="idUsuario" id="redefinicaoDeSenhaUsuario" class="form-select">
+                        <option value="">Seleciona o Usuário</option>
+                        {{#if users}}
+                        <option value="alunos">Apenas Alunos</option>
+                        <option value="funcionarios">Apenas Funcionários</option>
+                        <option value="todos">Todos Usuarios</option>
+                        {{/if}}
+                        {{#each users}}
+                        <option value="{{_id}}">{{username}}</option>
+                        {{else}}
+                        <option value="" disabled>Nenhum usuário registrado</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" onclick="mostrar2()">Continuar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    .menu-item2 {
+        border: none;
+        border-radius: .5rem;
+        transition: transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, .15);
+    }
+
+    .menu-item2:hover,
+    .menu-item2:focus-visible {
+        transform: translateY(-3px);
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
+        opacity: .95;
+        color: #fff;
+    }
+
+    .menu-item2 .h5 {
+        font-weight: 600;
+        letter-spacing: .01em;
+    }
+</style>
+
+<script src="assets/bootstrap.bundle.min.js"></script>
+<script>
+    function atribuirCargo() {
+        let el = document.getElementById('atribuirCargo');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+    function removerCargo() {
+        let el = document.getElementById('removerCargo');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+    function nivelPrivilegio() {
+        let el = document.getElementById('nivelPrivilegio');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+    function pagamento() {
+        let el = document.getElementById('pagamento');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+    function restringirAccess() {
+        let el = document.getElementById('restringirAccess');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+    function redefinicaoDeSenha() {
+        let el = document.getElementById('redefinicaoDeSenha');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+</script>

@@ -1,0 +1,82 @@
+
+<footer class="site-footer mt-5" aria-label="Rodapé do site">
+    <div class="container">
+        <div class="row gy-4 footer-content">
+            <section class="col-12 col-sm-6 col-lg-5">
+                <h2 class="footer-title">Fotos</h2>
+                <ul class="nav flex-column footer-links">
+                    <li class="nav-item"><a href="#" class="nav-link">Funcionários</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Alunos</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Noticias</a></li>
+                </ul>
+            </section>
+            <section class="col-12 col-sm-6 col-lg-4">
+                <h2 class="footer-title">Contactos</h2>
+                <ul class="nav flex-column footer-links">
+                    <li class="nav-item"><a href="tel:+244930366434" class="nav-link">Tel: (+244) 930366434</a></li>
+                    <li class="nav-item">
+                        <a href="https://wa.me/244930366434" target="_blank" rel="noopener noreferrer" class="nav-link">
+                            WhatsApp: (+244) 930366434
+                        </a>
+                    </li>
+                </ul>
+            </section>
+            <section class="col-12 col-lg-3">
+                <a href="#" class="back-to-top">Voltar ao topo <span aria-hidden="true">↑</span></a>
+                <div class="support-box">
+                    <span class="support-label">Ajuda/Suporte técnico</span>
+                    <a href="#" class="support-hours">Das 8h às 20h</a>
+                    <a href="#" onclick="vercSystem()" class="system-trigger" aria-label="Abrir verificação do sistema">.</a>
+                </div>
+            </section>
+        </div>
+        <div class="footer-bottom text-center">
+            <span>© 2023 SIGEB-L290 | por Engº Salomão Bango</span>
+        </div>
+    </div>
+</footer>
+
+{{!--   M  O  D  A  I  S   --}}
+
+
+<!-- Modal vercSystem -->
+<div class="modal fade" tabindex="-1" data-bs-backdrop="static" id="vercSystem" aria-labelledby="vercSystemTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <form action="/definicoes/vercSystem" method="post">
+      <div class="modal-content">
+        <div class="modal-header">
+           <h3 class="modal-title" id="vercSystemTitle">vercSystem
+          </h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body input-box-filtro">
+        </div>
+        <div class="modal-body text-center">
+
+
+          
+
+          <label for="vercSystemInput" class="mt-3 fw-bold">vercSystem</label>
+          <input type="password" name="vercSystem" placeholder="Input a REF of verify" class="form-control text-center" required id="vercSystemInput">
+
+          <div class="text-center text-danger text-sm lead mt-2"> Tu tens 3 tentativas de verificação</div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Continuar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="/assets/bootstrap.bundle.min.js"></script>
+<script>
+  function vercSystem() {
+    let el = document.getElementById('vercSystem');
+    let minha_modal = new bootstrap.Modal(el);
+    minha_modal.show();
+  }
+
+
+</script>

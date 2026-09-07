@@ -1,0 +1,74 @@
+:root {
+    --login-navy: #102a43;
+    --login-teal: #0f766e;
+    --login-teal-dark: #115e59;
+    --login-gold: #c49332;
+    --login-bg: #f5f7f9;
+    --login-muted: #627d98;
+}
+
+.login-page {
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    background:
+        linear-gradient(135deg, rgba(16, 42, 67, .97), rgba(15, 118, 110, .9)),
+        var(--login-bg);
+    padding: 2rem 0;
+}
+
+.login-card {
+    border: 1px solid rgba(255, 255, 255, .28);
+    border-radius: .85rem;
+    background: #fff;
+    padding: clamp(1.5rem, 5vw, 2.5rem);
+    box-shadow: 0 1rem 2.5rem rgba(4, 24, 40, .22);
+}
+
+.login-heading { text-align: center; }
+.login-kicker {
+    color: var(--login-teal);
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+.login-heading h1 {
+    margin: .35rem 0 1.25rem;
+    color: var(--login-navy);
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.brand-mark-lg {
+    border-radius: .45rem;
+    background: var(--login-navy);
+    padding: .8rem .5rem;
+    color: #fff;
+    font-size: clamp(1.35rem, 5vw, 1.8rem);
+    font-weight: 800;
+    letter-spacing: .16em;
+}
+
+.login-alert { margin: 1.25rem 0 0; font-size: .9rem; }
+.login-form { margin-top: 1.5rem; }
+.form-label { color: var(--login-navy); font-size: .9rem; font-weight: 600; }
+.form-control { border-color: #bcccdc; padding: .7rem .85rem; }
+.form-control:focus { border-color: var(--login-teal); box-shadow: 0 0 0 .2rem rgba(15, 118, 110, .16); }
+.login-form .btn-primary { border-color: var(--login-teal); background: var(--login-teal); padding: .7rem 1rem; font-weight: 600; }
+.login-form .btn-primary:hover,
+.login-form .btn-primary:focus-visible { border-color: var(--login-teal-dark); background: var(--login-teal-dark); }
+
+.institution-name {
+    margin: 1.5rem 0 0;
+    color: var(--login-muted);
+    font-size: .78rem;
+    line-height: 1.5;
+    text-align: center;
+}
+
+@media (max-width: 575.98px) {
+    .login-page { align-items: flex-start; padding-top: 1.5rem; }
+    .login-card { padding: 1.5rem 1.25rem; }
+}

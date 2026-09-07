@@ -1,0 +1,99 @@
+<div id="">
+    <div class=" row">
+        <div class="col-6 inscreva-se border-right">
+            <img src="/img/turma22.jpg" class="fotoInscreva" alt="Foto">
+            <figcaption>
+                <section class="p-5 m-0">
+
+                    <span class="h2 mb-3">Faça já a sua inscrição!</span>
+                    <p class="mt-5 h5">Cursos disponíveis:</p>
+                    {{#each cursos}}
+                    <span class="text-sm ms-4"> - {{descricao}} </span><br>
+                    {{else}}
+                    {{/each}}
+                    <div class="mt-5">
+                        <br class="mt-5"><br>
+                        <p class="mt-5 text-italic">Você pode concluir a formação média e estar capacitado para
+                            ingressar no ensino
+                            superior em menos de 4 anos</p>
+                    </div>
+                    <hr>
+                    <p class="h5 text-center">LICEU Nº 290 REI NDUDUMA DO CUITO/BIÉ</p>
+                </section>
+            </figcaption>
+        </div>
+        <div class="col-6 card-body mt-0 ms-2">
+            <form action="/candidatos/addCont" method="post">
+                <div class="form-headear">
+                    <div class="title">
+                        <h1>Inscreva - te já!</h1>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="input-box">
+                        <label for="nome">Nome<span class="text-danger">*</span>:</label>
+                        <input type="text" name="nome" placeholder="Digite o seu nome completo" required>
+                    </div>
+                    <div class="input-box">
+                        <label for="numBI">Nº BI<span class="text-danger">*</span>:</label>
+                        <input type="text" name="numBI" placeholder="Bilhete de identidade" required>
+                    </div>
+
+                    <div class=" row">
+                        <div class="col-4 input-box">
+
+                        <label for="dataNascimento">Data de nascimento <span class="text-danger">*</span> :</label>
+                        <input type="date" name="dataNascimento" placeholder="Digite o seu nome completo" required>
+                        </div>
+                        <div class="col-4 input-box">
+                            <label for="genero">Genero<span class="text-danger">*</span>:</label>
+                        <select name="genero">
+                            <option value="selecionar">Selecionar</option>
+                            <option value="feminino">Feminino</option>
+                            <option value="masculino">Masculino</option>
+                        </select>
+                        </div>
+                        <div class="col-4 input-box">
+                            <label for="contacto">Contacto:</label>
+                        <input type="tel" name="contacto" autocomplete="contacto" placeholder="9XX-XXX-XXX"
+                            class="form-control" pattern="^[0-9]{3}-[0-9]{3}-[0-9]{3}$">
+                        </div>
+                    </div>
+
+                   
+                    <div class="input-box">
+                        <label for="curso">curso<span class="text-danger">*</span>: </label>
+                        <select name="curso" id="">
+                            <option value="selecionar">Selecionar </option>
+                            {{#each cursos}}
+                            <option value="{{descricao}}">{{descricao}}</option>
+                            {{else}}
+                            <option value="selecionar">Nenhum curso</option>
+                            {{/each}}
+                        </select>
+                    </div>
+
+                    {{!-- <div class="gener-inputs">
+                        <div class="gener-tltle">
+                            <h6>Genero</h6>
+                        </div>
+                        <div class="gener-group">
+                            <div class="gener-input">
+                                <input type="radio" name="genero" id="feminino">
+                                <label for="feminino">Feminino</label>
+                            </div>
+                            <div class="gener-input">
+                                <input type="radio" name="genero" id="masculino">
+                                <label for="masculino">Masculino</label>
+                            </div>
+                        </div>
+                    </div> --}}
+                    <div class="button-candidato">
+                        <button type="submit">Continuar</button>
+                    </div>
+            </form>
+        </div>
+        (<span class="text-danger">*</span>) Campos obrigatórios
+    </div>
+</div>
+    <hr>

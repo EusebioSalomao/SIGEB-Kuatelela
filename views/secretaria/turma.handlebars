@@ -1,0 +1,722 @@
+
+{{#if msg}}
+<div class="alert alert-success text-center turma-alert">{{msg}}</div>
+{{/if}}
+{{#if exist}}
+<div class="alert alert-danger text-center turma-alert">{{exist}}</div>
+{{/if}}
+
+<div class="container">
+
+    <div class="turma-header">
+        <h1 class="turma-header__title">
+            <a class="turma-header__back" href="/pedagogico/turmas" aria-label="Voltar para todas as turmas">&larr;</a>
+            <span class="text-secondary">Turma:</span>
+            <span>{{turma.codigo}} - {{classe.designacao}} / {{curso.descricao}}</span>
+        </h1>
+        <div class="turma-header__actions">
+            <a href="#" class="btn btn-sm btn-primary" onclick="atribGenero()">At.Genero</a>
+            {{#if nivelPrivilegio01}}
+            <a href="#" class="btn btn-sm btn-primary" onclick="addAluno()">+Aluno</a>
+            {{/if}}
+            <a href="/pedagogico/turmas" class="btn btn-sm mybtn-primary">Td Turmas</a>
+        </div>
+    </div>
+
+    {{#if alunosNaoReconfirmados}}
+    <div class="text-center text-light bg-danger rounded p-2 mb-3">
+        <span class="fw-bold">AVISO!</span>
+        <span class="lead"> - {{alunosNaoReconfirmados.length}} Estudantes desta turma ainda não reconfirmaram a Matrícula</span>
+    </div>
+    {{/if}}
+
+    <div class="turma-status-bar">
+        <div class="turma-status-bar__row">
+            <div class="turma-status-bar__group">
+                {{#if naoVagas}}
+                <a href="#" class="btn btn-sm btn-danger">Sem vaga!</a>
+                <span> Ano {{ano.codigo}}</span>
+                {{else}}
+                {{#if definicoes.abrirReconfirmacao}}
+                {{#if classe10}}
+                {{#if nivelPrivilegio04}}
+                <a href="#" class="btn btn-sm btn-secondary" onclick="matricular()">+ Matricular novo aluno</a>
+                <a href="#" class="btn btn-sm btn-primary" onclick="confirmarMatricula()">Confirmar matricula</a>
+                {{/if}}
+                {{else}}
+                <a href="#" class="btn btn-sm btn-primary" onclick="confirmarMatricula()">Confirmar matricula</a>
+                {{/if}}
+                {{/if}}
+                <span> Ano {{ano.codigo}} - <span class="fw-bold">{{turma.periodo}}</span></span>
+                {{/if}}
+            </div>
+            {{#if nivelPrivilegio04}}
+            <div class="turma-status-bar__group">
+                <button class="btn btn-sm btn-light" onclick="incluirAluno()">Incluir+</button>
+                <button class="btn btn-sm btn-light" onclick="transfConfirmarMatricula()">Transferências</button>
+            </div>
+            {{/if}}
+        </div>
+    </div>
+
+    <div class="student-section">
+        <div class="student-list-head">
+            <div class="student-number-head">N/O</div>
+            <div style="width:48px;"></div>
+            <div class="flex-fill ms-3">Nome completo</div>
+            <div style="width:90px;">Idade</div>
+            <div style="width:110px;">Género</div>
+            <div style="width:170px;"></div>
+        </div>
+
+        <div class="student-list">
+            {{#each alunosMatriculados}}
+            <div class="student-card">
+                <div class="student-number" aria-hidden="true"></div>
+                <div class="student-card__row">
+                    <div class="student-avatar">FOTO</div>
+
+                    {{#if matriculado}}
+                    <div class="student-name">{{nome}}</div>
+                    {{else}}
+                    <div class="student-name text-danger">{{nome}}</div>
+                    {{/if}}
+
+                    <div class="student-meta">{{idade}} anos</div>
+                    <div class="student-meta">{{genero}}</div>
+
+                    <a href="/alunos/ficha/{{_id}}" class="btn btn-sm btn-light text-primary flex-shrink-0" aria-label="Ver ficha do aluno">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                            <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
+                            <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
+                        </svg>
+                    </a>
+                    {{#if autoAnular}}
+                    <a href="/admin/anularMatricula/{{_id}}" class="flex-shrink-0"><button class="btn btn-sm btn-warning">Anular M</button></a>
+                    {{/if}}
+                </div>
+            </div>
+            {{else}}
+            <div class="text-center text-muted py-3">Nenhum aluno matriculado nesta turma.</div>
+            {{/each}}
+        </div>
+    </div>
+
+    <div class="actions-footer">
+        <a href="/turmas/minipauta/{{turma._id}}"><button class="btn btn-sm btn-primary">Minipauta</button></a>
+        <a href="/turmas/gerarLista/{{turma._id}}"><button class="btn btn-sm btn-primary">Lista</button></a>
+        <a href="/relatorios/gerarListaDePresenca/{{turma._id}}"><button type="submit" class="btn btn-sm mybtn-primary">Presença PDF</button></a>
+        <button type="submit" class="btn btn-sm mybtn-primary" onclick="editarTurma()">Editar dados da turma</button>
+        <a href="/relatorios/gerarListaAlunos/{{turma._id}}"><button class="btn btn-sm btn-secondary">Lista PDF</button></a>
+        <a href="/turmas/minipautaPDF/{{turma._id}}"><button class="btn btn-sm btn-secondary">Minipauta PDF</button></a>
+        <a href="/turmas/controlFaltas/{{turma._id}}"><button class="btn btn-sm btn-primary">Faltas</button></a>
+        <a href="/turmas/usuariosTurma/{{turma._id}}"><button class="btn btn-sm btn-primary">Usuários</button></a>
+        <a href="/turmas/userTurmaPDF/{{turma._id}}"><button class="btn btn-sm mybtn-primary">Gerar PDF</button></a>
+        {{#if nivelPrivilegio04}}
+        <button class="btn btn-sm btn-primary" onclick="transferirAluno()">Transferir</button>
+        {{/if}}
+    </div>
+
+    {{#if alunosSuspeitos}}
+    <div class="suspect-list">
+        <div class="text-center text-danger lead">
+            Os nomes dos estudantes abaixo são suspeitos. É provável que não tenham frequentado a classe anterior ou vieram transferidos de outra escola!
+        </div>
+        {{#each alunosSuspeitos}}
+        <div class="text-center text-danger small mt-1">{{nome}}</div>
+        {{/each}}
+    </div>
+    {{/if}}
+
+    {{#if dev}}
+    <hr>
+    <div class="text-center">
+        <a href="/admin/anularMatriculaTDTurma/{{turma._id}}"><button class="btn btn-sm btn-danger">Anular Matriculas</button></a>
+        <a href="/admin/actualizarIdAnoActivo"><button class="btn btn-sm btn-danger">Actualizar Id Ano Lectivo</button></a>
+    </div>
+    {{/if}}
+
+</div>
+
+<!-- Modal Matricular -->
+<div class="modal modal-xl" tabindex="-1" data-bs-backdrop="static" id="matricular">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Nova Matricula: - {{classe10}}</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                {{#each candMatricular}}
+                <form action="/turmas/novaMatricula" method="post" class="enroll-candidate">
+                    <div class="p-3">
+                        <div class="row align-items-center g-2">
+                            <div class="col-2 col-md-1">{{numeroOrd}}</div>
+                            <div class="col-4 col-md-3 h5 mb-0">FOTO</div>
+                            <div class="col-6 col-md-3">{{nome}}</div>
+                            <div class="col-6 col-md-2">{{idade}} anos</div>
+                            <div class="col-6 col-md-3 text-md-end">
+                                <input type="hidden" name="idCandidato" value="{{_id}}">
+                                <input type="hidden" name="idTurma" value="{{idTurma}}">
+                                <button type="submit" class="btn btn-dark btn-sm">Matricular</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                {{else}}
+                <h3 class="text-danger text-center">Não há mais candidatos admitidos neste curso</h3>
+                {{/each}}
+            </div>
+            <div class="modal-footer text-center">
+                <div class="lead text-info">Apenas candidatos admitidos constam nessa lista</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal addProfessor -->
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="addProfessor">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Selecionar Professor: - {{classe10}} {{turma.codigo}}</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                {{#each candMatricular}}
+                <form action="/turmas/novaMatricula" method="post" class="enroll-candidate">
+                    <div class="p-3">
+                        <div class="row align-items-center g-2">
+                            <div class="col-3 h5 mb-0">FOTO</div>
+                            <div class="col-3">{{nome}}</div>
+                            <div class="col-3">{{idade}} anos</div>
+                            <div class="col-3 text-end">
+                                <input type="hidden" name="idCandidato" value="{{_id}}">
+                                <input type="hidden" name="idTurma" value="{{idTurma}}">
+                                <button type="submit" class="btn btn-dark btn-sm">Matricular</button>
+                                <a href="#" class="btn btn-info btn-sm text-light">+ informações</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                {{else}}
+                <h3 class="text-danger text-center">Não há mais candidatos admitidos neste curso</h3>
+                {{/each}}
+            </div>
+            <div class="modal-footer text-center">
+                <div class="lead text-info">Apenas candidatos admitidos constam nessa lista</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal addAluno com prioridade -->
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="addAluno">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">{{classe.designacao}} - {{turma.codigo}}</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/admin/addAluno" method="post">
+                <div class="modal-body">
+                    <input type="text" name="nome" autofocus placeholder="Insira o nome do aluno"
+                        class="form-control my-2" required>
+                    <input type="hidden" name="idTurma" value="{{turma._id}}">
+                    <input type="hidden" name="numBI" value="000Provisorio">
+                    <input type="hidden" name="genero" value="Não definido">
+                    <input type="hidden" name="classe" value="{{classe.designacao}}">
+                    <input type="hidden" name="idClasse" value="{{classe._id}}">
+                    <input type="hidden" name="curso" value="{{curso.descricao}}">
+                    <input type="hidden" name="idCurso" value="{{curso._id}}">
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-success">Adicionar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal eliminarTurma -->
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="eliminarTurma">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title text-danger">Pretendes eliminar esta turma?</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/admin/eliminarTurma/" method="post">
+                <div class="modal-body text-center">
+                    <div>{{classe.designacao}}</div>
+                    <div><span>Turma: </span>{{turma.codigo}}</div>
+                    <div><span>Curso: </span>{{curso.descricao}}</div>
+                    <input type="hidden" name="idTurma" value="{{turma._id}}">
+                    <input type="hidden" name="numBI" value="000Provisorio">
+                    <input type="hidden" name="classe" value="{{classe.designacao}}">
+                    <input type="hidden" name="idClasse" value="{{classe._id}}">
+                    <input type="hidden" name="curso" value="{{curso.descricao}}">
+                    <input type="hidden" name="idCurso" value="{{curso._id}}">
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal editarTurma -->
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="editarTurma">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h3 class="modal-title">Alterar código da turma</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/admin/editarTurma/" method="post">
+                <div class="modal-body">
+                    <label for="codigoTurma" class="mt-2 text-center d-block">Código</label>
+                    <div class="col-8 offset-2">
+                        <input type="text" id="codigoTurma" name="codigo" value="{{turma.codigo}}" class="form-control text-center">
+                    </div>
+                    <div class="text-center mt-3">
+                        <div>{{classe.designacao}}</div>
+                        <div>Curso: {{curso.descricao}}</div>
+                    </div>
+                    <input type="hidden" name="idTurma" value="{{turma._id}}">
+                    <input type="hidden" name="numBI" value="000Provisorio">
+                    <input type="hidden" name="classe" value="{{classe.designacao}}">
+                    <input type="hidden" name="idClasse" value="{{classe._id}}">
+                    <input type="hidden" name="curso" value="{{curso.descricao}}">
+                    <input type="hidden" name="idCurso" value="{{curso._id}}">
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-primary">Alterar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{{!-- atribGenero --}}
+<form action="/admin/atribGenero" method="post">
+    <div class="modal" tabindex="-1" data-bs-backdrop="static" id="atribGenero">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title mytext-primary text-center mb-0">
+                        Atribui o género correspondente a cada aluno - <span>Turma: {{turma.codigo}}</span>
+                    </h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered align-middle">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">N/O</th>
+                                    <th>Nome</th>
+                                    <th class="text-center">Género</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each alunosSemGenero}}
+                                <tr>
+                                    <td class="text-center">{{numeroOrd}}</td>
+                                    <td class="px-2 lead">{{nome}}</td>
+                                    <td class="text-center">
+                                        <select name="generos" class="form-select form-select-sm">
+                                            <option value="selecionar">Selecionar</option>
+                                            <option value="M">Masculino</option>
+                                            <option value="F">Feminino</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                {{else}}
+                                <tr>
+                                    <td colspan="3" class="text-center text-info">
+                                        Não foi achado nenhum aluno sem género nesta turma!
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                    {{#if achado}}
+                    <div class="small text-danger text-center mt-2">
+                        Antes de confirmar e salvar certifica-se que atribuiu corretamente o género de cada aluno!
+                    </div>
+                    <input type="hidden" name="idTurma" value="{{turma._id}}">
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary mt-2">Confirmar e salvar</button>
+                    </div>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+{{!-- confirmarMatricula --}}
+<form action="/admin/confirmarMatricula" method="post">
+    <div class="modal" tabindex="-1" data-bs-backdrop="static" id="confirmarMatricula">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title mytext-primary mb-0">
+                        Reconfirmação de Matriculas <span>Turma: {{turma.codigo}} - {{classe.designacao}}</span>
+                    </h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center mb-3">
+                        <span class="text-danger">Matricular na Classe/Turma:</span>
+                        <select name="novaClasse" class="form-select form-select-sm d-inline-block w-auto">
+                            <option value="">Selecionar</option>
+                            <option value="{{turma._id}}"><span class="text-danger">Reprovados</span></option>
+                            {{#each turmas}}
+                            <option value="{{_id}}">{{idClasse.designacao}} - {{codigo}}</option>
+                            {{/each}}
+                            {{#if finalistas}}
+                            <option value="Concluido">Concluido</option>
+                            {{/if}}
+                        </select>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-lg-8">
+                            <div class="table-responsive">
+                                <table class="table table-bordered align-middle">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th>N/O</th>
+                                            <th>Nome</th>
+                                            <th class="camp-bilhete">Nº Bilhete de Identidade</th>
+                                            <th>Confirmado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each alunos}}
+                                        <tr>
+                                            <td class="text-center">{{numOrdem}}</td>
+                                            {{#if matriculado}}
+                                            {{#if suspeito}}
+                                            <td class="text-warning">{{nome}}</td>
+                                            {{else}}
+                                            <td>{{nome}}</td>
+                                            {{/if}}
+                                            {{else}}
+                                            <td class="text-danger">{{nome}}</td>
+                                            {{/if}}
+                                            <td class="text-center camp-bilhete">
+                                                {{#if matriculado}}
+                                                {{numBI}}
+                                                <input type="hidden" name="numBI" value="{{numBI}}">
+                                                {{else}}
+                                                <input type="text" name="numBI" class="form-control form-control-sm">
+                                                {{/if}}
+                                            </td>
+                                            <td class="text-center">
+                                                {{#if matriculado}}
+                                                {{#if suspeito}}
+                                                <select name="confirmado" class="form-select form-select-sm">
+                                                    <option value="">---</option>
+                                                    <option value="Confirmado" class="text-success">Matriculado</option>
+                                                </select>
+                                                {{else}}
+                                                <select name="confirmado" class="form-select form-select-sm">
+                                                    <option value="Matriculado">Matriculado</option>
+                                                </select>
+                                                {{/if}}
+                                                {{else}}
+                                                <select name="confirmado" class="form-select form-select-sm">
+                                                    <option value="">---</option>
+                                                    <option value="Confirmado" class="text-success">Matriculado</option>
+                                                </select>
+                                                {{/if}}
+                                            </td>
+                                        </tr>
+                                        {{else}}
+                                        <tr>
+                                            <td colspan="4" class="text-center text-info">Não foi achado nenhum aluno!</td>
+                                        </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <div class="h5 text-center text-danger">Atenção!</div>
+                            <div class="small">
+                                <span class="text-danger fw-bold">Começa com a 12ª Classe</span><br>
+                                Faça primeiro a reconfirmação dos alunos aprovados de cada turma, selecionando
+                                <span class="fw-bold">confirmado</span> na última coluna aos nomes correspondentes
+                                dos que reconfirmaram a matrícula.
+                                <p class="my-2 text-success fw-bold">
+                                    Aos alunos que terminaram a formação seleciona a turma "Concluido"
+                                </p>
+                                Depois de certificar que todos os alunos aprovados foram matriculados na nova
+                                classe, faça a reconfirmação dos reprovados.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-3">
+                        <input type="hidden" name="idTurma" value="{{turma._id}}">
+                        <button type="submit" class="btn btn-primary">Confirmar e salvar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+{{!-- confirmarMatricula / Transferir --}}
+<form action="/admin/confirmarMatricula" method="post">
+    <div class="modal" tabindex="-1" data-bs-backdrop="static" id="transfConfirmarMatricula">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title mytext-primary mb-0">
+                        Reconfirmação de Matriculas <span>Turma: {{turma.codigo}} - {{classe.designacao}}</span>
+                    </h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center mb-3">
+                        <span class="text-primary">Transferir para Classe/Turma:</span>
+                        <select name="novaClasse" class="form-select form-select-sm d-inline-block w-auto">
+                            <option value="">Selecionar</option>
+                            {{#each todasTurmas}}
+                            <option value="{{_id}}">{{idClasse.designacao}} - {{codigo}}</option>
+                            {{/each}}
+                            {{#if finalistas}}
+                            <option value="Concluido">Concluido</option>
+                            {{/if}}
+                        </select>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered align-middle">
+                            <thead>
+                                <tr class="text-center">
+                                    <th>N/O</th>
+                                    <th>Nome</th>
+                                    <th class="camp-bilhete">Nº Bilhete de Identidade</th>
+                                    <th>Transferência</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each alunos}}
+                                <tr>
+                                    <td class="text-center">{{numOrdem}}</td>
+                                    {{#if matriculado}}
+                                    {{#if suspeito}}
+                                    <td class="text-warning">{{nome}}</td>
+                                    {{else}}
+                                    <td>{{nome}}</td>
+                                    {{/if}}
+                                    {{else}}
+                                    <td class="text-danger">{{nome}}</td>
+                                    {{/if}}
+                                    <td class="text-center camp-bilhete">
+                                        {{#if matriculado}}
+                                        {{numBI}}
+                                        <input type="hidden" name="numBI" value="{{numBI}}">
+                                        {{else}}
+                                        <input type="text" name="numBI" class="form-control form-control-sm">
+                                        {{/if}}
+                                    </td>
+                                    <td class="text-center">
+                                        {{#if matriculado}}
+                                        <select name="confirmado" class="form-select form-select-sm">
+                                            <option value="">---</option>
+                                            <option value="Confirmado" class="text-success">Transferir</option>
+                                        </select>
+                                        {{else}}
+                                        <select name="confirmado" class="form-select form-select-sm">
+                                            <option value="N/Matriculado" class="text-danger">N/Reconfirmado</option>
+                                        </select>
+                                        {{/if}}
+                                    </td>
+                                </tr>
+                                {{else}}
+                                <tr>
+                                    <td colspan="4" class="text-center text-info">Não foi achado nenhum aluno!</td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-center mt-3">
+                        <input type="hidden" name="idTurma" value="{{turma._id}}">
+                        <button type="submit" class="btn btn-primary">Confirmar e salvar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+{{!-- transferirAluno --}}
+<form action="/turmas/transferirAluno" method="post">
+    <div class="modal" tabindex="-1" data-bs-backdrop="static" id="transferirAluno">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title mb-0">Transferência de aluno</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body input-box2">
+                    <div class="text-center mytext-primary">
+                        <span>Turma: {{turma.codigo}} - {{classe.designacao}}</span>
+                    </div>
+                    <hr>
+                    <div class="text-center mb-3">
+                        <span class="text-danger">*</span>
+                        <select name="tipoTransferencia" class="form-select form-select-sm d-inline-block w-auto">
+                            <option value="">Seleciona o tipo de Transferência</option>
+                            <option value="interna">Transferência interna</option>
+                            <option value="externa">Transferência externa</option>
+                        </select>
+                    </div>
+                    <div class="col-10 offset-1 mb-3">
+                        <span class="text-danger">*</span>
+                        <select name="idAluno" class="form-select">
+                            <option value="">Seleciona o Aluno</option>
+                            {{#each alunos}}
+                            <option value="{{_id}}">{{nome}}</option>
+                            {{else}}
+                            <option value="" disabled>Sem alunos nesta turma</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="card bg-light mb-3">
+                        <div class="card-body">
+                            <div class="fw-bold mb-2">Transferência Interna</div>
+                            <select name="idNovaClasse" class="form-select">
+                                <option value="">Seleciona a Turma e Classe</option>
+                                {{#each todasTurmas}}
+                                <option value="{{_id}}">{{idClasse.designacao}} - {{codigo}}</option>
+                                {{else}}
+                                <option value="" disabled>Nenhuma turma registrada</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="fw-bold mb-2">Transferência Externa</div>
+                            <input type="text" name="nomeEscola" class="form-control"
+                                placeholder="Escreva o nome da Escola onde vai o(a) aluno(a)">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer text-center">
+                    <input type="hidden" name="idTurma" value="{{turma._id}}">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Transferir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+{{!-- incluirAluno --}}
+<form action="/turmas/transferirAluno" method="post">
+    <div class="modal modal-lg" tabindex="-1" data-bs-backdrop="static" id="incluirAluno">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title mb-0">Incluir aluno nesta Turma</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body input-box2">
+                    <div class="text-center mytext-primary mb-3">
+                        <span>Turma: {{turma.codigo}} - {{classe.designacao}}</span>
+                    </div>
+                    <hr>
+                    <div class="col-10 offset-1">
+                        <span class="text-danger">*</span>
+                        <select name="idAluno" class="form-select">
+                            <option value="">Seleciona o Aluno</option>
+                            {{#each tdAlunosGeral}}
+                            <option value="{{_id}}">{{nome}}</option>
+                            {{else}}
+                            <option value="" disabled>Sem alunos nesta turma</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <input type="hidden" name="idNovaClasse" value="{{turma._id}}">
+                </div>
+                <div class="modal-footer text-center">
+                    <input type="hidden" name="idTurma" value="{{turma._id}}">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-success">Incluir++</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script src="assets/bootstrap.bundle.min.js"></script>
+<script>
+    function matricular() {
+        let el = document.getElementById('matricular');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+    function addAluno() {
+        let el = document.getElementById('addAluno');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+    function addProfessor() {
+        let el = document.getElementById('addProfessor');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+    function eliminarTurma() {
+        let el = document.getElementById('eliminarTurma');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+    function editarTurma() {
+        let el = document.getElementById('editarTurma');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+    function atribGenero() {
+        let el = document.getElementById('atribGenero');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+    function confirmarMatricula() {
+        let el = document.getElementById('confirmarMatricula');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+    function transfConfirmarMatricula() {
+        let el = document.getElementById('transfConfirmarMatricula');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+    function transferirAluno() {
+        let el = document.getElementById('transferirAluno');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+    function incluirAluno() {
+        let el = document.getElementById('incluirAluno');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+</script>

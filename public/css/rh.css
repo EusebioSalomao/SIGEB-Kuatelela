@@ -1,0 +1,79 @@
+/*
+ * Estilos da Área de Recursos Humanos
+ * Paleta própria, discreta, mantendo a mesma família de cores
+ * (ciano / dourado / cinza / azul) mas em tons mais suaves.
+ */
+
+:root {
+    --rh-info:      #4a7c7c;   /* verde-azulado discreto (era o ciano vivo) */
+    --rh-warning:   #b8905a;   /* dourado/mostarda discreto (era o amarelo vivo) */
+    --rh-secondary: #57606b;   /* cinza-azulado suave */
+    --rh-primary:   #3f5d7d;   /* azul discreto (era o azul vivo) */
+}
+
+.rh-hub__title {
+    letter-spacing: .03em;
+}
+
+/* Cartões clicáveis do menu de RH */
+.rh-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 150px;
+    height: 100%;
+    padding: 1.5rem;
+    border-radius: .75rem;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
+    transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.rh-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .12);
+}
+
+/* Destaque de foco no cartão inteiro (o link ocupa toda a área via stretched-link) */
+.rh-card:focus-within {
+    outline: 3px solid rgba(0, 0, 0, .35);
+    outline-offset: 2px;
+}
+
+.rh-card__title {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: #fff;
+}
+
+/* Variações de cor — paleta discreta */
+.rh-card--info {
+    background-color: var(--rh-info);
+}
+
+.rh-card--warning {
+    background-color: var(--rh-warning);
+}
+
+.rh-card--secondary {
+    background-color: var(--rh-secondary);
+}
+
+.rh-card--primary {
+    background-color: var(--rh-primary);
+}
+
+/* Responsivo: em telas pequenas os cartões ficam um pouco mais compactos */
+@media (max-width: 575.98px) {
+    .rh-card {
+        min-height: 120px;
+        padding: 1.25rem;
+    }
+    .rh-card__title {
+        font-size: 1rem;
+    }
+}

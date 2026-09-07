@@ -1,0 +1,38 @@
+<h2>Nova receita</h2>
+<hr>
+<div class="container px-5 ms-5 me-5">
+    <form action="/financas/saveReceita" method="post">
+    <div class="card p-3 bg-light">
+        <div class="card-body mx-5">
+            <label for="descricao">Descrição <span class="text-danger">*</span></label>
+            <input type="text" name="descricao" id="" class="form-control" required>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="row mx-5">
+                    <div class="col-4">
+                        <label for="qt">Quantidade <span class="text-danger">*</span></label>
+                        <input type="number" name="qt" id="" required class="form-control">
+                    </div>
+                    <div class="col-6">
+                        <label for="valor">Valor Unitário <span class="text-danger">*</span></label>
+                        <input type="number" name="valor" id="" required class="form-control">
+                    </div>
+
+                </div>
+                <div class=" ms-5 px-3 mt-5">
+                    <a href="/financas" class="btn btn-secondary ">Cancelar</a>
+                    <button type="submit" class="btn btn-success">Confirmar</button>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="col">
+                    <label for="obs">Obs:</label>
+                    <textarea name="obs" id="" cols="30" rows="5" placeholder="Podes adicionar informações desta receita aqui..." class="form-control"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="lead text-center mt-1">Os campos com (<span class="text-danger">*</span>) são de preenchimento obrigatório!</div>
+    </form>
+</div>

@@ -1,0 +1,32 @@
+<h1>Cursos cadastrados</h1>
+<hr>
+<a href="/cursos/add"><button class="btn btn-primary">Adicionar curso</button></a>
+{{#each cursos}}
+<div class="conteiner mt-1 p-1" >
+    <div class="card">
+       <div class="row">
+        <div class="col-8">
+             <div class="card-body bg-warning">
+            <h3>{{descricao}}</h3>
+            <div class="h5">Sigla: <span class="lead">{{sigla}}</span></div>
+        </div>
+       </div>
+        <div class="col-4 bg-secondary">
+            <div class="row text-light">
+                <div class="col-6 text-end h3 p-4 text-light">Vagas:</div>
+                <div class="col-3 py-4 text-success">
+                    <span class="h2 text-light" >{{numVagas}}</span>
+
+                </div>
+                <div class="col-3 text-center p-4">
+
+                <span class="text-center btn btn-light" ><a href="/cursos/editar/{{_id}}">Editar</a></span>
+                </div>
+
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+{{else}}
+{{/each}}

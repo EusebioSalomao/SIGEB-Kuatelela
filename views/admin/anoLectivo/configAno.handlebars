@@ -1,0 +1,261 @@
+<style>
+  .anoLectivo .curso-card {
+    transition: box-shadow .15s ease, transform .15s ease;
+  }
+
+  .anoLectivo .curso-card:hover {
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .08);
+  }
+
+  .anoLectivo .menu-item2 {
+    min-height: 4.5rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: filter .15s ease, transform .15s ease;
+  }
+
+  .anoLectivo .menu-item2:hover {
+    filter: brightness(1.08);
+  }
+
+  .anoLectivo .bg-encerramento {
+    background-color: var(--bs-secondary-bg, #e9ecef);
+  }
+</style>
+
+<div class="container anoLectivo py-4">
+
+  <!-- Cabeçalho -->
+  <div class="row align-items-center mb-3">
+    <div class="col-12 col-md-8">
+      <h1 class="h3 mb-0"><span class="text-secondary">Ano Lectivo</span> {{anoLectivo.codigo}}</h1>
+    </div>
+    {{#if eAdmin}}
+    <div class="col-12 col-md-4 mt-3 mt-md-0">
+      <div class="d-flex flex-wrap gap-2 justify-content-md-end">
+        {{#unless anoLectivo.encerrado}}
+        <a class="btn btn-warning btn-sm" href="#" onclick="desactivarAnoLectivo()">Encerrar Ano Lectivo</a>
+        {{/unless}}
+        {{#unless encerrado}}
+        <a class="btn btn-secondary btn-sm" href="/anosLectivo/edit/{{anoLectivo._id}}">Editar</a>
+        <a class="btn btn-danger btn-sm" href="#" onclick="deletarAno()">Deletar</a>
+        {{/unless}}
+      </div>
+    </div>
+    {{/if}}
+  </div>
+
+  <hr class="mt-0">
+
+  <!-- Período -->
+  <div class="d-flex flex-wrap align-items-center gap-2 text-secondary mb-3">
+    <span>Período: {{anoLectivo.dataInicio}} à {{anoLectivo.dataFim}}</span>
+    <span class="text-decoration-underline">Ver calendário</span>
+  </div>
+
+  {{#if eAdmin}}
+  <div class="d-flex flex-wrap gap-2 mb-3">
+    {{#unless encerrado}}
+    <a href="/cursos/add/{{anoLectivo._id}}" class="btn btn-info btn-sm text-dark">Adicionar curso</a>
+    {{/unless}}
+
+    {{#if candidaturaAberta}}
+    {{#unless encerrado}}
+    <a href="/anosLectivo/encerrarCandidatura/{{anoLectivo._id}}" class="btn btn-secondary btn-sm">Encerrar
+      candidatura</a>
+    {{/unless}}
+    {{else}}
+    {{#unless encerrado}}
+    <a href="/anosLectivo/abrirCandidatura/{{anoLectivo._id}}" class="btn btn-secondary btn-sm">Abrir
+      candidatura</a>
+    {{/unless}}
+    {{/if}}
+  </div>
+  {{/if}}
+
+  <hr class="mt-0">
+
+  {{#if activo}}
+  <!-- Lista de cursos -->
+  <div class="row g-3">
+    {{#each cursos}}
+    <div class="col-12">
+      <div class="card curso-card border-0 shadow-sm overflow-hidden">
+        <div class="row g-0">
+          <div class="col-12 col-md-7 bg-warning-subtle">
+            <div class="card-body">
+              <h3 class="h5 fw-semibold mb-3">{{descricao}}</h3>
+              <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
+                <div>
+                  <span class="text-secondary">Sigla:</span>
+                  <span class="fw-semibold">{{sigla}}</span>
+                </div>
+                <form action="/anosLectivo/gerirCurso/" method="post" class="m-0">
+                  <input type="hidden" name="idAno" value="{{idAno}}">
+                  <input type="hidden" name="idCurso" value="{{_id}}">
+                  {{#if eAdmin}}
+                  <button type="submit" class="btn btn-secondary btn-sm">Gerir curso</button>
+                  {{else}}
+                  <button type="submit" class="btn btn-secondary btn-sm">Entrar</button>
+                  {{/if}}
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-5 bg-info-subtle">
+            <div class="card-body d-flex align-items-center justify-content-between h-100 flex-wrap gap-2">
+              <div>
+                <div class="text-secondary small text-uppercase">Vagas</div>
+                <div class="h3 mb-0">{{numVagas}}</div>
+              </div>
+              <a class="btn btn-light btn-sm" href="/cursos/editar/{{_id}}">Editar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{else}}
+    <div class="col-12">
+      <div class="text-center text-secondary p-4">Nenhum curso adicionado</div>
+    </div>
+    {{/each}}
+  </div>
+
+  {{else}}
+  <!-- Ano lectivo encerrado -->
+  <div class="text-center p-3 mb-4 rounded bg-encerramento">
+    <span class="h5 mb-0">O ano lectivo {{anoLectivo.codigo}} está encerrado</span>
+  </div>
+
+  <div class="row g-3 mb-3">
+    <div class="col-6 col-lg-3 d-flex">
+      <a href="/anosLectivo/pautas/{{anoLectivo._id}}"
+        class="menu-item2 bg-secondary text-light d-flex align-items-center justify-content-center rounded w-100 p-3">Pautas</a>
+    </div>
+    <div class="col-6 col-lg-3 d-flex">
+      <a href="/anosLectivo/minipautas/{{anoLectivo.codigo}}"
+        class="menu-item2 bg-secondary text-light d-flex align-items-center justify-content-center rounded w-100 p-3"></a>
+    </div>
+    <div class="col-6 col-lg-3 d-flex">
+      <a href="/anosLectivo/relatorios"
+        class="menu-item2 bg-secondary text-light d-flex align-items-center justify-content-center rounded w-100 p-3">Relatorios</a>
+    </div>
+    <div class="col-6 col-lg-3 d-flex">
+      <a href="/anosLectivo/aproveitamento"
+        class="menu-item2 bg-secondary text-light d-flex align-items-center justify-content-center rounded w-100 p-3">Aproveitamento</a>
+    </div>
+  </div>
+
+  <div class="row g-3 mb-3">
+    <div class="col-6 col-lg-3 d-flex">
+      <a href="/anosLectivo/estatística"
+        class="menu-item2 bg-secondary text-light d-flex align-items-center justify-content-center rounded w-100 p-3">Estatística</a>
+    </div>
+    <div class="col-6 col-lg-3 d-flex">
+      <a href="anosLectivo/classes"
+        class="menu-item2 bg-secondary text-light d-flex align-items-center justify-content-center rounded w-100 p-3"></a>
+    </div>
+    <div class="col-6 col-lg-3 d-flex">
+      <a href="/anosLectivo/cursos"
+        class="menu-item2 bg-secondary text-light d-flex align-items-center justify-content-center rounded w-100 p-3"></a>
+    </div>
+    <div class="col-6 col-lg-3 d-flex">
+      <a href="#"
+        class="menu-item2 bg-secondary text-light d-flex align-items-center justify-content-center rounded w-100 p-3"></a>
+    </div>
+  </div>
+
+  <div class="row g-3">
+    <div class="col-6 col-lg-3 d-flex">
+      <a href="/anosLectivo/candidatos"
+        class="menu-item2 bg-secondary text-light d-flex align-items-center justify-content-center rounded w-100 p-3"></a>
+    </div>
+    <div class="col-6 col-lg-3 d-flex">
+      <a href="/anosLectivo/cargaHoraria"
+        class="menu-item2 bg-secondary text-light d-flex align-items-center justify-content-center rounded w-100 p-3"></a>
+    </div>
+    <div class="col-6 col-lg-3 d-flex">
+      <a href="/anosLectivo/pedidos"
+        class="menu-item2 bg-secondary text-light d-flex align-items-center justify-content-center rounded w-100 p-3">
+        (<span class="fw-semibold">{{pedDeclaracao.length}}</span>)
+      </a>
+    </div>
+    <div class="col-6 col-lg-3 d-flex">
+      <a href="/anosLectivo/outrOp"
+        class="menu-item2 mybg-warning text-light d-flex align-items-center justify-content-center rounded w-100 p-3"></a>
+    </div>
+  </div>
+  {{/if}}
+
+</div>
+
+{{!-- M  O  D  A  I  S --}}
+
+<!-- Modal Deletar ano lectivo-->
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="deletarAno">
+  <div class="modal-dialog modal-dialog-centered">
+    <form action="/anosLectivo/deletar" method="post">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Voce tem certesa?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <span class="text-danger">Se apagar o ano lectivo as informações referente ao mesmo estarão comprometidas, ou
+            perderá todas. Se deseja apagar clica em "Deletar"</span>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <input type="hidden" name="idAno" value="{{anoLectivo._id}}">
+          <button type="submit" class="btn btn-danger">Deletar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal Encerrar ano lectivo-->
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="desactivarAnoLectivo">
+  <div class="modal-dialog modal-dialog-centered">
+    <form action="/anosLectivo/desativar" method="post">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Voce tem certesa?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>
+            <span class="text-danger">Ao encerrar o ano Lectivo todos os professores ficarão sem carga
+              horária, terás de reconfirmar a matrícula dos alunos e dar nova carga horária aos professores.
+            </span>
+          </p>
+          <p class="fw-bold mb-1">Recomendações:</p>
+          <p class="mb-1">1º Antes de encerrar, atende todas reclamações dos alunos nas pautas.</p>
+          <p class="mb-2">2º Imprime as versões finais das pautas consolidadas.</p>
+          <p class="mb-0">Se já fez os dois passos acima recomendados e deseja continuar, clica em "Encerrar ano
+            Lectivo"</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <input type="hidden" name="idAno" value="{{anoLectivo._id}}">
+          <button type="submit" class="btn btn-danger">Encerrar anoLectivo</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="assets/bootstrap.bundle.min.js"></script>
+<script>
+  function deletarAno() {
+    let el = document.getElementById('deletarAno');
+    let minha_modal = new bootstrap.Modal(el);
+    minha_modal.show();
+  }
+
+  function desactivarAnoLectivo() {
+    let el = document.getElementById('desactivarAnoLectivo');
+    let minha_modal = new bootstrap.Modal(el);
+    minha_modal.show();
+  }
+</script>

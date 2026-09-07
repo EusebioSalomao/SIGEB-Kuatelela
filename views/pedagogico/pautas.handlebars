@@ -1,0 +1,242 @@
+<link rel="stylesheet" href="/assets/css/pautas.css">
+{{!-- Nota: se este ficheiro é renderizado dentro de um layout com <head>,
+     mova a tag <link> acima para lá. Deixei aqui para o CSS funcionar
+     mesmo que este parcial seja usado de forma isolada. --}}
+
+{{#if pautasAnual}}
+{{!-- Pautas dos anos anteriores - Encerrados --}}
+<div class="container-fluid pauta-page">
+
+    <div class="pauta-header d-flex flex-wrap align-items-center justify-content-between gap-2 py-3">
+        <div class="d-flex align-items-center gap-2">
+            <a href="/anosLectivo" class="btn btn-pauta-outline btn-sm" aria-label="Voltar">&larr;</a>
+            <h1 class="h4 mb-0">
+                <span class="text-muted fw-normal">Ano Lectivo:</span>
+                <span class="fw-semibold">{{anoLectivo.codigo}}</span>
+            </h1>
+        </div>
+        <h2 class="h5 mb-0 pauta-title">Pautas</h2>
+    </div>
+
+    <div class="pauta-section mt-4">
+        <h3 class="pauta-section-title">10ª Classe</h3>
+        <div class="row g-3">
+            {{#each pautas10}}
+            <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                <div class="card pauta-card h-100 text-center">
+                    <div class="card-body d-flex flex-column">
+                        <span class="pauta-label">Pauta</span>
+                        <div class="h5 mt-3 mb-1">{{classe.designacao}}</div>
+                        <hr>
+                        <div class="pauta-curso mb-2">{{curso.descricao}}</div>
+                        <div class="mb-3">Turma: <span class="pauta-badge">{{turma.codigo}}</span></div>
+                        <a href="/anosLectivo/pauta3/{{_id}}" class="btn btn-pauta btn-sm mt-auto">Ver Pautas</a>
+                    </div>
+                </div>
+            </div>
+            {{else}}
+            <div class="col-12">
+                <p class="pauta-empty text-center mb-0">Nenhuma pauta da 10ª Classe</p>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+
+    <div class="pauta-section">
+        <h3 class="pauta-section-title">11ª Classe</h3>
+        <div class="row g-3">
+            {{#each pautas11}}
+            <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                <div class="card pauta-card h-100 text-center">
+                    <div class="card-body d-flex flex-column">
+                        <span class="pauta-label">Pauta</span>
+                        <div class="h5 mt-3 mb-1">{{idClasse.designacao}}</div>
+                        <hr>
+                        <div class="pauta-curso mb-2">{{idCurso.descricao}}</div>
+                        <div class="mb-3">Turma: <span class="pauta-badge">{{codigo}}</span></div>
+                        <a href="/pedagogico/pauta3/{{_id}}" class="btn btn-pauta btn-sm mt-auto">Ver Pautas</a>
+                    </div>
+                </div>
+            </div>
+            {{else}}
+            <div class="col-12">
+                <p class="pauta-empty text-center mb-0">Nenhuma pauta 11ª Classe</p>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+
+    <div class="pauta-section">
+        <h3 class="pauta-section-title">12ª Classe</h3>
+        <div class="row g-3">
+            {{#each pautas12}}
+            <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                <div class="card pauta-card h-100 text-center">
+                    <div class="card-body d-flex flex-column">
+                        <span class="pauta-label">Pauta</span>
+                        <div class="h5 mt-3 mb-1">{{idClasse.designacao}}</div>
+                        <hr>
+                        <div class="pauta-curso mb-2">{{idCurso.descricao}}</div>
+                        <div class="mb-3">Turma: <span class="pauta-badge">{{codigo}}</span></div>
+                        <a href="/pedagogico/pauta3/{{_id}}" class="btn btn-pauta btn-sm mt-auto">Ver Pauta</a>
+                    </div>
+                </div>
+            </div>
+            {{else}}
+            <div class="col-12">
+                <p class="pauta-empty text-center mb-0">Nenhuma pauta da 12ª Classe</p>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+
+</div>
+{{else}}
+
+{{!-- Painel para o ano actual (Pautas) --}}
+<div class="container-fluid pauta-page">
+
+    <div class="pauta-header d-flex flex-wrap align-items-center justify-content-between gap-2 py-3">
+        <div class="d-flex align-items-center gap-2">
+            <a href="/pedagogico" class="btn btn-pauta-outline btn-sm" aria-label="Voltar">&larr;</a>
+            <h1 class="h4 mb-0">
+                <span class="text-muted fw-normal">Ano Lectivo:</span>
+                <span class="fw-semibold">{{anoLectivo.codigo}}</span>
+            </h1>
+        </div>
+        <a href="#" onclick="gerearPauta()" class="btn btn-pauta-primary btn-sm">Gerar pauta</a>
+    </div>
+
+    <div class="pauta-section mt-4">
+        <h3 class="pauta-section-title">10ª Classe</h3>
+        <div class="row g-3">
+            {{#each pautas10}}
+            <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                <div class="card pauta-card h-100 text-center">
+                    <div class="card-body d-flex flex-column">
+                        <span class="pauta-label">Pautas</span>
+                        <div class="h6 mt-2 mb-1">{{idClasse.designacao}}</div>
+                        <hr>
+                        {{!-- <span class="pauta-curso"> {{idCurso.descricao}} </span> --}}
+                        <div class="mb-3">Turma: <span class="pauta-badge">{{codigo}}</span></div>
+                        <a href="/pedagogico/pauta3/{{_id}}" class="btn btn-pauta btn-sm mt-auto">Ver Pautas</a>
+                    </div>
+                </div>
+            </div>
+            {{else}}
+            <div class="col-12">
+                <p class="pauta-empty text-center mb-0">Nenhuma pauta da 10ª Classe</p>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+
+    <div class="pauta-section">
+        <h3 class="pauta-section-title">11ª Classe</h3>
+        <div class="row g-3">
+            {{#each pautas11}}
+            <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                <div class="card pauta-card h-100 text-center">
+                    <div class="card-body d-flex flex-column">
+                        <span class="pauta-label">Pautas</span>
+                        <div class="h6 mt-2 mb-1">{{idClasse.designacao}}</div>
+                        <hr>
+                        {{!-- <span class="pauta-curso"> {{idCurso.descricao}} </span> --}}
+                        <div class="mb-3">Turma: <span class="pauta-badge">{{codigo}}</span></div>
+                        <a href="/pedagogico/pauta3/{{_id}}" class="btn btn-pauta btn-sm mt-auto">Ver Pautas</a>
+                    </div>
+                </div>
+            </div>
+            {{else}}
+            <div class="col-12">
+                <p class="pauta-empty text-center mb-0">Nenhuma pauta 11ª Classe</p>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+
+    <div class="pauta-section">
+        <h3 class="pauta-section-title">12ª Classe</h3>
+        <div class="row g-3">
+            {{#each pautas12}}
+            <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                <div class="card pauta-card h-100 text-center">
+                    <div class="card-body d-flex flex-column">
+                        <span class="pauta-label">Pauta</span>
+                        <div class="h6 mt-2 mb-1">{{idClasse.designacao}}</div>
+                        <hr>
+                        {{!-- <span class="pauta-curso"> {{idCurso.descricao}} </span> --}}
+                        <div class="mb-3">Turma: <span class="pauta-badge">{{codigo}}</span></div>
+                        <a href="/pedagogico/pauta3/{{_id}}" class="btn btn-pauta btn-sm mt-auto">Ver Pauta</a>
+                    </div>
+                </div>
+            </div>
+            {{else}}
+            <div class="col-12">
+                <p class="pauta-empty text-center mb-0">Nenhuma pauta da 12ª Classe</p>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+
+</div>
+{{/if}}
+
+
+{{!-- MODAIS --}}
+
+<!-- Modal gerearPauta -->
+<form action="/pedagogico/gerarPauta" method="post">
+    <div class="modal" tabindex="-1" data-bs-backdrop="static" id="gerearPauta">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title h5 mb-0">Gerar pauta</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-pauta mb-3">
+                        <span class="fw-bold">Atenção!</span> Antes de gerar uma pauta certifica-se de que todos
+                        professores lançaram notas finais do período correspondente.
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="trimestre" class="form-label">Trimestre:</label>
+                        <select name="trimestre" id="trimestre" class="form-select" required>
+                            <option value="selecionar">Seleciona o Trimestre</option>
+                            <option value="trimestre1">Primeiro Trimestre</option>
+                            <option value="trimestre2">Segundo Trimestre</option>
+                            <option value="trimestre3">Terceiro Trimestre</option>
+                            <option value="pautaFinal">Pauta Final</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="turma" class="form-label">Turma:</label>
+                        <select name="turma" id="turma" class="form-select" required>
+                            <option value="selecionar">Selecionar</option>
+                            {{#each turmas}}
+                            <option value="{{_id}}">{{codigo}}</option>
+                            {{else}}
+                            <option value="" disabled>Nenhuma turma registrada</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-pauta-outline" data-bs-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-pauta-primary">Gerar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script src="assets/bootstrap.bundle.min.js"></script>
+<script>
+    function gerearPauta() {
+        let el = document.getElementById('gerearPauta');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+</script>

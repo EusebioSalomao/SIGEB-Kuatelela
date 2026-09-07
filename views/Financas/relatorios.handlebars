@@ -1,0 +1,103 @@
+<div class="container py-4">
+
+    <h2 class="text-center text-uppercase mb-4" style="letter-spacing: .3em;">Relatórios</h2>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3">
+        {{#each relGeral}}
+        <div class="col">
+            <div class="card text-center bg-secondary text-light h-100 shadow-sm">
+                <div class="card-body d-flex flex-column">
+                    <div class="lead">DIÁRIO</div>
+                    <hr class="text-light my-2">
+                    <div>{{idCurso.descricao}}</div>
+                    <div class="mb-3">
+                        Registros do dia <span class="fw-bold text-warning">{{codigo}}</span>
+                    </div>
+                    <a href="#" class="btn btn-sm btn-warning mt-auto" onclick="relDiario()">Ver</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card text-center bg-secondary text-light h-100 shadow-sm">
+                <div class="card-body d-flex flex-column">
+                    <div class="lead">SEMANAL</div>
+                    <hr class="text-light my-2">
+                    <div>{{idCurso.descricao}}</div>
+                    <div class="mb-3">
+                        Registros da semana <span class="fw-bold text-warning">{{codigo}}</span>
+                    </div>
+                    <form action="/financas/gerarRelSem" method="post" class="mt-auto">
+                        <input type="hidden" name="dia" value="2023-07-25">
+                        <button type="submit" class="btn btn-sm btn-warning">Ver</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card text-center bg-secondary text-light h-100 shadow-sm">
+                <div class="card-body d-flex flex-column">
+                    <div class="lead">MENSAL</div>
+                    <hr class="text-light my-2">
+                    <div>{{idCurso.descricao}}</div>
+                    <div class="mb-3">
+                        Registros do mês <span class="fw-bold text-warning">{{codigo}}</span>
+                    </div>
+                    <a href="/pedagogico/pauta/{{_id}}" class="btn btn-sm btn-warning mt-auto">Ver</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card text-center bg-secondary text-light h-100 shadow-sm">
+                <div class="card-body d-flex flex-column">
+                    <div class="lead">ANUAL</div>
+                    <hr class="text-light my-2">
+                    <div>{{idCurso.descricao}}</div>
+                    <div class="mb-3">
+                        Registros do ano <span class="fw-bold text-warning">{{codigo}}</span>
+                    </div>
+                    <a href="/pedagogico/pauta/{{_id}}" class="btn btn-sm btn-warning mt-auto">Ver</a>
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <div class="col-12">
+            <div class="h5 text-center text-muted py-4">Nenhuma pauta da 10ª Classe</div>
+        </div>
+        {{/each}}
+    </div>
+
+</div>
+
+{{!-- M O D A I S --}}
+<!-- Modal relDiario -->
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="relDiario">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form action="/financas/gerarRelDiario" method="post">
+                <div class="modal-header">
+                    <h3 class="modal-title h5 mb-0">Selecione o dia</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="diaRelatorio" class="form-label">Dia</label>
+                    <input type="date" id="diaRelatorio" name="dia" class="form-control" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-success">Gerar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="assets/bootstrap.bundle.min.js"></script>
+<script>
+    function relDiario() {
+        const modalEl = document.getElementById('relDiario');
+        new bootstrap.Modal(modalEl).show();
+    }
+</script>

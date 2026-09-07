@@ -1,0 +1,216 @@
+/*
+ * Estilos exclusivos da minipauta.
+ * Mantém as cores Bootstrap já usadas e melhora apenas a leitura e o
+ * comportamento responsivo desta página.
+ */
+.mini-prof {
+    max-width: 1400px;
+    padding: 1.25rem 1rem 2rem;
+    --mp-slate: #3f4d5c;
+    --mp-slate-dark: #303b47;
+    --mp-blue-gray: #607487;
+    --mp-soft-blue: #dce4ea;
+    --mp-soft-green: #dce8e1;
+    --mp-soft-amber: #e9e1cf;
+    --mp-muted-red: #eadbdd;
+}
+
+.minipauta-alert {
+    max-width: 900px;
+    margin: .75rem auto;
+}
+
+.minipauta-heading {
+    min-height: 4.25rem;
+    display: flex;
+    align-items: center;
+}
+
+.minipauta-guide {
+    border-radius: .35rem;
+    background-color: var(--mp-slate) !important;
+}
+
+.minipauta-guide > .row {
+    padding: .55rem .75rem !important;
+}
+
+.minipauta-guide-text {
+    display: inline-block;
+    margin-left: .75rem;
+    vertical-align: middle;
+    line-height: 1.25;
+    color: #f1f3f5 !important;
+}
+
+/* Cores discretas para os elementos Bootstrap desta página. */
+.mini-prof .bg-secondary {
+    background-color: var(--mp-slate) !important;
+}
+
+.mini-prof .bg-dark,
+.mini-prof .mybg-dark {
+    background-color: var(--mp-slate-dark) !important;
+}
+
+.mini-prof .bg-info,
+.mini-prof .mybg-info2 {
+    background-color: var(--mp-soft-blue) !important;
+    color: #34495a !important;
+}
+
+.mini-prof .bg-light,
+.mini-prof .mybg-light {
+    background-color: #eef1f3 !important;
+    color: #4b5966 !important;
+}
+
+.mini-prof .bg-laranja {
+    background-color: var(--mp-blue-gray) !important;
+    border-color: var(--mp-blue-gray) !important;
+}
+
+.mini-prof .btn-warning {
+    background-color: var(--mp-soft-amber);
+    border-color: #d2c5a9;
+    color: #4f4a3d;
+}
+
+.mini-prof .btn-danger {
+    background-color: var(--mp-muted-red);
+    border-color: #d6bcc0;
+    color: #653f45;
+}
+
+.mini-prof .btn-primary {
+    background-color: var(--mp-blue-gray);
+    border-color: var(--mp-blue-gray);
+}
+
+.minipauta-actions {
+    border: 1px solid rgba(0, 0, 0, .08);
+    border-radius: .5rem;
+    background: #fff;
+    margin-bottom: 1rem;
+}
+
+.minipauta-actions button,
+.minipauta-actions a {
+    margin: .15rem;
+}
+
+.minipauta-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: .4rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
+}
+
+.minipauta-table {
+    min-width: 980px;
+    margin-bottom: 0;
+    background: #fff;
+}
+
+.minipauta-table th,
+.minipauta-table td {
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+.minipauta-table thead th {
+    font-size: .82rem;
+    letter-spacing: .02em;
+}
+
+.minipauta-table thead tr:first-child th {
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+}
+
+.minipauta-table tbody td:first-child {
+    font-weight: 700;
+}
+
+.modal-content {
+    border: 0;
+    border-radius: .65rem;
+    overflow: hidden;
+}
+
+.modal-header {
+    background: #f8f9fa;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+
+.modal-body.input-box,
+.modal-body.input-box2 {
+    padding: 1.25rem;
+}
+
+.modal-body label {
+    display: block;
+    margin: .75rem 0 .35rem;
+    font-weight: 600;
+}
+
+.modal-body select,
+.modal-body input[type="number"] {
+    width: 100%;
+    min-height: 2.35rem;
+    padding: .35rem .6rem;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
+
+.modal-body .table {
+    min-width: 0;
+}
+
+@media (max-width: 767.98px) {
+    .mini-prof {
+        padding: .75rem .5rem 1.5rem;
+    }
+
+    .minipauta-heading {
+        min-height: 0;
+    }
+
+    .minipauta-guide-text {
+        display: block;
+        margin: .65rem 0 0;
+    }
+
+    .minipauta-actions .btn {
+        width: 100%;
+        margin: .15rem 0;
+    }
+
+    .minipauta-actions .text-primary,
+    #lead-notaatraso {
+        display: block;
+        margin-top: .5rem;
+    }
+
+    .modal-dialog {
+        margin: .5rem;
+    }
+}
+
+@media print {
+    .minipauta-actions,
+    .modal,
+    .minipauta-alert {
+        display: none !important;
+    }
+
+    .mini-prof {
+        max-width: none;
+        padding: 0;
+    }
+
+    .minipauta-table-wrap {
+        overflow: visible;
+        box-shadow: none;
+    }
+}

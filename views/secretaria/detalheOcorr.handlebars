@@ -1,0 +1,27 @@
+<h2>Detalhes da ocorrencia</h2>
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            {{#if ocorrencia.descricao}}<span class="fw-bold" >Descrição:</span><span> {{ocorrencia.descricao}} </span><br>{{else}}{{/if}} 
+            {{#if ocorrencia.tipoOcorrencia}}<span class="fw-bold" >Tipo:</span><span> {{ocorrencia.tipoOcorrencia}} </span><br>{{else}}{{/if}} 
+            {{#if ocorrencia.nomeDoSolicitante}}<span class="fw-bold" >Requerente:</span><span> {{ocorrencia.nomeDoSolicitante}} </span><br>{{else}}{{/if}} 
+            {{#if ocorrencia.numBI}}<span class="fw-bold" >Nº BI:</span><span> {{ocorrencia.numBI}} </span><br>{{else}}{{/if}} 
+            {{#if ocorrencia.turma}}<span class="fw-bold" >Turma:</span><span> {{ocorrencia.turma.codigo}} </span><br>{{else}}{{/if}} 
+            {{#if ocorrencia.numfaltas}}<span class="fw-bold" >F. por just:</span><span> {{ocorrencia.numfaltas}} </span><br>{{else}}{{/if}} 
+            {{#if ocorrencia.disciplina}}<span class="fw-bold" >Disciplina:</span><span> {{ocorrencia.disciplina}} </span><br>{{else}}{{/if}} 
+            {{#if ocorrencia.origem}}<span class="fw-bold" >Origem:</span><span> {{ocorrencia.origem}} </span><br>{{else}}{{/if}} 
+            {{#if ocorrencia.estado}}<span class="fw-bold" >Cituação:</span><span> {{ocorrencia.estado}} </span><br>{{else}}{{/if}} 
+            {{#if ocorrencia.emissor}}<span class="fw-bold" >Remetente:</span><span> {{ocorrencia.emissor}} </span><br>{{else}}{{/if}} 
+
+
+            <br>
+            <br>
+            {{#if ocorrencia.funcionario}}<span class="fw-bold" >Att:</span><span> {{ocorrencia.funcionario}} </span><br>{{else}}{{/if}} 
+            
+        </div>
+        <div class="col-8 card card-body">
+            <img src="/uploads/{{ocorrencia.copOcorrencia}}" alt="">
+        </div>
+    </div>
+</div>

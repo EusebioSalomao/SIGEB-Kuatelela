@@ -1,0 +1,65 @@
+<div class="conteiner">
+    <div class="form-headear2">
+        <div class="title">
+            <h1>Alterando dados - > <span>{{candidato.nome}}</span></h1>
+        </div>
+    </div>
+
+   <div class="row">
+    <div class="col-6 offset-3">
+         {{#each erros}}
+        <div class="alert alert-danger text-center">{{texto}}</div>
+    {{else}}
+    {{/each}}
+    </div>
+   </div>
+
+        <form action="/candidatos/edidar" method="post">
+            <div class="row">
+            <div class="col-6 mt-3">
+
+                <div class="input-box">
+                    <label for="nome">Nome:</label>
+                    <input type="text" name="nome" value="{{candidato.nome}}" required>
+                </div>
+                <div class="input-box">
+                    <label for="numBI">Nº BI:</label>
+                    <input type="text" name="numBI" value="{{candidato.numBI}}" required>
+                </div>
+                <div class="input-box">
+                    <label for="dataNascimento">Data de nascimento:</label>
+                    <input type="date" name="dataNascimento" value="{{candidato.dataNascimento}}" required>
+                </div>
+            </div>
+            <div class="col-6 mt-3">
+
+                <div class="input-box">
+                    <label for="genero">Genero</label>
+                    <select name="genero" required>
+                        <option value="selecionar">Selecionar</option>
+                        <option value="feminino">Feminino</option>
+                        <option value="masculino">Masculino</option>
+                    </select>
+                </div>
+                <div class="input-box">
+                    <label for="contacto">Contacto:</label>
+                    <input type="text" name="contacto" value="{{candidato.contacto}}" required>
+                </div>
+                <div class="input-box">
+                    <label for="curso">curso</label>
+                    <select name="curso" id="" required>
+                        <option value="selecionar">Seleciona o curso</option>
+                        <option value="cHumanas">Ciencias Humanas</option>
+                    </select>
+
+                </div>
+            </div>
+        </div>
+        
+        <input type="hidden" name="id" value="{{candidato._id}}">
+        <div class="text-center px-4 mx-4"> 
+            <a href="/candidatos" class="btn my-btn mt-3" >Cancelar</a> 
+        <button type="submit" class="my-btn">Salvar alterações</button>
+        </div>
+        </form>
+</div>

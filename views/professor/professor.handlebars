@@ -1,0 +1,103 @@
+
+
+<main class="professor-page">
+    <div class="container">
+        <header class="professor-header" id="prof-title">
+            <span class="professor-eyebrow">Área do professor</span>
+            <h1>Perfil</h1>
+        </header>
+
+        <section class="profile-card perfil-prof" aria-labelledby="profile-name">
+            <div class="row g-4 align-items-stretch">
+                <div class="col-12 col-md-5 col-lg-3">
+                    <div class="profile-photo-panel">
+                        {{#if professor.foto}}
+                        <img src="/uploads/{{professor.foto}}" class="fotoAluno" alt="Foto de {{professor.nome}}">
+                        {{else}}
+                        <img src="/img/usermodelo.png" class="fotoAluno" alt="Foto de perfil padrão">
+                        {{/if}}
+                        <a href="#" class="btn btn-outline-light btn-sm profile-photo-action">Editar foto</a>
+                        <a href="#personal-details-collapse" class="profile-details-toggle collapsed"
+                            data-bs-toggle="collapse" role="button" aria-controls="personal-details-collapse"
+                            aria-expanded="false">Ver dados pessoais</a>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-7 col-lg-5 personal-details">
+                    <div class="profile-details accordion" id="personal-details-accordion">
+                        <div class="accordion-item">
+                            <div class="accordion-collapse collapse" id="personal-details-collapse">
+                                <div class="accordion-body">
+                        <span class="section-label">Dados pessoais</span>
+                        <h2 id="profile-name">{{professor.nome}}</h2>
+                        <dl class="profile-data">
+                            <div><dt>Função</dt><dd>{{professor.funcao}}</dd></div>
+                            <div><dt>Nº BI</dt><dd>{{professor.numBI}}</dd></div>
+                            <div><dt>Idade</dt><dd>{{professor.idade}} anos</dd></div>
+                            <div><dt>Especialidade</dt><dd>{{professor.especialidade}}</dd></div>
+                            <div><dt>Residente</dt><dd>{{professor.morada}}</dd></div>
+                            <div><dt>Contacto</dt><dd>{{professor.contacto}}</dd></div>
+                        </dl>
+
+                        {{#if desatualizado}}
+                        <form action="/professor/actualizarDados" method="post" class="update-form">
+                            <input type="hidden" name="idProfessor" value="{{professor._id}}">
+                            <button type="submit" class="btn btn-primary btn-sm">
+                                Clica aqui para actualizar seus dados
+                            </button>
+                        </form>
+                        {{/if}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-4">
+                    <nav class="professor-menu" aria-label="Menu do professor">
+                        <span class="section-label">Acesso rápido</span>
+                        <h2>Menu</h2>
+                        <div class="menu-links">
+                            <a href="/professor/turmas/{{professor._id}}" class="menu-item">Turmas <span aria-hidden="true">→</span></a>
+                            <a href="/professor/minipautas/{{professor._id}}" class="menu-item">Mini-Pautas <span aria-hidden="true">→</span></a>
+                            {{#if juriPresidente}}
+                            <a href="/pedagogico/conselhoDeNotas/{{professor._id}}" class="menu-item">Conselho de Notas <span aria-hidden="true">→</span></a>
+                            {{/if}}
+                            {{#if coordCurso}}
+                            <a href="/homeCoordenacao/{{professor._id}}" class="menu-item">Coordenação <span aria-hidden="true">→</span></a>
+                            {{/if}}
+                            <a href="/professor/config" class="menu-item">Configurações <span aria-hidden="true">→</span></a>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </section>
+
+        <section class="profile-actions" id="prof-perfil-footer" aria-label="Outras opções">
+    {{!-- <div class="col-sm-12 col-md-6 col-lg-4 text-center bg-laranja text-light row menu-item "><a href="/professor/avaliacoes/{{professor._id}}" class="btn text-light btn-sm">AVALIAÇÕES ONLINE</a>
+    </div> --}}
+            <a class="action-item" href="#">Imagens</a>
+            <a href="/professor/solicitacoesProf" class="action-item">
+                Solicitações de justificação de falta <strong>({{ocorrencias.length}})</strong>
+            </a>
+        </section>
+    </div>
+</main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const details = document.getElementById('personal-details-collapse');
+        const toggle = document.querySelector('[href="#personal-details-collapse"]');
+
+        if (!details || !toggle) return;
+
+        const updateToggleText = function () {
+            const isVisible = details.classList.contains('show');
+            toggle.textContent = isVisible ? 'Ocultar dados pessoais' : 'Ver dados pessoais';
+        };
+
+        details.addEventListener('shown.bs.collapse', updateToggleText);
+        details.addEventListener('hidden.bs.collapse', updateToggleText);
+        updateToggleText();
+    });
+</script>

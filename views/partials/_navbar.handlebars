@@ -1,0 +1,78 @@
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark" id="main-navbar">
+  <div class="container">
+    <a class="navbar-brand" id="marca" href="/" aria-label="SIGEB - Instituto Médio Politécnico Privado Kuatelela">
+      <span class="brand-mark">K</span>
+      <span>SIGEB<span class="brand-divider">·</span>Instituto Kuatelela</span>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-links"
+      aria-controls="navbar-links" aria-expanded="false" aria-label="Abrir menu de navegação">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbar-links">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/user/perfil">Início</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/sobreNos">Sobre nós</a>
+        </li>
+        {{#if user.eAdmin}}
+        {{#if user._openAnosLectivo}}
+        <li class="nav-item">
+          <a class="nav-link" href="/anosLectivo">Anos lectivos</a>
+        </li>
+        {{/if}}
+        <li class="nav-item">
+          <a class="nav-link" href="/candidatos">Candidatos</a>
+        </li>
+        {{#if user._openDefinitionSystem}}
+        <li class="nav-item">
+          <a class="nav-link" href="/definicoes">Definições</a>
+        </li>
+        {{/if}}
+        {{/if}}
+        <li class="nav-item">
+          <button type="button" class="nav-link nav-action" data-bs-toggle="modal" data-bs-target="#minha">
+            Consultar candidatura
+          </button>
+        </li>
+      </ul>
+
+      <div class="navbar-actions">
+        <a href="/secretaria/informase" class="btn btn-outline-light btn-sm" id="informe">
+          Informe-se
+        </a>
+        {{#if user}}
+        <a href="/user/perfil" class="nav-link nav-profile">Perfil</a>
+        <a class="nav-link nav-logout" href="/user/logout">Sair</a>
+        {{else}}
+        <a class="nav-link nav-login" href="/user/login">Entrar</a>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Modal de consulta de candidatura -->
+<div class="modal fade" tabindex="-1" data-bs-backdrop="static" id="minha" aria-labelledby="consulta-title"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <form action="/candidatos/consultar" method="post" class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="consulta-title">Consultar candidatura</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+      <div class="modal-body">
+        <label for="bi" class="form-label">Número do Bilhete de Identidade</label>
+        <input type="text" class="form-control" id="bi" name="bi"
+          placeholder="Digite o número do Bilhete de Identidade" autocomplete="off" required>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Fechar</button>
+        <button type="submit" class="btn btn-primary">Consultar</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,104 @@
+<div class="container actualiza-dados-aluno">
+<div class="form-headear">
+    <div class="col-12 text-center">
+        <h3 class="main-title">Actualiza seus Dados para continuar</h3>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-6 offset-3">
+        {{#each erros}}
+        <div class="alert alert-danger text-center">{{texto}}</div>
+        {{else}}
+        {{/each}}
+    </div>
+</div>
+    <div class="card input-box">
+        <div class="card-body form-candidato mybox">
+            <form action="/alunos/actualizaDadosAluno" method="post">
+
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-6 p-3">
+                        <div class="lead text-info">Informe os dados verdadeiros para evitar constragimentos</div>
+                        <label for="nome">Nome:</label>
+                        <input type="text" name="nome" value="{{aluno.nome}}" class="form-control" disabled>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-6">
+                                <label for="numBI">BI:</label>
+                                <input type="text" name="numBI" value="" class="form-control text-center" required>
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-6">
+                                <label for="contacto">Contacto:</label>
+                                <input type="text" name="contacto" value="" class="form-control text-center"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-3">
+                                <label for="genero">Genero:</label>
+                                <input type="text" name="genero" value="{{aluno.genero}}" class="form-control text-center" disabled
+                                    required>
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-5">
+                                <label for="dataNascimento">Data de Nascimento:</label>
+
+                                <input type="date" name="dataNascimento" value="" class="form-control text-center" required>
+
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6 p-3">
+                        <div class="lead text-danger">Dados adicionais</div>
+                        <label for="filiacao">Filiação<span class="text-danger">*</span>:</label>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-6">
+                                <input type="text" name="pai" placeholder="Escreve o nome do Pai" class="form-control"
+                                    required>
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-6">
+                                <input type="text" name="mae" placeholder="Escreve o nome da Mãe" class="form-control"
+                                    required>
+                            </div>
+                        </div>
+                        <label for="escolaAnt">Escola anterior<span class="text-danger">*</span>:</label>
+                        <input type="text" name="escolaAnt" placeholder="Ecola onde fez a 9ª classe"
+                            class="form-control" required>
+                        <label for="morada">Morada<span class="text-danger">*</span>:</label>
+                        <input type="text" name="morada" placeholder="exemplo: bairro/Município" class="form-control"
+                            required>
+
+                        
+                    </div>
+                    <hr>
+                        <div class="bg-light p-3 dados-encarregado">
+
+                            <h4 class="text-center">Dados do encarregado de educação</h4>
+                            <label for="nomeEncarregado">Nome<span class="text-danger">*</span>:</label>
+                            <input type="text" name="nomeEncarregado" placeholder="informe o nome do encarregado"
+                                class="form-control" required>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="proficao">Profissão:</label>
+                                    <input type="text" name="proficao" placeholder="Opcional" class="form-control">
+                                </div>
+                                <div class="col-6">
+                                    <label for="contactoEncarregado">Contacto:</label>
+                                    <input type="text" name="contactoEncarregado" class="form-control">
+                                </div>
+                            </div>
+                            (<span class="text-danger">*</span>) Campos obrigatórios
+                        </div>
+                        <div>Obs: <span class="text-danger mt-2">Antes de actualizar certifica-se que inseriste os dados correctamente</span></div>
+                        {{!-- <div>Obs: <span class="text-info">Carregue uma imagem para o seu perfil</span></div> --}}
+
+                                <input type="hidden" name="idAluno" value="{{aluno._id}}">
+                                {{!-- <a href="#" class="btn btn-danger mt-4">Cancelar</a> --}}
+
+                               {{!--  <input type="file" name="fotoAluno" class="form-control" required><br> --}}
+                                <button type="submit" class="btn btn-sm btn-success mt-2">Actualizar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

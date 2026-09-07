@@ -1,0 +1,123 @@
+:root {
+        --pedago-orange: #b8753f;
+        --pedago-orange-dark: #8f572f;
+        --pedago-navy: #263746;
+        --pedago-slate: #56636c;
+        --pedago-background: #f4f6f8;
+        --pedago-border: #e1e6eb;
+}
+
+.pedago-page {
+        min-height: 100vh;
+        background: var(--pedago-background);
+        color: var(--pedago-navy);
+}
+
+.pedago-shell {
+        max-width: 1180px;
+}
+
+.pedago-header {
+        border-bottom: 1px solid var(--pedago-border);
+        padding-bottom: 1.25rem;
+}
+
+.pedago-eyebrow {
+        color: var(--pedago-orange-dark);
+        font-size: .75rem;
+        font-weight: 700;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+}
+
+.title-pedagogico {
+        color: var(--pedago-navy);
+        font-size: clamp(1.7rem, 3vw, 2.35rem);
+        font-weight: 700;
+        text-transform: uppercase;
+}
+
+.pedago-menu-item {
+        align-items: center;
+        background: var(--pedago-slate);
+        border: 1px solid transparent;
+        border-radius: .65rem;
+        box-shadow: 0 .25rem .7rem rgba(38, 55, 70, .08);
+        color: #fff;
+        display: flex;
+        font-size: 1rem;
+        font-weight: 600;
+        justify-content: center;
+        min-height: 4rem;
+        padding: .85rem 1rem;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color .2s ease, border-color .2s ease, transform .2s ease;
+}
+
+.pedago-menu-item:hover,
+.pedago-menu-item:focus-visible {
+        background: var(--pedago-navy);
+        border-color: rgba(255, 255, 255, .5);
+        color: #fff;
+        transform: translateY(-2px);
+}
+
+.pedago-menu-item-accent {
+        background: var(--pedago-orange);
+}
+
+.pedago-menu-item-accent:hover,
+.pedago-menu-item-accent:focus-visible {
+        background: var(--pedago-orange-dark);
+}
+
+.pedago-menu-item-orders {
+        gap: .55rem;
+}
+
+.pedago-badge {
+        align-items: center;
+        background: rgba(255, 255, 255, .18);
+        border-radius: 999px;
+        display: inline-flex;
+        font-size: .85rem;
+        justify-content: center;
+        min-width: 1.6rem;
+        padding: .15rem .45rem;
+}
+
+.pedago-divider {
+        border-top: 1px solid var(--pedago-border);
+}
+
+.pedago-management {
+        border-top: 1px solid var(--pedago-border);
+        padding-top: 1.5rem;
+}
+
+.pedago-management-button {
+        background: var(--pedago-orange);
+        border: 0;
+        border-radius: .5rem;
+        color: #fff;
+        font-weight: 600;
+        padding: .75rem 1.25rem;
+}
+
+.pedago-management-button:hover,
+.pedago-management-button:focus-visible {
+        background: var(--pedago-orange-dark);
+        color: #fff;
+}
+
+@media (max-width: 575.98px) {
+        .pedago-page {
+                padding-left: .75rem !important;
+                padding-right: .75rem !important;
+        }
+
+        .pedago-menu-item {
+                min-height: 3.5rem;
+        }
+}

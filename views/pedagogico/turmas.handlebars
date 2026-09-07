@@ -1,0 +1,126 @@
+<main class="turmas-page container-fluid py-4 py-lg-5">
+    <div class="container turmas-shell">
+        {{#if msg}}
+        <div class="alert alert-success turmas-alert text-center" role="alert">{{msg}}</div>
+        {{/if}}
+
+        {{#if exist}}
+        <div class="alert alert-danger turmas-alert text-center" role="alert">{{exist}}</div>
+        {{/if}}
+
+        <header class="turmas-header mb-4">
+            <p class="turmas-eyebrow mb-1">Área pedagógica</p>
+            <h1 class="mb-0">
+                <span class="text-secondary">Ano Lectivo:</span>
+                <span class="turmas-year">{{anoLectivo.codigo}}</span>
+            </h1>
+        </header>
+
+        <div class="turmas-toolbar mb-4" id="lead">
+            <a href="/pedagogico" class="btn btn-sm turmas-back-button">Voltar</a>
+            <span class="turmas-toolbar-title">Lista das turmas por classes</span>
+        </div>
+
+        <section aria-labelledby="turmas-heading">
+            <h2 id="turmas-heading" class="visually-hidden">Turmas por classe</h2>
+            <div class="accordion turmas-accordion" id="turmasAccordion">
+                <div class="accordion-item">
+                    <h3 class="accordion-header" id="title-turmas-10">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#turmas10Conteudo" aria-expanded="false"
+                            aria-controls="turmas10Conteudo">
+                            Turmas - 10ª Classe
+                        </button>
+                    </h3>
+                    <div id="turmas10Conteudo" class="accordion-collapse collapse"
+                        aria-labelledby="title-turmas-10" data-bs-parent="#turmasAccordion">
+                        <div class="accordion-body">
+                            {{#if turmas10.length}}
+                            <ul class="row g-3 turma-list list-unstyled mb-0">
+                                {{#each turmas10}}
+                                <li class="col-12 col-sm-6 col-lg-4">
+                                    <article class="turma-card turma-card-10 h-100 text-center">
+                                        <div class="turma-label">Turma</div>
+                                        <div class="turma-code">{{codigo}}</div>
+                                        <a href="/turmas/turma/{{_id}}" class="btn btn-sm turma-enter-button">Entrar</a>
+                                        <span class="turma-hint">Click para ver mais informações</span>
+                                    </article>
+                                </li>
+                                {{/each}}
+                            </ul>
+                            {{else}}
+                            <p class="empty-turma-state">Nenhuma turma da 10ª classe foi criada</p>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h3 class="accordion-header" id="title-turmas-11">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#turmas11Conteudo" aria-expanded="false"
+                            aria-controls="turmas11Conteudo">
+                            Turmas - 11ª Classe
+                        </button>
+                    </h3>
+                    <div id="turmas11Conteudo" class="accordion-collapse collapse"
+                        aria-labelledby="title-turmas-11" data-bs-parent="#turmasAccordion">
+                        <div class="accordion-body">
+                            {{#if turmas11.length}}
+                            <ul class="row g-3 turma-list list-unstyled mb-0">
+                                {{#each turmas11}}
+                                <li class="col-12 col-sm-6 col-lg-4">
+                                    <article class="turma-card turma-card-11 h-100 text-center">
+                                        <div class="turma-label">Turma</div>
+                                        <div class="turma-code">{{codigo}}</div>
+                                        <a href="/turmas/turma/{{_id}}" class="btn btn-sm turma-enter-button">Entrar</a>
+                                        <span class="turma-hint">Click para ver mais informações</span>
+                                    </article>
+                                </li>
+                                {{/each}}
+                            </ul>
+                            {{else}}
+                            <p class="empty-turma-state">Nenhuma turma da 11ª classe foi criada</p>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+
+                {{!-- TURMAS DA 12ª CLASSE --}}
+                <div class="accordion-item">
+                    <h3 class="accordion-header" id="title-turmas-12">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#turmas12Conteudo" aria-expanded="false"
+                            aria-controls="turmas12Conteudo">
+                            Turmas - 12ª Classe
+                        </button>
+                    </h3>
+                    <div id="turmas12Conteudo" class="accordion-collapse collapse"
+                        aria-labelledby="title-turmas-12" data-bs-parent="#turmasAccordion">
+                        <div class="accordion-body">
+                            {{#if turmas12.length}}
+                            <ul class="row g-3 turma-list list-unstyled mb-0">
+                                {{#each turmas12}}
+                                <li class="col-12 col-sm-6 col-lg-4">
+                                    <article class="turma-card turma-card-12 h-100 text-center">
+                                        <div class="turma-label">Turma</div>
+                                        <div class="turma-code">
+                                            {{codigo}}
+                                            <span class="turma-course">{{idCurso.sigla}}</span>
+                                        </div>
+                                        <a href="/turmas/turma/{{_id}}" class="btn btn-sm turma-enter-button">Entrar</a>
+                                        <span class="turma-hint">Click para ver mais informações</span>
+                                    </article>
+                                </li>
+                                {{/each}}
+                            </ul>
+                            {{else}}
+                            <p class="empty-turma-state">Nenhuma turma da 12ª classe foi criada</p>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>

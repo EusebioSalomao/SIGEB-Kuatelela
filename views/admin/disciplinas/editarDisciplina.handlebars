@@ -1,0 +1,43 @@
+<a href="#">
+
+    <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
+</a>
+
+
+
+<div class="container">
+    <div class="container">
+
+        <div class="card col-4 offset-4">
+            <div class="card-body">
+                <form action="/disciplinas/editarDisciplinaSave" method="post">
+
+
+                    <h2>Editar disciplina</h2>
+                    <hr>
+                    <div class="body p-3">
+
+                        <label for="nomeDisciplina">Nome da disciplina: </label>
+                        <input type="text" name="nomeDisciplina" value="{{disciplina.nomeDisciplina}}" id=""
+                            class="form-control">
+                        <label for="tempoSemanal">Tempo semanal</label>
+                        <input type="number" name="tempoSemanal" value="{{disciplina.tempoSemanal}}" id=""
+                            class="form-control">
+                    </div>
+                    <hr>
+                    <div class="modal-footer text-center">
+
+                        <input type="hidden" name="idCurso" value="{{disciplina.idCurso}}">
+                        <input type="hidden" name="idAno" value="{{disciplina.idAno}}">
+                        <input type="hidden" name="idDisciplina" value="{{disciplina._id}}">
+                        <input type="hidden" name="idClasse" value="{{disciplina.idClasse._id}}">
+
+                        <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Salvar</button>
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,86 @@
+<h2 class="text-center bg-info opacity-65 text-light">CLASSIFICAÇÕES DOS ALUNOS POR TRIMESTRE</h2>
+<hr>
+<div class="div text-center"><button onclick="selecaoMedia()" class="btn mybtn-primary">Clica aqui para selecionar e definir a média</button></div>
+<hr>
+
+<div class="display-5 text-center">Quando definires a média e o trimestre, os resultados apareceram aqui.</div>
+<div class="display-5 text-center">Podes também definir o curso que pretendes ver, ou analisar todos os cursos. <a href="#" class="link-underline-light link-opacity-50-hover" onclick="selecaoMedia()">Cliqui aqui!</a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Modal selecaoMedia-->
+
+<form action="/pedagogico/classificarMedia" method="post">
+    <div class="modal" tabindex="-1" data-bs-backdrop="static" id="selecaoMedia">
+        <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">SELEÇÃO POR MÉDIA</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body input-box">
+                        <div class="card">
+
+
+                        <label for="media">Médias a partir de:</label>
+                        <select name="media" id="" required>
+                            <option value="selecionar">Selecionar</option>
+                            <option value="doze">12 para cima</option>
+                            <option value="treze">13 para cima</option>
+                            <option value="catorze">14 para cima</option>
+                            
+                        </select>
+                        <select name="trimestre" id="" required>
+                            <option value="selecionar">Seleciona o Trimestre</option>
+                            <option value="trimestre1">Primeiro Trimestre</option>
+                            <option value="trimestre2">Segundo Trimestre</option>
+                            <option value="trimestre3">Terceiro Trimestre</option>
+                            <option value="pautaFinal">Média Final</option>
+                        </select>
+
+                        <label for="curso">Seleciona o curso:</label>
+                        <select name="curso" id="" required>
+                            <option value="selecionar">Seleciona o Curso</option>
+                            {{#each cursos}}
+                            <option value="{{_id}}"> {{descricao}} </option>
+                            {{else}}
+                            {{/each}}
+                            <option value="Curso de Ciências Humanas">Curso de Ciências Humanas</option>
+                            <option value="todos">Todos os Cursos</option>
+                        </select>
+
+
+                        </div>
+                    </div>
+                    <div class="modal-footer text-center">
+                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Feichar</button>
+                        <button type="submit" class="btn btn-success">Confirmar</button>
+                        
+                    </div>
+                </div>
+        </div>
+    </div>
+</form>
+
+<script src="assets/bootstrap.bundle.min.js" class="img-fluid"></script>
+<script>
+    function selecaoMedia() {
+        //alert(id)
+        let el = document.getElementById('selecaoMedia');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+
+</script>
+

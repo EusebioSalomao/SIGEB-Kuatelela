@@ -1,0 +1,92 @@
+<div class="container modal-content apagarAluno mt-3 pt-5">
+
+    <div class="col-10 offset-1 py-2">
+        <div class="card bg-light py-2">
+            <div class="card-body">
+                <div class="modal-header text-center h2 text-danger text-center">Deseja apagar esta Minipauta?</div>
+                <hr>
+
+                <div class="row">
+        <div class="col-6">
+
+        <div class="mynav mt-1">
+        <div class="mycardTurmas">
+            <div class=" card p-4 bg-light mybox">
+                <h3 class="text-primary fw-bold" > {{minipauta.nomeDisciplina}} </h3>
+                <p> {{minipauta.idClasse.designacao}} / <span class="text-secondary" >Turma: </span> <span class="text-info" >{{minipauta.idTurma.codigo}}</span> </p>
+                <a href="/professor/minipauta/{{_id}}" class="btn btn-sm btn-secondary"><span>Ver minipauta</span></a>
+                </div>   
+        </div>
+        </div>
+        </div>
+        <div class="col-6 text-sm pt-3 bg-light mt-1 text-justify text-dark">
+            <span class="fw-bold lead" >Minipauta da {{idClasse.designacao}}, turma {{idTurma.codigo}}</span><br>
+            <span class="text-primary">Notas lançadas: </span> 
+            <span class="text-sm">
+
+            {{#if lancadoAV1T1}}1ª AVCT1, {{else}}{{/if}}
+            {{#if lancadoAV2T1}}2ª AVCT1, {{else}}{{/if}}
+            {{#if lancadoAV3T1}}3ª AVCT1, {{else}}{{/if}}
+            {{#if lancadoPPT1}}PPT1, {{else}}{{/if}}
+            {{#if lancadoPTT1}}PTT1 {{else}}{{/if}};
+            
+            {{#if lancadoAV1T2}}1ª AVCT2, {{else}}{{/if}}
+            {{#if lancadoAV2T2}}2ª AVCT2, {{else}}{{/if}}
+            {{#if lancadoAV3T2}}3ª AVCT2, {{else}}{{/if}}
+            {{#if lancadoPPT2}}PPT2, {{else}}{{/if}}
+            {{#if lancadoPTT2}}PTT2 {{else}}{{/if}};
+
+            {{#if lancadoAV1T3}}1ª AVCT3, {{else}}{{/if}}
+            {{#if lancadoAV2T3}}2ª AVCT3, {{else}}{{/if}}
+            {{#if lancadoAV3T3}}3ª AVCT3, {{else}}{{/if}}
+            {{#if lancadoPPT3}}PPT3, {{else}}{{/if}}
+            {{#if lancadoPTT3}}PTT3 {{else}}{{/if}};
+
+            {{#if lancadoExameOral}}E.Oral, {{else}}{{/if}}
+            {{#if lancadoExameEscrito}}E. Escrito, {{else}}{{/if}} 
+            </span>
+
+            <div class="p mt-2 text-justify"><span class="fw-bold text-danger" >OBS: </span> Apenas os professores podem fazer a insersão de notas dos alunos nas minipautas correspondentes!</div>
+            <div class="row mt-2">
+                <div class="col-8 h6">
+                    <span>Pof: </span>
+                    <span class=" text-secondary fw-bold pt-2 pb-0"> {{minipauta.idProfessor.nome}} </span>
+                </div>
+                <div class="col-4">
+            <a href="#"><button class="btn btn-sm btn-warning" >Notificar professor</button></a>
+
+                </div>
+            </div>
+
+        </div>
+       </div>
+
+                <hr>
+                <div class="modal-footer text-center">
+                    <div class="row">
+                        <form action="/admin/eliminarMiniPauta" method="post">
+                        <input type="hidden" name="idMinipauta" value="{{minipauta._id}}" id="">
+                        <input type="hidden" name="idTurma" value="{{minipauta.idTurma._id}}" id="">
+                        <input type="hidden" name="nomeDisciplina" value="{{minipauta.nomeDisciplina}}" id="">
+                        <input type="hidden" name="idProfessor" value="{{professor._id}}" id="">
+                            <a href="/professor/minipautasCadPAdmin/{{professor._id}}"> <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button></a>
+                            <button type="submit" class="btn btn-danger" >Apagar</button>
+                        </form>
+                    </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+</script>

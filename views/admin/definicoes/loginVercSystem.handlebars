@@ -1,0 +1,26 @@
+<div class="container" id="container-log">
+    <div class="row">
+        <div class="col-4 mybox offset-4 card p-5 mt-4" id="telaLog">
+                <h6 class="text-center text-danger fw-bold" >vercSystem</h6>
+            <hr>
+            <h1 class="text-center mybox fw-bold mybg-warning">S I G E B </h1>
+            {{#if error}}
+            <div class="alert alert-danger">{{error}}</div>
+            {{else}}
+            {{/if}}
+            <hr>
+            <div class="card p-3">
+                <h3 class="text-center" ></h3>
+                <div class="card-body">
+                    <form action="/definicoes/vercSystemVerifyLog" method="post">
+                        <input type="text" name="username" placeholder="Usuário" class="form-control text-center" aria-placeholder="Usuário" required>
+                        <input type="password" name="senha" placeholder="Senha" class=" mt-2 form-control text-center" aria-placeholder="Senha" required>
+
+                        <button type="submit" class="btn btn-danger mt-2 form-control ">Logar</button>
+                    </form>
+                </div>
+            </div>
+            <div class="text-center"><span class="text-italic text-danger" >Verificação da Referencia de Hospedagem </span></div>
+        </div>
+    </div>
+</div>

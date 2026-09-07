@@ -1,0 +1,95 @@
+<div class="container avaliacoes mb-4">
+    <div class="text-end">
+        <button onclick="criarAvsliacao()" class="btn btn-sm btn-primary">Criar avalição</button>
+    </div>
+    <hr>
+    <div class="row">
+        {{!-- AVALIAÇÕES NÃO RESOLVIDAS --}}
+        <div class="col-sm-12 col-md-6 col-lg-6">
+            <h3 class="text-center text-secondary">Avaliações não resolvidads</h3>
+
+            {{#each avaliacoes}}
+
+            {{else}}
+            <div class="text-center text-sm mt-4 py-3 text-italic">Não ha nenhumma avaliação</div>
+            {{/each}}
+        </div>
+
+        {{!-- AVALIAÇÕES RESOLVIDAS --}}
+        <div class="col-sm-12 col-md-6 col-lg-6 border-rig">
+            <h3 class="text-center text-secondary">Avaliações resolvidas</h3>
+
+            {{#each avaliacoesResolvidas}}
+
+            {{else}}
+            <div class="text-center text-sm mt-4 py-3 text-italic">Não ha nenhumma avaliação</div>
+            {{/each}}
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+{{!-- M  O  D  A  I  S --}}
+
+<!-- Modal craiar avaliação-->
+
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="criarAvsliacao">
+  <div class="modal-dialog modal-dialog-centered">
+    <form action="/professor/criarAvaliacao" method="post">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Criar avaliação Online</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <label for="destino">Destinatário</label><br>
+          <select name="destinatario" class="form-control text-center" required>
+            {{!-- Descrição das turmas --}}
+            <option value="">Selecionar</option>
+            {{#each turmas}}
+            <option value="{{_id}}"> Todos alunos da {{classe}} - Turma: {{codigo}} </option>
+            {{else}}{{/each}}
+
+            {{!-- Descrição dos alunos --}}
+            {{#each alunos}}
+            <option value="{{_id}}"> {{nome}} </option>
+            {{else}}{{/each}}
+
+          </select>
+
+          <label for="tipo" class="mt-2">Tipo de Prguntas</label>
+          <select name="tipo" class="form-control text-center mb-2">
+            <option value="">Selecionar</option>
+            <option value="logica">Lógica / Verdadeira e falsa</option>
+            <option value="resposta">Respostas longas ou curtas</option>
+          </select>
+          <label for="numPerguntas">Número de perguntas</label>
+          <input type="number" name="numPerguntas" class="form-control text-center" max="10" min="1" required>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <input type="hidden" name="idProfessor" value="{{idProfessor}}">
+          <input type="hidden" name="idAno" value="{{anoLectivo._id}}">
+          <button type="submit" class="btn btn-primary">Continuar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<script src="assets/bootstrap.bundle.min.js" class="img-fluid"></script>
+<script>
+  function criarAvsliacao() {
+    let el = document.getElementById('criarAvsliacao');
+    let minha_modal = new bootstrap.Modal(el);
+    minha_modal.show();
+  }
+
+
+
+</script>

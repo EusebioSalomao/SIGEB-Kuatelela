@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PDF-Teste</title>
+    <style>
+        body {
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 1.6rem;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        section {
+            align-items: center;
+            margin-left: 4rem;
+            
+        }
+
+        p {
+            margin: 0.3px;
+            padding: 0px;
+        }
+        .text-size-8 {
+            font-size: 7pt !important;
+        }
+        .text-size-9 {
+            font-size: 8pt !important;
+        }
+
+        .text-size-10 {
+            font-size: 10pt;
+        }
+        .text-size-11 {
+            font-size: 11pt;
+        }
+        .text-size-12-11 {
+            font-size: 13pt;
+        }
+        .text-size-12 {
+            font-size: 15pt;
+        }
+        .text-size-13 {
+            font-size: 18pt;
+        }
+
+        .logor {
+            size: 10%;
+            margin-bottom: 0rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+        .text-italic {
+            font-style: italic;
+        }
+
+        .oriented90 {
+            writing-mode: vertical-rl !important; 
+            transform: rotate(180deg);
+        }
+        .cabeca-tr {
+            height: 8rem;
+        }
+        .cabeca-tr td{
+            writing-mode: vertical-rl !important; 
+        }
+
+        .negativa {
+            color: red;
+        }
+
+        .m-1 {
+            margin: 1rem;
+            padding: 0rem;
+        }
+
+        .fw-bold {
+            font-weight: bold;
+        }
+
+        .mt-3 {
+            margin-top: 2rem;
+        }
+
+        .row {
+            display: inline-block
+        }
+
+        .table-bordered {
+            border-collapse: collapse;
+            /* CSS2 */
+        }
+
+        .table-bordered td {
+            border: 1px solid black;
+        }
+        .lg-td-4 {
+            width: 24rem;
+        }
+        .lg-td-3 {
+            width: 18rem;
+        }
+        .lg-td-2 {
+            width: 10rem;
+        }
+        .lg-td-1-2 {
+            width: 8rem;
+        }
+
+        .table-bordered th {
+            border: 1px solid black;
+            background: #878383;
+            font-weight: bold;
+        }
+
+        ol {
+            list-style: start;
+        }
+
+        .lateral {
+            position: absolute;
+            right: 5rem;
+            top: 14.6rem;
+        }
+
+        .table-secondary {
+            background-color: #878383;
+        }
+
+        .m-r {
+            margin-right: 14rem;
+        }
+
+        .m-rp {
+            margin-right: 14rem;
+        }
+
+        .m-r2 {
+            margin-right: 16rem;
+        }
+
+        .mt-5 {
+            margin-right: 20rem;
+
+        }
+
+        .visto {
+            position: absolute;
+            top: 5rem;
+            margin-left: 4rem;
+        }
+        .nome-span {
+            width: 80% !important;
+            background-color: aqua;
+        }
+        .cab-nome {
+            width: 28rem;
+        }
+        .bg-rosa {
+            background-color: bisque !important;
+        }
+        .bg-info {
+            background-color: rgba(30, 151, 160, 0.345) !important;
+        }
+        .bg-info2 {
+            background-color: rgba(30, 131, 138, 0.521) !important;
+        }
+        .genero {
+            width: 1rem;
+        }
+        .genero-2 {
+            width: 1rem;
+            background-color: antiquewhite
+        }
+        .vermelhoVerde{
+            background-color: rgba(127, 255, 212, 0.42);
+            color: red;
+        }
+        .myText-primary2 {
+            color: rgb(13, 99, 121);
+        }
+    </style>
+</head>
+<body>
+    <div class="logo text-center"><img src="http://localhost:8081/img/logor.png" class="logor" alt="Logo"></div>
+    <div class="text-center text-size-12">
+        <p>República de Angola</p>
+        <p>Ministério da Educação</p>
+        <p>Governo da Província do Bié</p>
+        <p class="fw-bold">LICEU REI NDUNDUMA DO CUITO</p>
+
+        <!-- VITO -->
+        <div class="visto">
+            <div class="text-center">
+                <div class="fw-bold">A Directora</div>
+                <span>___________________</span><br>
+                <span>Lic. Emília Carla Adelino Cawaia
+                </span><br>
+                <span class="text-size-9">___/____/<%= ano %>
+                </span>
+            </div>
+        </div>
+        <div class="mt-3 myText-primary2 text-size-13 lead fw-bold"> <%= descCurso %> </div>
+        <div class="text-center"> <span class="fw-bold" >Ano Lectivo: </span>  <span class="myText-primary2" > <%= anoPdf %> </span> </div>
+        <div class=" lead fw-bold"> LISTA DE CANDIDATOS </div>
+    </div>
+    <section>
+
+    <table class="table-bordered text-size-12-11">
+        <thead class="table-secondary bg-info text-center">
+            <tr class="fw-bold">
+                <td rowspan="2">N/O</td>
+                <td rowspan="2" class="cab-nome">Nome Completo</td>               
+                    <td rowspan="2" class="lg-td-1">Idade</td>
+                    <td rowspan="2" class="lg-td-2">BI</td>
+                    <td rowspan="2" class="lg-td-1">Média</td>
+                    <td rowspan="2" class="lg-td-1-2">Obs</td>
+                </tr>
+                
+        </thead>
+        <tbody>
+            <ol start="4">
+
+                <% for(let i=0; i < alunosDoCurso.length; i++) { %>
+                    <tr>
+                        <% var n=i+1%>
+                            <td class="text-center">
+                                <%= n %>
+                            </td>
+                            <td class="cab-nome">
+                                <%= alunosDoCurso[i].nome.toUpperCase(); %>
+                            </td>
+                            <td class=" text-center"> <%= alunosDoCurso[i].idade %> </td>
+                            <td class=" text-center"> <%= alunosDoCurso[i].numBI %> </td>
+                            <td class=" text-center"> <%= alunosDoCurso[i].media %> </td>
+                            <% if(alunosDoCurso[i].naoAdmitido) { %><td class=" text-center negativa"> <%= alunosDoCurso[i].estado.toUpperCase(); %> </td> <%} else{ %><td class=" text-center"> <%= alunosDoCurso[i].estado.toUpperCase(); %> </td><% } %>
+    
+                    </tr>
+                    <% } %>
+
+            </ol>
+        </tbody>
+    </table>
+</section>
+
+    <div class="data mt-3 text-center text-size-12">
+        Cuito aos <%= dia %> de <%= mes %> de <%= ano %>.
+    </div>
+    <div class="">
+        <div class="fw-bold mt-3 text-center ">
+
+            <span class="m-r2">O Coordenador da turma</span> <span>O Subdirector Pedagógico</span> <br>
+        </div>
+        <div class="text-center">
+
+            <span class="m-r">_________________________</span> <span>_________________________</span><br>
+            <span class="m-r"></span> <span class="m-rp"></span>MSc. Frederico Sanji Figueiredo</span><br>
+        </div>
+    </div>
+    <aside class="text-center text-light">
+        <hr class="p-3">
+        <div class="text-sm text-center text-italic">Gerado pelo Sistema de Gestão escolar do Liceu Rei Ndunduma-Cuito
+            <span>(SIGEB-L290) </span> // <%= dia %> de <%= mes %> de <%= ano %>.</div>
+    </aside>
+</body>
+</html>

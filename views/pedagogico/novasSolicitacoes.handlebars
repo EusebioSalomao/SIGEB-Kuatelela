@@ -1,0 +1,43 @@
+<h2 class="text-center" >P E D I D O   D E   D E C L A R A Ç Õ E S</h2>
+<hr>
+<div class="container mb-5 pb-5">
+    <table class="table table-hover ">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Descrição</th>
+      <th scope="col">Solicitante</th>
+      <th scope="col">Telefone</th>
+      <th scope="col text-end">#</th>
+    </tr>
+  </thead>
+  <tbody>
+      {{#each pedDeclaracao}}
+    <tr>
+      <td> {{descricao}} </td>
+      <td> {{nomeDoSolicitante}} </td>
+      <td> {{contacto}} </td>
+      <td>
+            <form action="/pedagogico/atenderDec" method="post">
+        <div class="row">
+            <div class="col-6 text-end">
+                <input type="hidden" name="numBI" value="{{numBI}}" id="">
+                <input type="hidden" name="idSolic" value="{{_id}}" id="">
+                <input type="hidden" name="comNotas" value="{{comNotas}}" id="">
+                <input type="hidden" name="tipo" value="{{tipoOcorrencia}}" id="">
+            <a href="/secretaria/detalheSolic/{{_id}}" class="btn btn-sm" ><i class="bi bi-eye">Ver</i></a>
+
+            </div>
+            <div class="col-6">
+
+            <button type="submit" class="btn btn-sm " >Atender</button>
+            </div>
+        </div>
+            </form>
+      </td>
+    </tr>
+      {{else}}
+      {{/each}}
+      </tbody>
+</table>
+<i class="bi bi-eye"></i>
+</div>

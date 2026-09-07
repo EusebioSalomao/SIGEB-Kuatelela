@@ -1,0 +1,35 @@
+<div class="row">
+
+<div class="col-10 h2"> <a href="/pedagogico/classificacoesTrimestral" class="btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5"/>
+</svg></a> CLASSIFICAÇÃO DOS ALUNOS POR MÉDIA</div>
+<div class="col-2 text-end h2 mark fw-bold"> {{descTrimestre}} </div>
+</div>
+<hr>
+
+<table class="table table-bordered table-striped table-hover ">
+    <thead class="bg-secondary fw-bold text-light">
+        <tr>
+            <td>N/O</td>
+            <td>Nome Completo</td>
+            <td>Turma</td>
+            <td>Classe</td>
+            <td>Curso</td>
+            <td>Média</td>
+        </tr>        
+    </thead>
+    <tbody>
+        {{#each mediaAlunos}}
+        <tr>
+            <td> {{numeroOrd}} </td>
+            <td> {{nome}} </td>
+            <td> {{turma}} </td>
+            <td> {{classe}} </td>
+            <td> {{curso}} </td>
+            <td> {{media}} </td>
+        </tr>
+        {{else}}
+        <div class="display-6 text-danger mark text-center">Não foi achada nenhuma pauta do trimestre selecionado!</div>
+        {{/each}}
+    </tbody>
+</table>

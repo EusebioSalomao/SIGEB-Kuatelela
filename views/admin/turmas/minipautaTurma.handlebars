@@ -1,0 +1,347 @@
+{{#if msg}}
+<div class="alert alert-success text-center">{{msg}}</div>
+{{else}}
+{{/if}}
+{{#if exist}}
+<div class="alert alert-danger text-center">{{exist}}</div>
+{{else}}
+{{/if}}
+<div class="row">
+    <div class="col-5 bg-secondary text-light py-3 mx-1">
+    </div>
+    <div class="col-6 text-center p-2 mark">
+        <h1><span class="text-secondary">Minipauta:</span> / {{minipauta.idClasse.designacao}}</h1>
+
+    </div>
+</div>
+<hr>
+<div class="bg-secondary">
+    <div class="row">
+
+        <div class="col-11">
+            {{#if lancarNota}}
+            <a href="/professor/minipautas/{{minipauta.idProfessor._id}}"><button
+                    class=" btn btn-sm bg-laranja text-light">Ver todas minipautas</button> </a>
+            {{else}}
+            <a href="/pedagogico/minipautas"><button
+                    class=" btn btn-sm bg-laranja text-light">Voltar a lista</button> </a>
+            {{/if}}
+            <span class="text-light text-center"> Modelo único para dodas as minipautas desta turma</span>
+
+        </div>
+        {{!-- <div class="col-2 text-end"><a href="#" onclick="addDisciplina()"><button
+                    class="btn btn-sm btn-warning">Adicionar disciplina</button></a></div> --}}
+    </div>
+</div>
+<hr>
+<div class="row mark h3 fw-bold">
+    <div class="col-4">
+        <span class="text-secondary">Turma: </span> <span> {{turma.codigo}} </span>
+    </div>
+    <div class="col-8 text-end">
+          <span> {{curso}} </span> 
+    </div>
+
+</div>
+
+<div class="container p-0">
+    <div class="row p-2">
+        {{#if lancarNota}}
+        <div class="col-2"><button onclick="lancarNota()" class="btn btn-sm btn-warning">Lançar nota</button></div>
+        {{else}}
+        {{/if}}
+        <div class="col-10">
+            <div class="row">
+
+                <div class="col-4 text-center bg-light text-secondary mx-1">1º Trimestre</div>
+                <div class="col-3 text-center bg-info text-light mx-1">2º Trimestre</div>
+                <div class="col-3 text-start bg-secondary text-light mx-1">3º Trimestre</div>
+                <div class="col-1 text-center bg-dark text-light mx-4">CF</div>
+            </div>
+            
+        </div>
+    </div>
+    <table class="table table-bordered table-sm p-0">
+        <tbody>
+            <thead class="table-dark">
+                <tr>
+                <td><span class="mx-0">nº</span></td>
+                <td><span class="mx-">nome completo</span> </td>
+                <td class="bg-light text-secondary" >av1</td>
+                <td class="bg-light text-secondary" >av2</td>
+                <td class="bg-light text-secondary" >av3</td>
+                <td class="bg-light text-secondary" >MAC</td>
+                <td class="bg-light text-secondary" >PP</td>
+                <td class="bg-light text-secondary" >PT1</td>
+                <td class="bg-light text-secondary" >MT1</td>
+
+        {{!-- 2º Trimwstre --}}
+                <td class="bg-info" >av1</td>
+                <td class="bg-info" >av2</td>
+                <td class="bg-info" >av3</td>
+                <td class="bg-info" >MAC</td>
+                <td class="bg-info" >PP</td>
+                <td class="bg-info" >PT2</td>
+                <td class="bg-info" >MT2</td>
+
+        {{!-- 3º Trimwstre --}}
+                <td class="bg-secondary" >av1</td>
+                <td class="bg-secondary" >av2</td>
+                <td class="bg-secondary" >av3</td>
+                <td class="bg-secondary" >MAC</td>
+                <td class="bg-secondary" >PP</td>
+                <td class="bg-secondary" >PT3</td>
+                <td class="bg-secondary" >MT3</td>
+
+
+                <td>MT</td>
+                <td>E</td>
+                <td>CF</td>
+
+
+                </tr>    
+            </thead>
+           
+            {{#each alunosTurma}}
+
+            <ol class="m-0 p-0" >
+
+            <tr>
+                <td><span class="mx-0"> {{numeroOrd}} </span></td>
+                
+                <td><span class="text-sm"> {{nome}} </span> </td>
+                <td class="mark fw-bold text-success text-center" > {{notas.mac1}} </td>
+                <td> {{notas.pp1}} </td>
+                 <td> {{notas.pt1}} </td>
+                <td class="bg-light fw-bold text-center text-primary" > {{notas.mt1}} </td>
+
+        {{!-- 2º Trimwstre --}}
+                <td class="text-center" > {{notas.av1T2}} </td>
+                <td class="text-center" > {{notas.av2T2}} </td>
+                <td class="text-center" > {{notas.av3T2}} </td>
+                <td class="text-center fw-bold text-success" > {{notas.mac2}} </td>
+                <td > {{notas.pp2}} </td>
+                <td > {{notas.pt2}} </td>
+                <td class="bg-info text-light text-center fw-bold" > {{notas.mt2}} </td>
+
+        {{!-- 3º Trimwstre --}}
+                <td class="text-center" > {{notas.av1T3}} </td>
+                <td class="text-center" > {{notas.av2T3}} </td>
+                <td class="text-center" > {{notas.av3T3}} </td>
+                <td class="text-center fw-bold text-success"> {{notas.mac3}} </td>
+                <td> {{notas.pp3}} </td>
+                <td> {{notas.pt3}} </td>
+                <td class="bg-secondary text-light text-center fw-bold" > {{notas.mt3}} </td>
+
+
+                <td class="text-center text-primary fw-bold" > {{notas.medDosTrimestes}} </td>
+               <td> {{notas.examePF}} </td>
+                <td class="text-center fw-bold" > {{notas.cf}} </td>
+                <td class="text-center fw-bold" > {{notas.cf}} </td>
+                <td class="text-center fw-bold" > {{notas.cf}} </td>
+
+
+                </tr>
+            </ol>
+            {{else}}
+                {{/each}}
+        </tbody>
+    </table>
+</div>
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center">
+            {{#if  lancarNota}}
+            <a href="#"><button class="btn btn-secondary " >Enviar notas à Pauta</button></a>
+            {{else}}
+            {{/if}}
+            <a href="/relatorios/minipautaPDF/{{turma._id}}"><button class="btn btn-secondary " >Gerar minipauta PDF</button></a>
+            </div>
+    </div>
+</div>
+
+<ol class="list-group list-group-numbered">
+    <div class="container">
+        <div class="mynav mt-1">
+
+            <div class="mycardTurmas px-5">
+
+
+            </div>
+
+            <!-- Modal lançãr notas-->
+
+            <form action="/professor/lancarNota" method="post">
+                <div class="modal" tabindex="-1" data-bs-backdrop="static" id="lancarNota">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <form action="/candidatos/consultar" method="post">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 class="modal-title">Lançamento de nota</h3>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body input-box">
+                                    <label for="aluno">Selecione o aluno:</label>
+                                    <select name="aluno" required>
+                                        <option value="selecionar">Selecionar</option>
+                                        {{#each alunosTurma}}
+                                        <option value="{{_id}}"> {{nome}} </option>
+                                        {{else}}
+                                        <option value="0">Nenhum aluno nesta turma</option>
+                                        {{/each}}
+                                    </select>
+                                    <label for="trimestre">Trimestre:</label>
+                                    <select name="trimestre" required>
+                                        <option value="selecionar">Seleciona</option>
+                                        <option value="primeiro">Primeiro Trimestre</option>
+                                        <option value="segundo">Segundo Trimestre</option>
+                                        <option value="terceiro">Terceiro Trimestre</option>
+                                        <option value="outro">Exame, PE, Prova Oral</option>
+                                    </select>
+                                    <label for="notaDe">Nota de:</label>
+                                    <select name="notaDe" required>
+                                        <option value="selecionar">Selecionar</option>
+                                        <option value="avaliacao1">Primeira avaliação contínua</option>
+                                        <option value="avaliacao2">Segunda avaliação contínua</option>
+                                        <option value="avaliacao3">Terceira avaliação contínua</option>
+                                        <option value="provaDoProfessor">Prova do Professor</option>
+                                        <option value="provaDoTrimestre">Prova trimestral</option>
+                                        <option value="provaOral">Prova oral</option>
+                                        <option value="exame">Exame final</option>
+                                    </select>
+                                    <input type="number" name="nota" placeholder="Insere a nota" required>
+                                    <input type="hidden" name="idProfessor" value="{{minipauta.idProfessor._id}}">
+                                    <input type="hidden" name="idMinipauta" value="{{minipauta._id}}">
+                                    <input type="hidden" name="idClasse" value="{{minipauta.idClasse._id}}">
+                                    <input type="hidden" name="idTurma" value="{{minipauta.idTurma._id}}">
+                                    <input type="hidden" name="idCurso" value="{{curso._id}}">
+                                    <input type="hidden" name="idAno" value="{{ano._id}}">
+
+                                    <button type="submit" class="btn btn-primary">Adicionar</button>
+                                </div>
+                                <div class="modal-footer text-center">
+                                    {{!-- <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Feichar</button>
+                                    --}}
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Modal addTurma-->
+
+            <form action="/turmas/add" method="post">
+                <div class="modal" tabindex="-1" data-bs-backdrop="static" id="addTurma">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <form action="/candidatos/consultar" method="post">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 class="modal-title">Adicionar nova turma</h3>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body input-box">
+                                    <label for="classe">Classe:</label>
+                                    <select name="classe" required>
+                                        {{#if classe10}}
+                                        <option value="10ª Classe">10ª classe</option>
+                                        {{else}}
+                                        {{/if}}
+                                        {{#if classe11}}
+                                        <option value="11ª Classe">11ª classe</option>
+                                        {{else}}
+                                        {{/if}}
+                                        {{#if classe12}}
+                                        <option value="12ª Classe">12ª classe</option>
+                                        {{else}}
+                                        {{/if}}
+                                    </select>
+                                    <label for="codigo">Código:</label>
+                                    <input type="text" name="codigo" placeholder="Digite o código da turma" required>
+                                    <label for="periodo">Período:</label>
+                                    <select name="periodo" required>
+                                        <option value="selecionar">Selecionar</option>
+                                        <option value="matinal">Matinal</option>
+                                        <option value="vespertino">Vespertino</option>
+                                        <option value="noturno">Noturto</option>
+                                    </select>
+                                    <input type="hidden" name="idCurso" value="{{curso._id}}">
+                                    <input type="hidden" name="idAno" value="{{ano._id}}">
+
+                                    <button type="submit" class="btn btn-primary">Adicionar</button>
+                                </div>
+                                <div class="modal-footer text-center">
+                                    {{!-- <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Feichar</button>
+                                    --}}
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Modal addDisciplina-->
+
+            <form action="/disciplinas/add" method="post">
+                <div class="modal" tabindex="-1" data-bs-backdrop="static" id="addDisciplina">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <form action="/candidatos/consultar" method="post">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 class="modal-title">Adicionar nova disciplina</h3>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body input-box">
+                                    <label for="nomeDisciplina">Nome da disciplina:</label>
+                                    <input type="text" name="nomeDisciplina" required>
+                                    <label for="tempoLectivo">Tempo lectivo por semana:</label>
+                                    <input type="text" name="tempoLectivo" required>
+
+                                    <input type="hidden" name="idClasse" value="{{classe._id}}">
+                                    <input type="hidden" name="idCurso" value="{{curso._id}}">
+                                    <input type="hidden" name="idAno" value="{{ano._id}}">
+
+                                    <button type="submit" class="btn btn-primary">Adicionar</button>
+                                </div>
+                                <div class="modal-footer text-center">
+                                    {{!-- <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Feichar</button>
+                                    --}}
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </form>
+
+            <script src="assets/bootstrap.bundle.min.js" class="img-fluid"></script>
+            <script>
+                function lancarNota() {
+
+                    let el = document.getElementById('lancarNota');
+                    let minha_modal = new bootstrap.Modal(el);
+                    minha_modal.show();
+                }
+
+                function addTurma() {
+                    let el = document.getElementById('addTurma');
+                    let minha_modal = new bootstrap.Modal(el);
+                    minha_modal.show();
+                }
+
+
+                function addDisciplina() {
+                    let el = document.getElementById('addDisciplina');
+                    let minha_modal = new bootstrap.Modal(el);
+                    minha_modal.show();
+                }
+
+
+
+            </script>

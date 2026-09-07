@@ -1,0 +1,31 @@
+<section class="flash-messages" aria-live="polite" aria-atomic="true">
+    {{#if success_msg}}
+    <div class="flash-alert flash-alert--success" role="status">
+        <span class="flash-alert__icon" aria-hidden="true">✓</span>
+        <span class="flash-alert__message">{{success_msg}}</span>
+        <button type="button" class="flash-alert__close" aria-label="Fechar mensagem">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {{/if}}
+
+    {{#if error_msg}}
+    <div class="flash-alert flash-alert--error" role="alert">
+        <span class="flash-alert__icon" aria-hidden="true">!</span>
+        <span class="flash-alert__message">{{error_msg}}</span>
+        <button type="button" class="flash-alert__close" aria-label="Fechar mensagem">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {{/if}}
+
+    {{#if error}}
+    <div class="flash-alert flash-alert--error" role="alert">
+        <span class="flash-alert__icon" aria-hidden="true">!</span>
+        <span class="flash-alert__message">{{error}}</span>
+        <button type="button" class="flash-alert__close" aria-label="Fechar mensagem">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {{/if}}
+</section>

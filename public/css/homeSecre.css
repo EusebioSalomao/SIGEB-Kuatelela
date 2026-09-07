@@ -1,0 +1,147 @@
+:root {
+    --secretaria-ink: #243447;
+    --secretaria-muted: #687789;
+    --secretaria-border: #e7ebf0;
+    --secretaria-surface: #ffffff;
+    --secretaria-background: #f6f8fb;
+    --secretaria-warning: #d49b18;
+    --secretaria-info: #168fa8;
+    --secretaria-secondary: #5d6875;
+}
+
+.secretaria-page {
+    min-height: 100%;
+    color: var(--secretaria-ink);
+    background: var(--secretaria-background);
+}
+
+.secretaria-shell {
+    max-width: 1080px;
+    padding: clamp(1.25rem, 3vw, 2.75rem);
+    border: 1px solid var(--secretaria-border);
+    border-radius: 1rem;
+    background: var(--secretaria-surface);
+    box-shadow: 0 0.75rem 2rem rgba(36, 52, 71, 0.07);
+}
+
+.secretaria-header {
+    padding: 0.25rem 0 0.5rem;
+}
+
+.secretaria-eyebrow {
+    color: var(--secretaria-muted);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    line-height: 1.4;
+    text-transform: uppercase;
+}
+
+.secretaria-title {
+    color: var(--secretaria-ink);
+    font-size: clamp(1.45rem, 3vw, 2.15rem);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.secretaria-divider {
+    margin: clamp(1.25rem, 3vw, 2rem) 0;
+    border-color: var(--secretaria-border);
+    opacity: 1;
+}
+
+.secretaria-menu-item {
+    display: flex;
+    min-height: 7rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 1.4rem;
+    border-radius: 0.8rem;
+    box-shadow: 0 0.35rem 0.8rem rgba(36, 52, 71, 0.1);
+    font-size: clamp(1.1rem, 2vw, 1.35rem);
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 160ms ease, box-shadow 160ms ease, filter 160ms ease;
+}
+
+.secretaria-menu-item:hover,
+.secretaria-menu-item:focus-visible {
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 0.65rem 1.2rem rgba(36, 52, 71, 0.16);
+    filter: brightness(0.96);
+}
+
+.secretaria-menu-item:focus-visible,
+.secretaria-action:focus-visible {
+    outline: 3px solid rgba(22, 143, 168, 0.35);
+    outline-offset: 3px;
+}
+
+.secretaria-menu-warning {
+    background-color: var(--secretaria-warning);
+}
+
+.secretaria-menu-info {
+    background-color: var(--secretaria-info);
+}
+
+.secretaria-menu-secondary {
+    background-color: var(--secretaria-secondary);
+}
+
+.secretaria-menu-arrow {
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.secretaria-section-title {
+    color: var(--secretaria-ink);
+    font-size: clamp(1.15rem, 2vw, 1.45rem);
+    font-weight: 700;
+}
+
+.secretaria-action {
+    display: flex;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    border: 0;
+    border-radius: 0.55rem;
+    padding: 0.75rem 1rem;
+    background-color: var(--secretaria-secondary);
+    font-weight: 600;
+    white-space: normal;
+    transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.secretaria-action:hover {
+    background-color: #4f5965;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 575.98px) {
+    .secretaria-shell {
+        padding: 1.25rem 1rem;
+        border-radius: 0.75rem;
+    }
+
+    .secretaria-menu-item {
+        min-height: 4.5rem;
+        padding: 1rem 1.15rem;
+    }
+
+    .secretaria-divider {
+        margin: 1.25rem 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .secretaria-menu-item,
+    .secretaria-action {
+        transition: none;
+    }
+}

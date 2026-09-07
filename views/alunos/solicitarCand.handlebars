@@ -1,0 +1,131 @@
+<section>
+    {{!-- Secção para possiblitar chamar a janela modal no body main --}}
+    {{!-- Form para possibilitar pegar a idade máxima e fazer o botão admitir submit --}}
+        <h1>Solicitações de candidaturas</h1>
+        <hr>
+
+    {{!-- <div class="input-box-filtro">
+
+        <label for="pesqNome">Pesquisa: </label>
+        <input type="text" name="pesqNome" placeholder="Digite o nome ou nº BI" class="mr-4">
+
+        <label for="filtro" class="ml-4">Filtro por curso: </label>
+        <select name="filtroCurso" class="mr-4">
+            <option value="selecionar">Selecionar</option>
+            <option value="fb">Fíisicas Biológicas</option>
+            <option value="ecj">Economica Juridicas</option>
+            <option value="selecionar">Selecionar</option>
+        </select>
+
+        <label for="idade" class="ml-4">Filtro por idade: </label>
+        <select name="idade" class="mr-4">
+            <option value="15">15</option>
+            <option value="15">16</option>
+            <option value="15">17</option>
+            <option value="15">18</option>
+            <option value="15">19</option>
+        </select> 
+        
+    </div>
+        --}}
+
+    <ul class="list-group list-group-numbered">
+        <div class="container">
+            <li class="list-group-item bg-dark text-light">
+                <div class="row">
+                    <div class="col-3 h4">Nome completo</div>
+                    <div class="col-2 h4">Idade</div>
+                    <div class="col-3 h4">Curso</div>
+                    <div class="col-1 h4 text-start">Cituação</div>
+                    <div class="col-3 h4"></div>
+                </div>
+            </li>
+        </div>
+    </ul>
+
+    <ol class="list-group list-group-numbered">
+        <div class="container">
+
+            {{#each solcitCandidatura}}
+            <form action="/candidatos/aceitarCand" method="post">
+                <li class="list-group-item list-group-item-action">
+                    <div class="row">
+                        <div class="col-3">
+                            {{nome}}
+                        </div>
+                        <div class="col-2"> {{idade}} anos </div>
+                        <div class="col-3">{{curso}}</div>
+                        <div class="col-1" id="estado">{{estado}}</div>
+                        <input type="hidden" name="id" value="{{_id}}">
+                        <div class="col-3 text-end">
+                            <a href="/candidatos/detalhes/{{_id}}" class=" btn btn-sm btn-secondary">Detalhes</a>
+                            <button type="submit" class="btn btn-success btn-sm">Aceitar</button>
+                           {{!--  <a href="/alunos/matricular/{{_id}}" class="btn btn-sm btn-warning">Matricular</a> --}}
+                        </div>
+                    </div>
+                </li>
+            </form>
+
+            {{else}}
+        </div>
+        <div class="h3 p-3 text-center">Nenhuma solicitação registrada</div>
+        <hr>
+        {{/each}}
+    </ol>
+
+    <div class="text-center">
+
+        <a href="/candidatos" class="btn btn-secondary mt-2 mr-4 ml-4 btn-sm">Ver todos candidatos</a>
+    </div>
+    {{#if candConsulta}}
+    <div class="modal-content">
+
+
+    </div>
+    <!-- Modal2 -->
+
+    <div class="modal" tabindex="-1" id="minha2" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content p-5">
+                <div class="modal-header">
+                    <h5 class="modal-title text-success">Resultado</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="p-3">
+
+                    <h4>{{candConsulta.nome}}</h4>
+                    <div class="mt-1 lead"><label class="h5" for="">BI: </label> {{candConsulta.numBI}}</div>
+                    <div class="mt-1 lead"><label class="h5" for="">Idade: </label> {{candConsulta.idade}}</div>
+                    <div class="mt-1 lead"><label class="h5" for="">Curso: </label> {{candConsulta.curso}}</div>
+                    <div class="mt-1 p-1 text-center bg-info text-light h4"> {{candConsulta.estado}}</div>
+                </div>
+
+                <div class="modal-footer">
+                    <a href="/candidatos"><button type="button" class="btn btn-secondary"
+                            data-bs-dismiss="modal">Feichar</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {{else}}
+    
+    {{/if}}
+</section>
+
+{{!-- Scrypts --}}
+<script>
+
+        function exibir() {
+            console.log('Mostrae todos: ')
+            let el = document.getElementById('minha2');
+            let minha_modal = new bootstrap.Modal(el);
+            minha_modal.show();
+        }
+        function mudEstado() {
+            let el = document.getElementById('estado');
+            let meu_estado = new bootstrap.Modal(el);
+            meu_estado = 
+        }
+
+    </script>

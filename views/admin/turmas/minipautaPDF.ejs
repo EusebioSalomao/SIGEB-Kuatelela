@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>PDF-Teste</title>
+    <style>
+        body {
+            margin-left: 9rem;
+            margin-bottom: 3rem;
+                font-family: Arial, Helvetica, sans-serif;
+        }
+        aside {
+            position: relative;
+            top: 2rem;
+            text-align: center;
+            color: #cdcccc;
+
+        }
+        footer {
+            position: absolute;
+            bottom: -14rem;
+            text-align: center;
+            color: #cdcccc;
+        }
+
+        .logo {
+            size: 3px !important;
+            margin-bottom: 0rem;
+        }
+        .logor {
+            size: 10%;
+        }
+
+        .text-center {
+            text-align: center;
+            align-items: center;
+        }
+
+        .m-1 {
+            margin: 1rem;
+            padding: 0rem;
+        }
+
+        .fw-bold {
+            font-weight: bold;
+        }
+
+        .mt-0 {
+            margin-top: 0rem;
+        }
+        .mt-2 {
+            margin-top: 1rem;
+        }
+        .mt-3 {
+            margin-top: 2rem;
+        }
+        .mb-0 {
+            margin-bottom: 0rem;
+        }
+        
+    
+
+        .row {
+            display: inline-block
+        }
+        .table {
+            margin: auto;
+        }
+
+        .table-bordered {
+            border-collapse: collapse;
+            /* CSS2 */
+        }
+
+        .table-bordered td {
+            border: 1px solid black;
+        }
+
+        .table-bordered th {
+            border: 1px solid black;
+            background: #878383;
+            font-weight: bold;
+        }
+
+        ol {
+            list-style: start;
+        }
+
+        .lateral {
+            position: absolute;
+            right: 5rem;
+            top: 20.6rem;
+        }
+
+        .table-secondary {
+            background-color: #cdcccc;
+        }
+
+        .m-r {
+            margin-right: 42rem;
+        }
+
+        .m-r2 {
+            margin-right: 44rem;
+        }
+
+        .mt-5 {
+            margin-right: 20rem;
+
+        }
+
+        .visto {
+            position: absolute;
+            top: 5rem;
+        }
+
+        p {
+            margin: 0.3px;
+            padding: 0px;
+        }
+
+        .text-size-10 {
+            font-size: 11pt;
+        }
+
+        .text-size-12 {
+            font-size: 16pt;
+        }
+        .text-size-14 {
+            font-size: 20pt;
+        }
+
+        .text-danger {
+            color: red;
+        }
+
+        .text-light {
+            color: white
+        }
+        .text-blue {
+            color: rgb(3, 3, 108);
+        }
+
+        .text-start {
+            text-align: start;
+        }
+        .text-end {
+            text-align: end;
+        }
+
+        .text-sub {
+            text-decoration: underline;
+        }
+
+        .table {
+            align-items: center;
+        }
+
+        .lg-2 {
+            width: 5rem;
+        }
+
+        .lg-4 {
+            width: 10rem;
+        }
+
+        .lg-6 {
+            width: 15rem;
+        }
+
+        .lg-8 {
+            width: 30rem;
+        }
+        .cab-nO {
+
+            width: 1rem;
+        }
+        .cab-nome {
+            width: 24rem;
+        }
+        .cab-t1 {
+            width: 12.3rem;
+        }
+        .cab-t2 {
+            width: 12.2rem;
+        }
+        .cab-t3 {
+            width: 12.1rem;
+        }
+        .cab-t {
+            width: 4.8rem;
+        }
+        .cab-e {
+            width: 1.5rem;
+        }
+        .bg-blue {
+            background-color: rgba(183, 211, 247, 0.893);
+        }
+        .bg-rosa {
+            background-color: rgba(249, 179, 166, 0.893);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="containeir text-size-10">
+
+        <div class="logo text-center"><img src="http://localhost:8081/img/logor.png" class="logor" alt="Logo"></div>
+        <div class="text-center">
+            <p>República de Angola</p>
+            <p>Ministério da Educação</p>
+            <p class="fw-bold">LICEU REI NDUNDUMA-CUITO</p>
+
+            <div class="sub-title text-size-14">
+
+                <div class="h4 mt-2 text-blue fw-bold"><%= curso %></div>
+                <div class="mt-1"> <span>Ano Lectivo:</span> <span class="fw-bold"> <%= anoLectivo %> </span> &shy; &shy; &shy; &shy; <span>
+                    <%= classe %> </span> &shy; &shy; &shy; &shy; <span>Turma:</span> <span class="fw-bold"> <%= codTurma %> </span> &shy; &shy; <span>Período:</span> <span class="fw-bold"> <%= periodo %> </span> </div>
+                </div>
+                <div class="mt-2 fw-bold text-start"><span>Nome do Professor:</span> <span>____________________________________________</span> </div>
+                <div class=" fw-bold text-start"><span>Disciplina:</span> <span>________________________________</span> </div>
+
+            <!-- VITO -->
+            <div class="visto">
+                <div class="text-center">
+                    <div class="fw-bold">A Directora</div>
+                    <span>___________________</span><br>
+                    <span>Lic. Emília Carla Adelino Cawaia
+                    </span><br>
+                    <span class="text-size-10">___/____/
+                    </span>
+                </div>
+            </div>
+
+            <div class="px-5 table">
+
+                <table class=" table-bordered table-sm p-0 mt-0">
+                    <thead class="table-dark mt-0 ">
+                        
+                        <tr class="mb-0">
+                            <td class="bg-rosa fw-bold" rowspan="2"><span class="mx-0">nº</span></td>
+                            <td class="bg-rosa fw-bold" rowspan="2"><span class="cab-nome">Nome completo</span> </td>
+                            <td class="bg-rosa fw-bold" colspan="6" >Iº Trimestre</td> 
+                            <td class="bg-rosa fw-bold" colspan="6">IIº Trimestre</td> 
+                            <td class="bg-rosa fw-bold" colspan="6">IIIº Trimestre</td> 
+                            <td class="bg-rosa fw-bold" colspan="3">C. final</td> 
+                            <td class="bg-rosa fw-bold" rowspan="2"><span>OBS.</span></td> 
+                        </tr>
+                        
+                        <tr class="mt-0">
+                            <td class="bg-light text-secondary">av1</td>
+                            <td class="bg-light text-secondary">av2</td>
+                            <td class="bg-light text-secondary">av3</td>
+                            <td class="bg-light text-secondary">MAC</td>
+                           <!--  <td class="bg-light text-secondary">PP</td> -->
+                            <td class="bg-light text-secondary">PT1</td>
+                            <td class="bg-blue text-secondary">MT1</td>
+                            
+                            <!-- {{!-- 2º Trimwstre --}} -->
+                            <td class="bg-info">av1</td>
+                            <td class="bg-info">av2</td>
+                            <td class="bg-info">av3</td>
+                            <td class="bg-info">MAC</td>
+                            <!-- <td class="bg-info">PP</td> -->
+                            <td class="bg-info">PT2</td>
+                            <td class="bg-blue">MT2</td>
+                            
+                            <!-- {{!-- 3º Trimwstre --}} -->
+                            <td class="bg-secondary">av1</td>
+                            <td class="bg-secondary">av2</td>
+                            <td class="bg-secondary">av3</td>
+                            <td class="bg-secondary">MAC</td>
+                            <!-- <td class="bg-secondary">PP</td> -->
+                            <td class="bg-secondary">PT3</td>
+                            <td class="bg-blue">MT3</td>
+                            
+                            
+                            <td>MT</td>
+                            <td class="cab-e" >E</td>
+                            <td>CF</td>
+                            
+                            
+                        </tr>
+                    </thead>
+                    <tbody class="mt-0">
+                    
+                    
+
+                        <% for(let i=0; i < alunosTurma.length; i++) { %>
+
+
+
+                                <tr>
+                                    <td><span class="mx-0">
+                                            <%= i+1 %>
+                                        </span></td>
+
+                                    <td class="text-start cab-nome"><span class="text-start">
+                                            <%= alunosTurma[i].nome.toLowerCase().replace(/(?:^|\s)\S/g, function(a) {return a.toUpperCase();}); %>
+                                        </span> </td>
+                                    <td class="mark fw-bold text-success text-center"> </td>
+                                    <td> </td>
+                                    <!-- <td> </td> -->
+                                    <td class="bg-light fw-bold text-center text-primary"> </td>
+
+                                    <!-- {{!-- 2º Trimwstre --}} -->
+                                    <td class="text-center"> </td>
+                                    <td class="text-center"> </td>
+                                    <td class=" bg-blue text-center"> </td>
+                                    <td class="text-center fw-bold text-success "> </td>
+                                    <td> </td>
+                                    <!-- <td> </td> -->
+                                    <td class=" text-light text-center fw-bold"> </td>
+
+                                    <!-- {{!-- 3º Trimwstre --}} -->
+                                    <td class="text-center"> </td>
+                                    <td class="text-center"> </td>
+                                    <td class="bg-blue text-center"> </td>
+                                    <td class="text-center fw-bold text-success"> </td>
+                                    <td> </td>
+                                    <!-- <td> </td> -->
+                                    <td class=" text-light text-center fw-bold"> </td>
+
+
+                                    <td class="text-center text-primary fw-bold"> </td>
+                                    <td class="text-center fw-bold"> </td>
+                                    <td class="bg-blue"> </td>
+                                    <td class="text-center fw-bold"> </td>
+                                    <td class="text-center fw-bold"> </td>
+                                    <td class="text-center fw-bold"> </td>
+                                    <td></td>
+
+
+                                </tr>
+                            <% } %>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <div class="">
+
+            <div class="data mt-2 text-center">
+                Liceu Rei Nduduma do Cuito aos <%= dia %> de <%= mes %> de <%= ano %>.
+            </div>
+
+            <div class="">
+                <div class="fw-bold mt-3 text-center">
+        
+                    <span class="m-r2" >O Coordenador da turma</span> <span >O Subdirector Pedagógico</span> <br>
+                </div>
+                <div class="text-center">
+        
+                    <span class="m-r">_________________________</span> <span>___________________________</span><br>
+                    <span class="m-r text-light">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span>  <span>MSc. Frederico Sanji Figueiredo</span><br>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <aside class="text-center">
+        <hr>
+        <div class="text-sm text-center">Gerado pelo Sistema de Gestão escolar do Liceu Rei Ndunduma-Cuito <span>(SIGEB-L290) </span> // <%= dia %> de <%= mes %> de <%= ano %>.</div>
+    </aside>
+</body>
+
+</html>

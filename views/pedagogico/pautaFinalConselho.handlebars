@@ -1,0 +1,165 @@
+
+{{#if classeExame}}{{!-- Se for clsse de exame --}}
+<div class="">
+    <div class="pe-3 lead text-sm mark ">
+        <div class="row">
+            <div class="col-6"><a href="/professor/{{idPresidente}}"> < Voltar</a></div>
+            <div class="col-6 text-end">Pauta Final</div>
+        </div>
+        
+        </div>
+    <div class="logo text-center mt-3"><img src="/img/logor.png" alt=""></div>
+    <div class="text-center">
+        <p class="m-1">República de Angola</p>
+        <p class="m-1">Governo da Província do Bié</p>
+        <p class="m-1">Administração Municipal do Cuito</p>
+        <p class="fw-bold">LICEU REI NDUNDUMA DO CUITO</p>
+
+        <div class="h5 myText-primary2 fw-bold">{{dadosTurma.idCurso.descricao}}</div>
+        <div class="h6 text-center myText-primary2"> <span class="text-dark fw-bold "> Ano Lectivo: </span> {{anoLectivo.codigo}} &shy;&shy; {{dadosTurma.idClasse.designacao}} &shy; &shy; &shy; &shy; &shy; &shy; <span class="text-dark fw-bold ">Turma: </span> {{dadosTurma.codigo}} &shy; &shy; &shy; <span class="text-dark fw-bold ">Período: </span> {{dadosTurma.periodo}} </div>
+        {{#if pauataFinalEmConselho}}
+        <div class="vermelhoVerde p-2 fw-bold">EASTA PAUTA FINAL ESTÁ EM CONSELHO DE NOTAS</div>
+        {{else}}
+        <div class="mt-3 lead fw-bold text-danger">PAUTA FINAL </div>
+        {{/if}}
+    </div>
+    
+    <table class="table table-bordered table-sm tabText-size-8">
+        <thead class=" mybg-info">
+            <tr class="text-center">
+                <td class="fw-bold" rowspan="2">N/O</td>
+                <td class="lg-cab-nome fw-bold" rowspan="2" >Nome Completo</td>
+                {{#each disciplinasOrdenadas}}
+                <td class=" px-4 fw-bold" colspan="3"> {{disciplina}} </td>
+                {{elese}}{{/each}}
+                 <td class="py-2 fw-bold" rowspan="2">Obs</td>
+            </tr>
+            <tr class="fw-bold">
+                {{#each disciplinasOrdenadas}}
+                 <td>MFD</td><td>NEE</td><td class="mybg-info">MF</td>
+                {{elese}}{{/each}}
+                 </tr>
+        </thead>
+        <tbody>
+            <ol>
+
+                {{#each pautaFConselhada.dadosPauta}}
+
+                <tr>
+                    <td class="text-center">
+                        {{numOrdem}}
+                    </td>
+                    <td class="lg-cab-nome" > {{nome}} </td>
+                    {{#each notas}}
+                    {{#if negativa1}} <td class="text-center text-danger"> {{medDosTrimestes}} </td> {{else}}<td class="text-center"> {{medDosTrimestes}} </td>{{/if}}
+                    {{#if negativa2}} <td class="text-center text-danger"> {{examePF}} </td> {{else}}<td class="text-center"> {{examePF}} </td>{{/if}}
+                    {{#if negativa3}} <td class="text-center text-danger mybg-info fw-bold"> {{cf}} </td> {{else}}<td class="text-center mybg-info fw-bold"> {{cf}} </td>{{/if}}
+                    {{else}}
+                    {{/each}}
+                    {{#if naoApto}}<td class="text-danger"> {{estado}} </td>{{else}} <td> {{estado}} </td> {{/if}}
+
+                </tr>
+                {{else}}
+                <div class="lead text-light text-center bg-danger">Ainda não foi realizado o Conselho de notas para a pauta Final</div>
+                {{/each}}
+
+            </ol>
+        </tbody>
+    </table>
+    <div class="text-center">
+  {{!--   <form action="/pedagogico/eliminarPauta" method="post">
+        <a href="/relatorios/pautaTrimestral2/{{dadosTurma._id}}" class="btn btn-secondary">Gerar
+            PDF - Pauta Final</a>
+            <input type="hidden" name="idTurma" value="{{dadosTurma._id}}" id="">
+            <input type="hidden" name="idPauta" value="{{idPautaFinConselhada}}" id="">
+            <button type="submit" class="btn btn-danger">Eliminar Pauta</button>
+            </form> --}}
+            </div>
+    <hr>
+</div>
+{{else}}{{!-- Se não for classe de exame --}}
+    {{!-- P A U T A F I N A L CONSOLIDADE DAS CLASSES DE TRANSIÇÃO--}}
+<div class="">
+    <div class="pe-3 lead text-sm mark ">
+        <div class="row">
+            <div class="col-6"><a href="/professor/{{idPresidente}}"> < Voltar</a></div>
+            <div class="col-6 text-end">Pauta Final</div>
+        </div>
+        
+        </div>
+    <div class="logo text-center mt-3"><img src="/img/logor.png" alt=""></div>
+    <div class="text-center">
+        <p class="m-1">República de Angola</p>
+        <p class="m-1">Governo da Província do Bié</p>
+        <p class="m-1">Administração Municipal do Cuito</p>
+        <p class="fw-bold">LICEU REI NDUNDUMA DO CUITO</p>
+
+        <div class="h5 myText-primary2 fw-bold">{{dadosTurma.idCurso.descricao}}</div>
+        <div class="h6 text-center myText-primary2"> <span class="text-dark fw-bold "> Ano Lectivo: </span> {{anoLectivo.codigo}} &shy;&shy; {{dadosTurma.idClasse.designacao}} &shy; &shy; &shy; &shy; &shy; &shy; <span class="text-dark fw-bold ">Turma: </span> {{dadosTurma.codigo}} &shy; &shy; &shy; <span class="text-dark fw-bold ">Período: </span> {{dadosTurma.periodo}} </div>
+        {{#if pauataFinalEmConselho}}
+        <div class="vermelhoVerde p-2 fw-bold">EASTA PAUTA FINAL ESTÁ EM CONSELHO DE NOTAS</div>
+        {{else}}
+        <div class="mt-3 lead fw-bold text-danger">PAUTA FINAL </div>
+        {{/if}}
+    </div>
+    
+    <table class="table table-bordered table-sm tabText-size-8">
+        <thead class=" mybg-info">
+            <tr class="text-center">
+                <td class="fw-bold" rowspan="2">N/O</td>
+                <td class="lg-cab-nome fw-bold" rowspan="2" >Nome Completo</td>
+                {{#each disciplinasOrdenadas}}
+                <td class=" px-4 fw-bold" colspan="4"> {{disciplina}} </td>
+                {{elese}}{{/each}}
+                 <td class="py-2 fw-bold" rowspan="2">Obs</td>
+            </tr>
+            <tr class="fw-bold">
+                {{#each disciplinasOrdenadas}}
+                 <td>MT1</td><td>MT2</td><td>MT3</td><td class="mybg-info">MF</td>
+                {{elese}}{{/each}}
+                 </tr>
+        </thead>
+        <tbody>
+            <ol>
+
+                {{#each pautaFConselhada.dadosPauta}}
+
+                <tr>
+                    <td class="text-center">
+                        {{numOrdem}}
+                    </td>
+                    <td class="lg-cab-nome" > {{nome}} </td>
+                    {{#each notas}}
+                    {{#if negativa1}} <td class="text-center text-danger"> {{mt1}} </td> {{else}}<td class="text-center"> {{mt1}} </td>{{/if}}
+                    {{#if negativa2}} <td class="text-center text-danger"> {{mt2}} </td> {{else}}<td class="text-center"> {{mt2}} </td>{{/if}}
+                    {{#if negativa3}} <td class="text-center text-danger"> {{mt3}} </td> {{else}}<td class="text-center"> {{mt3}} </td>{{/if}}
+                    {{#if negativa4}} <td class="text-center text-danger mybg-info fw-bold"> {{mf}} </td> {{else}}<td class="text-center mybg-info fw-bold"> {{mf}} </td>{{/if}}
+                    {{else}}
+                    {{/each}}
+                    {{#if naoApto}}<td class="text-danger"> {{estado}} </td>{{else}} <td> {{estado}} </td> {{/if}}
+
+                </tr>
+                {{else}}
+                <div class="lead text-light text-center bg-danger">Ainda não foi realizado o Conselho de notas para a pauta Final</div>
+                {{/each}}
+
+            </ol>
+        </tbody>
+    </table>
+    <div class="text-center">
+  {{!--   <form action="/pedagogico/eliminarPauta" method="post">
+        <a href="/relatorios/pautaTrimestral2/{{dadosTurma._id}}" class="btn btn-secondary">Gerar
+            PDF - Pauta Final</a>
+            <input type="hidden" name="idTurma" value="{{dadosTurma._id}}" id="">
+            <input type="hidden" name="idPauta" value="{{idPautaFinConselhada}}" id="">
+            <button type="submit" class="btn btn-danger">Eliminar Pauta</button>
+            </form> --}}
+            </div>
+    <hr>
+</div>
+ {{/if}} {{!-- FIM se forr ou não classe de exame--}}
+<div class="text-italic text-center">Esta Pauta foi avaliada pelo Conselho de professores conforme abaixo</div>
+<div class="text-center">
+    <p class="bg-secondary text-light"> Presidente: <span> {{presidente.nome}} </span></p>
+    <p class="fw-bold"> Membros </p>
+</div>

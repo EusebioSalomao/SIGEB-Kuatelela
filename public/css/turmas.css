@@ -1,0 +1,225 @@
+:root {
+    --turmas-orange: #b8753f;
+    --turmas-orange-dark: #8f572f;
+    --turmas-navy: #263746;
+    --turmas-slate: #56636c;
+    --turmas-background: #f4f6f8;
+    --turmas-border: #e1e6eb;
+}
+
+.turmas-page {
+    min-height: 100vh;
+    background: var(--turmas-background);
+    color: var(--turmas-navy);
+}
+
+.turmas-shell {
+    max-width: 1180px;
+}
+
+.turmas-alert {
+    border: 0;
+    border-radius: .6rem;
+    margin-bottom: 1rem;
+}
+
+.turmas-header {
+    border-bottom: 1px solid var(--turmas-border);
+    padding-bottom: 1.25rem;
+}
+
+.turmas-eyebrow {
+    color: var(--turmas-orange-dark);
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+.turmas-header h1 {
+    font-size: clamp(1.6rem, 3vw, 2.3rem);
+    font-weight: 700;
+}
+
+.turmas-year {
+    color: var(--turmas-navy);
+}
+
+.turmas-toolbar {
+    align-items: center;
+    background: var(--turmas-navy);
+    border-radius: .65rem;
+    display: flex;
+    gap: 1rem;
+    min-height: 3.5rem;
+    padding: .7rem 1rem;
+}
+
+.turmas-back-button {
+    background: var(--turmas-orange);
+    color: #fff;
+    font-weight: 600;
+}
+
+.turmas-back-button:hover,
+.turmas-back-button:focus-visible {
+    background: var(--turmas-orange-dark);
+    color: #fff;
+}
+
+.turmas-toolbar-title {
+    color: #fff;
+    font-size: .95rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.turmas-accordion {
+    --bs-accordion-border-color: var(--turmas-border);
+    --bs-accordion-btn-focus-box-shadow: 0 0 0 .2rem rgba(184, 117, 63, .2);
+}
+
+.turmas-accordion .accordion-item {
+    background: #fff;
+    border: 1px solid var(--turmas-border);
+    border-radius: .65rem;
+    box-shadow: 0 .25rem .8rem rgba(38, 55, 70, .06);
+    margin-bottom: .85rem;
+    overflow: hidden;
+}
+
+.turmas-accordion .accordion-item:last-child {
+    margin-bottom: 0;
+}
+
+.turmas-accordion .accordion-button {
+    background: var(--turmas-navy);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 1rem 1.15rem;
+}
+
+.turmas-accordion .accordion-button:not(.collapsed) {
+    background: var(--turmas-slate);
+    box-shadow: none;
+    color: #fff;
+}
+
+.turmas-accordion .accordion-button::after {
+    filter: brightness(0) invert(1);
+}
+
+.turmas-accordion .accordion-body {
+    background: #fff;
+    padding: 1.15rem;
+}
+
+.turma-section {
+    border-bottom: 1px solid var(--turmas-border);
+    padding: 1.5rem 0;
+}
+
+.turma-section:last-child {
+    border-bottom: 0;
+}
+
+.turma-section-title {
+    color: var(--turmas-navy);
+    font-size: clamp(1.25rem, 2vw, 1.55rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.turma-card {
+    align-items: center;
+    background: var(--turmas-slate);
+    border-radius: .7rem;
+    box-shadow: 0 .3rem .9rem rgba(38, 55, 70, .1);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 10rem;
+    padding: 1.25rem 1rem;
+    transition: background-color .2s ease, transform .2s ease;
+}
+
+.turma-card:hover {
+    background: var(--turmas-navy);
+    transform: translateY(-2px);
+}
+
+.turma-label {
+    font-size: .85rem;
+    opacity: .85;
+}
+
+.turma-code {
+    color: #fff;
+    font-size: 1.7rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: .2rem 0 .8rem;
+}
+
+.turma-card:hover .turma-code,
+.turma-card:focus-within .turma-code {
+    color: #fff;
+}
+
+.turma-course {
+    display: block;
+    font-size: .8rem;
+    font-weight: 500;
+    margin-top: .25rem;
+    opacity: .8;
+}
+
+.turma-enter-button {
+    background: #1d2a34;
+    color: #fff;
+    font-weight: 600;
+}
+
+.turma-enter-button:hover,
+.turma-enter-button:focus-visible {
+    background: #101920;
+    color: #fff;
+}
+
+.turma-hint {
+    font-size: .72rem;
+    margin-top: .65rem;
+    opacity: .75;
+}
+
+.empty-turma-state {
+    background: #fff;
+    border: 1px dashed var(--turmas-border);
+    border-radius: .6rem;
+    color: var(--turmas-slate);
+    margin: 0;
+    padding: 1.25rem;
+    text-align: center;
+}
+
+@media (max-width: 575.98px) {
+    .turmas-page {
+        padding-left: .75rem !important;
+        padding-right: .75rem !important;
+    }
+
+    .turmas-toolbar {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .turmas-back-button {
+        align-self: flex-start;
+    }
+
+    .turmas-toolbar-title {
+        font-size: .8rem;
+    }
+}

@@ -1,0 +1,73 @@
+<div id="body-candidato">
+    <div class="container-candidato">
+        <div class="form-image">
+            <img src="" alt="Imagem">
+        </div>
+        <div class="form-candidato">
+            <form action="/candidatos/save" method="post">
+                <div class="form-headear2">
+                    <div class="title">
+                        <h1>Verifique seus Dados</h1>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div class="input-box">
+                        <label for="nome">Nome:</label>
+                        <input type="text" name="nome" value="{{candidato.nome}}" disabled>
+                    </div>
+                    <div class="input-box">
+                        <label for="numBI">Nº BI:</label>
+                        <input type="text" name="numBI" value="{{candidato.numBI}}" disabled>
+                    </div>
+                    
+                    <div class="input-box">
+                        <label for="dataNascimento">Data de nascimento:</label>
+                        <input type="date" name="dataNascimento" value="{{candidato.dataNascimento}}" disabled>
+                    </div>
+                    
+                    <div class="input-box">
+                        <label for="genero">Genero</label>
+                        
+                        <select>
+                            <option value="selecionar">Selecionar</option>
+                            <option value="feminino">Feminino</option>
+                            <option value="masculino">Masculino</option>
+                        </select>
+                    </div>
+                    <div class="input-box">
+                        <label for="contacto">Contacto:</label>
+                        <input type="text" name="contacto" value="{{candidato.contacto}}" disabled>
+                    </div>
+                    <div class="input-box">
+                        <label for="curso">curso</label>
+                        <select name="curso" id="">
+                            <option value="selecionar">Seleciona o curso</option>
+                            <option value="cHumanas">Ciencias Humanas</option>
+                        </select>
+                        
+                </div>
+
+                {{!-- <div class="gener-inputs">
+                    <div class="gener-tltle">
+                        <h6>Genero</h6>
+                    </div>
+                    <div class="gener-group">
+                        <div class="gener-input">
+                            <input type="radio" name="genero" id="feminino">
+                            <label for="feminino">Feminino</label>
+                        </div>
+                        <div class="gener-input">
+                            <input type="radio" name="genero" id="masculino">
+                            <label for="masculino">Masculino</label>
+                        </div>
+                    </div>
+                </div> --}}
+                {{!-- <a href="#">Click aqui para carregar arquivos</a> --}}
+            <div class="lead text-danger">Carrege seus documentos para validar sua candidatura (foto e certificado)</div>
+                <div class="button-candidato">
+                    <button type="submit">Confirmar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

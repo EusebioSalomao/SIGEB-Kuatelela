@@ -1,0 +1,116 @@
+/*
+  Estilos do componente "Aproveitamento Trimestral".
+  Paleta mantida a partir das cores originais (Bootstrap secondary/warning),
+  apenas organizada em variáveis para consistência e reuso.
+*/
+
+:root {
+    --aprov-secondary: #6c757d;
+    --aprov-secondary-dark: #565e64;
+    --aprov-warning: #ffc107;
+    --aprov-warning-dark: #e0a800;
+    --aprov-text-light: #f8f9fa;
+    --aprov-text-dark: #212529;
+    --aprov-title-color: #343a40;
+    --aprov-muted: #6c757d;
+    --aprov-border: #dee2e6;
+    --aprov-radius: 0.5rem;
+}
+
+.aproveitamento-trimestral {
+    padding: 1rem 0 0.5rem;
+}
+
+/* Cabeçalho */
+
+.aproveitamento-title {
+    font-weight: 700;
+    letter-spacing: 0.15rem;
+    color: var(--aprov-title-color);
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+
+.aproveitamento-badge {
+    display: inline-block;
+    background-color: var(--aprov-secondary);
+    color: var(--aprov-text-light);
+    padding: 0.5rem 1.1rem;
+    border-radius: var(--aprov-radius);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.aproveitamento-divider {
+    border: none;
+    border-top: 2px solid var(--aprov-border);
+    margin: 1rem 0;
+    opacity: 1;
+}
+
+/* Grelha de cursos */
+
+.aproveitamento-btn {
+    min-height: 4.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.3;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--aprov-radius);
+    background-color: var(--aprov-secondary);
+    border-color: var(--aprov-secondary);
+    color: var(--aprov-text-light);
+    transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.aproveitamento-btn:hover,
+.aproveitamento-btn:focus-visible {
+    background-color: var(--aprov-secondary-dark);
+    border-color: var(--aprov-secondary-dark);
+    color: var(--aprov-text-light);
+    transform: translateY(-2px);
+    box-shadow: 0 0.35rem 0.75rem rgba(0, 0, 0, 0.15);
+}
+
+.aproveitamento-btn:active {
+    transform: translateY(0);
+}
+
+/* Botão "Todos os Cursos" — mesma cor, destacado apenas pela borda */
+
+.aproveitamento-btn-all {
+    border: 2px dashed rgba(255, 255, 255, 0.65);
+}
+
+/* Estado vazio (aproveitamento ainda não gerado) */
+
+.aproveitamento-empty {
+    padding: 3rem 1rem;
+}
+
+.aproveitamento-empty-text {
+    color: var(--aprov-muted);
+    margin-bottom: 1.25rem;
+    font-size: 1.05rem;
+}
+
+.aproveitamento-btn-generate {
+    padding: 0.6rem 1.75rem;
+    font-weight: 600;
+    border-radius: var(--aprov-radius);
+    background-color: var(--aprov-warning);
+    border-color: var(--aprov-warning);
+    color: var(--aprov-text-dark);
+    transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.aproveitamento-btn-generate:hover,
+.aproveitamento-btn-generate:focus-visible {
+    background-color: var(--aprov-warning-dark);
+    border-color: var(--aprov-warning-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 0.35rem 0.75rem rgba(0, 0, 0, 0.15);
+}

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PDF-Teste</title>
+    <style>
+        body{
+            margin: 2rem;
+        }
+        .logor{
+            size: 10%;
+            margin-bottom: 0rem;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .m-1{
+            margin: 1rem;
+            padding: 0rem;
+        }
+        .fw-bold{
+            font-weight: bold;
+        }
+        .mt-3{
+            margin-top: 2rem;
+        }
+        .row{
+            display: inline-block
+        }
+        .table-bordered {
+    border-collapse: collapse; /* CSS2 */
+}
+ 
+.table-bordered td {
+    border: 1px solid black;
+}
+ 
+.table-bordered th {
+    border: 1px solid black;
+    background: #878383;
+    font-weight: bold;
+}
+td{
+    width: 40rem;
+}
+.bg-sinza{
+    background-color: azure;
+    margin: 1rem;
+}
+
+ol {
+    list-style: start;
+}
+.lateral{
+    position: absolute;
+    right: 5rem;
+    top: 20.6rem;
+}
+.table-secondary {
+    background-color: #878383;
+}
+.m-r{
+    margin-right: 14rem;
+}
+.m-r2{
+    margin-right: 16rem;
+}
+.mt-5{
+    margin-right: 20rem;
+
+}
+.visto{
+    position: absolute;
+    top: 5rem;
+}
+.text-end{
+    text-align: end;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="logo text-center"><img src="http://localhost:8081/img/logor.png" class="logor" alt="Logo"></div>
+    <div class="text-center">
+        <p class="m-1">República de Angola</p>
+        <p class="m-1">Governo da Província do Bié</p>
+        <p class="m-1">Administração Municipal de Catabola</p>
+        <p class="fw-bold" >LICEU FELIZBERTO DOMINGO NGUNGA</p>
+<div class="visto">
+    <div class="text-center">
+        <div class="fw-bold">O Director</div>
+        <span>___________________</span><br>
+        <span>xxxxxxxxxxxxxxxx</span>
+    </div>
+</div>
+        <div class="mt-3 lead">RELATÓRIO DIÁRIO</div><br>
+    </div>
+    <div class="col-6 text-center" > <%= diaR %> </div>
+    
+    <table class="">
+        <thead class="table-secondary">
+            <tr>
+                <td>Receitas</td>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <ol start="4">
+
+                <% for(let i = 0; i < receitas.length; i++) { %>
+                    <tr>
+                    <td class="bg-sinza"> <%= receitas[i].descricao %></td>
+                    <td class="text-end bg-sinza" > <%= receitas[i].valor %></td>
+
+                    
+
+                    </tr>
+                  <% } %>
+                
+            </ol>
+        </tbody>
+    </table>
+    <table class="">
+        <thead class="table-secondary">
+            <tr>
+                <td>Despesas</td>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <ol start="4">
+
+                <% for(let i = 0; i < despesas.length; i++) { %>
+                    <tr>
+                    <td class="bg-sinza"> <%= despesas[i].descricao %></td>
+                    <td class="text-end bg-sinza"> <%= despesas[i].valor %></td>
+
+                    
+
+                    </tr>
+                  <% } %>
+                
+            </ol>
+        </tbody>
+    </table>
+    <div class="data mt-3 text-center">
+        Catabola aos <%= dia %> de <%= mes %> de <%= ano %>.
+    </div>
+    <div class="">
+        <div class="fw-bold mt-3 text-center">
+
+            <span class="" >O Funcionário </span><br>
+        </div>
+        <div class="text-center">
+
+            <span class="">_________________________</span><br>
+            <span class="">xxxxxxxxxxxxxxxxxxxxxxxxxxx</span><br>
+        </div>
+    </div>
+</body>
+</html>

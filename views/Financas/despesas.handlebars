@@ -1,0 +1,51 @@
+<h1 class="text-center fw-bold mark">D E S P E S A S</h1>
+<hr>
+<div class="text-end">
+<a href="/financas/addDespesa"><button class="btn mybtn-primary btn-sm" >Registrar nova</button></a>
+</div>
+<hr>
+<div class="container mt-3 mb-5 pb-5">
+    <table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Descrição</th>
+      <th scope="col">Valor</th>
+      <th scope="col text-end">#</th>
+    </tr>
+  </thead>
+  <tbody>
+      {{#each despesas}}
+    <tr>
+
+      <td> {{descricao}} </td>
+      <td> {{valor}} </td>
+      <td>
+            <form action="/secretaria/aceitarSolicitacao" method="post">
+        <div class="row">
+            <div class="col-6 text-end">
+                <input type="hidden" name="numBI" value="{{numBI}}" id="">
+                <input type="hidden" name="idSolic" value="{{_id}}" id="">
+                <input type="hidden" name="tipo" value="{{tipoOcorrencia}}" id="">
+            {{!-- <a href="/secretaria/detalheSolic/{{_id}}" class="btn btn-sm" ><i class="bi bi-eye">Detalhes</i></a> --}}
+
+            </div>
+            
+        </div>
+            </form>
+      </td>
+    </tr>
+      {{else}}
+      <div class="col-4 offset-4">
+      <div class="text-center mybg-danger p-2 text-light fw-bold">Nenhuma despesa registrada</div>
+
+      </div>
+      {{/each}}
+    <tr>
+      <td scope="col">TOTAL DE DESPESAS</td>
+      <td scope="col text-end"> <span class="fw-bold"> {{total}} </span>  </td>
+      <td scope="col"></td>
+    </tr>
+      </tbody>
+</table>
+<i class="bi bi-eye"></i>
+</div>

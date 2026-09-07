@@ -1,0 +1,308 @@
+
+<div class="container py-3">
+
+    {{#if msg}}
+    <div class="alert alert-success text-center">{{msg}}</div>
+    {{/if}}
+    {{#if exist}}
+    <div class="alert alert-danger text-center">{{exist}}</div>
+    {{/if}}
+
+    <div class="mp-header d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+        <h1>Ano Lectivo: {{anoLectivoActivo.codigo}}</h1>
+        <div class="mp-subtitle">Minipautas / {{ano.codigo}}</div>
+    </div>
+
+    <div class="mp-toolbar d-flex flex-wrap justify-content-between align-items-center mb-4">
+        <div class="d-flex flex-wrap align-items-center gap-2">
+            <a href="/pedagogico" class="btn btn-sm btn-secondary">Voltar</a>
+            <span class="mp-desc">Todas as minipautas das turmas do ano lectivo {{anoLectivoActivo.codigo}}</span>
+        </div>
+        <form action="/pedagogico/pesquisarMinipautas" method="post" class="d-flex flex-wrap gap-2" id="mpFormPesquisa">
+            <select name="tipoPesquisa" id="mpTipoPesquisa" class="form-select form-select-sm" required>
+                <option value="" selected disabled>Pesquisar por</option>
+                <option value="nomeMini">Nome da minipauta</option>
+                <option value="nomeProfe">Nome do professor</option>
+            </select>
+            <input type="text" name="descPesquisa" id="mpDescPesquisa" placeholder="Escreve aqui para procurar" class="form-control form-control-sm fst-italic" required autocomplete="off">
+            <button type="submit" class="btn btn-sm btn-primary">
+                <i class="bi bi-search"></i>
+            </button>
+        </form>
+        {{!-- <a href="#" onclick="addDisciplina()"><button class="btn btn-sm btn-warning">Adicionar disciplina</button></a> --}}
+    </div>
+
+    <div id="mpListaMinipautas">
+        {{#each minipautas}}
+        <div class="card mp-card mb-3">
+            <div class="row g-0">
+                <div class="col-12 col-lg-4 mp-card-side">
+                    <h3 class="fw-bold mp-nome-disciplina">{{nomeDisciplina}}</h3>
+                    <p class="mb-2">{{idClasse.designacao}} &middot; <span class="text-secondary">Turma:</span> <span class="text-info fw-semibold">{{idTurma.codigo}}</span></p>
+                    <a href="/professor/minipauta/{{_id}}" class="btn btn-sm btn-secondary">Ver minipauta</a>
+                </div>
+                <div class="col-12 col-lg-8 mp-card-main">
+                    <div class="mp-card-title mb-2">Minipauta da {{idClasse.designacao}}, turma {{idTurma.codigo}}</div>
+
+                    <div class="mb-2 mp-notas-container">
+                        <div class="mp-notas-group">
+                            <span class="mp-notas-label">1º Trimestre:</span>
+                            {{#if lancadoAV1T1}}<span class="mp-badge">1ª AVCT1</span>{{/if}}
+                            {{#if lancadoAV2T1}}<span class="mp-badge">2ª AVCT1</span>{{/if}}
+                            {{#if lancadoAV3T1}}<span class="mp-badge">3ª AVCT1</span>{{/if}}
+                            {{#if lancadoPPT1}}<span class="mp-badge">PPT1</span>{{/if}}
+                            {{#if lancadoPTT1}}<span class="mp-badge">PTT1</span>{{/if}}
+                        </div>
+                        <div class="mp-notas-group">
+                            <span class="mp-notas-label">2º Trimestre:</span>
+                            {{#if lancadoAV1T2}}<span class="mp-badge">1ª AVCT2</span>{{/if}}
+                            {{#if lancadoAV2T2}}<span class="mp-badge">2ª AVCT2</span>{{/if}}
+                            {{#if lancadoAV3T2}}<span class="mp-badge">3ª AVCT2</span>{{/if}}
+                            {{#if lancadoPPT2}}<span class="mp-badge">PPT2</span>{{/if}}
+                            {{#if lancadoPTT2}}<span class="mp-badge">PTT2</span>{{/if}}
+                        </div>
+                        <div class="mp-notas-group">
+                            <span class="mp-notas-label">3º Trimestre:</span>
+                            {{#if lancadoAV1T3}}<span class="mp-badge">1ª AVCT3</span>{{/if}}
+                            {{#if lancadoAV2T3}}<span class="mp-badge">2ª AVCT3</span>{{/if}}
+                            {{#if lancadoAV3T3}}<span class="mp-badge">3ª AVCT3</span>{{/if}}
+                            {{#if lancadoPPT3}}<span class="mp-badge">PPT3</span>{{/if}}
+                            {{#if lancadoPTT3}}<span class="mp-badge">PTT3</span>{{/if}}
+                        </div>
+                        <div class="mp-notas-group">
+                            <span class="mp-notas-label">Exames:</span>
+                            {{#if lancadoExameOral}}<span class="mp-badge">E. Oral</span>{{/if}}
+                            {{#if lancadoExameEscrito}}<span class="mp-badge">E. Escrito</span>{{/if}}
+                        </div>
+                    </div>
+
+                    <div class="mp-obs mb-3">
+                        <span class="fw-bold text-danger">OBS:</span> Apenas os professores podem fazer a inserção de notas dos alunos nas minipautas correspondentes!
+                    </div>
+
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+                        <div>
+                            <span>Prof:</span>
+                            <span class="text-secondary fw-bold mp-nome-professor">{{idProfessor.nome}}</span>
+                        </div>
+                        <a href="#" class="btn btn-sm btn-warning">Notificar professor</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <div class="mp-empty text-center h5">Nenhuma minipauta criada</div>
+        {{/each}}
+        <div class="mp-empty text-center h5 d-none" id="mpSemResultado">Nenhuma minipauta encontrada para essa pesquisa</div>
+    </div>
+
+</div>
+
+{{!-- M O D A I S --}}
+
+<!-- Modal addClasse -->
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="addClasse">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form action="/classes/add" method="post">
+                <div class="modal-header">
+                    <h3 class="modal-title">Adicionar nova classe</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="designacao" class="form-label">Designação</label>
+                        <select name="designacao" id="designacao" class="form-select" required>
+                            <option value="" selected disabled>Selecionar</option>
+                            <option value="10ª Classe">10ª Classe</option>
+                            <option value="11ª Classe">11ª Classe</option>
+                            <option value="12ª Classe">12ª Classe</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="numVagas" class="form-label">Nº Vagas</label>
+                        <input type="number" name="numVagas" id="numVagas" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="turnos" class="form-label">Turnos</label>
+                        <select name="turnos" id="turnos" class="form-select" required>
+                            <option value="" selected disabled>Selecionar</option>
+                            <option value="matinal">Matinal</option>
+                            <option value="vespertino">Vespertino</option>
+                            <option value="noturno">Noturno</option>
+                            <option value="matVespertino">Matinal e Vespertino</option>
+                            <option value="todos">Todos</option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="idCurso" value="{{curso._id}}">
+                    <input type="hidden" name="idAno" value="{{ano._id}}">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Adicionar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal addTurma -->
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="addTurma">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form action="/turmas/add" method="post">
+                <div class="modal-header">
+                    <h3 class="modal-title">Adicionar nova turma</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="classe" class="form-label">Classe</label>
+                        <select name="classe" id="classe" class="form-select" required>
+                            {{#if classe10}}<option value="10ª Classe">10ª Classe</option>{{/if}}
+                            {{#if classe11}}<option value="11ª Classe">11ª Classe</option>{{/if}}
+                            {{#if classe12}}<option value="12ª Classe">12ª Classe</option>{{/if}}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="codigo" class="form-label">Código</label>
+                        <input type="text" name="codigo" id="codigo" class="form-control" placeholder="Digite o código da turma" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="periodo" class="form-label">Período</label>
+                        <select name="periodo" id="periodo" class="form-select" required>
+                            <option value="" selected disabled>Selecionar</option>
+                            <option value="matinal">Matinal</option>
+                            <option value="vespertino">Vespertino</option>
+                            <option value="noturno">Noturno</option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="idCurso" value="{{curso._id}}">
+                    <input type="hidden" name="idAno" value="{{ano._id}}">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Adicionar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal addDisciplina -->
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="addDisciplina">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form action="/disciplinas/add" method="post">
+                <div class="modal-header">
+                    <h3 class="modal-title">Adicionar nova disciplina</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="nomeDisciplina" class="form-label">Nome da disciplina</label>
+                        <input type="text" name="nomeDisciplina" id="nomeDisciplina" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tempoLectivo" class="form-label">Tempo lectivo por semana</label>
+                        <input type="text" name="tempoLectivo" id="tempoLectivo" class="form-control" required>
+                    </div>
+                    <input type="hidden" name="idClasse" value="{{classe._id}}">
+                    <input type="hidden" name="idCurso" value="{{curso._id}}">
+                    <input type="hidden" name="idAno" value="{{ano._id}}">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Adicionar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="assets/bootstrap.bundle.min.js"></script>
+<script>
+    function addClasse() {
+        let el = document.getElementById('addClasse');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+    function addTurma() {
+        let el = document.getElementById('addTurma');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+    function addDisciplina() {
+        let el = document.getElementById('addDisciplina');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+</script>
+
+<script>
+    function normalizarTexto(texto) {
+        return texto
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .toLowerCase()
+            .trim();
+    }
+
+    function filtrarMinipautas() {
+        let campoDesc = document.getElementById('mpDescPesquisa');
+        let campoTipo = document.getElementById('mpTipoPesquisa');
+        if (!campoDesc) return;
+
+        let termo = normalizarTexto(campoDesc.value);
+        let tipo = campoTipo ? campoTipo.value : '';
+        let cards = document.querySelectorAll('#mpListaMinipautas .mp-card');
+        let algumVisivel = false;
+
+        cards.forEach(function (card) {
+            let elDisciplina = card.querySelector('.mp-nome-disciplina');
+            let elProfessor = card.querySelector('.mp-nome-professor');
+            let textoDisciplina = elDisciplina ? normalizarTexto(elDisciplina.textContent) : '';
+            let textoProfessor = elProfessor ? normalizarTexto(elProfessor.textContent) : '';
+
+            let corresponde;
+            if (!termo) {
+                corresponde = true;
+            } else if (tipo === 'nomeMini') {
+                corresponde = textoDisciplina.includes(termo);
+            } else if (tipo === 'nomeProfe') {
+                corresponde = textoProfessor.includes(termo);
+            } else {
+                corresponde = textoDisciplina.includes(termo) || textoProfessor.includes(termo);
+            }
+
+            card.classList.toggle('d-none', !corresponde);
+            if (corresponde) {
+                algumVisivel = true;
+            }
+        });
+
+        let semResultado = document.getElementById('mpSemResultado');
+        if (semResultado) {
+            semResultado.classList.toggle('d-none', algumVisivel || cards.length === 0);
+        }
+    }
+
+    let mpDescPesquisa = document.getElementById('mpDescPesquisa');
+    let mpTipoPesquisa = document.getElementById('mpTipoPesquisa');
+    let mpFormPesquisa = document.getElementById('mpFormPesquisa');
+
+    if (mpDescPesquisa) {
+        mpDescPesquisa.addEventListener('input', filtrarMinipautas);
+    }
+    if (mpTipoPesquisa) {
+        mpTipoPesquisa.addEventListener('change', filtrarMinipautas);
+    }
+    if (mpFormPesquisa) {
+        mpFormPesquisa.addEventListener('submit', function (event) {
+            event.preventDefault();
+            filtrarMinipautas();
+        });
+    }
+</script>

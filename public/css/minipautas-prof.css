@@ -1,0 +1,116 @@
+/* =========================================================
+   minipautas-prof.css
+   Estilos da página de Minipautas do Professor.
+   Paleta mantém as cores originais (Bootstrap secondary/gray,
+   laranja de destaque e azul "mybtn-primary" já usados na página),
+   apenas organizados em variáveis para consistência.
+   ========================================================= */
+
+:root {
+    --mp-laranja: #e08130;
+    --mp-laranja-hover: #c46c22;
+    --mp-primary: #2c3e50;
+    --mp-primary-hover: #1c2833;
+    --mp-border: #dee2e6;
+    --mp-radius: 0.5rem;
+    --mp-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --mp-shadow-hover: 0 0.5rem 1rem rgba(0, 0, 0, 0.12);
+}
+
+.minipautas-page {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Cabeçalho */
+.minipautas-page .page-header h1,
+.minipautas-page .page-header h2 {
+    letter-spacing: 0.01em;
+}
+
+/* Botão laranja (ação "Voltar") */
+.btn-laranja {
+    background-color: var(--mp-laranja);
+    border-color: var(--mp-laranja);
+    color: #fff;
+}
+
+.btn-laranja:hover,
+.btn-laranja:focus {
+    background-color: var(--mp-laranja-hover);
+    border-color: var(--mp-laranja-hover);
+    color: #fff;
+}
+
+/* Botão "Editar" (antigo mybtn-primary) */
+.btn-mybtn-primary {
+    background-color: var(--mp-primary);
+    border-color: var(--mp-primary);
+    color: #fff;
+}
+
+.btn-mybtn-primary:hover,
+.btn-mybtn-primary:focus {
+    background-color: var(--mp-primary-hover);
+    border-color: var(--mp-primary-hover);
+    color: #fff;
+}
+
+/* Cartões das minipautas */
+.minipautas-list .card {
+    border: 1px solid var(--mp-border);
+    border-radius: var(--mp-radius);
+    box-shadow: var(--mp-shadow);
+    display: flex;
+    flex-direction: column;
+}
+
+.minipautas-list .mybox {
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.minipautas-list .mybox:hover {
+    box-shadow: var(--mp-shadow-hover);
+    transform: translateY(-2px);
+}
+
+.minipauta-item {
+    border-bottom: 1px solid var(--mp-border);
+    padding-bottom: 0.75rem;
+}
+
+.minipauta-item:last-child {
+    border-bottom: none;
+}
+
+/* Caixa de observação */
+.obs-box {
+    background-color: #fff;
+    border-left: 4px solid var(--bs-danger, #dc3545);
+    border-radius: 0.25rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+}
+
+/* Utilitário mantido do template original */
+.text-justify {
+    text-align: justify;
+}
+
+/* Badges de "notas lançadas" */
+.minipautas-list .badge {
+    font-weight: 500;
+    font-size: 0.75rem;
+}
+
+/* Responsividade fina para telas pequenas */
+@media (max-width: 575.98px) {
+    .minipautas-page {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+
+    .minipautas-list .card {
+        padding: 1rem !important;
+    }
+}

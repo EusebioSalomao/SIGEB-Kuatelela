@@ -1,0 +1,104 @@
+<div class="form-headear my-0">
+    <div class="title">
+        <h1>Cadastro de funcionário</h1>
+    </div>
+</div>
+<hr>
+ <div class="row mt-0">
+    <div class="col-6 offset-3">
+         {{#each erros}}
+        <div class="alert alert-danger text-center">{{texto}}</div>
+    {{else}}
+    {{/each}}
+    </div>
+   </div>
+<div class="container">
+    <div class="card input-box">
+        <div class="card-body form-candidato mybox">
+            <form action="/funcionarios/saveFuncionario" method="post" enctype="multipart/form-data">
+
+                <div class="row">
+                    <div class="col-6 p-3">
+                        <label for="nome">Nome<span class="text-danger">*</span>:</label>
+                        <input type="text" name="nome" value="{{candidato.nome}}" class="form-control" required>
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="numBI">BI<span class="text-danger">*</span>:</label>
+                                <input type="text" name="numBI" placeholder="nº Bilhete de identidade" class="form-control text-sm" required>
+                            </div>
+                            <div class="col-6">
+                                <label for="contacto">Contacto:</label>
+                                <input type="tel" name="contacto" autocomplete="contacto" placeholder="9XX-XXX-XXX" class="form-control" pattern="^[0-9]{3}-[0-9]{3}-[0-9]{3}$">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="genero">Genero<span class="text-danger">*</span>:</label>
+                                <select name="genero" id="" required>
+                                    <option value="selecionar">Selecionar</option>
+                                    <option value="feminino">Feminino</option>
+                                    <option value="masculino">Masculino</option>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <label for="dataNascimento">Data de nascimento<span class="text-danger">*</span>:</label>
+                                <input type="date" name="dataNascimento" 
+                                    class="form-control" required>
+
+                            </div>
+                        </div>
+                            
+                            <div class="row">
+                                <div class="col-9">
+                                    
+                            <a href="#" class="btn btn-danger mt-4">Cancelar</a>
+                            <button type="submit" class="btn btn-success mt-4">Cadastrar</button>
+                            <a href="#" class=" btn mt-4 bg-secondary text-light">+ Documentos</a>
+                            
+
+                                </div>
+                                <div class="col-3">
+                                    
+                                </div>
+                            </div>
+                    </div>
+                    <div class="col-6 p-3">
+                        <div class="lead text-danger">Dados adicionais</div>
+                        <label for="especialidade">Especialidade:</label>
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="text" name="especialidade" class="form-control"
+                                    >
+                        <label for="funcao">Função<span class="text-danger">*</span>:</label>
+                        <select name="funcao" id="">
+                            <option value="selecionar">Selecionar</option>
+                            <option value="professor">Professor</option>
+                            <option value="administrativo">Administrativo</option>
+                            <option value="auxiliarLinp">Auxiliar de Limpesa</option>
+                        </select><br>
+                        <label for="morada">Morada<span class="text-danger">*</span>:</label>
+                        <input type="text" name="morada" placeholder="exemplo: bairro/Município" class="form-control"
+                            required>
+                            </div>
+                            <div class="col-6">
+                                <div class="card" >
+                                        <div class="card-body">
+                                            <img src="/img/modelocand.png" class="fotoAluno" alt="Foto">
+                                        </div>
+                                    </div>
+                                    <div class="col-">
+
+                                    <input type="file" name="fotoProf" class="form-control" id="">
+                                    </div>
+                            </div>
+                        </div>
+
+                        <hr>
+                        (<span class="text-danger">*</span>) Campos obrigatórios
+                        
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

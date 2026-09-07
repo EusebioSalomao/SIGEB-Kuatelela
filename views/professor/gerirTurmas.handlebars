@@ -1,0 +1,100 @@
+
+<main class="turmas-page">
+    <div class="container">
+        {{#if msg}}
+        <div class="alert alert-success page-alert" role="alert">{{msg}}</div>
+        {{/if}}
+        {{#if exist}}
+        <div class="alert alert-danger page-alert" role="alert">{{exist}}</div>
+        {{/if}}
+
+        <header class="page-heading" id="prof-nome">
+            <div>
+                <span class="eyebrow">Gestão académica</span>
+                <h1>Professor: <strong>{{professor.nome}}</strong></h1>
+            </div>
+            <div class="course-context">
+                <span>Turmas</span>
+                <strong>{{curso.descricao}} / {{ano.codigo}}</strong>
+            </div>
+        </header>
+
+        <section class="intro-panel" id="leadP">
+            <a href="/professor/{{professor.usuario}}" class="btn btn-outline-light btn-sm">Voltar ao perfil</a>
+            <p>Turmas e classe a lecionar durante o ano lectivo {{ano.codigo}} — apenas as turmas que o professor dá aula.</p>
+        </section>
+
+        {{!--
+        <div class="text-end mb-3">
+            <a href="#" onclick="addDisciplina()" class="btn btn-warning btn-sm">Adicionar disciplina</a>
+        </div>
+        --}}
+
+        <section aria-labelledby="turmas-title">
+            <div class="section-heading">
+                <span class="eyebrow">Lista de turmas</span>
+                <h2 id="turmas-title">Turmas atribuídas</h2>
+            </div>
+            {{#if turmas.length}}
+            <ul class="turmas-grid">
+                {{#each turmas}}
+                <li class="turma-card">
+                    <span class="turma-label">Turma</span>
+                    <strong class="turma-code">{{codigo}}</strong>
+                    <a href="/professor/listaAlunos/{{_id}}" class="btn btn-primary btn-sm">Entrar</a>
+                    <span class="turma-hint">Clique para ver mais informações</span>
+                </li>
+                {{/each}}
+            </ul>
+            {{else}}
+            <div class="empty-state">Nenhuma turma adicionada</div>
+            {{/if}}
+        </section>
+    </div>
+</main>
+
+<!-- Modal addDisciplina -->
+<div class="modal fade" tabindex="-1" data-bs-backdrop="static" id="addDisciplina"
+    aria-labelledby="addDisciplinaTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <form action="/disciplinas/add" method="post" class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="addDisciplinaTitle">Adicionar nova disciplina</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body">
+                <label for="nomeDisciplina" class="form-label">Nome da disciplina:</label>
+                <input type="text" name="nomeDisciplina" required id="nomeDisciplina" class="form-control mb-3">
+                <label for="tempoLectivo" class="form-label">Tempo lectivo por semana:</label>
+                <input type="text" name="tempoLectivo" required id="tempoLectivo" class="form-control">
+                <input type="hidden" name="idClasse" value="{{classe._id}}">
+                <input type="hidden" name="idCurso" value="{{curso._id}}">
+                <input type="hidden" name="idAno" value="{{ano._id}}">
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Adicionar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="/assets/bootstrap.bundle.min.js"></script>
+<script>
+    function addClasse() {
+        const el = document.getElementById('addClasse');
+        const minhaModal = new bootstrap.Modal(el);
+        minhaModal.show();
+    }
+
+    function addTurma() {
+        const el = document.getElementById('addTurma');
+        const minhaModal = new bootstrap.Modal(el);
+        minhaModal.show();
+    }
+
+    function addDisciplina() {
+        const el = document.getElementById('addDisciplina');
+        const minhaModal = new bootstrap.Modal(el);
+        minhaModal.show();
+    }
+</script>

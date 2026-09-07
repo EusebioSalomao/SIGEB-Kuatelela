@@ -1,0 +1,71 @@
+{{#if msg}}
+<div class="alert alert-success text-center">{{msg}}</div>
+{{else}}
+{{/if}}
+{{#if exist}}
+<div class="alert alert-danger text-center">{{exist}}</div>
+{{else}}
+{{/if}}
+<div class="row">
+    <div class=" text-center">
+
+<h3><span class="text-secondary">Turma:</span> {{turma.codigo}} - {{classe.designacao}} / {{curso.descricao}}</h3>
+    </div>
+    {{!-- <div class="col-2 pt-3"><a href="#" class="btn btn-sm btn-primary " onclick="addAluno()">+Aluno</a> <a href="/pedagogico/turmas" class="btn btn-sm mybtn-primary" >Td Turmas</a></div> --}}
+</div>
+<hr>
+<div class="bg-secondary p-2">
+    <div class="row">
+<div class="text-center">
+
+
+   
+   
+    <span class="text-light text-center h2 fw-bold"> CONTROL DE FALTAS DOS ALUNOS </span>
+
+</div>
+
+    </div>
+</div>
+<hr>
+<div class="conteiner">
+    <table class="table table-hover">
+        <thead>
+            <tr class="fw-bold mybg-secondary">
+                <td class="text-center">N/O</td>
+                <td>Nome Completo</td>
+                <td>Nº de Faltas</td>
+                <td>OBS</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+
+        {{#each alunos}}
+        <tr>
+            <td class="text-center"> {{numeroOrd}}  </td>
+            <td> {{nome}} </td>
+            <td> {{fatasDoAluno}} Faltas </td>
+            <td class="text-danger" > {{obs}}  </td>
+            <td class="text-end" >  <a href="#"> <button class="btn btn-info btn-sm">Detalhes</button> </a> </td>
+        </tr>
+        {{else}}
+        {{/each}}
+        </tbody>
+    </table>  
+
+</div>
+<hr>
+<div class="text-center">
+    <a href="/turmas/turma/{{turma._id}}"><button class="btn btn-sm btn-primary" > < V O L T A R</button></a>
+    <a href="/turmas/gerarLista/{{turma._id}}"> <button class="btn btn-sm btn-primary" >Ver lista</button> </a>
+    <button type="submit" class="btn btn-sm mybtn-primary" >Baixar</button>
+    
+    <a href="/relatorios/gerarListaAlunos/{{turma._id}}" > <button class="btn btn-sm btn-secondary">Lista PDF </button> </a>
+    <a href="/turmas/minipautaPDF/{{turma._id}}"><button class="btn btn-sm btn-secondary " >Minipauta PDF</button></a>
+</div>
+
+
+
+
+

@@ -1,0 +1,93 @@
+<div class="row">
+    <div class="col-9">
+        <h2 class="text-secondary bg-light p-1 "> <span class="fw-bold">Aluno:</span> <span class="text-primary"> {{aluno.nome}} </span>  </h2>
+    </div>
+    <div class="col-3 text-end">
+        <h2 class="mark text-center">Menu</h2>
+    </div>
+</div>
+<hr>
+<div class="container">
+    <div class="row">
+    <div class="col-4 text-dark menu-item3 text-center p-1 h5   mx-1 ms-4 "><a href="#" onclick="editarSenha()" class="">Editar senha</a></div>
+    <div class="col-3 text-dark  text-center p-1 h5  mx-2 "><a href="pedagogico/#" class="text-light"></a></div>
+    <div class="col-4 text-dark menu-item3 text-center p-1 h5  mx-1 "><a href="#" onclick="dadospessoal()" class="">Dados Pessoal</a></div>
+  </div>
+  
+    <div class="row">
+    <div class="col-4 text-dark menu-item3 text-center p-1 h5   mx-1 ms-4 "><a href="#" onclick="solicitarRUP()" class="">Solicitar RUP</a></div>
+    <div class="col-3 text-dark menu-item3 text-center p-1 h5   mx-2 "><a href="#" onclick="meuAproveitamento()" class="">Meu Aproveitamento</a></div>
+    <div class="col-4 text-dark menu-item3 text-center p-1 h5  mx-1 "><a href="#" onclick="documentos()" class="">Documentos</a></div>
+  </div>
+
+</div>
+</div>
+<hr class="mt-5">
+{{!-- MATRIZ DO ALUNO--}}
+    <div class="bg-secondary text-light text-center ">MATRIZ DO ALUNO</div>
+    
+    <div class="container card mt-3 pt-3">
+        <div class="text-primary text-center h3 mb-2"> {{aluno.nome}} </div>
+        <div class="row text-center">
+            <div class="col-4 card">10ª Classe</div>
+            <div class="col-4 card">11ª Classe</div>
+            <div class="col-4 card">12ª Classe</div>
+        </div>
+
+        <div class="row bg-light">
+            <div class="col-3"> Disciplina </div>
+            <div class="col-1 text-center"> Notas </div>
+            <div class="col-3"> Disciplina </div>
+            <div class="col-1 text-center"> Notas </div>
+            <div class="col-3"> Disciplina </div>
+            <div class="col-1 text-center"> Notas </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                {{#each matrizAluno10}}
+                {{#each notas}}
+                <div class="row">
+                    <div class="col-9">{{disciplina}}</div>
+                    {{#if negativa4}}<div class="col-3 text-center text-danger">{{mf}}</div> {{else}} <div class="col-3 text-center myText-primary">{{mf}}</div> {{/if}}
+
+                </div>
+                {{else}}
+                {{/each}}
+                {{else}}
+                 <div class="text-danger text-center lead mt-5">Não Concluido!</div>
+                {{/each}}
+            </div>
+            <div class="col-4">
+                {{#each matrizAluno11}}
+                {{#each notas}}
+                <div class="row">
+                    <div class="col-9">{{disciplina}}</div>
+                    {{#if negativa4}}<div class="col-3 text-center text-danger">{{mf}}</div> {{else}} <div class="col-3 text-center myText-primary">{{mf}}</div> {{/if}}
+                    
+                </div>
+                {{else}}
+                {{/each}}
+                {{else}}
+                 <div class="text-danger text-center lead mt-5">Não Concluido!</div>
+                {{/each}}
+            </div>
+            <div class="col-4">
+                {{#each matrizAluno12}}
+                {{#each notas}}
+                <div class="row">
+                    <div class="col-9">{{disciplina}}</div>
+                    {{#if negativa4}}<div class="col-3 text-center text-danger">{{cf}}</div> {{else}} <div class="col-3 text-center myText-primary">{{cf}}</div> {{/if}}
+                    
+                </div>
+                {{else}}
+                {{/each}}
+                {{else}}
+                <div class="text-danger text-center lead mt-5">Não Concluido!</div>
+                {{/each}}
+            </div>
+            
+        </div>
+
+    </div>
+{{!-- FIM MATRIZ--}}

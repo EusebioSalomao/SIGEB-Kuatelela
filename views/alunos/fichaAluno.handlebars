@@ -1,0 +1,355 @@
+
+<div class="container ficha-escolar">
+
+    <div class="ficha-header">
+        <h2 class="text-secondary bg-light p-2">FICHA ESCOLAR</h2>
+        <h2 class="mark p-2 mb-0">Perfil</h2>
+    </div>
+    <hr>
+
+    <div class="row perfil-aluno g-3">
+
+        <div class="col-12 col-md-3">
+            <div class="card foto-aluno-card">
+                <div class="card-body p-0">
+                    {{#if aluno.foto}}
+                    <img src="/uploads/{{aluno.foto}}" class="fotoAluno" alt="Foto de {{aluno.nome}}">
+                    {{else}}
+                    <img src="/img/logcand.png" class="fotoAluno" alt="Sem foto disponível">
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+
+        {{!-- DADOS PESSOAIS --}}
+        <div class="col-12 col-md-6">
+            <div class="data-panel">
+                <h6 class="data-panel__title bg-secondary p-2 text-light">DADOS PESSOAL</h6>
+                <div class="data-panel__body">
+                    <div class="student-title-row h5 p-2 text-primary bg-light">
+                        <span>{{aluno.nome}}</span>
+                        {{#if user._alterarAluno}}
+                        {{#if nivelPrivilegio01}}
+                        <a href="#" class="btn btn-sm btn-primary" onclick="alterarNome()">Alterar</a>
+                        {{/if}}
+                        {{/if}}
+                    </div>
+
+                    <p class="data-field">{{aluno.classe}}</p>
+                    <p class="data-field"><span class="data-field__label">Turma:</span> <span>{{turma.codigo}}</span></p>
+                    <p class="data-field"><span class="data-field__label">Curso:</span> <span>{{aluno.curso}}</span></p>
+                    <p class="data-field data-field--highlight"><span class="data-field__label">BI nº:</span> <span>{{aluno.numBI}}</span></p>
+                    <p class="data-field"><span class="data-field__label">Idade:</span> <span>{{aluno.idade}} anos</span></p>
+                    <p class="data-field"><span class="data-field__label">Período:</span> <span>{{turma.periodo}}</span></p>
+                    <p class="data-field"><span class="data-field__label">Morada:</span> <span>{{aluno.morada}}</span></p>
+                    <p class="data-field"><span class="data-field__label">Contacto:</span> <span>{{aluno.contacto}}</span></p>
+
+                    <button class="btn btn-primary btn-sm">Editar</button>
+                </div>
+            </div>
+        </div>
+
+        {{!-- DADOS DE USUÁRIO --}}
+        <div class="col-12 col-md-3">
+            <div class="data-panel">
+                <h6 class="data-panel__title bg-secondary p-2 text-light">DADOS DE USUÁRIO</h6>
+                <div class="data-panel__body">
+                    <p class="data-field">
+                        <span class="data-field__label">Username:</span>
+                        <input type="text" value="{{usuario.username}}" class="form-control form-control-sm" disabled>
+                    </p>
+                    <p class="data-field">
+                        <span class="data-field__label">Senha:</span>
+                        <input type="password" value="{{usuario.senha}}" class="form-control form-control-sm" disabled>
+                    </p>
+
+                    <a href="/alunos/menu/{{aluno._id}}" class="btn btn-primary d-block text-center mt-3">Menu</a>
+
+                    {{!--
+                    <p class="mt-4 bg-light text-center"><span class="h6 btn text-danger">Configurações avançadas</span></p>
+                    <a href="#"> <button class="btn btn-sm btn-primary mt-0"> Alterar curso do aluno </button> </a><br>
+                    <a href="#"> <button class="btn btn-sm btn-dark mt-1"> Actualizar nº de BI do aluno </button> </a><br>
+                    <a href="#"> <button class="btn btn-sm btn-danger mt-1"> Remover aluno </button> </a><br>
+                    --}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{!-- DADOS DO ENCARREGADO DE EDUCAÇÃO --}}
+    <div class="guardian-panel bg-light mt-3">
+        <div class="guardian-panel__title h6 bg-secondary p-2 text-center text-light mb-3">
+            DADOS SOBRE O ENCARREGADO DE EDUCAÇÃO
+        </div>
+        <div class="row g-3 align-items-center">
+            <div class="col-12 col-md-5">
+                <p class="data-field"><span class="data-field__label">Nome do encarregado:</span> <span>{{aluno.nomeEncarregado}}</span></p>
+                <p class="data-field"><span class="data-field__label">Grau parentesco:</span> <span>{{alun}}</span></p>
+            </div>
+            <div class="col-12 col-md-4">
+                <p class="data-field"><span class="data-field__label">Profissão:</span> <span>{{aluno.proficao}}</span></p>
+                <p class="data-field"><span class="data-field__label">Contacto:</span> <span>{{aluno.contactoEncarregado}}</span></p>
+            </div>
+            <div class="col-12 col-md-3 text-md-end text-center">
+                <a href="#" class="btn btn-secondary btn-sm">Notificar encarregado via sms</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="h5 text-center p-2 mt-4 bg-light rounded">NOTAS DE AVALIAÇÕES E PROVAS</div>
+
+    <div class="grades-table-wrap table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+            <thead class="table-dark">
+                <tr class="none-md">
+                    <th rowspan="2" class="p-2 text-center">DISCIPLINAS</th>
+                    <th colspan="6" class="text-center bg-light text-secondary">1º Trimestre</th>
+                    <th colspan="6" class="text-center bg-info text-light">2º Trimestre</th>
+                    <th colspan="6" class="text-center bg-secondary text-light">3º Trimestre</th>
+                    <th colspan="6" class="text-center bg-dark text-light">CF</th>
+                </tr>
+                <tr class="none-lg">
+                    <th rowspan="2" class="p-2 text-center">DISCIPLINAS</th>
+                    <th colspan="3" class="text-center bg-light text-secondary">1º Trimestre</th>
+                    <th colspan="3" class="text-center bg-info text-light">2º Trimestre</th>
+                    <th colspan="3" class="text-center bg-secondary text-light">3º Trimestre</th>
+                    <th colspan="3" class="text-center bg-dark text-light">CF</th>
+                </tr>
+                <tr>
+                    <th class="myBg-secondary text-secondary none-md">1ªAv</th>
+                    <th class="myBg-secondary text-secondary none-md">2ªAv</th>
+                    <th class="myBg-secondary text-secondary none-md">3ªAv</th>
+                    <th class="myBg-secondary text-secondary">MAC</th>
+                    <th class="myBg-secondary text-secondary">PT1</th>
+                    <th class="myBg-secondary text-secondary">MT1</th>
+
+                    <th class="bg-info none-md">1ªAv</th>
+                    <th class="bg-info none-md">2ªAv</th>
+                    <th class="bg-info none-md">3ªAv</th>
+                    <th class="bg-info">MAC</th>
+                    <th class="bg-info">PT2</th>
+                    <th class="bg-info">MT2</th>
+
+                    <th class="bg-secondary none-md">1ªAv</th>
+                    <th class="bg-secondary none-md">2ªAv</th>
+                    <th class="bg-secondary none-md">3ªAv</th>
+                    <th class="bg-secondary">MAC</th>
+                    <th class="bg-secondary">PT3</th>
+                    <th class="bg-secondary">MT3</th>
+
+                    <th>MT</th>
+                    <th>E</th>
+                    <th>CF</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each notasDisciplina}}
+                <tr class="text-center">
+                    <td class="text-start">
+                        {{#if idMinipauta.nomeDisciplina}}
+                        {{idMinipauta.nomeDisciplina}}
+                        {{else}}
+                        <a href="/admin/eliminarNotasDisciplina/{{_id}}" class="text-danger">Notas Excluidas</a>
+                        {{/if}}
+                    </td>
+
+                    {{#if notas.negativaAv1T1}}<td class="text-danger none-md">{{notas.av1T1}}</td>{{else}}<td class="none-md">{{notas.av1T1}}</td>{{/if}}
+                    {{#if notas.negativaAv2T1}}<td class="text-danger none-md">{{notas.av2T1}}</td>{{else}}<td class="none-md">{{notas.av2T1}}</td>{{/if}}
+                    {{#if notas.negativaAv3T1}}<td class="text-danger none-md">{{notas.av3T1}}</td>{{else}}<td class="none-md">{{notas.av3T1}}</td>{{/if}}
+                    {{#if notas.negativaMac1}}<td class="text-danger fw-bold bg-light">{{notas.mac1}}</td>{{else}}<td class="fw-bold bg-light">{{notas.mac1}}</td>{{/if}}
+                    {{#if notas.negativaPT1}}<td class="text-danger fw-bold bg-light">{{notas.pt1}}</td>{{else}}<td class="fw-bold bg-light">{{notas.pt1}}</td>{{/if}}
+                    {{#if notas.negativaMT1}}<td class="text-danger fw-bold myBg-secondary">{{notas.mt1}}</td>{{else}}<td class="fw-bold myBg-secondary text-primary">{{notas.mt1}}</td>{{/if}}
+
+                    {{#if notas.negativaAv1T2}}<td class="text-danger none-md">{{notas.av1T2}}</td>{{else}}<td class="none-md">{{notas.av1T2}}</td>{{/if}}
+                    {{#if notas.negativaAv2T2}}<td class="text-danger none-md">{{notas.av2T2}}</td>{{else}}<td class="none-md">{{notas.av2T2}}</td>{{/if}}
+                    {{#if notas.negativaAv3T2}}<td class="text-danger none-md">{{notas.av3T2}}</td>{{else}}<td class="none-md">{{notas.av3T2}}</td>{{/if}}
+                    {{#if notas.negativaMac2}}<td class="text-danger fw-bold bg-light">{{notas.mac2}}</td>{{else}}<td class="fw-bold bg-light">{{notas.mac2}}</td>{{/if}}
+                    {{#if notas.negativaPT2}}<td class="text-danger fw-bold bg-light">{{notas.pt2}}</td>{{else}}<td class="fw-bold bg-light">{{notas.pt2}}</td>{{/if}}
+                    {{#if notas.negativaMT2}}<td class="text-danger fw-bold mybg-info2">{{notas.mt2}}</td>{{else}}<td class="fw-bold mybg-info2">{{notas.mt2}}</td>{{/if}}
+
+                    {{#if notas.negativaAv1T3}}<td class="text-danger none-md">{{notas.av1T3}}</td>{{else}}<td class="none-md">{{notas.av1T3}}</td>{{/if}}
+                    {{#if notas.negativaAv2T3}}<td class="text-danger none-md">{{notas.av2T3}}</td>{{else}}<td class="none-md">{{notas.av2T3}}</td>{{/if}}
+                    {{#if notas.negativaAv3T3}}<td class="text-danger none-md">{{notas.av3T3}}</td>{{else}}<td class="none-md">{{notas.av3T3}}</td>{{/if}}
+                    {{#if notas.negativaMac3}}<td class="text-danger fw-bold bg-light">{{notas.mac3}}</td>{{else}}<td class="fw-bold bg-light">{{notas.mac3}}</td>{{/if}}
+                    {{#if notas.negativaPT3}}<td class="text-danger fw-bold bg-light">{{notas.pt3}}</td>{{else}}<td class="fw-bold bg-light">{{notas.pt3}}</td>{{/if}}
+                    {{#if notas.negativaMT3}}<td class="text-danger fw-bold bg-secondary">{{notas.mt3}}</td>{{else}}<td class="fw-bold bg-secondary text-light">{{notas.mt3}}</td>{{/if}}
+
+                    <td class="text-primary fw-bold">{{notas.medDosTrimestes}}</td>
+                    <td>{{notas.examePF}}</td>
+                    <td class="fw-bold">{{notas.cf}}</td>
+                </tr>
+                {{else}}
+                <tr>
+                    <td colspan="23" class="text-center py-3">Nenhuma nota foi lançada!</td>
+                </tr>
+                {{/each}}
+
+                <tr class="bg-info text-center none-md">
+                    <td colspan="6">Med. Iº</td>
+                    <td class="fw-bold">{{MediaDT1}}</td>
+                    <td colspan="5">Med. IIº</td>
+                    <td class="fw-bold">{{MediaDT2}}</td>
+                    <td colspan="5">Med. IIIº</td>
+                    <td class="fw-bold">{{MediaDT3}}</td>
+                    <td colspan="2">MF</td>
+                    <td class="fw-bold">{{MediaDT3}}</td>
+                </tr>
+                <tr class="bg-info text-center none-lg">
+                    <td colspan="3">Med. Iº</td>
+                    <td class="fw-bold">{{MediaDT1}}</td>
+                    <td colspan="2">Med. IIº</td>
+                    <td class="fw-bold">{{MediaDT2}}</td>
+                    <td colspan="2">Med. IIIº</td>
+                    <td class="fw-bold">{{MediaDT3}}</td>
+                    <td colspan="2">MF</td>
+                    <td class="fw-bold">{{MediaDT3}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    {{!-- F A L T A S --}}
+    <div class="row mt-3">
+        <div class="row p-3 bg-light g-3">
+            <div class="col-12 col-md-8">
+                <h6>FALTAS POR DISCIPLINA</h6>
+                <div class="faltas-grid">
+                    {{#each tdFaltas}}
+                    <div class="faltas-item">
+                        <div class="faltas-item__head bg-secondary text-light">{{disciplina}}</div>
+                        <div class="faltas-item__value">{{faltas.length}}</div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+            <div class="col-12 col-md-4 text-md-end text-center">
+                <a href="/pedagogico/actualizarMedias/{{aluno._id}}" class="btn btn-sm btn-warning">Actualizar Médias</a>
+                {{#if nivelPrivilegio03}}
+                <a href="/pedagogico/editarNotas/{{aluno._id}}" class="btn btn-sm btn-secondary">Editar notas</a>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- P A U T A F I N A L CONSELHADA --}}
+<div class="pauta-do-aluno">
+    <div class="pauta-do-aluno__toolbar lead">
+        <a href="/pedagogico/pautas" class="pauta-do-aluno__back">&larr; Voltar</a>
+        <span>Pauta Final</span>
+    </div>
+
+    <div class="logo text-center mt-3"><img src="/img/logor.png" alt="Logótipo da escola"></div>
+    <div class="text-center">
+        <p class="m-1">República de Angola</p>
+        <p class="m-1">Governo da Província do Bié</p>
+        <p class="m-1">Administração Municipal do Cuito</p>
+        <p class="fw-bold">LICEU REI NDUNDUMA DO CUITO</p>
+
+        <div class="h5 myText-primary2 fw-bold">{{curso.descricao}}</div>
+        <div class="h6 text-center myText-primary2">
+            <span class="text-dark fw-bold">Ano Lectivo:</span> {{ano}} &nbsp;&nbsp; {{aluno.classe}} &nbsp;&nbsp;&nbsp;
+            <span class="text-dark fw-bold">Turma:</span> {{turma.codigo}} &nbsp;&nbsp;&nbsp;
+            <span class="text-dark fw-bold">Período:</span> {{turma.periodo}}
+        </div>
+        {{#if pauataFinalEmConselho}}
+        <div class="vermelhoVerde p-2 fw-bold mt-2">ESTA PAUTA FINAL ESTÁ EM CONSELHO DE NOTAS</div>
+        {{else}}
+        <div class="mt-3 lead fw-bold text-danger">PAUTA FINAL</div>
+        {{/if}}
+    </div>
+
+    {{#if pauataFinalEmConselho}}
+    <div class="row">
+        <div class="col-12 col-md-8 offset-md-2">
+            <div class="lead text-center mybg-danger2 p-3">
+                Caro estudante, a sua Pauta final está neste momento em conselho de notas.<br>
+                Por favor, aguarde até ao final do dia para ver o seu resultado definitivo.
+                <p class="mb-0 mt-2">Boa Sorte!</p>
+            </div>
+        </div>
+    </div>
+    {{else}}
+    <div class="table-responsive">
+        <table class="table table-bordered table-sm tabText-size-8 align-middle">
+            <thead class="mybg-info">
+                <tr class="text-center">
+                    <th class="fw-bold" rowspan="2">N/O</th>
+                    <th class="lg-cab-nome fw-bold" rowspan="2">Nome Completo</th>
+                    {{#each disciplinasOrdenadas}}
+                    <th class="px-3 fw-bold" colspan="4">{{disciplina}}</th>
+                    {{/each}}
+                    <th class="fw-bold" rowspan="2">Obs</th>
+                </tr>
+                <tr class="fw-bold text-center">
+                    {{#each disciplinasOrdenadas}}
+                    <th>MT1</th>
+                    <th>MT2</th>
+                    <th>MT3</th>
+                    <th class="mybg-info">MF</th>
+                    {{/each}}
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-center">{{numOrdem}}</td>
+                    <td class="lg-cab-nome">{{dadosFinal.nome}}</td>
+                    {{#each dadosFinal.notas}}
+                    {{#if negativa1}}<td class="text-center text-danger">{{mt1}}</td>{{else}}<td class="text-center">{{mt1}}</td>{{/if}}
+                    {{#if negativa2}}<td class="text-center text-danger">{{mt2}}</td>{{else}}<td class="text-center">{{mt2}}</td>{{/if}}
+                    {{#if negativa3}}<td class="text-center text-danger">{{mt3}}</td>{{else}}<td class="text-center">{{mt3}}</td>{{/if}}
+                    {{#if negativa4}}<td class="text-center text-danger mybg-info fw-bold">{{mf}}</td>{{else}}<td class="text-center mybg-info fw-bold">{{mf}}</td>{{/if}}
+                    {{/each}}
+                    {{#if dadosFinal.naoApto}}
+                    <td class="text-danger fw-bold">{{dadosFinal.estado}}</td>
+                    {{else}}
+                    <td class="fw-bold">{{dadosFinal.estado}}</td>
+                    {{/if}}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {{/if}}
+
+    <hr>
+    <div class="fst-italic text-center">
+        A Pauta final é gerada no final do ano Lectivo, depois do Conselho de notas.
+    </div>
+    <div class="fst-italic text-center text-small text-info">
+        Data de criação do aluno: {{aluno.dataCreate}} | Data de criação da pauta: {{dataCriacaoPauta}}
+    </div>
+</div>
+{{!-- FIM PFF --}}
+
+{{!-- M O D A I S --}}
+
+<!-- Modal alterarNome -->
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="alterarNome">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Alterar nome</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/alunos/alterarNome" method="post">
+                <div class="modal-body">
+                    <input type="text" name="nome" value="{{aluno.nome}}" class="form-control" required>
+                    <input type="hidden" name="idAluno" value="{{aluno._id}}">
+                </div>
+                <div class="modal-footer text-center">
+                    <div class="lead text-info mb-2 w-100">Para cancelar clica em "X"</div>
+                    <button type="submit" class="btn btn-success btn-sm w-100">Salvar alteração</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="assets/bootstrap.bundle.min.js"></script>
+<script>
+    function alterarNome() {
+        let el = document.getElementById('alterarNome');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+</script>

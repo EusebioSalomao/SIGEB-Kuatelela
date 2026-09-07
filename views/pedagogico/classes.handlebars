@@ -1,0 +1,155 @@
+{{#if msg}}
+<div class="alert alert-success text-center">{{msg}}</div>
+{{else}}
+{{/if}}
+{{#if exist}}
+<div class="alert alert-danger text-center">{{exist}}</div>
+{{else}}
+{{/if}}
+<h1><span class="text-secondary">Ano Lectivo:</span> {{anoLectivo.codigo}} </h1>
+<hr>
+{{#each cursos}}
+<div class="bg-light p-2 h2">
+    {{descricao}}
+</div>
+<hr>
+<ul class="list-group list-group-numbered">
+    <div class="container">
+        <li class="list-group-item bg-dark text-light">
+            <div class="row">
+                <div class="col-3 h4">Descrição</div>
+                <div class="col-3 text-center h4">Vagas</div>
+                <div class="col-3 h4 text-start">Nº Turmas</div>
+                <div class="col-3 h4"></div>
+            </div>
+        </li>
+    </div>
+</ul>
+
+<ol class="list-group list-group-numbered">
+    <div class="container">
+
+        {{#each classes}}
+        <form action="/turmas/gestao" method="post">
+            <li class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col-3">
+                        {{designacao}}
+                    </div>
+                    <div class="col-3 text-center">{{numVagas}}</div>
+                    <div class="col-2 text-center">{{turmas.length}}</div>
+                    {{!-- <input type="hidden" name="id" value="{{_id}}"> --}}
+                    {{!-- <div class="col-4 text-end px-3">
+                        <input type="hidden" name="idCurso" value="{{idCurso}}">
+                        <input type="hidden" name="idAno" value="{{idAno}}">
+                        <input type="hidden" name="idClasse" value="{{_id}}">
+                        <button type="submit" class=" btn btn-sm btn-info">Gerir turmas</button>
+                        <a href="#" class=" btn btn-sm btn-secondary">Editar</a>
+                    </div> --}}
+                </div>
+            </li>
+        </form>
+
+        {{else}}
+    </div>
+    <div class="h3 p-3 text-center">Nenhuma classe registrada</div>
+    <hr>
+    {{/each}}
+</ol>
+<hr>
+{{else}}
+<h2>Nenhum curso registrado</h2>
+{{/each}}
+
+<!-- Modal addClasse-->
+
+<form action="/classes/add" method="post">
+    <div class="modal" tabindex="-1" data-bs-backdrop="static" id="addClasse">
+        <div class="modal-dialog modal-dialog-centered">
+            <form action="/candidatos/consultar" method="post">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Adicionar nova classe</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body input-box">
+                        <label for="designacao">Designação:</label>
+                        <select name="designacao" required>
+                            <option value="selecionar">Selecionar</option>
+                            <option value="10ª Classe">10ª classe</option>
+                            <option value="11ª Classe">11ª Classe</option>
+                            <option value="12ª Classe">12ª Classe</option>
+                        </select>
+                        <label for="numVagas">Nº Vagas:</label>
+                        <input type="number" name="numVagas" class="form-control" required><br>
+                        
+                        <input type="hidden" name="idCurso" value="{{curso._id}}">
+                        <input type="hidden" name="idAno" value="{{ano._id}}">
+
+                        <button type="submit" class="btn btn-primary">Adicionar</button>
+                    </div>
+                    <div class="modal-footer text-center">
+                        {{!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Feichar</button>
+                        --}}
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</form>
+
+<!-- Modal addTurma-->
+
+<form action="/turmas/add" method="post">
+    <div class="modal" tabindex="-1" data-bs-backdrop="static" id="addTurma">
+        <div class="modal-dialog modal-dialog-centered">
+            <form action="/candidatos/consultar" method="post">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Adicionar nova turma</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body input-box">
+                        <label for="classe">Classe:</label>
+                        <select name="classe" required>
+                            <option value="selecionar">Selecionar</option>
+                            <option value="10ª Classe">10ª classe</option>
+                            <option value="11ª Classe">11ª Classe</option>
+                            <option value="12ª Classe">12ª Classe</option>
+                        </select>
+                        <label for="codigo">Código:</label>
+                        
+                        <input type="text" name="codigo" placeholder="Digite o código da turma" required>
+                        <input type="hidden" name="idCurso" value="{{curso._id}}">
+                        <input type="hidden" name="idAno" value="{{ano._id}}">
+
+                        <button type="submit" class="btn btn-primary">Adicionar</button>
+                    </div>
+                    <div class="modal-footer text-center">
+                        {{!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Feichar</button>
+                        --}}
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</form>
+
+<script src="assets/bootstrap.bundle.min.js" class="img-fluid"></script>
+<script>
+    function addClasse() {
+
+        let el = document.getElementById('addClasse');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+    function addTurma() {
+        let el = document.getElementById('addTurma');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+
+
+</script>

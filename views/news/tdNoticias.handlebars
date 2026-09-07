@@ -1,0 +1,70 @@
+<div class="container py-4">
+
+    <h2 class="text-center fw-bold mb-4">I N F O R M A Ç Õ E S</h2>
+
+    {{!-- Noticia principal --}}
+    <div class="position-relative overflow-hidden rounded mb-4 noticia-hero">
+        <img src="/uploads/{{notiPrincipal.capa}}" alt="{{notiPrincipal.title}}" class="capa fotoAluno img-fluid w-100">
+        <div class="capa-span text-light p-4 p-md-5">
+            <div class="h3 fw-bold mb-2">{{notiPrincipal.title}}</div>
+            <div class="lead mb-3">
+                Saiba mais sobre esta notícia e outras nesta pagina. Para ver mais clica em ler completo
+            </div>
+            <div class="h4 h-md-2 fw-bold fst-italic text-end mb-0">Liceu - Catabola/Bié</div>
+        </div>
+    </div>
+
+    <hr class="mb-4">
+
+    {{!-- Lista de notícias --}}
+    <div class="row g-4">
+        {{#each noticias}}
+        <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card h-100 border-0 shadow-sm noticia-card">
+                <img src="/uploads/{{capa}}" alt="Notícia" class="card-img-top noticia-card-img">
+                <div class="card-body d-flex flex-column bg-light">
+                    <p class="card-text text-justify flex-grow-1">{{text}}</p>
+                    <form action="/noticias/likes" method="post" class="d-flex justify-content-end align-items-center mt-2 mb-0">
+                        <input type="hidden" name="idNews" value="{{_id}}">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary">
+                            Reagir <span class="badge bg-secondary ms-1">{{likes.length}}</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <div class="col-12 text-center text-muted py-5">
+            <p class="mb-0">Nenhuma notícia disponível.</p>
+        </div>
+        {{/each}}
+    </div>
+
+</div>
+
+<style>
+    .noticia-hero {
+        max-height: 420px;
+    }
+    .noticia-hero .capa.fotoAluno {
+        max-height: 420px;
+        width: 100%;
+        object-fit: cover;
+    }
+    .noticia-card-img {
+        height: 180px;
+        object-fit: cover;
+    }
+    .noticia-card {
+        transition: box-shadow .2s ease, transform .2s ease;
+    }
+    .noticia-card:hover {
+        box-shadow: 0 .5rem 1.25rem rgba(0, 0, 0, .12) !important;
+        transform: translateY(-3px);
+    }
+    @media (max-width: 767.98px) {
+        .noticia-hero .h4 {
+            font-size: 1.15rem;
+        }
+    }
+</style>

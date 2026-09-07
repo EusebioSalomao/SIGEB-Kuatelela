@@ -1,0 +1,30 @@
+<div id="alterar-senha">
+      <div class="container">
+        {{#if masculino}}
+        <div class="display-5 text-center mb-3">Bem-Vindo {{nome}}!</div>
+        {{else}}
+        <div class="display-5 text-center mb-3">Bem-Vinda {{nome}}!</div>
+        {{/if}}
+        {{#each erros}}
+            <div class="alert alert-danger">{{texto}}</div>
+            {{else}}
+            {{/each}}
+        <div class="col-md-12">
+          <h3 class="main-title text-danger">Alterar Senha</h3>
+        </div>
+        <p class="lead text-success">Login efectuado com sucesso!</p>
+        <p>Recomendamos que altere sua senha, para mais segurança. Cria a tua própria senha.</p>
+        <form action="/user/alterarSenha" method="post">
+          <input type="password" class="form-control" id="email-input" name="novaSenha" value="{{novaSenha}}" placeholder="Digita aqui a tua nova senha" required>
+          <input type="password" class="form-control" id="email-input" name="novaSenha2" value="{{novaSenha2}}" placeholder="Confirma a nova senha" required>
+          <br>
+          <label class="mt-5 text-center" for="contactos">Contactos de recoperação ( E-Mail e Telefone)</label> <br>
+          <input type="email" class="form-control" id="email-input" name="email" value="{{email}}" placeholder="E-Mail de recoperação">
+          <input type="text" class="form-control" id="email-input" name="telefone" value="{{telefone}}" placeholder="Contacto de recuperação">
+          
+          <input type="hidden" name="idUser" value="{{user._id}}">
+          <input type="hidden" name="senhaAntiga" value="{{user.senha}}">
+          <input type="submit" id="news-btn" value="Confirmar">
+        </form>
+      </div>
+    </div>

@@ -1,0 +1,254 @@
+{{!-- ESTA PAGINA MOSTRA AS MINIPAUTAS DE UM PROFESSOR, ACESSO RESTRITO, APENAS ADM --}}
+
+<link rel="stylesheet" href="assets/css/minipautas-prof.css">
+
+<div class="container-fluid px-3 px-md-4 py-3 minipautas-page">
+
+    {{#if msg}}
+    <div class="alert alert-success text-center">{{msg}}</div>
+    {{/if}}
+    {{#if exist}}
+    <div class="alert alert-danger text-center">{{exist}}</div>
+    {{/if}}
+
+    {{!-- Cabeçalho --}}
+    <div class="row g-2 align-items-stretch mb-3 page-header">
+        <div class="col-12 col-md-8">
+            <div class="h-100 bg-secondary text-light rounded px-3 py-2 d-flex align-items-center">
+                <h1 class="h4 mb-0 fw-semibold">{{professor.nome}}</h1>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="h-100 rounded px-3 py-2 d-flex align-items-center justify-content-md-end justify-content-center">
+                <h2 class="h5 mb-0"><span class="text-secondary fw-semibold">Minipautas</span> / {{ano.codigo}}</h2>
+            </div>
+        </div>
+    </div>
+
+    {{!-- Barra de ações --}}
+    <div class="bg-secondary text-light rounded p-2 p-md-3 mb-3">
+        <div class="d-flex flex-wrap align-items-center gap-2">
+            <a href="/pedagogico/cargaHoraria" class="btn btn-sm btn-laranja">Voltar</a>
+            <span class="small">
+                Todas as minipautas do professor(a) <strong>{{professor.nome}}</strong> — apenas as turmas do
+                actual ano lectivo ({{minipauta.idAno.codigo}})
+            </span>
+            {{!-- <div class="ms-auto"><a href="#" onclick="addDisciplina()"><button
+                        class="btn btn-sm btn-warning">Adicionar disciplina</button></a></div> --}}
+        </div>
+    </div>
+
+    <div class="text-center mb-3">
+        {{#if user._atribuirCarga}}
+        <button onclick="addProfessor()" class="btn btn-sm btn-secondary">+ Minipauta/Carga</button>
+        {{/if}}
+    </div>
+
+    {{!-- Lista de minipautas --}}
+    <div class="minipautas-list">
+        {{#each minipautas}}
+        <div class="row g-3 mb-3 minipauta-item">
+            <div class="col-12 col-lg-6">
+                <div class="card mybox h-100 p-3 p-md-4 bg-light">
+                    <h3 class="h5 text-primary fw-bold">{{nomeDisciplina}}</h3>
+                    <p class="mb-3">
+                        {{idClasse.designacao}} /
+                        <span class="text-secondary">Turma:</span>
+                        <span class="text-info">{{idTurma.codigo}}</span>
+                    </p>
+                    <a href="/professor/minipauta/{{_id}}" class="btn btn-sm btn-secondary align-self-start">
+                        Ver minipauta
+                    </a>
+                    <div class="row g-2 mt-2">
+                        <div class="col-6 text-md-end">
+                            <a href="/admin/edidarMiniPauta/{{_id}}" class="btn btn-sm btn-mybtn-primary w-100">Editar</a>
+                        </div>
+                        <div class="col-6 text-md-start">
+                            <a href="/admin/eliminarMiniPauta/{{_id}}" class="btn btn-sm btn-danger w-100">Eliminar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6 d-none d-lg-block minipauta-info">
+                <div class="card h-100 p-3 p-md-4 bg-light">
+                    <span class="fw-bold lead d-block mb-2">
+                        Minipauta da {{idClasse.designacao}}, turma {{idTurma.codigo}}
+                    </span>
+
+                    <div class="mb-2">
+                        <span class="text-primary fw-semibold d-block mb-1">Notas lançadas:</span>
+                        <div class="d-flex flex-wrap gap-1">
+                            {{#if lancadoAV1T1}}<span class="badge rounded-pill text-bg-light border">1ª AVCT1</span>{{/if}}
+                            {{#if lancadoAV2T1}}<span class="badge rounded-pill text-bg-light border">2ª AVCT1</span>{{/if}}
+                            {{#if lancadoAV3T1}}<span class="badge rounded-pill text-bg-light border">3ª AVCT1</span>{{/if}}
+                            {{#if lancadoPPT1}}<span class="badge rounded-pill text-bg-light border">PPT1</span>{{/if}}
+                            {{#if lancadoPTT1}}<span class="badge rounded-pill text-bg-light border">PTT1</span>{{/if}}
+
+                            {{#if lancadoAV1T2}}<span class="badge rounded-pill text-bg-light border">1ª AVCT2</span>{{/if}}
+                            {{#if lancadoAV2T2}}<span class="badge rounded-pill text-bg-light border">2ª AVCT2</span>{{/if}}
+                            {{#if lancadoAV3T2}}<span class="badge rounded-pill text-bg-light border">3ª AVCT2</span>{{/if}}
+                            {{#if lancadoPPT2}}<span class="badge rounded-pill text-bg-light border">PPT2</span>{{/if}}
+                            {{#if lancadoPTT2}}<span class="badge rounded-pill text-bg-light border">PTT2</span>{{/if}}
+
+                            {{#if lancadoAV1T3}}<span class="badge rounded-pill text-bg-light border">1ª AVCT3</span>{{/if}}
+                            {{#if lancadoAV2T3}}<span class="badge rounded-pill text-bg-light border">2ª AVCT3</span>{{/if}}
+                            {{#if lancadoAV3T3}}<span class="badge rounded-pill text-bg-light border">3ª AVCT3</span>{{/if}}
+                            {{#if lancadoPPT3}}<span class="badge rounded-pill text-bg-light border">PPT3</span>{{/if}}
+                            {{#if lancadoPTT3}}<span class="badge rounded-pill text-bg-light border">PTT3</span>{{/if}}
+
+                            {{#if lancadoExameOral}}<span class="badge rounded-pill text-bg-light border">E. Oral</span>{{/if}}
+                            {{#if lancadoExameEscrito}}<span class="badge rounded-pill text-bg-light border">E. Escrito</span>{{/if}}
+                        </div>
+                    </div>
+
+                    <div class="obs-box text-justify mb-2">
+                        <span class="fw-bold text-danger">OBS: </span>
+                        Apenas os professores podem fazer a inserção de notas dos alunos nas minipautas correspondentes!
+                    </div>
+
+                    <div class="row g-2 align-items-center mt-auto">
+                        <div class="col-12 col-sm-8">
+                            <span>Prof:</span>
+                            <span class="text-secondary fw-bold">{{idProfessor.nome}}</span>
+                        </div>
+                        <div class="col-12 col-sm-4 text-sm-end">
+                            <a href="#" class="btn btn-sm btn-warning">Notificar professor</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <div class="h5 text-center text-muted mt-4">Nenhuma minipauta criada</div>
+        {{/each}}
+    </div>
+
+    {{!-- Modal eliminarMinipauta --}}
+    {{!--
+        NOTA DE REVISÃO: no ficheiro original este modal continha DOIS <form> aninhados
+        (HTML inválido) e os "action" ("/classes/add" e "/candidatos/consultar") não
+        correspondem ao propósito do modal (eliminar minipauta). O botão "Eliminar"
+        de cada card já aponta diretamente para /admin/eliminarMiniPauta/{{_id}}, por
+        isso este modal parece ser código órfão copiado de outra página. Mantive o
+        conteúdo e corrigi apenas a estrutura HTML (um único <form>); revise o
+        "action" e os campos antes de reativar esta função.
+    --}}
+    <div class="modal" tabindex="-1" data-bs-backdrop="static" id="eliminarMinipauta">
+        <div class="modal-dialog modal-dialog-centered">
+            <form action="/candidatos/consultar" method="post">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title h5 text-danger mb-0">Pretendes eliminar a minipauta?</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="designacaoEliminar" class="form-label">Designação:</label>
+                            <select name="designacao" id="designacaoEliminar" class="form-select" required>
+                                <option value="selecionar">Selecionar</option>
+                                <option value="10ª Classe">10ª classe</option>
+                                <option value="11ª Classe">11ª Classe</option>
+                                <option value="12ª Classe">12ª Classe</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="numVagasEliminar" class="form-label">Nº Vagas:</label>
+                            <input type="number" name="numVagas" id="numVagasEliminar" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="turnosEliminar" class="form-label">Turnos:</label>
+                            <select name="turnos" id="turnosEliminar" class="form-select" required>
+                                <option value="selecionar">Selecionar</option>
+                                <option value="matinal">Matinal</option>
+                                <option value="vespertino">Vespertino</option>
+                                <option value="noturno">Noturno</option>
+                                <option value="matVespertino">Matinal e Vespertino</option>
+                                <option value="todos">Todos</option>
+                            </select>
+                        </div>
+                        <input type="hidden" name="idCurso" value="{{curso._id}}">
+                        <input type="hidden" name="idAno" value="{{ano._id}}">
+                        <button type="submit" class="btn btn-primary">Adicionar</button>
+                    </div>
+                    <div class="modal-footer text-center">
+                        {{!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button> --}}
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {{!-- Modal addProfessor --}}
+    <div class="modal" tabindex="-1" data-bs-backdrop="static" id="addProfessor">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title h5 mb-0">Adicionar Carga horária</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/turmas/addProfessor" method="post">
+                        <div class="mb-3">
+                            <label for="idProfessorSelect" class="form-label">Professor:</label>
+                            <select name="idProfessor" id="idProfessorSelect" class="form-select">
+                                <option value="{{professor._id}}">{{professor.nome}}</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="idTurmaSelect" class="form-label">Turma:</label>
+                            <select name="idTurma" id="idTurmaSelect" class="form-select">
+                                <option value="selecionar">Seleciona a Turma</option>
+                                {{#each turmas}}
+                                <option value="{{_id}}">{{idClasse.designacao}} - {{codigo}}</option>
+                                {{else}}
+                                <option value="0">Nenhuma turma registrada</option>
+                                {{/each}}
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="nomeDisciplinaSelect" class="form-label">Disciplina:</label>
+                            <select name="nomeDisciplina" id="nomeDisciplinaSelect" class="form-select">
+                                <option value="selecionar">Seleciona a disciplina</option>
+                                {{#each disciplinas}}
+                                <option value="{{nomeDisciplina}}">{{nomeDisciplina}} - {{idClasse.designacao}} - {{curso}}</option>
+                                {{else}}
+                                <option value="0">Nenhuma disciplina registrada</option>
+                                {{/each}}
+                            </select>
+                        </div>
+
+                        {{!-- <input type="hidden" name="idTurma" value=""> --}}
+                        <input type="hidden" name="idClasse" value="">
+                        <input type="hidden" name="idCurso" value="">
+                        <input type="hidden" name="idAno" value="{{idAno}}">
+
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-dark btn-sm">Adicionar</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer text-center">
+                    <div class="small text-info mb-0">Apenas funcionários professores constam nessa lista</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="assets/bootstrap.bundle.min.js"></script>
+<script>
+    function eliminarMinipauta() {
+        let el = document.getElementById('eliminarMinipauta');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+    function addProfessor() {
+        let el = document.getElementById('addProfessor');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+</script>

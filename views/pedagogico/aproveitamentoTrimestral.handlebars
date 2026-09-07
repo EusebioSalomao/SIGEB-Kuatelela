@@ -1,0 +1,61 @@
+<section class="aproveitamento-trimestral">
+
+    <div class="row align-items-center gy-2 aproveitamento-header">
+        <div class="col-12 col-sm-6">
+            <h2 class="aproveitamento-title mb-0">A P R O V E I T A M E N T O</h2>
+        </div>
+        <div class="col-12 col-sm-6 text-center text-sm-end">
+            <span class="badge aproveitamento-badge">{{trimestre}}</span>
+        </div>
+    </div>
+
+    <hr class="aproveitamento-divider">
+
+    {{#if aproveitamento}}
+    <div class="container-fluid px-0 mt-4">
+        <div class="row row-cols-1 row-cols-md-3 g-3">
+
+            {{#each cursos}}
+            <div class="col">
+                <form action="/pedagogico/aproveitamentoCursos" method="post" class="h-100">
+                    <input type="hidden" name="trimestre" value="{{trimestre}}">
+                    <input type="hidden" name="curso" value="{{descricao}}">
+                    <input type="hidden" name="idCurso" value="{{_id}}">
+
+                    <button type="submit" class="btn btn-secondary aproveitamento-btn w-100 h-100">
+                        {{descricao}}
+                    </button>
+                </form>
+            </div>
+            {{/each}}
+
+            <div class="col">
+                <form action="/pedagogico/aproveitamentoCursos" method="post" class="h-100">
+                    <input type="hidden" name="curso" value="Todos Cursos">
+                    <input type="hidden" name="trimestre" value="{{trimestre}}">
+
+                    <button type="submit"
+                        class="btn btn-secondary aproveitamento-btn aproveitamento-btn-all w-100 h-100">
+                        Aproveitamento de Todos os Cursos
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    {{else}}
+    {{!-- Se o aproveitamento ainda não foi gerado --}}
+    <div class="aproveitamento-empty text-center">
+        <p class="aproveitamento-empty-text">O aproveitamento deste trimestre ainda não foi gerado.</p>
+        <form action="/pedagogico/gerarAproveitamento" method="post">
+            <input type="hidden" name="trimestre" value="{{trimestre}}">
+            <button type="submit" class="btn btn-warning aproveitamento-btn-generate">
+                Gerar aproveitamento
+            </button>
+        </form>
+    </div>
+    {{/if}}
+
+    <hr class="aproveitamento-divider">
+
+</section>

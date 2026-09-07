@@ -1,0 +1,173 @@
+<h1 class="text-center">SECRETARIA GERAL</h1>
+<hr class="my-0 p-1">
+<div class="container">
+    <div class="row">
+        <div class="col-6 bg-warning my-0 h3 p-2 fw-bold">
+            <a href="/secretaria" class="btn btn-secondary"> <button class="btn fw-bold btn-warning text-light">
+                    < </button> </a>
+            Ocorrencias diária
+        </div>
+        <div class="col-5 p-3 h3 fw-bold bg-secondary ms-1 mt-1 text-center text-light">
+            {{#if tipoCer}}{{tipoCer}}{{else}}{{/if}}
+            {{#if tipoDc}}{{tipoDc}}{{else}}{{/if}}
+            {{#if tipoJust}}{{tipoJust}}{{else}}{{/if}}
+            {{#if recepcaoDoc}}{{recepcaoDoc}}{{else}}{{/if}}
+
+        </div>
+    </div>
+    <hr>
+    <div class="container">
+        <div class="col-6 offset-3">
+            <div class="card">
+                <div class="card-body">
+
+
+                    {{!-- D E C L A R A Ç Ã O --}}
+                    <form action="/secretaria/enviarSolicitacao" method="post">
+                        {{#if tipoDc}}
+                        <label for="nomeAluno">Nome completo</label>
+                        <input type="text" name="nomeAluno" id="" class="form-control">
+                        <div class="row">
+                            <div class="col-6">
+
+                                <label for="numBI">Nº BI:</label>
+                                <input type="text" name="numBI" id="" class="form-control">
+                            </div>
+                            <div class="col-6">
+                                <label for="classe">Classe:</label>
+                                <select name="classe" id="" class="form-control">
+                                    <option value="selecionar">Selecionar</option>
+                                    <option value="classe10">10ª Classe</option>
+                                    <option value="classe11">11ª Classe</option>
+                                    <option value="classe12">12ª Classe</option>
+                                </select>
+                            </div>
+                        </div>
+                        <input type="radio" name="conNotas" id="conNotas" class="mt-3">
+                        <label for="conNotas">Com notas</label>
+                        <hr>
+
+                        <div class="text-center mt-2">
+                            <button class="btn btn-primary">Enviar solicitação</button>
+
+                        </div>
+
+                    </form>
+                    {{else}}
+                    {{/if}}
+                    {{!-- C E R T I F I C A D O --}}
+                    <form action="/secretaria/enviarSolicitacao" method="post">
+                        {{#if tipoCer}}
+                        <label for="nomeAluno">Nome completo</label>
+                        <input type="text" name="nomeAluno" id="" class="form-control">
+                        <div class="row">
+                            <div class="col-6">
+
+                                <label for="numBI">Nº BI:</label>
+                                <input type="text" name="numBI" id="" class="form-control">
+                            </div>
+                            <div class="col-6">
+                                <label for="ano">Ano</label>
+                                <input type="text" name="ano" id="" placeholder="Informe o ano que terminou"
+                                    class="form-control">
+
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="text-center mt-2">
+                            <button class="btn btn-primary">Enviar solicitação</button>
+
+                        </div>
+
+                    </form>
+                    {{else}}
+                    {{/if}}
+
+                    {{!-- J U S T I F I C A Ç Ã O D E F A L T A S --}}
+                    <form action="/secretaria/enviarSolicitacao" method="post">
+                        {{#if tipoJust}}
+                        <label for="nomeDoSolicitante">Nome completo</label>
+                        <input type="text" name="nomeDoSolicitante" class="form-control" required>
+                        <div class="row">
+                            <div class="col-6">
+
+                                <label for="numBI">Nº BI:</label>
+                                <input type="text" name="numBI" class="form-control" required>
+                            </div>
+                            <div class="col-6">
+                                <label for="disciplina">Disciplia:</label>
+                                <input type="text" name="disciplina" id="" class="form-control" required>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+
+                                <label for="dataFalta">Data da falta:</label>
+                                <input type="date" name="dataFalta" class="form-control" required>
+                            </div>
+                            <div class="col-3">
+                                <label for="turma">Turma:</label>
+                                <select name="turma" id="" class="form-control" required>
+                                    <option value="0">Selecionar</option>
+                                    {{#each turmas}}
+                                    <option value="{{_id}}"> {{codigo}} </option>
+                                    {{else}}
+                                    <option value="0">Sem turma</option>
+                                    {{/each}}
+                                </select>
+
+                            </div>
+                            <div class="col-3">
+                                <label for="numfaltas">Nº de faltas:</label>
+                                <input type="number" name="numfaltas" id="" class="form-control" required>
+
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="text-center mt-2">
+                            <input type="hidden" name="descricao" value="{{tipoJust}}">
+                            <button class="btn btn-primary">Confirmar</button>
+
+                        </div>
+
+                    </form>
+                    {{else}}
+                    {{/if}}
+
+                    {{!-- R E C E P Ç Ã O D E D O C U M E N T O S --}}
+                    <form action="/secretaria/enviarSolicitacao" method="post" enctype="multipart/form-data">
+                        {{#if recepcaoDoc}}
+                        <label for="descricao">Descrição</label>
+                        <input type="hidden" name="descricao" id="">
+                        <input type="text" name="desc" class="form-control" required>
+
+                        <label for="origem">Origem:</label>
+                        <input type="text" name="origem" class="form-control" required>
+
+                        <label for="emissor">Emissor:</label>
+                        <input type="text" name="emissor" class="form-control" required>
+                        <input type="hidden" name="tipo" value="{{recepcaoDoc}}">
+                        <div class="mt-2">
+
+                            <label for="copOcorrencia">Scanear documento:</label>
+                            <input type="file" name="copOcorrencia" class="form-control" required>
+                        </div>
+
+                        <hr>
+
+                        <div class="text-center mt-2">
+                            <input type="hidden" name="descricao" value="{{tipoJust}}">
+                            <button class="btn btn-primary">Confirmar</button>
+
+                        </div>
+
+                    </form>
+                    {{else}}
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>

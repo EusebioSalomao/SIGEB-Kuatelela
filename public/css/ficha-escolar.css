@@ -1,0 +1,252 @@
+/* ==========================================================================
+   ficha-escolar.css
+   Estilos da página "Ficha Escolar" — mantém a paleta atual do Bootstrap
+   (primary, secondary, info, warning, danger, light, dark) e reforça
+   hierarquia visual, espaçamento consistente e responsividade.
+   ========================================================================== */
+
+:root {
+  --brand-primary: var(--bs-primary, #0d6efd);
+  --brand-secondary: var(--bs-secondary, #6c757d);
+  --brand-info: var(--bs-info, #0dcaf0);
+  --surface: #ffffff;
+  --surface-muted: #f8f9fa;
+  --border-subtle: #e9ecef;
+  --text-muted: #6c757d;
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+}
+
+/* --------------------------------------------------------------------
+   Classes legadas usadas no template: preservadas com a cor "primary"
+   -------------------------------------------------------------------- */
+.myText-primary2 {
+  color: var(--brand-primary);
+}
+.mybg-info {
+  background-color: var(--brand-info);
+}
+.mybg-info2 {
+  background-color: rgba(13, 202, 240, 0.15);
+}
+.myBg-secondary {
+  background-color: var(--surface-muted);
+}
+.mybg-danger2 {
+  background-color: #fff5f5;
+  border: 1px solid #f3d1d1;
+  border-radius: var(--radius-md);
+}
+.vermelhoVerde {
+  background-color: #fff3cd;
+  color: #664d03;
+  border-radius: var(--radius-md);
+}
+
+/* Utilitário legado "none-md" / "none-lg": alterna entre a linha de
+   cabeçalho detalhada (desktop) e a linha resumida (mobile) da tabela
+   de notas. Mantido, mas usando os breakpoints do Bootstrap. */
+@media (max-width: 767.98px) {
+  .none-md { display: none !important; }
+}
+@media (min-width: 768px) {
+  .none-lg { display: none !important; }
+}
+
+/* --------------------------------------------------------------------
+   Cabeçalho da página
+   -------------------------------------------------------------------- */
+.ficha-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+.ficha-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+}
+
+/* --------------------------------------------------------------------
+   Cartão de foto do aluno
+   -------------------------------------------------------------------- */
+.foto-aluno-card {
+  border: none;
+  background: transparent;
+}
+.fotoAluno {
+  width: 100%;
+  max-width: 220px;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  display: block;
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------
+   Secções de dados (painel com título + lista de campos)
+   -------------------------------------------------------------------- */
+.data-panel {
+  height: 100%;
+}
+.data-panel__title {
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  margin: 0;
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.data-panel__body {
+  border: 1px solid var(--border-subtle);
+  border-top: none;
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  padding: var(--space-3);
+}
+.data-field {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-2);
+  margin: 0 0 var(--space-2);
+  font-size: 0.95rem;
+}
+.data-field:last-child {
+  margin-bottom: 0;
+}
+.data-field__label {
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+.data-field--highlight {
+  background-color: var(--surface-muted);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2);
+}
+.student-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  border-radius: var(--radius-sm);
+}
+
+/* --------------------------------------------------------------------
+   Painel do encarregado de educação
+   -------------------------------------------------------------------- */
+.guardian-panel {
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+}
+.guardian-panel__title {
+  border-radius: var(--radius-sm);
+}
+
+/* --------------------------------------------------------------------
+   Tabela de notas
+   -------------------------------------------------------------------- */
+.grades-table-wrap {
+  margin-top: var(--space-3);
+}
+.grades-table-wrap .table {
+  font-size: 0.85rem;
+  margin-bottom: 0;
+}
+.grades-table-wrap th,
+.grades-table-wrap td {
+  vertical-align: middle;
+}
+
+/* --------------------------------------------------------------------
+   Faltas por disciplina
+   -------------------------------------------------------------------- */
+.faltas-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.faltas-item {
+  flex: 1 1 140px;
+  max-width: 200px;
+}
+.faltas-item__head {
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  padding: var(--space-1) var(--space-2);
+  font-size: 0.85rem;
+}
+.faltas-item__value {
+  border: 1px solid var(--border-subtle);
+  border-top: none;
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  padding: var(--space-2);
+  text-align: center;
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------
+   Pauta final
+   -------------------------------------------------------------------- */
+.pauta-do-aluno {
+  max-width: 960px;
+  margin: var(--space-4) auto 0;
+  padding: 0 var(--space-3) var(--space-4);
+}
+.pauta-do-aluno__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding-block: var(--space-2);
+}
+.pauta-do-aluno__back {
+  color: inherit;
+  text-decoration: none;
+}
+.pauta-do-aluno__back:hover {
+  color: var(--brand-primary);
+}
+.pauta-do-aluno .logo img {
+  max-width: 90px;
+}
+.tabText-size-8 {
+  font-size: 0.8rem;
+}
+.lg-cab-nome {
+  min-width: 160px;
+  text-align: left;
+}
+
+/* --------------------------------------------------------------------
+   Acessibilidade
+   -------------------------------------------------------------------- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------
+   Responsividade geral
+   -------------------------------------------------------------------- */
+@media (max-width: 767.98px) {
+  .ficha-header h2 {
+    font-size: 1.1rem;
+    text-align: center;
+  }
+  .data-panel {
+    margin-bottom: var(--space-3);
+  }
+}

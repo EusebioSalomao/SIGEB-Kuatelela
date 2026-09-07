@@ -1,0 +1,103 @@
+/*
+  Estilos do componente "Relatório Estatístico".
+  Paleta mantida a partir das cores originais (bg-dark, danger, secondary),
+  apenas organizada para consistência visual e leitura mais fácil das tabelas.
+*/
+
+:root {
+    --rel-secondary: #6c757d;
+    --rel-secondary-dark: #565e64;
+    --rel-dark: #212529;
+    --rel-text-light: #f8f9fa;
+    --rel-border: #dee2e6;
+    --rel-total-bg: #f1f3f5;
+    --rel-radius: 0.5rem;
+}
+
+.rel-estatistico {
+    padding: 1rem 0 0.5rem;
+}
+
+/* Cabeçalho */
+
+.rel-estatistico-title {
+    font-weight: 700;
+    letter-spacing: 0.15rem;
+    color: #343a40;
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+
+.rel-estatistico-badge {
+    display: inline-block;
+    background-color: var(--rel-secondary);
+    color: var(--rel-text-light);
+    padding: 0.5rem 1.1rem;
+    border-radius: var(--rel-radius);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.rel-estatistico-divider {
+    border: none;
+    border-top: 2px solid var(--rel-border);
+    margin: 1rem 0 1.5rem;
+    opacity: 1;
+}
+
+/* Tabelas */
+
+.rel-estatistico-table-wrapper {
+    border-radius: var(--rel-radius);
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--rel-border);
+}
+
+.rel-estatistico-table-wrapper table {
+    font-size: 0.9rem;
+    min-width: 760px;
+}
+
+.rel-estatistico-table-wrapper td,
+.rel-estatistico-table-wrapper th {
+    white-space: nowrap;
+}
+
+.rel-estatistico-section-title {
+    background-color: var(--rel-dark);
+    color: var(--rel-text-light);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.03rem;
+    padding: 0.75rem;
+}
+
+.rel-estatistico-table-wrapper thead tr:not(:first-child) th {
+    background-color: var(--rel-total-bg);
+    vertical-align: middle;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03rem;
+}
+
+.rel-estatistico-total-row {
+    background-color: var(--rel-total-bg) !important;
+}
+
+/* Ações no rodapé */
+
+.rel-estatistico-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+@media (max-width: 575.98px) {
+    .rel-estatistico-table-wrapper table {
+        font-size: 0.8rem;
+    }
+}

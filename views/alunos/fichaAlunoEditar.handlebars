@@ -1,0 +1,238 @@
+<div class="row">
+    <div class="col-9">
+        <h2 class="text-secondary bg-light p-1 ">EDITAR NOTAS DO ALUNO</h2>
+    </div>
+    <div class="col-3 text-end">
+        <h2 class="mark text-center">Ficha Escolar</h2>
+    </div>
+</div>
+<hr>
+<div class="container">
+    <div class="row">
+
+        <div class="col-3 mx-0 px-0">
+            <div class="card mx-0 px-0">
+                <div class="card-body mx-0">
+                    {{#if aluno.foto}}
+                    <img src="/uploads/{{aluno.foto}}" class="fotoAluno" alt="">
+                    {{else}}
+                    <img src="/img/logcand.jpg" class="fotoAluno" alt="">
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+        {{!-- DADOS PESSOAIS --}}
+        <div class="col-6 mx-0">
+            <h6 class="bg-secondary p-2 text-light mx-0">
+                {{aluno.nome}}
+            </h6>
+            
+        </div>
+
+    </div>
+    
+    <div class="conteiner">
+
+        <div class="row">
+            <div class="h4 text-center p-1 mt-3 bg-light">NOTAS DE AVALIAÇÕES E PROVAS</div>
+        </div>
+        
+    </div>
+    <table class="table table-bordered table-sm">
+        <thead class="table-dark">
+            <tr>
+                <td rowspan="2" class="p-3 text-center"><span class="mx-">DISCIPLINAS</span> </td>
+                <td colspan="7" class="col-3 text-center bg-light text-secondary">1º Trimestre</td>
+                <td colspan="7" class="col-3 text-center bg-info text-light ms-5">2º Trimestre</td>
+                <td colspan="7" class="col-3 text-center bg-secondary text-light mx-3">3º Trimestre</td>
+                <td colspan="3" class="col-1 text-center bg-dark text-light ms-0">CF</td>
+            </tr>
+            <tr>
+                <td class="myBg-secondary text-secondary">1ªAv</td>
+                <td class="myBg-secondary text-secondary">2ªAv</td>
+                <td class="myBg-secondary text-secondary">3ªAv</td>
+                <td class="myBg-secondary text-secondary">MAC</td>
+                <td class="myBg-secondary text-secondary">PP</td>
+                <td class="myBg-secondary text-secondary">PT1</td>
+                <td class="myBg-secondary text-secondary">MT1</td>
+
+                {{!-- 2º Trimwstre --}}
+                <td class="bg-info">1ªAv</td>
+                <td class="bg-info">2ªAv</td>
+                <td class="bg-info">3ªAv</td>
+                <td class="bg-info">MAC</td>
+                <td class="bg-info">PP</td>
+                <td class="bg-info">PT2</td>
+                <td class="bg-info">MT2</td>
+
+                {{!-- 3º Trimwstre --}}
+                <td class="bg-secondary">1ªAv</td>
+                <td class="bg-secondary">2ªAv</td>
+                <td class="bg-secondary">3ªAv</td>
+                <td class="bg-secondary">MAC</td>
+                <td class="bg-secondary">PP</td>
+                <td class="bg-secondary">PT3</td>
+                <td class="bg-secondary">MT3</td>
+
+
+                <td>MT</td>
+                <td>E</td>
+                <td>CF</td>
+                {{#if nivelPrivilegio03}} <td></td>{{else}} {{/if}}
+
+
+            </tr>
+        </thead>
+        {{#each notasDisciplina}}
+        <tbody>
+            <ol class="m-0 p-0">
+
+                <tr class="text-center">
+
+                    <td class="text-start"><span class="text-sm "> {{#if idMinipauta.nomeDisciplina}}
+                            {{idMinipauta.nomeDisciplina}} {{else}} <a href="/admin/eliminarNotasDisciplina/{{_id}}"
+                                class="text-center text-danger">Notas Excluidas</a> {{/if}} </span> </td>
+                    {{#if notas.negativaAv1T1}} <td class="text-danger"> {{notas.av1T1}} </td>{{else}}<td>
+                        {{notas.av1T1}} </td>{{/if}}
+                    {{#if notas.negativaAv2T1}} <td class="text-danger"> {{notas.av2T1}} </td>{{else}}<td>
+                        {{notas.av2T1}} </td>{{/if}}
+                    {{#if notas.negativaAv3T1}} <td class="text-danger"> {{notas.av3T1}} </td>{{else}}<td>
+                        {{notas.av3T1}} </td>{{/if}}
+                    {{#if notas.negativaMac1}} <td class="text-danger fw-bold bg-light"> {{notas.mac1}} </td>{{else}}<td
+                        class="fw-bold bg-light"> {{notas.mac1}} </td>{{/if}}
+                    {{#if notas.negativaPP1}} <td class="text-danger fw-bold bg-light"> {{notas.pp1}} </td>{{else}}<td
+                        class="fw-bold bg-light"> {{notas.pp1}} </td>{{/if}}
+                    {{#if notas.negativaPT1}} <td class="text-danger fw-bold bg-light"> {{notas.pt1}} </td>{{else}}<td
+                        class="fw-bold bg-light"> {{notas.pt1}} </td>{{/if}}
+                    {{#if notas.negativaMT1}} <td class="text-danger fw-bold myBg-secondary bg-light"> {{notas.mt1}}
+                    </td>{{else}}<td class="fw-bold myBg-secondary text-primary"> {{notas.mt1}} </td>{{/if}}
+
+                    {{!-- 2º Trimwstre - Falta alterar a cor das negativas --}}
+                    {{#if notas.negativaAv1T2}} <td class="text-danger"> {{notas.av1T2}} </td>{{else}}<td>
+                        {{notas.av1T2}} </td>{{/if}}
+                    {{#if notas.negativaAv2T2}} <td class="text-danger"> {{notas.av2T2}} </td>{{else}}<td>
+                        {{notas.av2T2}} </td>{{/if}}
+                    {{#if notas.negativaAv3T2}} <td class="text-danger"> {{notas.av3T2}} </td>{{else}}<td>
+                        {{notas.av3T2}} </td>{{/if}}
+                    {{#if notas.negativaMac2}} <td class="text-danger fw-bold bg-light"> {{notas.mac2}} </td>{{else}}<td
+                        class="fw-bold bg-light"> {{notas.mac2}} </td>{{/if}}
+                    {{#if notas.negativaPP2}} <td class="text-danger fw-bold bg-light"> {{notas.pp2}} </td>{{else}}<td
+                        class="fw-bold bg-light"> {{notas.pp2}} </td>{{/if}}
+                    {{#if notas.negativaPT2}} <td class="text-danger fw-bold bg-light"> {{notas.pt2}} </td>{{else}}<td
+                        class="fw-bold bg-light"> {{notas.pt2}} </td>{{/if}}
+                    {{#if notas.negativaMT2}} <td class="text-danger fw-bold mybg-info2"> {{notas.mt2}} </td>{{else}}<td
+                        class="fw-bold mybg-info2"> {{notas.mt2}} </td>{{/if}}
+
+                    {{!-- 3º Trimwstre --}}
+                    {{#if notas.negativaAv1T3}} <td class="text-danger"> {{notas.av1T3}} </td>{{else}}<td>
+                        {{notas.av1T3}} </td>{{/if}}
+                    {{#if notas.negativaAv2T3}} <td class="text-danger"> {{notas.av2T3}} </td>{{else}}<td>
+                        {{notas.av2T3}} </td>{{/if}}
+                    {{#if notas.negativaAv3T3}} <td class="text-danger"> {{notas.av3T3}} </td>{{else}}<td>
+                        {{notas.av3T3}} </td>{{/if}}
+                    {{#if notas.negativaMac3}} <td class="text-danger fw-bold bg-light"> {{notas.mac3}} </td>{{else}}<td
+                        class="fw-bold bg-light"> {{notas.mac3}} </td>{{/if}}
+                    {{#if notas.negativaPP3}} <td class="text-danger fw-bold bg-light"> {{notas.pp3}} </td>{{else}}<td
+                        class="fw-bold bg-light"> {{notas.pp3}} </td>{{/if}}
+                    {{#if notas.negativaPT3}} <td class="text-danger fw-bold bg-light"> {{notas.pt3}} </td>{{else}}<td
+                        class="fw-bold bg-light"> {{notas.pt3}} </td>{{/if}}
+                    {{#if notas.negativaMT3}} <td class="text-danger fw-bold bg-secondary"> {{notas.mt3}} </td>{{else}}
+                    <td class="fw-bold bg-secondary text-light"> {{notas.mt3}} </td>{{/if}}
+
+
+                    <td class="text-center text-primary fw-bold"> {{notas.medDosTrimestes}} </td>
+                    <td> {{notas.examePF}} </td>
+                    <td class="text-center fw-bold"> {{notas.cf}} </td>
+                    <td class="">
+                        {{#if nivelPrivilegio03}}
+
+                        <form action="/pedagogico/deleteNotas" method="post">
+                            <input type="hidden" name="idNotas" value="{{_id}}">
+                            <input type="hidden" name="idAluno" value="{{aluno}}">
+                            <button type="submit" class="btn btn-sm btn-danger">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor"
+                                    class="bi bi-trash" viewBox="0 0 16 16">
+                                    <path
+                                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                                    <path
+                                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+                                </svg>
+                            </button>
+                        </form>
+                        {{else}}{{/if}}
+                    </td>
+
+
+                </tr>
+            </ol>
+            {{else}}
+            <div class="h5 text-center p-2">Nenhuma nota foi lançada!</div>
+            {{/each}}
+            <tr class="bg-info text-center">
+                <td colspan="7">MEDIA DO Iº TRIMESTRE </td>
+                <td class="text-center fw-bold"> {{MediaDT1}} </td>
+                <td colspan="6">MEDIA DO IIº TRIMESTRE </td>
+                <td class="text-center fw-bold"> {{MediaDT2}} </td>
+                <td colspan="6">MEDIA DO IIIº TRIMESTRE </td>
+                <td class="text-center fw-bold"> {{MediaDT3}} </td>
+                <td colspan="2">MF </td>
+                <td class="text-center fw-bold"> {{MediaDT3}} </td>
+            </tr>
+        </tbody>
+    </table>
+    
+</div>
+</div>
+
+
+
+{{!-- M O D A I S --}}
+
+<!-- Modal alterarNome-->
+
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="alterarNome">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Alterar nome</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="container">
+                <form action="/alunos/alterarNome" method="post">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <div class="row text-center">
+                                <input type="text" name="nome" value="{{aluno.nome}}" id="" class="form-control"
+                                    required>
+                                <input type="hidden" name="idAluno" value="{{aluno._id}}" id="" class="form-control"
+                                    required>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success form-control btn-sm">Salvar alteração</button>
+
+
+                </form>
+            </div>
+
+            <div class="modal-footer text-center">
+                <div class="lead text-info text-center">Para cancelar clica em "X"</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="assets/bootstrap.bundle.min.js" class="img-fluid"></script>
+<script>
+    function alterarNome() {
+        let el = document.getElementById('alterarNome');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+
+
+
+</script>

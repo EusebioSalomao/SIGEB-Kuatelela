@@ -1,0 +1,25 @@
+<h2>Contactos dos alunos</h2>
+<hr>
+<table class="table">
+    <thead>
+        <tr>
+            <td>N/O</td>
+            <td>Nome Completo</td>
+            <td>Contacto</td>
+            <td>Contacto do encarregado</td>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{#each contactosDosAlunos}}
+        <tr>
+            <td> {{numOrdem}} </td>
+            <td> {{nome}} </td>
+            <td> {{contacto}} </td>
+            <td> {{contactoEncarregado}} </td>
+        </tr>
+        {{else}}
+        <div class="tex-center">Nenhum dados encontrado</div>
+        {{/each}}
+    </tbody>
+</table>

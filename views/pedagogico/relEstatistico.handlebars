@@ -1,0 +1,219 @@
+<section class="rel-estatistico">
+
+    <div class="row align-items-center gy-2 rel-estatistico-header">
+        <div class="col-12 col-sm-6">
+            <h2 class="rel-estatistico-title mb-0">A P R O V E I T A M E N T O</h2>
+        </div>
+        <div class="col-12 col-sm-6 text-center text-sm-end">
+            <span class="badge rel-estatistico-badge">{{trimestre}}</span>
+        </div>
+    </div>
+
+    <hr class="rel-estatistico-divider">
+
+    {{#if cursoCH}}
+    {{#each aproveitamento}}
+    {{!-- CURSO DE CIENCIAS HUMANAS --}}
+    <div class="table-responsive rel-estatistico-table-wrapper mb-4">
+        <table class="table table-bordered table-striped table-hover align-middle mb-0">
+            <thead>
+                <tr>
+                    <th class="rel-estatistico-section-title text-center" colspan="11">CURSO DE CIENCIAS HUMANAS</th>
+                </tr>
+                <tr class="text-center fw-bold">
+                    <th colspan="3">Matriculados</th>
+                    <th colspan="2" class="table-danger">Desistidos</th>
+                    <th colspan="2">Chegados ao Fim</th>
+                    <th colspan="2">Com Aproveitamento</th>
+                    <th colspan="2">Sem Aproveitamento</th>
+                </tr>
+                <tr class="text-center fw-bold">
+                    <th>Classes</th>
+                    <th>MF</th><th>F</th>
+                    <th>MF</th><th>F</th>
+                    <th>MF</th><th>F</th>
+                    <th>MF</th><th>F</th>
+                    <th>MF</th><th>F</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr class="text-center">
+                    <td>10ª Classe</td>
+                    <td>{{matric10ClasseCH.length}}</td><td>{{matric10ClasseCHfeminino}}</td>
+                    <td>{{matric10ClasseCHdesistMF}}</td><td>{{matric10ClasseCHdesistFeminino}}</td>
+                    <td>{{matric10ClasseCHchegadAoFimMF}}</td><td>{{matric10ClasseCHchegadAoFimFeminino}}</td>
+                    <td>{{matric10ClasseCHapvMF}}</td><td>{{matric10ClasseCHapvFeminino}}</td>
+                    <td>{{matric10ClasseCHsemApvMF}}</td><td>{{matric10ClasseCHsemApvFeminino}}</td>
+                </tr>
+                <tr class="text-center">
+                    <td>11ª Classe</td>
+                    <td>{{matric11ClasseCH.length}}</td><td>{{matric11ClasseCHfeminino}}</td>
+                    <td>{{matric11ClasseCHdesistMF}}</td><td>{{matric11ClasseCHdesistFeminino}}</td>
+                    <td>{{matric11ClasseCHchegadAoFimMF}}</td><td>{{matric11ClasseCHchegadAoFimFeminino}}</td>
+                    <td>{{matric11ClasseCHapvMF}}</td><td>{{matric11ClasseCHapvFeminino}}</td>
+                    <td>{{matric11ClasseCHsemApvMF}}</td><td>{{matric11ClasseCHsemApvFeminino}}</td>
+                </tr>
+                <tr class="text-center">
+                    <td>12ª Classe</td>
+                    <td>{{matric12ClasseCH.length}}</td><td>{{matric12ClasseCHfeminino}}</td>
+                    <td>{{matric12ClasseCHdesistMF}}</td><td>{{matric12ClasseCHdesistFeminino}}</td>
+                    <td>{{matric12ClasseCHchegadAoFimMF}}</td><td>{{matric12ClasseCHchegadAoFimFeminino}}</td>
+                    <td>{{matric12ClasseCHapvMF}}</td><td>{{matric12ClasseCHapvFeminino}}</td>
+                    <td>{{matric12ClasseCHsemApvMF}}</td><td>{{matric12ClasseCHsemApvFeminino}}</td>
+                </tr>
+                <tr class="text-center fw-bold rel-estatistico-total-row">
+                    <td>TOTAL</td>
+                    <td>{{totalCH.mf}}</td><td>{{totalCH.feminino}}</td>
+                    <td colspan="4"></td>
+                    <td>{{totalCH.totalComApMF}}</td><td>{{totalCH.totalComApFeminino}}</td>
+                    <td>{{totalCH.totalSemApMF}}</td><td>{{totalCH.totalSemApFeminino}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {{/each}}
+    {{else}}
+
+    {{#if cursoCFB}}
+    {{#each aproveitamento}}
+    {{!-- CURSO DE CIENCIAS FÍSICO-BIOLÓGICAS --}}
+    <div class="table-responsive rel-estatistico-table-wrapper mb-4">
+        <table class="table table-bordered table-striped table-hover align-middle mb-0">
+            <thead>
+                <tr>
+                    <th class="rel-estatistico-section-title text-center" colspan="11">CURSO DE CIENCIAS FÍSICO-BIOLÓGICAS</th>
+                </tr>
+                <tr class="text-center fw-bold">
+                    <th colspan="3">Matriculados</th>
+                    <th colspan="2" class="table-danger">Desistidos</th>
+                    <th colspan="2">Chegados ao Fim</th>
+                    <th colspan="2">Com Aproveitamento</th>
+                    <th colspan="2">Sem Aproveitamento</th>
+                </tr>
+                <tr class="text-center fw-bold">
+                    <th>Classes</th>
+                    <th>MF</th><th>F</th>
+                    <th>MF</th><th>F</th>
+                    <th>MF</th><th>F</th>
+                    <th>MF</th><th>F</th>
+                    <th>MF</th><th>F</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr class="text-center">
+                    <td>10ª Classe</td>
+                    <td>{{matric10ClasseCFB.length}}</td><td>{{matric10ClasseCFBfeminino}}</td>
+                    <td>{{matric10ClasseCFBdesistMF}}</td><td>{{matric10ClasseCFBdesistFeminino}}</td>
+                    <td>{{matric10ClasseCFBchegadAoFimMF}}</td><td>{{matric10ClasseCFBchegadAoFimFeminino}}</td>
+                    <td>{{matric10ClasseCFBapvMF}}</td><td>{{matric10ClasseCFBapvFeminino}}</td>
+                    <td>{{matric10ClasseCFBsemApvMF}}</td><td>{{matric10ClasseCFBsemApvFeminino}}</td>
+                </tr>
+                <tr class="text-center">
+                    <td>11ª Classe</td>
+                    <td>{{matric11ClasseCFB.length}}</td><td>{{matric11ClasseCFBfeminino}}</td>
+                    <td>{{matric11ClasseCFBdesistMF}}</td><td>{{matric11ClasseCFBdesistFeminino}}</td>
+                    <td>{{matric11ClasseCFBchegadAoFimMF}}</td><td>{{matric11ClasseCFBchegadAoFimFeminino}}</td>
+                    <td>{{matric11ClasseCFBapvMF}}</td><td>{{matric11ClasseCFBapvFeminino}}</td>
+                    <td>{{matric11ClasseCFBsemApvMF}}</td><td>{{matric11ClasseCFBsemApvFeminino}}</td>
+                </tr>
+                <tr class="text-center">
+                    <td>12ª Classe</td>
+                    <td>{{matric12ClasseCFB.length}}</td><td>{{matric12ClasseCFBfeminino}}</td>
+                    <td>{{matric12ClasseCFBdesistMF}}</td><td>{{matric12ClasseCFBdesistFeminino}}</td>
+                    <td>{{matric12ClasseCFBchegadAoFimMF}}</td><td>{{matric12ClasseCFBchegadAoFimFeminino}}</td>
+                    <td>{{matric12ClasseCFBapvMF}}</td><td>{{matric12ClasseCFBapvFeminino}}</td>
+                    <td>{{matric12ClasseCFBsemApvMF}}</td><td>{{matric12ClasseCFBsemApvFeminino}}</td>
+                </tr>
+                <tr class="text-center fw-bold rel-estatistico-total-row">
+                    <td>TOTAL</td>
+                    <td>{{totalCFB.mf}}</td><td>{{totalCFB.feminino}}</td>
+                    <td colspan="4"></td>
+                    <td>{{totalCFB.totalComApMF}}</td><td>{{totalCFB.totalComApFeminino}}</td>
+                    <td>{{totalCFB.totalSemApMF}}</td><td>{{totalCFB.totalSemApFeminino}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {{/each}}
+    {{else}}
+
+    {{#if cursoCEJ}}
+    {{#each aproveitamento}}
+    {{!-- CURSO DE CIENCIAS ECONÓMICO-JURIDICAS --}}
+    <div class="table-responsive rel-estatistico-table-wrapper mb-4">
+        <table class="table table-bordered table-striped table-hover align-middle mb-0">
+            <thead>
+                <tr>
+                    <th class="rel-estatistico-section-title text-center" colspan="11">CURSO DE CIENCIAS ECONÓMICO-JURIDICAS</th>
+                </tr>
+                <tr class="text-center fw-bold">
+                    <th colspan="3">Matriculados</th>
+                    <th colspan="2" class="table-danger">Desistidos</th>
+                    <th colspan="2">Chegados ao Fim</th>
+                    <th colspan="2">Com Aproveitamento</th>
+                    <th colspan="2">Sem Aproveitamento</th>
+                </tr>
+                <tr class="text-center fw-bold">
+                    <th>Classes</th>
+                    <th>MF</th><th>F</th>
+                    <th>MF</th><th>F</th>
+                    <th>MF</th><th>F</th>
+                    <th>MF</th><th>F</th>
+                    <th>MF</th><th>F</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr class="text-center">
+                    <td>10ª Classe</td>
+                    <td>{{matric10ClasseCEJ.length}}</td><td>{{matric10ClasseCEJfeminino}}</td>
+                    <td>{{matric10ClasseCFBdesistMF}}</td><td>{{matric10ClasseCEJdesistFeminino}}</td>
+                    <td>{{matric10ClasseCEJchegadAoFimMF}}</td><td>{{matric10ClasseCEJchegadAoFimFeminino}}</td>
+                    <td>{{matric10ClasseCEJapvMF}}</td><td>{{matric10ClasseCEJapvFeminino}}</td>
+                    <td>{{matric10ClasseCEJsemApvMF}}</td><td>{{matric10ClasseCEJsemApvFeminino}}</td>
+                </tr>
+                <tr class="text-center">
+                    <td>11ª Classe</td>
+                    <td>{{matric11ClasseCEJ.length}}</td><td>{{matric11ClasseCEJfeminino}}</td>
+                    <td>{{matric11ClasseCFBdesistMF}}</td><td>{{matric11ClasseCEJdesistFeminino}}</td>
+                    <td>{{matric11ClasseCEJchegadAoFimMF}}</td><td>{{matric11ClasseCEJchegadAoFimFeminino}}</td>
+                    <td>{{matric11ClasseCEJapvMF}}</td><td>{{matric11ClasseCEJapvFeminino}}</td>
+                    <td>{{matric11ClasseCEJsemApvMF}}</td><td>{{matric11ClasseCEJsemApvFeminino}}</td>
+                </tr>
+                <tr class="text-center">
+                    <td>12ª Classe</td>
+                    <td>{{matric12ClasseCEJ.length}}</td><td>{{matric12ClasseCEJfeminino}}</td>
+                    <td>{{matric12ClasseCFBdesistMF}}</td><td>{{matric12ClasseCEJdesistFeminino}}</td>
+                    <td>{{matric12ClasseCEJchegadAoFimMF}}</td><td>{{matric12ClasseCEJchegadAoFimFeminino}}</td>
+                    <td>{{matric12ClasseCEJapvMF}}</td><td>{{matric12ClasseCEJapvFeminino}}</td>
+                    <td>{{matric12ClasseCEJsemApvMF}}</td><td>{{matric12ClasseCEJsemApvFeminino}}</td>
+                </tr>
+                <tr class="text-center fw-bold rel-estatistico-total-row">
+                    <td>TOTAL</td>
+                    <td>{{totalCEJ.mf}}</td><td>{{totalCEJ.feminino}}</td>
+                    <td colspan="4"></td>
+                    <td>{{totalCEJ.totalComApMF}}</td><td>{{totalCEJ.totalComApFeminino}}</td>
+                    <td>{{totalCEJ.totalSemApMF}}</td><td>{{totalCEJ.totalSemApFeminino}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {{/each}}
+    {{/if}}
+
+    {{/if}}
+
+    {{/if}}
+
+    <form action="/pedagogico/gerarAproveitamento" method="post" class="rel-estatistico-actions">
+        <input type="hidden" name="trimestre" value="IIº Trimestre">
+        <input type="hidden" name="curso" value="{{descricao}}">
+        <input type="hidden" name="idCurso" value="{{_id}}">
+
+        <button type="submit" class="btn btn-secondary">Actualizar</button>
+        <span class="small fst-italic text-muted ms-2">(Disponível ainda em ofline)</span>
+    </form>
+
+</section>

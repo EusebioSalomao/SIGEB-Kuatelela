@@ -1,0 +1,68 @@
+{{#if eAdmin}}
+<div class="h2 text-center myText-primary">LISTA DE CANDIDATOS</div>
+{{else}}
+<div class="h2 text-center text-success">PREVISÃO DO RESULTADO DE CANDIDATURAS</div>
+{{/if}}
+<hr>
+<div class="text-center h3">{{curso.descricao}}</div>
+<hr>
+{{#if eAdmin}}
+{{else}}
+<div class="text-sm text-center mark text-danger">Se deseja confirmar o resultado da lista de candidaturas clica em
+    confirmar resultado para guardar</div>
+{{/if}}
+
+<form action="/homeCoordenacao/admissaoCandidaturasConf" method="post">
+    <table class="table table-bordered mt-3">
+        <thead>
+            <tr class="text-center bg-dark text-light">
+                <td>N/O</td>
+                <td>Nome Completo</td>
+                <td>Nº BI</td>
+                <td>Média Final</td>
+                <td>Período</td>
+                <td>OBS</td>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each alunosDoCurso}}
+            <tr>
+                <td class="text-center"> {{numOrdem}} </td>
+                <td> {{nome}} </td>
+                <td class="text-center"> {{numBI}} </td>
+                <td class="text-center myText-primary fw-bold"> {{media}} </td>
+                <td class="text-center"> {{periodo}} </td>
+                {{#if naoAdmitido}}
+                <td class="fw-bold text-danger"> {{estado}} </td>
+                {{else}}
+                <td class="fw-bold"> {{estado}} </td>
+                {{/if}}
+            </tr>
+
+            {{else}}
+            <div class="text-center">Nenhum Candidato cadastrado</div>
+            {{/each}}
+        </tbody>
+    </table>
+    <hr>
+    <div class="text-center">
+        {{!-- Dados requeridod --}}
+        <input type="hidden" name="criterioAdmissao" value="{{criterioAdmissao}}">
+        <input type="hidden" name="idadeMinima" value="{{idadeMinima}}">
+        <input type="hidden" name="idadeMaxima" value="{{idadeMaxima}}">
+        <input type="hidden" name="qtAdmitirRegular" value="{{qtAdmitirRegularEnv}}">
+        <input type="hidden" name="qtAdmitirAdultos" value="{{qtAdmitirAdultosEnv}}">
+        <input type="hidden" name="idCurso" value="{{idCurso}}">
+        <input type="hidden" name="idCoord" value="{{idCoord}}">
+        {{#if eAdmin}}
+       {{!--  <a href="/homeCoordenacao/candidatos/{{curso._id}}" class="btn btn-secondary btn-sm">
+            < Voltar</a> --}}
+                <a href="/relatorios/listaCandidatosCursos/{{curso._id}}" class="btn btn-secondary btn-sm">PDF - Lista de
+                    Candidatos</a>
+                {{else}}
+                <a href="/homeCoordenacao/candidatos/{{curso._id}}" class="btn btn-secondary btn-sm">
+                    < Voltar</a>
+                        <button type="submit" class="btn btn-success btn-sm">Confirmar e guardar resultados</button>
+                        {{/if}}
+    </div>
+</form>

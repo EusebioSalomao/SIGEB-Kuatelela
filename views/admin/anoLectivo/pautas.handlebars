@@ -1,0 +1,177 @@
+<style>
+  .pautas-page .mycard-pautas {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .pautas-page .pauta-card {
+    transition: box-shadow .15s ease, transform .15s ease;
+  }
+
+  .pautas-page .pauta-card:hover {
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .12);
+    transform: translateY(-2px);
+  }
+
+  .pautas-page .back-btn {
+    width: 2.25rem;
+    height: 2.25rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+</style>
+
+{{#if pautasAnual}}
+{{!-- P a u t a s   d o s   a n o s   a n t e r i o r e s   -   E n c e r r a d o s --}}
+<div class="container pautas-page py-4">
+
+  <div class="row align-items-center mb-3">
+    <div class="col-12 col-md-9 d-flex align-items-center gap-3">
+      <a href="/anosLectivo" class="btn btn-outline-secondary btn-sm back-btn rounded-circle">&lt;</a>
+      <h1 class="h4 mb-0"><span class="text-secondary">Ano Lectivo:</span> {{anoLectivo.codigo}}</h1>
+    </div>
+    <div class="col-12 col-md-3 text-md-end mt-3 mt-md-0">
+      <h2 class="mark fs-5 mb-0 d-inline-block px-2 rounded">Pautas</h2>
+    </div>
+  </div>
+
+  <hr class="mt-0">
+
+  <div class="mynav mt-1">
+
+    <h3 class="h6 text-secondary text-uppercase mb-3">10ª Classe</h3>
+    <ul class="mycard-pautas bg-light rounded-3 p-3 d-flex flex-wrap gap-3">
+      {{#each pautas10}}
+      <li class="pauta-card text-center bg-secondary text-light rounded-3 p-3 d-flex flex-column">
+        <div class="lead mb-2">PAUTA</div>
+        <div class="h5 mb-2">{{classe.designacao}}</div>
+        <hr class="border-light m-0 mb-2 opacity-50">
+        <div class="mb-2">{{curso.descricao}}</div>
+        <div class="mb-3">Turma: <span class="fw-bold text-warning">{{turma.codigo}}</span></div>
+        <a href="/anosLectivo/pauta3/{{_id}}" class="btn btn-warning btn-sm mt-auto">Ver Pautas</a>
+      </li>
+      {{else}}
+      <li class="text-center w-100 py-3 text-secondary">Nenhuma pauta da 10ª Classe</li>
+      {{/each}}
+    </ul>
+
+    <h3 class="h6 text-secondary text-uppercase mt-4 mb-3">11ª Classe</h3>
+    <ul class="mycard-pautas bg-light rounded-3 p-3 d-flex flex-wrap gap-3">
+      {{#each pautas11}}
+      <li class="pauta-card text-center bg-secondary text-light rounded-3 p-3 d-flex flex-column">
+        <div class="lead mb-2">PAUTA</div>
+        <div class="h5 mb-2">{{idClasse.designacao}}</div>
+        <hr class="border-light m-0 mb-2 opacity-50">
+        <div class="mb-2">{{idCurso.descricao}}</div>
+        <div class="mb-3">Turma: <span class="fw-bold text-warning">{{codigo}}</span></div>
+        <a href="/pedagogico/pauta3/{{_id}}" class="btn btn-warning btn-sm mt-auto">Ver Pautas</a>
+      </li>
+      {{else}}
+      <li class="text-center w-100 py-3 text-secondary">Nenhuma pauta 11ª Classe</li>
+      {{/each}}
+    </ul>
+
+    <h3 class="h6 text-secondary text-uppercase mt-4 mb-3">12ª Classe</h3>
+    <ul class="mycard-pautas bg-light rounded-3 p-3 d-flex flex-wrap gap-3">
+      {{#each pautas12}}
+      <li class="pauta-card text-center bg-secondary text-light rounded-3 p-3 d-flex flex-column">
+        <div class="lead mb-2">PAUTA</div>
+        <div class="h5 mb-2">{{idClasse.designacao}}</div>
+        <hr class="border-light m-0 mb-2 opacity-50">
+        <div class="mb-2">{{idCurso.descricao}}</div>
+        <div class="mb-3">Turma: <span class="fw-bold text-warning">{{codigo}}</span></div>
+        <a href="/pedagogico/pauta3/{{_id}}" class="btn btn-warning btn-sm mt-auto">Ver Pauta</a>
+      </li>
+      {{else}}
+      <li class="text-center w-100 py-3 text-secondary">Nenhuma pauta da 12ª Classe</li>
+      {{/each}}
+    </ul>
+
+  </div>
+</div>
+
+{{else}}
+
+{{!-- P a i n e l   p a r a   o   a n o   a c t u a l  (Pautas) --}}
+<div class="container pautas-page py-4">
+
+  <div class="row align-items-center mb-3">
+    <div class="col-12 col-md-9 d-flex align-items-center gap-3">
+      <a href="/anosLectivo/config/{{anoLectivo._id}}" class="btn btn-outline-secondary btn-sm back-btn rounded-circle">&lt;</a>
+      <h1 class="h4 mb-0"><span class="text-secondary">Ano Lectivo:</span> {{anoLectivo.codigo}}</h1>
+    </div>
+    <div class="col-12 col-md-3 text-md-end mt-3 mt-md-0">
+      <h2 class="mark fs-5 mb-0 d-inline-block px-2 rounded">PAUTAS</h2>
+    </div>
+  </div>
+
+  <hr class="mt-0">
+
+  <div class="mynav mt-1">
+
+    <h3 class="h6 text-secondary text-uppercase mb-3">10ª Classe</h3>
+    <ul class="mycard-pautas bg-light rounded-3 p-3 d-flex flex-wrap gap-3">
+      {{#each pautas10}}
+      <li class="pauta-card text-center bg-secondary text-light rounded-3 p-3 d-flex flex-column">
+        <div class="mb-2">PAUTAS</div>
+        <div class="h6 mb-2">{{idClasse.designacao}}</div>
+        <hr class="border-light m-0 mb-2 opacity-50">
+        <div class="mb-2">{{idCurso.descricao}}</div>
+        <div class="mb-3">Turma: <span class="fw-bold text-warning">{{codigo}}</span></div>
+        <form action="/anosLectivo/pauta3" method="post" class="mt-auto">
+          <input type="hidden" name="idTurma" value="{{_id}}">
+          <input type="hidden" name="idAno" value="{{idAno}}">
+          <button type="submit" class="btn btn-warning btn-sm w-100">Ver Pautas</button>
+        </form>
+      </li>
+      {{else}}
+      <li class="text-center w-100 py-3 text-secondary">Nenhuma pauta da 10ª Classe</li>
+      {{/each}}
+    </ul>
+
+    <h3 class="h6 text-secondary text-uppercase mt-4 mb-3">11ª Classe</h3>
+    <ul class="mycard-pautas bg-light rounded-3 p-3 d-flex flex-wrap gap-3">
+      {{#each pautas11}}
+      <li class="pauta-card text-center bg-secondary text-light rounded-3 p-3 d-flex flex-column">
+        <div class="mb-2">PAUTAS</div>
+        <div class="h6 mb-2">{{idClasse.designacao}}</div>
+        <hr class="border-light m-0 mb-2 opacity-50">
+        <div class="mb-2">{{idCurso.descricao}}</div>
+        <div class="mb-3">Turma: <span class="fw-bold text-warning">{{codigo}}</span></div>
+        <form action="/anosLectivo/pauta3" method="post" class="mt-auto">
+          <input type="hidden" name="idTurma" value="{{_id}}">
+          <input type="hidden" name="idAno" value="{{idAno}}">
+          <button type="submit" class="btn btn-warning btn-sm w-100">Ver Pautas</button>
+        </form>
+      </li>
+      {{else}}
+      <li class="text-center w-100 py-3 text-secondary">Nenhuma pauta 11ª Classe</li>
+      {{/each}}
+    </ul>
+
+    <h3 class="h6 text-secondary text-uppercase mt-4 mb-3">12ª Classe</h3>
+    <ul class="mycard-pautas bg-light rounded-3 p-3 d-flex flex-wrap gap-3">
+      {{#each pautas12}}
+      <li class="pauta-card text-center bg-secondary text-light rounded-3 p-3 d-flex flex-column">
+        <div class="mb-2">PAUTA</div>
+        <div class="h6 mb-2">{{idClasse.designacao}}</div>
+        <hr class="border-light m-0 mb-2 opacity-50">
+        <div class="mb-2">{{idCurso.descricao}}</div>
+        <div class="mb-3">Turma: <span class="fw-bold text-warning">{{codigo}}</span></div>
+        <form action="/anosLectivo/pauta3" method="post" class="mt-auto">
+          <input type="hidden" name="idTurma" value="{{_id}}">
+          <input type="hidden" name="idAno" value="{{idAno}}">
+          <button type="submit" class="btn btn-warning btn-sm w-100">Ver Pautas</button>
+        </form>
+      </li>
+      {{else}}
+      <li class="text-center w-100 py-3 text-secondary">Nenhuma pauta da 12ª Classe</li>
+      {{/each}}
+    </ul>
+
+  </div>
+</div>
+
+{{/if}}

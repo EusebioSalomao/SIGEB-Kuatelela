@@ -1,0 +1,35 @@
+
+<div class="container col-8 offset-2 p-5">
+
+    <div class="pe-3 lead text-sm mark text-end"></div>
+    <div class="logo text-center mt-3"><img src="/img/logor.png" alt=""></div>
+    <div class="text-center">
+        <p class="m-1">República de Angola</p>
+        <p class="m-1">Governo da Província do Bié</p>
+        <p class="m-1">Administração Municipal de Catabola</p>
+        <p class="fw-bold" >LICEU FELIZBERTO DOMINGO NGUNGA</p>
+
+        <div class="mt-4 fw-bold text-primary lead">DECLARAÇÃO DE ESTUDANTE</div>
+    </div>
+
+    <div class="text-justify p-5">
+        <span class="fw-bold">Dr. xxxxxxxxxxxx</span>, Director do Liceu Felizberto D. Ngunga de Catabola, e o Sub-Director Pedagogico <span class="fw-bold">Dr. xxxxxxxxxxxx</span>, declaram que: <span class="fw-bold"> {{aluno.nome}} </span>, filho de {{aluno.nomeEncarregado}} e de {{aluno.nomeEncarregado}}, nascido aos .... , portador do BI nº {{aluno.numBI}} é aluno da {{aluno.classe}}, no curso de {{aluno.curso}} no ano Lectivo {{anoActivo.codigo}}, conforme consta nos nosso registro. <br>
+        <p class="mt-3" >Por ser verdade e assim constar, passou-se a presente Declaração assinado e autenticado com carimbo a óleo em uso nesta instituião.</p>
+
+        <div class="mt-5 text-center">
+            <span>O Subdirector Pedagógico</span><br>
+            __________________________ <br>
+            <span class="fw-bold">Dr. xxxxxxxxxxxxx</span>
+        </div>
+    </div>
+
+    <hr>
+    <form action="/pedagogico/declaracaoSemNota" method="post">
+    <input type="hidden" name="idAluno" value="{{aluno._id}}" id="">
+    <input type="hidden" name="idSolic" value="{{idSolic}}" id="">
+    <input type="hidden" name="anoActivo" value="{{anoActivo.codigo}}" id="">
+
+    <button type="submit" class="text-center my3 btn btn-secondary">Gerar PDF</div>
+    </form>
+    
+</div>

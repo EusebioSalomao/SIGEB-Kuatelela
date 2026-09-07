@@ -1,0 +1,382 @@
+{{!-- CONSELHO DE NOTA --}}
+<h1 class="text-center mark text-success bg-success opacity-50 text-light">EDITAR PAUTA...</h1>
+<div class="conteiner">
+    <div class="row m-0">
+        <div class="col-9 text-center p-2 m-0">
+            <h2 class="m-0 bg-secondary p-4 text-light"> {{dadosTurma.codigo}}: {{pautaFDoConselho.classe.designacao}} -
+                {{pautaFDoConselho.curso.descricao}} </h2>
+
+        </div>
+        <div class="col-3 text-center m-0 p-2">
+            <h2 class="mark py-4 m-0 text-secondary">PAUTAS</h2>
+        </div>
+    </div>
+</div>
+<hr>
+
+{{#if classeExame}}{{!-- Se for uma classe de exame, mostrar a pauta de classes de exame --}}
+<div class="">
+    <div class="pe-3 lead text-sm mark ">
+        <div class="row">
+            <div class="col-3"><a href="/pedagogico/pauta3/{{dadosTurma._id}}">
+                    < Voltar</a>
+            </div>
+            <div class="col-6 text-center text-danger"> Esta Pauta já passou no Conselho de Notas. Não invalida os
+                resultados decididos pelos membros do Conselho sem uma justificação. <span class="text-info"> Clica em
+                    ler instrução! </span> </div>
+            <div class="col-3 text-end">Pauta Final</div>
+        </div>
+
+    </div>
+    <div class="logo text-center mt-3"><img src="/img/logor.png" alt=""></div>
+    <div class="text-center">
+        <p class="m-1">República de Angola</p>
+        <p class="m-1">Governo da Província do Bié</p>
+        <p class="m-1">Administração Municipal do Cuito</p>
+        <p class="fw-bold">LICEU REI NDUNDUMA DO CUITO</p>
+
+        <div class="h5 myText-primary2 fw-bold">{{dadosTurma.idCurso.descricao}}</div>
+        <div class="h6 text-center myText-primary2"> <span class="text-dark fw-bold "> Ano Lectivo: </span>
+            {{anoLectivo}} &shy;&shy; {{dadosTurma.idClasse.designacao}} &shy; &shy; &shy; &shy; &shy; &shy;
+            <span class="text-dark fw-bold ">Turma: </span> {{dadosTurma.codigo}} &shy; &shy; &shy; <span
+                class="text-dark fw-bold ">Período: </span> {{dadosTurma.periodo}}
+        </div>
+        <div class="mt-3 lead fw-bold text-danger">PAUTA FINAL</div>
+    </div>
+
+    <table class="table table-bordered table-sm tabText-size-10 table-hover">
+        <thead class=" mybg-info">
+            <tr class="text-center">
+                <td class="fw-bold" rowspan="2">N/O</td>
+                <td class="lg-cab-nome fw-bold" rowspan="2">Nome Completo</td>
+                {{#each disciplinasOrdenadas}}
+                <td class=" px-4 fw-bold" colspan="3"> {{disciplina}} </td>
+                {{elese}}{{/each}}
+                <td class="py-2 fw-bold" rowspan="2" colspan="3"></td>
+            </tr>
+            <tr class="fw-bold">
+                {{#each disciplinasOrdenadas}}
+                <td>MFD</td>
+                <td>NEE</td>
+                <td class="mybg-info">MF</td>
+                {{elese}}{{/each}}
+
+            </tr>
+        </thead>
+        <tbody>
+            <ol>
+
+                {{#each pautaFDoConselho.dadosPauta}}
+
+                <tr>
+                    <td class="text-center mybg-info">
+                        {{numOrdem}}
+                    </td>
+                    <td class="lg-cab-nome"> {{nome}} </td>
+                    {{#each notas}}
+                    {{#if negativa1}} <td class="text-center text-danger"> {{medDosTrimestes}} </td> {{else}}<td
+                        class="text-center"> {{medDosTrimestes}} </td>{{/if}}
+                    {{#if negativa2}} <td class="text-center text-danger"> {{examePF}} </td> {{else}}<td
+                        class="text-center"> {{examePF}} </td>{{/if}}
+
+                    {{#if negativa3}} <td class="text-center text-danger mybg-info fw-bold"> {{cf}} </td> {{else}}<td
+                        class="text-center mybg-info fw-bold"> {{cf}} </td>{{/if}}
+                    {{else}}
+                    {{/each}}
+                    {{#if naoApto}}<td class="text-danger"> {{estado}} </td>{{else}} <td> {{estado}} </td> {{/if}}
+                    <td>
+                        {{!-- Botão para conselho individual --}}
+                        <form action="/pedagogico/pautaIndividual" method="post">
+                            <input type="hidden" name="numOrdemC" value="{{numOrdem}}">
+                            <input type="hidden" name="idTurma" value="{{idTurma}}">
+                            <input type="hidden" name="idPauta" value="{{idPauta}}">
+                            <button type="submit" class="btn btn-sm btn-warning opacity-50">Editar</button>
+                            {{!-- {{#if naoApto}}
+                            apresentar o botão de editar
+                            {{else}}
+                            {{/if}} --}}
+                        </form>
+                    </td>
+                    <td class="mybg-info text-center"> {{numOrdem}} </td>
+                </tr>
+                {{else}}
+                <div class="lead text-light text-center bg-danger">Ainda não foi criada a pauta do conselho das classes
+                    de exames</div>
+                {{/each}}
+
+            </ol>
+        </tbody>
+    </table>
+    <hr>
+    <div class="text-center">
+        <form action="/pedagogico/finalizarConseNotas" method="post"></form>
+        <a href="/pedagogico/pauta3/{{dadosTurma._id}}" class="btn btn-secondary btn-sm">Voltar</a>
+        {{!-- <button class="btn btn-sm btn-primary opacity-80" onclick="adicionarAlunoPauta()">Adicionar Aluno</button>
+        --}}
+        <a href="#" onclick="instrucaoConselho()" class="btn btn-sm btn-info text-light"> Ler a
+            instrução</a>
+    </div>
+    <hr>
+</div>
+{{else}}{{!-- Se não for uma classe de exame, mostras a pauta de classe de transação --}}
+{{!-- P A U T A F I N A L --}}
+<div class="">
+    <div class="pe-3 lead text-sm mark ">
+        <div class="row">
+            <div class="col-3"><a href="/pedagogico/pauta3/{{dadosTurma._id}}">
+                    < Voltar</a>
+            </div>
+            <div class="col-6 text-center text-danger"> Esta Pauta está em Conselho de notas. O Conselho deve ser
+                refletido nas médias trimestrais</div>
+            <div class="col-3 text-end">Pauta Final</div>
+        </div>
+
+    </div>
+    <div class="logo text-center mt-3"><img src="/img/logor.png" alt=""></div>
+    <div class="text-center">
+        <p class="m-1">República de Angola</p>
+        <p class="m-1">Governo da Província do Bié</p>
+        <p class="m-1">Administração Municipal do Cuito</p>
+        <p class="fw-bold">LICEU REI NDUNDUMA DO CUITO</p>
+
+        <div class="h5 myText-primary2 fw-bold">{{dadosTurma.idCurso.descricao}}</div>
+        <div class="h6 text-center myText-primary2"> <span class="text-dark fw-bold "> Ano Lectivo: </span>
+            {{anoLectivo}} &shy;&shy; {{dadosTurma.idClasse.designacao}} &shy; &shy; &shy; &shy; &shy; &shy;
+            <span class="text-dark fw-bold ">Turma: </span> {{dadosTurma.codigo}} &shy; &shy; &shy; <span
+                class="text-dark fw-bold ">Período: </span> {{dadosTurma.periodo}}
+        </div>
+        <div class="mt-3 lead fw-bold text-danger">PAUTA FINAL</div>
+    </div>
+
+    <table class="table table-bordered table-sm tabText-size-10 table-hover">
+        <thead class=" mybg-info">
+            <tr class="text-center">
+                <td class="fw-bold" rowspan="2">N/O</td>
+                <td class="lg-cab-nome fw-bold" rowspan="2">Nome Completo</td>
+                {{#each disciplinasOrdenadas}}
+                <td class=" px-4 fw-bold" colspan="4"> {{disciplina}} </td>
+                {{elese}}{{/each}}
+                <td class="py-2 fw-bold" rowspan="2" colspan="3"></td>
+            </tr>
+            <tr class="fw-bold">
+                {{#each disciplinasOrdenadas}}
+                <td>MT1</td>
+                <td>MT2</td>
+                <td>MT3</td>
+                <td class="mybg-info">MF</td>
+                {{elese}}{{/each}}
+
+            </tr>
+        </thead>
+        <tbody>
+            <ol>
+
+                {{#each pautaFDoConselho.dadosPauta}}
+
+                <tr>
+                    <td class="text-center mybg-info">
+                        {{numOrdem}}
+                    </td>
+                    <td class="lg-cab-nome"> {{nome}} </td>
+                    {{#each notas}}
+                    {{#if negativa1}} <td class="text-center text-danger"> {{mt1}} </td> {{else}}<td
+                        class="text-center"> {{mt1}} </td>{{/if}}
+                    {{#if negativa2}} <td class="text-center text-danger"> {{mt2}} </td> {{else}}<td
+                        class="text-center"> {{mt2}} </td>{{/if}}
+                    {{#if negativa3}} <td class="text-center text-danger"> {{mt3}} </td> {{else}}<td
+                        class="text-center"> {{mt3}} </td>{{/if}}
+                    {{#if negativa4}} <td class="text-center text-danger mybg-info fw-bold"> {{mf}} </td> {{else}}<td
+                        class="text-center mybg-info fw-bold"> {{mf}} </td>{{/if}}
+                    {{else}}
+                    {{/each}}
+                    {{#if naoApto}}<td class="text-danger"> {{estado}} </td>{{else}} <td> {{estado}} </td> {{/if}}
+                    <td>
+                        {{!-- Botão para conselho individual --}}
+                        <form action="/pedagogico/pautaIndividual" method="post">
+                            <input type="hidden" name="numOrdemC" value="{{numOrdem}}">
+                            <input type="hidden" name="idTurma" value="{{idTurma}}">
+                            <input type="hidden" name="idPauta" value="{{idPauta}}">
+                            <button type="submit" class="btn btn-sm btn-warning opacity-50">Editar</button>
+                            {{!-- {{#if naoApto}}
+                            {{else}}
+                            {{/if}} --}}
+                        </form>
+                    </td>
+                    <td class="mybg-info text-center"> {{numOrdem}} </td>
+                </tr>
+                {{else}}
+                <div class="lead text-light text-center bg-danger">Ainda não foi gerada a pauta do IIª Trimestre</div>
+                {{/each}}
+
+            </ol>
+        </tbody>
+    </table>
+    <hr>
+    <div class="text-center">
+        <form action="/pedagogico/finalizarConseNotas" method="post"></form>
+        <a href="/pedagogico/pauta3/{{dadosTurma._id}}" class="btn btn-secondary btn-sm">Voltar</a>
+        <button class="btn btn-sm btn-primary opacity-80" onclick="adicionarAlunoPauta()">Adicionar Aluno</button>
+        <a href="#" onclick="instrucaoConselho()" class="btn btn-sm btn-info text-light"> Clica aqui para ler a
+            instrução</a>
+    </div>
+    <hr>
+</div>
+{{/if}} {{!-- FIM, se for ou não uma classe de exame--}}
+
+
+<!-- Modal Adicionar aluno -->
+
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="adicionarAlunoPauta">
+    <div class="modal-dialog modal-dialog-centered modal-fullscreen modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class=" mt-3">
+                <div class="modal-title p-2 h3 mark opacity-50"> Adicionar Aluno na Pauta</div>
+            </div>
+            <hr>
+            <form action="/pedagogico/adicionarAlunoPauta" method="post">
+                <div class=" text-center lead">
+
+                    <select name="idAluno" id="" class="form-control text-center">
+                        <option value="">Seleciona o nome</option>
+                        {{#each alunosPraAdicionar}}
+                        <option value="{{_id}}"> {{nome}} </option>
+                        {{else}}
+                        <option value="">Não ha mais nome</option>
+                        {{/each}}
+                    </select>
+
+                </div>
+
+                <div class="modal-body input-box-filtro ">
+
+
+                    <table class="table table-bordered table-sm tabText-size-12">
+                        <thead class=" mybg-info">
+                            <tr class="text-center">
+                                {{!-- <td rowspan="2" class="h6">Nome Completo</td> --}}
+                                <td rowspan="2">Genero</td>
+
+                                {{#each disciplinasOrdenadas}}
+                                <td class=" px-4 h6" colspan="3"> {{disciplina}} </td>
+                                {{elese}}{{/each}}
+                                <td class="py-2 fw-bold" rowspan="2">Obs</td>
+                            </tr>
+                            <tr class="fw-bold">
+                                {{#each disciplinasOrdenadas}}
+                                <td class="text-center">MT1</td>
+                                <td class="text-center">MT2</td>
+                                <td class="text-center">MT3</td>
+                                {{!-- <td class="mybg-info">MF</td> --}}
+                                {{elese}}{{/each}}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ol>
+
+                                <tr>
+
+                                    <td>
+                                        <select name="genero" id="">
+                                            <option value=""></option>
+                                            <option value="F">F</option>
+                                            <option value="M">M</option>
+                                        </select>
+                                    </td>
+                                    {{#each disciplinasOrdenadas}}
+
+                                    <td class="text-center">
+                                        <input type="number" name="mt1" size="1" class="sizeInp-3" max="20" min="0"
+                                            required>
+                                    </td>
+
+
+
+                                    <td class="text-center">
+                                        <input type="number" name="mt2" size="" class="sizeInp-3" max="20" min="0"
+                                            required>
+                                    </td>
+
+                                    <td class="text-center">
+                                        <input type="number" name="mt3" size="" class="sizeInp-3" max="20" min="0"
+                                            required>
+                                    </td>
+
+                                    {{!-- <td class="text-center text-danger mybg-info fw-bold"> </td> --}}
+
+                                    {{elese}}{{/each}}
+
+                                    <td class="text-center"></td>
+                                </tr>
+
+                            </ol>
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="lead text-center text-italic ms-3 text-danger">Usa a tecla Tab do computador para mudar de
+                    campo!</div>
+                <div class="lead text-center text-italic ms-3 text-danger">O nome que pretende adicionar deve pertencer
+                    na referida
+                    turma!</div>
+                <hr>
+
+                <div class=" text-center px-4 me-5 pb-3">
+                    <input type="hidden" name="idPauta" value="{{pautaFDoConselho._id}}">
+                    <input type="hidden" name="idTurma" value="{{dadosTurma._id}}">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success me-5">Adicionar</button>
+                </div>
+        </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal Instrução para ditar a pauta -->
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="instrucaoConselho">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class=" text-center mt-3">
+                <div class="modal-title p-2 h3 mark opacity-50 text-center"> Instrução</div>
+            </div>
+            <hr>
+            <div class="px-5 text-justify">
+                <span class="text-center text-danger">
+                    A alteração é individualmente a cada aluno cujo a reclamação é aceite. Para o efeito:
+                </span>
+                <p class=" mt-2">1º Identificar o aluno que esteja na condição acima referida;</p>
+                <p class="">2º Clicar em "Editar", na última coluna, no número correspondente ao número de ordem do
+                    aluno;</p>
+                <p class="">3º Realizar a alteração, atravéz das médias trimestral do aluno;</p>
+                <p class="">4º Clicar em confirmar e salvar;</p>
+                <p class="">5º Identificar outo aluno, se existir, e repete os passos;</p>
+                <p class="">6º Depois de realizar o conselho em cada aluno que estiverem na condição de merecer, clica
+                    em "Voltar";</p>
+            </div>
+            <hr>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Entendi!</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="assets/bootstrap.bundle.min.js" class="img-fluid"></script>
+<script>
+    function adicionarAlunoPauta() {
+
+        let el = document.getElementById('adicionarAlunoPauta');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+    function instrucaoConselho() {
+
+        let el = document.getElementById('instrucaoConselho');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+
+
+</script>

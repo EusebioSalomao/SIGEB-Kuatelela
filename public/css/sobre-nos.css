@@ -1,0 +1,106 @@
+:root {
+    --about-navy: #102a43;
+    --about-teal: #496f6b;
+    --about-teal-dark: #365a57;
+    --about-gold: #9a8b6a;
+    --about-bg: #eef1f3;
+    --about-ink: #334e68;
+    --about-muted: #718096;
+    --about-border: #d9e2ec;
+}
+
+.about-page {
+    min-height: 100%;
+    background: var(--about-bg);
+    color: var(--about-ink);
+    padding: clamp(1.5rem, 4vw, 3.5rem) 0;
+}
+
+.about-hero {
+    overflow: hidden;
+    border-radius: .85rem;
+    background: var(--about-navy);
+    padding: clamp(1.5rem, 5vw, 3.5rem);
+    color: #fff;
+}
+
+.about-eyebrow {
+    display: block;
+    margin-bottom: .5rem;
+    color: var(--about-gold);
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+.about-hero h1 {
+    max-width: 650px;
+    margin: 0;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.hero-lead {
+    max-width: 580px;
+    margin: 1.25rem 0;
+    color: #d9e2ec;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    line-height: 1.7;
+}
+
+.hero-location { color: #bcccdc; font-size: .9rem; }
+.hero-location span { margin-right: .4rem; color: var(--about-gold); }
+.hero-image { height: 100%; min-height: 230px; }
+.hero-image img, .resources-image { width: 100%; height: 100%; object-fit: cover; }
+.hero-image img { min-height: 230px; border-radius: .6rem; opacity: .88; }
+
+.about-section { padding: clamp(3rem, 7vw, 6rem) 0; }
+.about-section + .about-section { border-top: 1px solid var(--about-border); }
+.about-section h2, .closing-section h2 {
+    margin: 0 0 1rem;
+    color: var(--about-navy);
+    font-size: clamp(1.6rem, 3vw, 2.35rem);
+    font-weight: 700;
+    line-height: 1.2;
+}
+.about-section p { line-height: 1.75; }
+.quote-card {
+    border-left: 4px solid var(--about-gold);
+    border-radius: .5rem;
+    background: #fff;
+    padding: 1.5rem 1.75rem;
+    box-shadow: 0 .35rem 1rem rgba(16, 42, 67, .06);
+}
+.quote-card p { margin: 0; color: var(--about-navy); font-size: 1.15rem; font-weight: 600; line-height: 1.6; }
+.quote-mark { display: block; height: 1.5rem; color: var(--about-gold); font-size: 3rem; line-height: 1; }
+
+.courses-section { padding-top: 0; }
+.section-heading { max-width: 700px; margin: 0 auto 2rem; }
+.section-heading p { color: var(--about-muted); }
+.course-card {
+    height: 100%;
+    border: 1px solid var(--about-border);
+    border-top: 3px solid var(--about-gold);
+    border-radius: .6rem;
+    background: #fff;
+    padding: 1.5rem;
+    box-shadow: 0 .3rem .9rem rgba(16, 42, 67, .05);
+}
+.course-number { color: var(--about-teal); font-size: .8rem; font-weight: 700; letter-spacing: .1em; }
+.course-card h3 { margin: .7rem 0; color: var(--about-navy); font-size: 1.2rem; }
+.course-card p { margin: 0; color: var(--about-muted); font-size: .92rem; line-height: 1.65; }
+.resources-image { max-height: 390px; border-radius: .7rem; filter: saturate(.72); }
+.resource-list { margin: 1.25rem 0 0; padding: 0; list-style: none; }
+.resource-list li { position: relative; margin-bottom: .8rem; padding-left: 1.5rem; line-height: 1.5; }
+.resource-list li::before { position: absolute; top: .55rem; left: 0; width: .45rem; height: .45rem; border-radius: 50%; background: var(--about-teal); content: ""; }
+.closing-section { margin-top: 1rem; border-radius: .7rem; background: #e3e8eb; padding: clamp(2rem, 5vw, 3.5rem); }
+.closing-section p { max-width: 650px; margin: 0 auto; color: var(--about-muted); line-height: 1.7; }
+
+@media (max-width: 575.98px) {
+    .about-hero { padding: 1.5rem; }
+    .hero-image { min-height: 190px; }
+    .hero-image img { min-height: 190px; }
+    .about-section { padding: 3rem 0; }
+}

@@ -1,0 +1,62 @@
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-3 mt-4">
+            <h2>Novo Usuário:</h2>
+            <hr>
+            {{#each erros}}
+            <div class="alert alert-danger">{{texto}}</div>
+            {{else}}
+            {{/each}}
+            <form action="/user/add" method="post" enctype="multipart/form-data">
+            <div class="row ">
+                
+                <div class="col-4">
+                    <div class="row">
+                        <div class="card">
+                            <div class="card-body">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <span>Carregue sua foto</span>
+                        <input type="file" name="fotoUser" id="">
+                    </div>
+
+                </div>
+                <div class="col-8">
+
+
+                <div class="card p-3">
+                    <div class="card-body">
+                        <label for="username">Nome de Usuário:</label>
+                        <input type="text" name="username" class="form-control" required>
+                        <label for="senha">Senha:</label>
+                        <input type="password" name="senha" placeholder="Senha" class="form-control" required>
+                        <label for="senha2">Repete a senha:</label>
+                        <input type="password" name="senha2" placeholder="Senha" class="form-control" required>
+                        <label for="telefone">Telefone:</label>
+                        <input type="text" name="telefone" class="form-control">
+                        <label for="categoria">Categoria:</label>
+                        <select name="categoria" class="form-control">
+                            <option value="Selecionar">Selecionar</option>
+                            <option value="admin">Administrador</option>
+                            <option value="Aluno">Aluno</option>
+                            <option value="pedagogico">Director pedagógico</option>
+                            <option value="financeiro">Director Administrativo</option>
+                            <option value="Professor">Professor</option>
+                            <option value="secretario">Secretário</option>
+                        </select>
+
+                </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success mt-2 ">Cadastrar</button>
+                            <a href="/user" class="btn btn-danger mt-2">Cancelar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>

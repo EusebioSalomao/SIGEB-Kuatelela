@@ -1,0 +1,35 @@
+<div class="container px-5 text-size-12">
+
+<div class="pe-3 lead text-sm mark text-end"> <a href="/turmas/turma/{{turma._id}}">Voltar</a> </div>
+    <div class="logo text-center mt-3"><img src="/img/logor.png" alt=""></div>
+    <div class="text-center">
+        <p class="m-1">República de Angola</p>
+        <p class="m-1">Governo da Província do Bié</p>
+        <p class="m-1">Gabinete Provincial da Educação</p>
+        <p class="fw-bold" >LICEU REI NDUDUMA DO CUITO</p>
+
+        <div class="mt-3 lead fw-bold text-danger"> {{curso.descricao}} </div>
+        <div class="mt-3"> <span>Ano Lectivo:</span> <span class="fw-bold" > {{ano.codigo}} </span> &shy; &shy; &shy; &shy; <span> {{classe.designacao}} </span> {{turma.codigo}} </div>
+        <div class="h4 mt-2 ">LISTA DOS ALUNOS</div>
+    </div>
+    <div class="px-5">
+
+    <table class="table table-sm table-bordered text-size-12">
+        <thead class="fw-bold bg-light text-center">
+            <tr><td>Nº</td> <td>NOME COMPLETO</td> <td>SEXO</td> <td>OBSERVAÇÃO</td> </tr>
+        </thead>
+
+        {{#each alunos}}
+            <tr><td class="text-center" > {{numero}} </td> <td> {{nome}} </td> <td></td> <td></td> </tr>
+        {{else}}
+        
+        {{/each}}
+    </table>
+    </div>
+
+<div class="text-center row">
+    <div class="col-sm-12 col-md-12 col-lg-4 text-center"><a href="/relatorios/listaAlunosPDF/{{turma._id}}" class="btn btn-secondary">Lista Normal PDF</a></div>    
+    <div class="col-sm-12 col-md-12 col-lg-4 text-center"><a href="/relatorios/listaExame/{{turma._id}}" class="btn btn-secondary">Lista de Exame Nacional - ofline</a></div>    
+    <div class="col-sm-12 col-md-12 col-lg-4 text-center"><a href="/relatorios/actualPDF/{{turma._id}}" class="btn btn-secondary"> Lista de presença/Prova </a></div>    
+</div>
+</div>

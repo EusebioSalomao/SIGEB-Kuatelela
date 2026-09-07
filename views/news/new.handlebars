@@ -1,0 +1,32 @@
+<head>
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+
+
+</head>
+
+<div class="card p-2 bg-light">
+
+    <h2 class="text-center">Criar nova Noticia</h2>
+    <hr>
+    <div class="card-body p-5">
+        <form action="/noticias/create" method="post" enctype="multipart/form-data">
+
+            <label for="title">Título da notícia:</label>
+            <input type="text" name="title" class="form-control" required><br><br>
+            <div class="mx-5">
+
+            <label for="text">Texto:</label>
+            <textarea name="text" required placeholder="Escreve aqui o conteúdo da notícia..." class="form-control"
+                rows="10"></textarea><br>
+            </div>
+            <label for="capa">Carregue uma imagem para capa:</label>
+            <input type="file" name="capa" class="form-control"><br>
+            <label for="tok">Token:</label>
+            <input type="text" name="tok" class="form-control"><br>
+
+
+            <button type="submit" class="btn btn-secondary">Criar Noticia</button>
+        </form>
+    </div>
+</div>
+<hr>

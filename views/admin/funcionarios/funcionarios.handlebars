@@ -1,0 +1,73 @@
+
+<div class="container py-3">
+
+    <h2 class="page-title mb-3">Lista de todos os funcionários</h2>
+    <hr>
+
+    <div class="d-flex flex-wrap justify-content-between align-items-center toolbar mb-4">
+        <div class="d-flex flex-wrap gap-2">
+            <a href="/rh" class="btn btn-secondary">Voltar</a>
+            <a href="/funcionarios/add" class="btn btn-primary">Cadastrar novo funcionário</a>
+        </div>
+        <div>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#adFuncPrio">
+                + Prioritário
+            </button>
+        </div>
+    </div>
+
+    {{#each funcionarios}}
+    <div class="card func-card mb-3">
+        <div class="card-body">
+            <div class="row align-items-center g-3">
+                <div class="col-12 col-sm-auto text-center text-sm-start">
+                    <img src="/uploads/{{foto}}" class="func-foto" alt="Foto de {{nome}}">
+                </div>
+                <div class="col-12 col-sm">
+                    <div class="func-nome">{{nome}}</div>
+                    <div class="func-info">{{funcao}} &middot; Agente: {{numAgente}}</div>
+                </div>
+                <div class="col-12 col-sm-auto func-actions text-sm-end">
+                    <a class="btn btn-sm btn-secondary" href="/funcionarios/detalhes/{{_id}}">Detalhes</a>
+                    <a class="btn btn-sm btn-danger" href="/funcionarios/apagar/{{_id}}">Apagar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{else}}
+    <div class="empty-state text-center h5">Não há funcionário cadastrado</div>
+    {{/each}}
+
+</div>
+
+{{!-- M O D A I S --}}
+
+<!-- Modal adFuncPrioritario -->
+<div class="modal" tabindex="-1" data-bs-backdrop="static" id="adFuncPrio">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form action="/funcionarios/addd" method="post">
+                <div class="modal-header">
+                    <h3 class="modal-title">Adicionar funcionário com prioridade</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="prioNome" class="form-label">Nome completo</label>
+                        <input type="text" id="prioNome" name="nome" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="prioNumAgente" class="form-label">Número de Agente</label>
+                        <input type="text" id="prioNumAgente" name="numAgente" class="form-control" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Adicionar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="assets/bootstrap.bundle.min.js"></script>

@@ -1,0 +1,116 @@
+
+/* Estilos para a página de gerenciamento de turmas na view do professor */
+:root {
+    --turmas-navy: #102a43;
+    --turmas-teal: #0f766e;
+    --turmas-teal-dark: #115e59;
+    --turmas-gold: #c49332;
+    --turmas-bg: #f5f7f9;
+    --turmas-border: #d9e2ec;
+    --turmas-muted: #627d98;
+}
+
+.turmas-page {
+    min-height: 100%;
+    padding: clamp(1.5rem, 4vw, 3rem) 0;
+    background: var(--turmas-bg);
+    color: var(--turmas-navy);
+}
+
+.page-alert {
+    margin-bottom: 1rem;
+    border: 0;
+    border-left: 4px solid currentColor;
+}
+
+.page-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--turmas-border);
+    padding-bottom: 1.25rem;
+}
+
+.eyebrow {
+    display: block;
+    margin-bottom: .35rem;
+    color: var(--turmas-teal);
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+.page-heading h1,
+.section-heading h2 {
+    margin: 0;
+    color: var(--turmas-navy);
+    font-size: clamp(1.35rem, 3vw, 2rem);
+    font-weight: 700;
+}
+
+.page-heading h1 { font-size: clamp(1.25rem, 3vw, 1.8rem); }
+.course-context { text-align: right; }
+.course-context span { display: block; color: var(--turmas-muted); font-size: .85rem; }
+.course-context strong { color: var(--turmas-teal); }
+
+.intro-panel {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.25rem;
+    border-radius: .65rem;
+    background: var(--turmas-navy);
+    padding: 1rem 1.25rem;
+    color: #fff;
+}
+
+.intro-panel p { margin: 0; color: #d9e2ec; font-size: .95rem; }
+.intro-panel .btn { flex: 0 0 auto; }
+.section-heading { margin-bottom: 1rem; }
+.section-heading h2 { font-size: 1.35rem; }
+
+.turmas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.turma-card {
+    display: flex;
+    min-height: 185px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--turmas-border);
+    border-top: 4px solid var(--turmas-gold);
+    border-radius: .65rem;
+    background: #fff;
+    padding: 1.25rem;
+    box-shadow: 0 .35rem 1rem rgba(16, 42, 67, .06);
+    text-align: center;
+}
+
+.turma-label { color: var(--turmas-muted); font-size: .8rem; text-transform: uppercase; }
+.turma-code { margin: .25rem 0 1rem; color: var(--turmas-navy); font-size: 1.8rem; }
+.turma-card .btn { min-width: 6rem; background: var(--turmas-teal); border-color: var(--turmas-teal); }
+.turma-card .btn:hover,
+.turma-card .btn:focus-visible { background: var(--turmas-teal-dark); border-color: var(--turmas-teal-dark); }
+.turma-hint { margin-top: .75rem; color: var(--turmas-muted); font-size: .75rem; }
+.empty-state { border: 1px dashed var(--turmas-border); border-radius: .65rem; background: #fff; padding: 2.5rem 1rem; color: var(--turmas-muted); text-align: center; }
+
+#addDisciplina .modal-content { border: 0; border-top: 4px solid var(--turmas-gold); border-radius: .65rem; }
+#addDisciplina .modal-title { color: var(--turmas-navy); font-size: 1.25rem; }
+#addDisciplina .btn-primary { background: var(--turmas-teal); border-color: var(--turmas-teal); }
+
+@media (max-width: 575.98px) {
+    .page-heading { align-items: start; flex-direction: column; gap: .75rem; }
+    .course-context { text-align: left; }
+    .intro-panel { align-items: stretch; flex-direction: column; }
+    .intro-panel .btn { align-self: flex-start; }
+}

@@ -1,0 +1,63 @@
+/*
+  Estilos do componente "Carga Horária".
+  Paleta mantida a partir das cores originais (bg-light no cabeçalho da tabela),
+  apenas organizada para consistência visual com o resto do sistema.
+*/
+
+:root {
+    --ch-border: #dee2e6;
+    --ch-title-color: #343a40;
+    --ch-radius: 0.5rem;
+}
+
+.carga-horaria {
+    padding: 1rem 0 0.5rem;
+}
+
+.carga-horaria-title {
+    font-weight: 700;
+    letter-spacing: 0.1rem;
+    color: var(--ch-title-color);
+    font-size: clamp(1.25rem, 3vw, 2rem);
+    margin-bottom: 0;
+}
+
+.carga-horaria-divider {
+    border: none;
+    border-top: 2px solid var(--ch-border);
+    margin: 1rem 0 1.5rem;
+    opacity: 1;
+}
+
+.carga-horaria-table-wrapper {
+    border-radius: var(--ch-radius);
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--ch-border);
+}
+
+.carga-horaria-table-wrapper table {
+    min-width: 720px;
+}
+
+.carga-horaria-table-wrapper thead th {
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.03rem;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.carga-horaria-table-wrapper td {
+    font-size: 0.9rem;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+@media (max-width: 575.98px) {
+    .carga-horaria-table-wrapper table {
+        font-size: 0.8rem;
+    }
+}

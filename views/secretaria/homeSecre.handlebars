@@ -1,0 +1,68 @@
+
+<main class="secretaria-page container-fluid py-4 py-lg-5">
+    <div class="container secretaria-shell">
+        <header class="secretaria-header text-center">
+            <p class="secretaria-eyebrow mb-2">Área administrativa</p>
+            <h1 class="secretaria-title mb-0">SECRETARIA GERAL</h1>
+        </header>
+
+        <hr class="secretaria-divider">
+
+        <section aria-labelledby="secretaria-menu-title">
+            <h2 id="secretaria-menu-title" class="visually-hidden">Menu da secretaria</h2>
+            <nav class="row g-3" aria-label="Menu principal da secretaria">
+                <div class="col-12 col-md-4">
+                    <a href="/secretaria/ocorrencias"
+                        class="secretaria-menu-item secretaria-menu-warning menu-item2 text-light">
+                        <span class="secretaria-menu-label">Ocorrencias</span>
+                        <span class="secretaria-menu-arrow" aria-hidden="true">&rarr;</span>
+                    </a>
+                </div>
+                <div class="col-12 col-md-4">
+                    <a href="/secretaria/gerirInformacoes"
+                        class="secretaria-menu-item secretaria-menu-info menu-item2 text-light">
+                        <span class="secretaria-menu-label">Informações</span>
+                        <span class="secretaria-menu-arrow" aria-hidden="true">&rarr;</span>
+                    </a>
+                </div>
+                <div class="col-12 col-md-4">
+                    <a href="/secretaria/servicos"
+                        class="secretaria-menu-item secretaria-menu-secondary menu-item2 text-light">
+                        <span class="secretaria-menu-label">Serviços</span>
+                        <span class="secretaria-menu-arrow" aria-hidden="true">&rarr;</span>
+                    </a>
+                </div>
+            </nav>
+        </section>
+
+        <hr class="secretaria-divider">
+
+        <section class="secretaria-actions" aria-labelledby="secretaria-actions-title">
+            <div class="secretaria-section-heading">
+                <div>
+                    <p class="secretaria-eyebrow mb-1">Acesso rápido</p>
+                    <h2 id="secretaria-actions-title" class="secretaria-section-title mb-0">Gestão escolar</h2>
+                </div>
+            </div>
+
+            <div class="row g-2 g-md-3 mt-1">
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <a href="/secretaria/novasSolicitacoes" class="secretaria-action btn btn-secondary w-100">
+                        <span>Novas solicitações</span>
+                        <span class="badge text-bg-light">{{novasSolicitacoes.length}}</span>
+                    </a>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <a href="/secretaria/turmas" class="secretaria-action btn btn-secondary w-100">Turmas</a>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <a href="/secretaria/#" class="secretaria-action btn btn-secondary w-100">Pautas</a>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <a href="/secretaria/#" class="secretaria-action btn btn-secondary w-100">Calendário</a>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+

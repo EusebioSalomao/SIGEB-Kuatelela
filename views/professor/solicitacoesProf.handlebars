@@ -1,0 +1,82 @@
+<h1 class="text-center">SOLICITAÇÕES DE JUSTIFICAÇÃO DE FALTAS</h1>
+<hr class="my-0 p-1" >
+
+<hr class="mb-1 mt-0 py-1">
+<div class="container mt-0 offset-1">
+    <div class="row ms-0 mt-0">
+        <div class="col-10 ">
+            <div class="p-1 h4 bg-secondary text-light"></div>
+            {{#each ocorrencias}}
+                <div class="row text-dark bg-dark mt-2 me-1">
+                    <div class="card">
+                        <div class="card-body p-1">
+                            <div class="row p-0">
+
+                            <div class="col-6 p-0">
+                            <span class="fw-bold" > {{descricao}} </span>
+                            <br>
+                            <span class="text-sm" > {{nomeDoSolicitante}}</span>
+                            
+
+                            </div>
+                            <div class="col-4">
+                                <span class="fw-bold" >Estado:</span> <span> {{estado}} </span>
+                                <a href="/pedagogico/solicitacao/{{_id}}"><button class="btn btn-sm btn-secondary" >Ver Detalhes</button></a>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{else}}
+            <span>Nenhuma ocorrencia registrada</span>
+            {{/each}}
+            </div>
+        
+    </div>
+</div>
+
+
+{{!-- MODAIS --}}
+<!-- Modal nova ocorrencia-->
+
+    <div class="modal" tabindex="-1" data-bs-backdrop="static" id="idRegistrarEntrada">
+        <div class="modal-dialog modal-dialog-centered">
+            <form action="/secretaria/novaOcorrencia" method="post">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Registro de nova ocorrencia</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body input-box">
+                        <label for="tipo">Tipo de entrada:</label>
+                        <select name="tipo" id="">
+                            <option value="selecionar">Selecionar</option>
+                            <option value="emicaoDeCertif">Emição de Certificado</option>
+                            <option value="emicaoDeDec">Emição de Declaração</option>
+                            <option value="justficativo">Justificação de Faltas</option>
+                            <option value="decServiço">Declaração de serviço</option>
+                            <option value="recepcaoDoc">Recepção de Documentos</option>
+                            <option value="selecionar">Outros</option>
+                        </select>
+
+                        <button type="submit" class="btn btn-primary">Continuar</button>
+                    </div>
+                    <div class="modal-footer text-center">
+                        {{!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Feichar</button>
+                        --}}
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+<script src="assets/bootstrap.bundle.min.js" class="img-fluid"></script>
+<script>
+    function registrarEntrada() {
+
+        let el = document.getElementById('idRegistrarEntrada');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+</script>

@@ -1,0 +1,256 @@
+<h2 class="text-center">PREENCHA DEVIDAMENTE O FORMULÁRIO</h2>
+<hr class="my-0 p-1">
+<div class="container">
+    <div class="row">
+        <div class="col-6 bg-warning my-0 h3 p-2 fw-bold">
+            <a href="/secretaria/informase" class="btn btn-secondary"> <button class="btn fw-bold btn-warning text-light">
+                    < </button> </a>
+            Solicitação
+        </div>
+        <div class="col-5 p-3 h3 fw-bold bg-secondary ms-1 mt-1 text-center text-light">
+            {{#if tipoCer}}{{tipoCer}}{{else}}{{/if}}
+            {{#if tipoDc}}{{tipoDc}}{{else}}{{/if}}
+            {{#if tipoJust}}{{tipoJust}}{{else}}{{/if}}
+            {{#if recepcaoDoc}}{{recepcaoDoc}}{{else}}{{/if}}
+            {{#if DecServico}}{{DecServico}}{{else}}{{/if}}
+            {{#if soliRUPE}}{{soliRUPE}}{{else}}{{/if}}
+
+        </div>
+    </div>
+    <hr>
+    <div class="container">
+        <div class="col-6 offset-3">
+            <div class="card">
+                <div class="card-body">
+
+
+                    {{!-- D E C L A R A Ç Ã O --}}
+                    <form action="/informaAqui/salvarSolicitacao" method="post" enctype="multipart/form-data">
+                        {{#if tipoDc}}
+                        <label for="nomeAluno">Nome completo</label>
+                        <input type="text" name="nomeAluno" id="" value="{{validBI.nome}}" class="form-control">
+                        <div class="row">
+                            <div class="col-6">
+
+                                <label for="numBI">Nº BI:</label>
+                                <input type="text" name="numBI" id="" value="{{validBI.numBI}}" class="form-control">
+                                <label class="mt-3 text-danger" for="copOcorrencia">Carregue o comprovativo de pagamento</label>
+                                <input type="file" name="copOcorrencia" id="">
+                            </div>
+                            <div class="col-6">
+                                <label for="classe">Classe:</label>
+                                <input type="text" name="classe" value="{{validBI.classe}}" id="" class="form-control">
+                                <label for="contacto">Contacto:</label>
+                                <input type="text" name="contacto" id="" class="form-control">
+                                {{!-- <select name="classe" id="" class="form-control">
+                                    <option value="selecionar">Selecionar</option>
+                                    <option value="classe10">10ª Classe</option>
+                                    <option value="classe11">11ª Classe</option>
+                                    <option value="classe12">12ª Classe</option>
+                                </select> --}}
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="text-center mt-2">
+                            <input type="hidden" name="tipo" value="{{tipoDc}}" id="">
+                            <button class="btn btn-primary">Enviar solicitação</button>
+
+                        </div>
+
+                    </form>
+                    {{else}}
+                    {{/if}}
+                    {{!-- C E R T I F I C A D O --}}
+                    <form action="/informaAqui/salvarSolicitacao" method="post" enctype="multipart/form-data">
+                        {{#if tipoCer}}
+                        <label for="nomeAluno">Nome completo</label>
+                        <input type="text" name="nomeAluno" value="{{validBI.nome}}" class="form-control">
+                        <div class="row">
+                            <div class="col-6">
+
+                                <label for="numBI">Nº BI:</label>
+                                <input type="text" name="numBI" value="{{validBI.numBI}}" id="" class="form-control">
+
+                                 <label class="mt-3 text-danger" for="copOcorrencia">Carregue o comprovativo de pagamento</label>
+                                <input type="file" name="copOcorrencia" id="">
+                            </div>
+                            <div class="col-6">
+                                <label for="ano">Ano</label>
+                                <input type="text" name="ano" id="" placeholder="Informe o ano que terminou"
+                                    class="form-control">
+                            <label for="contacto">Contacto</label>
+                            <input type="text" name="contacto" class="form-control" id="">
+                            </div>
+                                    
+                        </div>
+                        <hr>
+
+                        <div class="text-center mt-2">
+                            <input type="hidden" name="tipo" value="{{tipoCer}}" id="">
+                            <button type="submit" class="btn btn-primary">Enviar solicitação</button>
+
+                        </div>
+
+                    </form>
+                    {{else}}
+                    {{/if}}
+
+                    {{!-- J U S T I F I C A Ç Ã O D E F A L T A S --}}
+                    <form action="/secretaria/enviarSolicitacao" method="post" enctype="multipart/form-data">
+                        {{#if tipoJust}}
+                        <label for="nomeDoSolicitante">Nome completo</label>
+                        <input type="text" name="nomeDoSolicitante" value="{{validBI.nome}}" class="form-control" required>
+                        <div class="row">
+                            <div class="col-6">
+
+                                <label for="numBI">Nº BI:</label>
+                                <input type="text" name="numBI" value="{{validBI.numBI}}" class="form-control" required>
+
+                                 <label class="mt-3 text-danger" for="copOcorrencia">Carregue o comprovativo de pagamento</label>
+                                <input type="file" name="copOcorrencia" id="">
+                            </div>
+                            <div class="col-6">
+                                <label for="disciplina">Disciplia:</label>
+                                <select name="disciplina" class="form-control" id="">
+                                    {{#each disciplinas}}
+                                    <option value="selecionar">Selecionar</option>
+                                    <option value="{{nomeDisciplina}}"> {{nomeDisciplina}} </option>
+                                    {{else}}
+                                    <option value="selecionar">Nenhuma disciplina registrada</option>
+                                    {{/each}}
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+
+                                <label for="dataFalta">Data da falta:</label>
+                                <input type="date" name="dataFalta" class="form-control" required>
+                            </div>
+                            <div class="col-3">
+                                <label for="turma">Turma:</label>
+                                <select name="turma" id="" class="form-control" required>
+                                    <option value="selecionar">Selecionar</option>
+                                    {{#each turmas}}
+                                    <option value="{{_id}}"> {{codigo}} </option>
+                                    {{else}}
+                                    <option value="selecionar">Sem turma</option>
+                                    {{/each}}
+                                </select>
+
+                            </div>
+                            <div class="col-3">
+                                <label for="numfaltas">Nº de faltas:</label>
+                                <input type="number" name="numfaltas" id="" class="form-control" required>
+
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="text-center mt-2">
+                            <input type="hidden" name="descricao" value="{{tipoJust}}">
+                            <input type="hidden" name="tipo" value="{{tipoJust}}">
+                            <button class="btn btn-primary">Enviar solicitação</button>
+
+                        </div>
+
+                    </form>
+                    {{else}}
+                    {{/if}}
+                    {{!-- D E C L A R A Ç Ã O   D E   S E R V I Ç O  --}}
+                    <form action="/secretaria/enviarSolicitacao" method="post">
+                        {{#if DecServico}}
+                        <label class="mt-2" for="nomeDoSolicitante">Nome completo</label>
+                        <input type="text" name="nomeDoSolicitante" value="{{validBI.nome}}" class="form-control" required>
+                        <div class="row">
+                            <div class="col-6">
+
+                                <label class="mt-2" for="numBI">Nº BI:</label>
+                                <input type="text" name="numBI" value="{{validBI.numBI}}" class="form-control" required>
+                            </div>
+                            <div class="col-6">
+                                <label class="mt-2" for="contacto">Contacto</label>
+                                <input type="text" name="contacto" class="form-control" id="">
+                            </div>
+                        </div>
+                        <label class="mt-2" for="paraEfeito">Para o efeito de: </label>
+                        <input type="text" name="paraEfeito" class="form-control" required id="">
+                        <hr>
+
+                        <div class="text-center mt-2">
+                            <input type="hidden" name="descricao" value="{{DecServico}}">
+                            <input type="hidden" name="tipo" value="{{DecServico}}">
+                            <button class="btn btn-primary">Enviar solicitação</button>
+
+                        </div>
+
+                    </form>
+                    {{else}}
+                    {{/if}}
+                    {{!-- SOLICITAR RUPE  --}}
+                    <form action="/secretaria/enviarSolicitacao" method="post">
+                        {{#if soliRUPE}}
+                        <label class="mt-2" for="nomeDoSolicitante">Nome completo</label>
+                        <input type="text" name="nomeDoSolicitante" value="{{validBI.nome}}" class="form-control" required>
+                        <div class="row">
+                            <div class="col-6">
+
+                                <label class="mt-2" for="numBI">Nº BI:</label>
+                                <input type="text" name="numBI" value="{{validBI.numBI}}" class="form-control" required>
+                            </div>
+                            <div class="col-6">
+                                <label class="mt-2" for="contacto">Contacto</label>
+                                <input type="text" name="contacto" class="form-control" id="">
+                            </div>
+                        </div>
+                        <label class="mt-2" for="paraEfeito">Observação: </label>
+                        <input type="text" name="paraEfeito" class="form-control" required id="" placeholder="Informe se é para que efeito">
+                        <hr>
+
+                        <div class="text-center mt-2">
+                            <input type="hidden" name="descricao" value="{{soliRUPE}}">
+                            <input type="hidden" name="tipo" value="{{soliRUPE}}">
+                            <button class="btn btn-primary">Enviar solicitação</button>
+
+                        </div>
+
+                    </form>
+                    {{else}}
+                    {{/if}}
+
+                    {{!-- R E C E P Ç Ã O D E D O C U M E N T O S --}}
+                    <form action="/secretaria/enviarSolicitacao" method="post" enctype="multipart/form-data">
+                        {{#if recepcaoDoc}}
+                        <label for="descricao">Descrição</label>
+                        <input type="hidden" name="descricao" id="">
+                        <input type="text" name="desc" class="form-control" required>
+
+                        <label for="origem">Origem:</label>
+                        <input type="text" name="origem" class="form-control" required>
+
+                        <label for="emissor">Emissor:</label>
+                        <input type="text" name="emissor" class="form-control" required>
+                        <input type="hidden" name="tipo" value="{{recepcaoDoc}}">
+                        <div class="mt-2">
+
+                            <label for="copOcorrencia">Scanear documento:</label>
+                            <input type="file" name="copOcorrencia" class="form-control" required>
+                        </div>
+
+                        <hr>
+
+                        <div class="text-center mt-2">
+                            <input type="hidden" name="descricao" value="{{tipoJust}}">
+                            <button class="btn btn-primary">Confirmar</button>
+
+                        </div>
+
+                    </form>
+                    {{else}}
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>

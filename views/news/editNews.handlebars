@@ -1,0 +1,40 @@
+<head>
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+
+
+</head>
+
+<div class="card p-2 bg-light">
+
+    <h2 class="text-center">Editar informação</h2>
+    <hr>
+    <div class="card-body p-5">
+        <form action="/noticias/update" method="post">
+
+            <label for="title">Título da notícia:</label>
+            <input type="text" value="{{informacao.title}}" name="title" class="form-control" required><br><br>
+            <div class="mx-5">
+
+            <label for="text">Texto:</label>
+            <textarea name="text" required class="form-control"
+                rows="10"> {{informacao.text}} </textarea><br>
+            </div>
+            {{!-- <label for="tok">Token:</label>
+            <input type="text" name="tok" class="form-control"><br>
+ --}}
+
+            <div class="col-2 offset-5 text-italic text-center pb-0 mb-0">
+            <label for="capa">Imagem da capa:</label>
+                <img class="fotoAluno" src="/uploads/{{informacao.capa}}" alt="Sem capa de noticia">
+                </div>
+                <div class="col-10 mt-0 pt-0">
+
+            <input type="hidden" name="capa" value="{{informacao.capa}}" class="form-control"><br>
+            <input type="hidden" name="id" value="{{informacao._id}}" class="form-control"><br>
+            </div>
+            <button type="submit" class="btn btn-secondary form-control">Salvar alteração</button>
+                
+        </form>
+    </div>
+</div>
+<hr>

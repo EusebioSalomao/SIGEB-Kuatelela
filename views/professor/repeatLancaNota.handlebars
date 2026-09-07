@@ -1,0 +1,72 @@
+<div class="col-8 offset-2">
+    <div class="h2 fw-bold text-center">Repetição de lançamento das notas que falharam - <span>
+            {{minipauta.idClasse.designacao}} {{minipauta.idTurma.codigo}} </span></div>
+    <hr>
+    <label for="trimestre">Trimestre:</label>
+    <select name="trimestre" class="text-danger fw-bold text-center" required>
+        <option value="{{falhaNota.trimestre}}"> {{falhaNota.descTrimestre}} </option>
+    </select>
+    <label for="notaDe">Nota de:</label>
+    <select name="notaDe" required class="text-primary fw-bold text-center">
+        <option value="{{falhaNota.notaDe}}"> {{falhaNota.notaDe}} ( {{falhaNota.avF}} ) </option>
+    </select>
+    <hr>
+    <div class="lead text-center text-info">Insira digita as notas e clica no botão salvar</div>
+    <table class="table-bordered ms-5">
+
+        {{#each alunosTurmaFalha}}
+        <form action="/professor/lancarNotaRepSalve" method="post">
+
+            <tr>
+                <td class="text-center"> {{numeroOrd}} </td>
+                <td class="px-2 lead"> {{aluno.nome}} </td>
+                <td class="text-center"> <input type="number" name="nota" id="nota" class="text-center tdn form-controll"
+                        required> </td>
+                <input type="hidden" name="trimestre" value="{{trimestre}}">
+                <input type="hidden" name="notaDe" value="{{notaDe}}">
+                <input type="hidden" name="idProfessor" value="{{professor}}">
+                <input type="hidden" name="idMinipauta" value="{{idMinipauta}}">
+                <input type="hidden" name="idClasse" value="{{idClasse}}">
+                <input type="hidden" name="idTurma" value="{{idTurma}}">
+               {{!--  <input type="hidden" name="idCurso" value="{{curso._id}}"> --}}
+                {{!-- <input type="hidden" name="idAno" value="{{ano._id}}"> --}}
+                <td><button onclick="notaSalva()" type="submit">Salvar</button> <span id="n"></span></td>
+                <input type="hidden" name="idAluno" value="{{aluno._id}}" id="">
+            </tr>
+
+        </form>
+
+        {{else}}
+        <option value="0">Nenhum aluno nesta turma</option>
+        {{/each}}
+    </table>
+    <div class="text-center lead mt-2">
+    <a href="/professor/minipauta/{{minipauta._id}}">Voltar a minipauta</a>
+    </div>
+</div>
+
+
+{{!-- S C R I P T S   E   M O D A I S   --}}
+
+ <script src="assets/bootstrap.bundle.min.js" class="img-fluid"></script>
+            <script>
+                function notaSalva() {
+
+                    let el = document.getElementById('n');
+                    el.textContent = "A nota foi salva!";
+                    //let minha_modal = new bootstrap.Modal(el);
+                    //minha_modal.show();
+                }
+
+                function lancarNota() {
+
+                    let el = document.getElementById('nota');
+                    let minha_modal = new bootstrap.Modal(el);
+                    minha_modal.show();
+                }
+
+               
+
+
+
+            </script>
